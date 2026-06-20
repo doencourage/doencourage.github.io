@@ -223,17 +223,42 @@ header.nav{position:sticky; top:0; z-index:50; backdrop-filter:blur(10px); backg
 @media(max-width:860px){.tiers{grid-template-columns:1fr; max-width:440px; margin-inline:auto}}
 
 /* 저자 */
-.author-grid{display:grid; grid-template-columns:minmax(0,1fr) minmax(220px,.82fr) minmax(0,1.05fr); gap:clamp(1.4rem,3.4vw,3rem); align-items:center}
-.author-photo{position:relative; aspect-ratio:4/5; overflow:visible; background:transparent; isolation:isolate}
-.author-photo::before{content:""; position:absolute; z-index:0; left:50%; top:27%; width:108%; padding-bottom:108%; height:0; transform:translate(-50%,-50%); border-radius:50%; background:radial-gradient(circle, rgba(226,178,124,.95) 0%, rgba(198,118,44,.5) 30%, rgba(188,108,37,.13) 52%, transparent 68%)}
-.author-photo img{position:relative; z-index:1; width:100%; height:100%; object-fit:cover; object-position:50% 12%; filter:saturate(1) contrast(1.03); -webkit-mask-image:linear-gradient(to bottom,#000 72%,transparent 97%); mask-image:linear-gradient(to bottom,#000 72%,transparent 97%)}
-.author-name{font-weight:800; font-size:clamp(1.8rem,2.8vw,2.4rem); letter-spacing:-.04em; line-height:1.05; color:var(--ink); margin:0}
-.author-en{font-weight:500; font-size:.92rem; letter-spacing:.1em; color:var(--muted); margin:.28rem 0 0}
-.author-field{font-size:.92rem; font-weight:600; letter-spacing:-.01em; color:var(--rust); margin:1.15rem 0}
-.author-quote{border-left:2px solid var(--rust); padding-left:1.25rem; font-weight:300; letter-spacing:-.03em; font-size:clamp(1.25rem,1.9vw,1.6rem); line-height:1.5; color:var(--ink); margin:0}
-.creds{display:flex; flex-direction:column; gap:.5rem; font-size:.95rem; color:#46433f}
-.creds span{padding-left:1.2rem; position:relative}.creds span::before{content:"—"; position:absolute; left:0; color:var(--rust)}
-@media(max-width:860px){.author-grid{grid-template-columns:1fr; gap:1.6rem; justify-items:start} .author-photo{order:-1; max-width:250px; width:100%; align-self:center} .author-meta,.author-quote{max-width:440px; width:100%}}
+.author-grid{display:grid; grid-template-columns:minmax(0,.92fr) minmax(320px,1.18fr) minmax(0,.92fr); gap:clamp(1.2rem,2.6vw,2.4rem); align-items:end}
+/* 좌/우 칼럼은 인물 어깨 높이 부근에 글이 앉도록 바닥에서 살짝 띄움 */
+.author-meta{padding-bottom:clamp(1rem,3vw,2.6rem)}
+.author-quote-col{padding-bottom:clamp(1rem,3vw,2.6rem)}
+.author-photo{position:relative; aspect-ratio:9/10; overflow:visible; background:transparent; isolation:isolate; align-self:end}
+/* 따뜻한 헤일로 — 머리 뒤에만. cover 프레이밍 기준 인물 머리(상단 중앙) 위치에 맞춤 */
+.author-photo::before{content:""; position:absolute; z-index:0; left:48.5%; top:24%; width:76%; padding-bottom:76%; height:0; transform:translate(-50%,-50%);
+  background:radial-gradient(circle at 50% 50%,
+    rgba(233,188,134,.90) 0%,
+    rgba(216,144,74,.56) 28%,
+    rgba(188,108,37,.26) 47%,
+    rgba(188,108,37,.08) 64%,
+    transparent 78%);
+  filter:blur(3px)}
+/* 원본 PNG가 우측으로 치우쳐 있어(좌측 투명여백 30%/우측 6%) object-fit으로는 가운데 정렬이 안 된다.
+   contain으로 비율을 지키되 scale로 키우고 translateX로 인물 본체를 칼럼 중앙으로 끌어온다. 바닥 기준 정렬. */
+.author-photo img{position:absolute; z-index:1; left:0; bottom:0; width:100%; height:100%; object-fit:contain; object-position:50% 100%;
+  transform-origin:60% 100%; transform:translateX(-9%) scale(1.34);
+  filter:saturate(1.02) contrast(1.03) drop-shadow(0 16px 26px rgba(80,46,12,.16));
+  -webkit-mask-image:linear-gradient(to bottom,#000 80%,rgba(0,0,0,.5) 92%,transparent 100%); mask-image:linear-gradient(to bottom,#000 80%,rgba(0,0,0,.5) 92%,transparent 100%)}
+/* 인물 바닥을 모래색 배경으로 부드럽게 접지 */
+.author-photo::after{content:""; position:absolute; z-index:2; left:-6%; right:-6%; bottom:0; height:24%; pointer-events:none;
+  background:linear-gradient(to bottom, rgba(239,231,219,0) 0%, rgba(239,231,219,.65) 62%, var(--sand) 100%)}
+.author-name{font-weight:800; font-size:clamp(2rem,3.1vw,2.7rem); letter-spacing:-.045em; line-height:1.02; color:var(--ink); margin:0}
+.author-en{font-weight:500; font-size:.9rem; letter-spacing:.16em; text-transform:uppercase; color:var(--muted); margin:.4rem 0 0}
+.author-field{font-size:.9rem; font-weight:600; letter-spacing:-.005em; color:var(--rust); margin:1.5rem 0 1.15rem; padding-top:1.2rem; border-top:1px solid var(--rule)}
+.author-quote{border-left:2px solid var(--rust); padding-left:1.35rem; font-weight:300; letter-spacing:-.03em; font-size:clamp(1.2rem,1.75vw,1.5rem); line-height:1.55; color:var(--ink); margin:0; text-wrap:pretty}
+.creds{display:flex; flex-direction:column; gap:.58rem; font-size:.93rem; line-height:1.45; color:#46433f}
+.creds span{padding-left:1.25rem; position:relative}.creds span::before{content:"—"; position:absolute; left:0; color:var(--rust); font-weight:500}
+@media(max-width:860px){
+  .author-grid{grid-template-columns:1fr; gap:1.8rem; justify-items:start; align-items:start}
+  .author-photo{order:-1; max-width:340px; width:100%; align-self:center; aspect-ratio:31/40}
+  .author-photo::before{top:19%; width:74%; padding-bottom:74%}
+  .author-meta,.author-quote-col{padding-bottom:0}
+  .author-meta,.author-quote{max-width:460px; width:100%}
+}
 
 /* 시리즈 */
 .series{display:grid; grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr); gap:clamp(2rem,5vw,4rem); align-items:center}
@@ -543,7 +568,9 @@ footer{background:#0f1113; color:#8a857c; padding-block:3.5rem 2.5rem; position:
         </div>
       </div>
       <div class="author-photo reveal"><img src="images/저자.png" alt="마음기록소 임상심리전문가 안계훈" /></div>
-      <blockquote class="author-quote reveal">검사 결과지는 부모님 손에 들린 단서 한 장일 뿐, 아이를 매일 보시는 부모님의 관찰이 그 어떤 검사보다 풍부한 정보입니다.</blockquote>
+      <div class="author-quote-col reveal">
+        <blockquote class="author-quote">검사 결과지는 부모님 손에 들린 단서 한 장일 뿐, 아이를 매일 보시는 부모님의 관찰이 그 어떤 검사보다 풍부한 정보입니다.</blockquote>
+      </div>
     </div>
   </div>
 </section>
