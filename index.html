@@ -223,18 +223,17 @@ header.nav{position:sticky; top:0; z-index:50; backdrop-filter:blur(10px); backg
 @media(max-width:860px){.tiers{grid-template-columns:1fr; max-width:440px; margin-inline:auto}}
 
 /* 저자 */
-.author-grid{display:grid; grid-template-columns:minmax(0,.75fr) minmax(0,1.25fr); gap:clamp(2rem,5vw,4rem); align-items:center}
-.author-photo{aspect-ratio:4/5; position:relative; overflow:visible; background:transparent; isolation:isolate}
-.author-photo::before{content:""; position:absolute; z-index:0; inset:7% -6% 0 -6%; background:radial-gradient(60% 52% at 54% 42%, rgba(224,176,122,.92), rgba(188,108,37,.5) 36%, rgba(188,108,37,.14) 60%, transparent 77%)}
-.author-photo img{position:relative; z-index:1; width:100%; height:100%; object-fit:cover; object-position:50% 13%; filter:saturate(1) contrast(1.03); -webkit-mask-image:linear-gradient(to bottom,#000 68%,transparent 95%); mask-image:linear-gradient(to bottom,#000 68%,transparent 95%)}
-.author-name{display:flex; align-items:baseline; gap:.55rem; flex-wrap:wrap; font-weight:800; font-size:clamp(1.6rem,2.6vw,2.15rem); letter-spacing:-.04em; color:var(--ink); margin:.4rem 0 .12rem}
-.author-name span{font-weight:500; font-size:.46em; letter-spacing:.08em; color:var(--muted)}
-.author-field{font-size:.92rem; font-weight:600; letter-spacing:-.01em; color:var(--rust); margin-bottom:1.1rem}
-.author-grid blockquote{border-left:2px solid var(--rust); padding-left:1.2rem; font-weight:300; letter-spacing:-.03em; font-size:clamp(1.3rem,2.3vw,1.75rem); line-height:1.45; margin:1rem 0 1.2rem}
-.author-grid .personal{font-size:1rem; color:#46433f; max-width:46ch; margin-bottom:1.1rem; line-height:1.6}
+.author-grid{display:grid; grid-template-columns:minmax(0,1fr) minmax(220px,.82fr) minmax(0,1.05fr); gap:clamp(1.4rem,3.4vw,3rem); align-items:center}
+.author-photo{position:relative; aspect-ratio:4/5; overflow:visible; background:transparent; isolation:isolate}
+.author-photo::before{content:""; position:absolute; z-index:0; left:50%; top:27%; width:108%; padding-bottom:108%; height:0; transform:translate(-50%,-50%); border-radius:50%; background:radial-gradient(circle, rgba(226,178,124,.95) 0%, rgba(198,118,44,.5) 30%, rgba(188,108,37,.13) 52%, transparent 68%)}
+.author-photo img{position:relative; z-index:1; width:100%; height:100%; object-fit:cover; object-position:50% 12%; filter:saturate(1) contrast(1.03); -webkit-mask-image:linear-gradient(to bottom,#000 72%,transparent 97%); mask-image:linear-gradient(to bottom,#000 72%,transparent 97%)}
+.author-name{font-weight:800; font-size:clamp(1.8rem,2.8vw,2.4rem); letter-spacing:-.04em; line-height:1.05; color:var(--ink); margin:0}
+.author-en{font-weight:500; font-size:.92rem; letter-spacing:.1em; color:var(--muted); margin:.28rem 0 0}
+.author-field{font-size:.92rem; font-weight:600; letter-spacing:-.01em; color:var(--rust); margin:1.15rem 0}
+.author-quote{border-left:2px solid var(--rust); padding-left:1.25rem; font-weight:300; letter-spacing:-.03em; font-size:clamp(1.25rem,1.9vw,1.6rem); line-height:1.5; color:var(--ink); margin:0}
 .creds{display:flex; flex-direction:column; gap:.5rem; font-size:.95rem; color:#46433f}
 .creds span{padding-left:1.2rem; position:relative}.creds span::before{content:"—"; position:absolute; left:0; color:var(--rust)}
-@media(max-width:820px){.author-grid{grid-template-columns:1fr; gap:1.8rem} .author-photo{max-width:230px; aspect-ratio:1}}
+@media(max-width:860px){.author-grid{grid-template-columns:1fr; gap:1.6rem; justify-items:start} .author-photo{order:-1; max-width:250px; width:100%; align-self:center} .author-meta,.author-quote{max-width:440px; width:100%}}
 
 /* 시리즈 */
 .series{display:grid; grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr); gap:clamp(2rem,5vw,4rem); align-items:center}
@@ -531,10 +530,9 @@ footer{background:#0f1113; color:#8a857c; padding-block:3.5rem 2.5rem; position:
   <div class="wrap">
     <div class="folio reveal"><span class="f">F.07</span><span class="t">/ 저자</span></div>
     <div class="author-grid">
-      <div class="author-photo reveal"><img src="images/저자.png" alt="마음기록소 임상심리전문가 안계훈" /></div>
-      <div class="reveal">
-        <blockquote>검사 결과지는 부모님 손에 들린 단서 한 장일 뿐, 아이를 매일 보시는 부모님의 관찰이 그 어떤 검사보다 풍부한 정보입니다.</blockquote>
-        <div class="author-name">안계훈 <span>An Kye-hoon</span></div>
+      <div class="author-meta reveal">
+        <div class="author-name">안계훈</div>
+        <div class="author-en">An Kye-hoon</div>
         <div class="author-field">전문 분야 · 심리평가</div>
         <div class="creds">
           <span>임상심리전문가 · 한국임상심리학회 전문회원 (1322호)</span>
@@ -544,6 +542,8 @@ footer{background:#0f1113; color:#8a857c; padding-block:3.5rem 2.5rem; position:
           <span>아주대학교 심리학과 졸업 (학사)</span>
         </div>
       </div>
+      <div class="author-photo reveal"><img src="images/저자.png" alt="마음기록소 임상심리전문가 안계훈" /></div>
+      <blockquote class="author-quote reveal">검사 결과지는 부모님 손에 들린 단서 한 장일 뿐, 아이를 매일 보시는 부모님의 관찰이 그 어떤 검사보다 풍부한 정보입니다.</blockquote>
     </div>
   </div>
 </section>
