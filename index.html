@@ -77,21 +77,33 @@ header.nav{position:sticky; top:0; z-index:50; backdrop-filter:blur(10px); backg
 .nav-links a{color:var(--ink); text-decoration:none; font-size:.92rem; font-weight:500; letter-spacing:-.01em; opacity:.8; transition:opacity .2s, color .2s}
 .nav-links a:hover{opacity:1; color:var(--rust)}
 .nav-links .btn{padding:.5em 1.2em; font-size:.88rem}
-@media(max-width:860px){ .nav-links a:not(.btn){display:none} }
+@media(max-width:860px){
+  .nav-links a:not(.btn){display:none}
+  .nav-links{gap:0}
+  .nav-links .btn{padding:.52em 1.05em; font-size:.84rem}
+}
+@media(max-width:420px){
+  header.nav .wrap{padding-inline:clamp(.9rem,4vw,1.25rem)}
+  .nav-links .btn{padding:.5em .95em}
+}
 
 /* HERO */
 .hero{display:grid; grid-template-columns:minmax(0,1fr) minmax(0,.66fr); background:var(--charcoal); color:#fff; overflow:hidden; min-height:clamp(540px,84vh,780px)}
 .hero-text{align-self:center; padding:clamp(2.6rem,7vh,4.4rem) clamp(2rem,4vw,3.4rem) clamp(2.6rem,7vh,4.4rem) var(--pad-x)}
 .hero h1{color:#fff; margin-bottom:1.4rem; max-width:15ch}
+.hero h1 .accent{color:var(--rust-soft)}
 .hero .lead{color:rgba(255,255,255,.84); margin-bottom:2rem}
 .hero .lead b{color:#fff; font-weight:600}
 .hero-cta{display:flex; gap:.8rem; flex-wrap:wrap; margin-bottom:1.5rem}
-.hero-note{font-size:.9rem; color:rgba(255,255,255,.6); font-variant-numeric:tabular-nums}
+.hero-note{font-size:.9rem; color:rgba(255,255,255,.6); font-variant-numeric:tabular-nums; max-width:42ch}
 .hero-note b{color:var(--rust-soft); font-weight:700}
 .hero-media{position:relative; overflow:hidden}
 .hero-media img{width:100%; height:100%; object-fit:cover; filter:saturate(.9) contrast(1.06)}
 .hero-media::after{content:""; position:absolute; inset:0; background:linear-gradient(90deg, var(--charcoal) 0%, rgba(21,23,26,.35) 26%, rgba(21,23,26,0) 62%)}
-@media(max-width:860px){ .hero{grid-template-columns:1fr; min-height:auto} .hero-media{height:240px} .hero-media::after{background:linear-gradient(0deg, rgba(21,23,26,.5), transparent 60%)} }
+@media(max-width:860px){ .hero{grid-template-columns:1fr; min-height:auto} .hero-media{height:240px} .hero-media::after{background:linear-gradient(0deg, rgba(21,23,26,.5), transparent 60%)}
+  .hero-text{padding-block:clamp(2.4rem,6vh,3.4rem) clamp(2.4rem,6vh,3.4rem)}
+  .hero-note{font-size:.85rem; line-height:1.55; max-width:34ch}
+}
 
 .cream{background:var(--cream)} .sand{background:var(--sand)}
 .dark{background:var(--charcoal); color:#e7e2da}
@@ -105,19 +117,25 @@ header.nav{position:sticky; top:0; z-index:50; backdrop-filter:blur(10px); backg
 .voices{font-weight:300; letter-spacing:-.022em; font-size:clamp(1.2rem,2.3vw,1.62rem); line-height:1.52; color:var(--ink); max-width:30ch; border-left:2px solid var(--rust); padding-left:1.2rem; margin-bottom:1.8rem}
 .voices b{font-weight:700}
 
-.split{display:grid; grid-template-columns:minmax(0,1.35fr) minmax(0,1fr); gap:clamp(2rem,5vw,4.2rem); align-items:center}
+.split{display:grid; grid-template-columns:minmax(0,1.35fr) minmax(0,1fr); gap:clamp(2rem,5vw,4.2rem); align-items:start}
 .split .imgwrap{aspect-ratio:4/5; height:100%}
+/* child.jpg는 사이트 팔레트 대비 채도가 높아 F.01 한정으로만 더 낮춰 톤을 맞춘다 */
+.split .imgwrap img{filter:saturate(.74) contrast(1.05)}
 @media(max-width:860px){.split{grid-template-columns:1fr; gap:1.8rem} .split .imgwrap{aspect-ratio:16/11}}
 
 .diff-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:clamp(1.4rem,3vw,2.6rem)}
 .diff-item{border-top:1px solid rgba(255,255,255,.15); padding-top:1.2rem}
-.diff-item h3{margin:.7rem 0 .55rem; color:#fff}
-.diff-item p{font-size:.97rem; color:#b4ada3; max-width:34ch}
+.diff-item h3{margin:.7rem 0 .55rem; color:#fff; font-size:1.18rem}
+.diff-item p{font-size:.97rem; color:#c2bcb2; max-width:34ch}
 @media(max-width:820px){.diff-grid{grid-template-columns:1fr; gap:1.8rem}}
-.toolnote{margin-top:clamp(2.4rem,5vw,3.4rem); padding-top:1.4rem; border-top:1px solid rgba(255,255,255,.15); font-size:1.02rem; color:#cfc9bf; max-width:64ch; line-height:1.6}
+/* 구분선은 그리드 전폭으로 긋되(diff-item 룰과 끝선 정렬) 본문 글줄만 64ch로 좁힌다 */
+.toolnote{margin-top:clamp(2.4rem,5vw,3.4rem); padding-top:1.4rem; border-top:1px solid rgba(255,255,255,.15); font-size:1.02rem; color:#c2bcb2; max-width:none; line-height:1.6}
+.toolnote .tn-in{display:block; max-width:64ch}
 .toolnote b{color:#fff; font-weight:700}
+.nowrap{white-space:nowrap}
 
 /* 비교표 */
+.compare-wrap{position:relative}
 .compare{margin-top:clamp(1.8rem,4vw,2.8rem); overflow-x:auto}
 .ctable{width:100%; border-collapse:collapse; min-width:600px; font-size:.95rem}
 .ctable th,.ctable td{text-align:left; padding:.9rem 1rem; border-bottom:1px solid rgba(45,45,45,.1); vertical-align:top; line-height:1.45}
@@ -127,6 +145,33 @@ header.nav{position:sticky; top:0; z-index:50; backdrop-filter:blur(10px); backg
 .ctable td{color:#5b5750}
 .ctable td.win{background:rgba(188,108,37,.07); color:var(--ink); font-weight:600}
 .ctable thead th.win,.ctable td.win{border-left:1.5px solid rgba(188,108,37,.4); border-right:1.5px solid rgba(188,108,37,.4)}
+/* 데스크톱에선 표가 폭 안에 다 들어가 부가 단서가 불필요 → 모바일 카드 전용 요소는 숨김 */
+.compare-fade,.compare-hint{display:none}
+/* 모바일: 390px에선 표의 결론(승자) 컬럼 '우리아이 마음설명서'가 우측으로 잘려 안 보이고 스크롤 단서도 없었다.
+   가로스크롤 대신 각 비교 항목을 '카드'로 재구성한다 — 항목명(행제목)을 제목으로, 세 선택지를 세로로 쌓되
+   결론인 '우리아이 마음설명서'를 러스트로 강조해 맨 아래(귀결점)에 둔다. 가로스크롤이 사라져 어떤 폭에서도 결론이 분명히 보인다. */
+@media(max-width:680px){
+  /* 표를 카드로 재구성: table/tbody/tr/td의 표 박스 모델을 모두 일반 블록으로 풀어 표 고유의 min-content 폭 계산을
+     완전히 없앤다(이게 안 풀리면 카드가 wrap 우측 패딩을 넘겨 잘린다). 컨테이너는 폭 안에 가두고 내부는 100% 폭으로 채운다. */
+  .compare-wrap{max-width:100%; overflow:hidden}
+  .compare{overflow:hidden; max-width:100%; width:100%; margin-top:clamp(1.4rem,4vw,2rem)}
+  .ctable,.ctable tbody,.ctable tbody tr,.ctable tbody th,.ctable tbody td{display:block; width:100%; min-width:0; border-collapse:collapse}
+  .ctable{font-size:.95rem}
+  .ctable thead{display:none}
+  /* 카드 폭을 뷰포트에 직접 묶어 wrap 우측 패딩 누락과 무관하게 화면 밖으로 못 나가게 한다 */
+  .ctable tbody tr{background:var(--light); border-radius:7px; padding:1.05rem 1.1rem 1.1rem; box-sizing:border-box;
+    max-width:calc(100vw - 2.6rem); box-shadow:0 1px 2px rgba(20,22,28,.04); margin-bottom:.9rem}
+  .ctable tbody tr:last-child{margin-bottom:0}
+  .ctable tbody th{font-size:1rem; font-weight:700; color:var(--ink); text-align:left;
+    padding:0 0 .7rem; border-bottom:1px solid rgba(45,45,45,.08); margin-bottom:.55rem}
+  .ctable tbody td{display:grid; grid-template-columns:6.8em minmax(0,1fr); align-items:baseline; gap:.2rem .7rem;
+    padding:.34rem 0; border:0; color:#5b5750; line-height:1.42; word-break:break-word; overflow-wrap:anywhere}
+  .ctable tbody td::before{content:attr(data-col); font-size:.8rem; font-weight:600; color:var(--muted); word-break:keep-all}
+  /* 결론 컬럼: 카드 안에서 러스트 배경으로 띄워 '이 표의 답'임을 분명히 한다 */
+  .ctable tbody td.win{margin-top:.5rem; padding:.55rem .7rem; border-radius:5px; background:rgba(188,108,37,.09);
+    color:var(--ink); font-weight:700; border-left:0!important; border-right:0!important}
+  .ctable tbody td.win::before{color:var(--rust); font-weight:700}
+}
 
 /* 풀배경 인용 밴드 */
 .quoteband{position:relative; min-height:clamp(360px,52vh,460px); display:flex; align-items:center; color:#fff; overflow:hidden; background:var(--charcoal)}
@@ -134,8 +179,14 @@ header.nav{position:sticky; top:0; z-index:50; backdrop-filter:blur(10px); backg
 .quoteband .bg img{width:100%; height:100%; object-fit:cover; filter:saturate(.9) contrast(1.05)}
 .quoteband .bg::after{content:""; position:absolute; inset:0; background:linear-gradient(90deg, rgba(21,23,26,.9) 0%, rgba(21,23,26,.5) 46%, rgba(21,23,26,.08) 100%)}
 .quoteband .wrap{position:relative; z-index:3}
-.quoteband blockquote{border-left:2px solid var(--rust); padding-left:1.2rem; font-weight:300; letter-spacing:-.03em; font-size:clamp(1.6rem,3.5vw,2.6rem); line-height:1.38; max-width:24ch}
+.quoteband blockquote{border-left:2px solid var(--rust); padding-left:1.2rem; font-weight:300; letter-spacing:-.03em; font-size:clamp(1.6rem,3.5vw,2.6rem); line-height:1.38; max-width:24ch; text-wrap:balance}
 .quoteband cite{display:block; margin-top:1.2rem; font-style:normal; font-size:.82rem; letter-spacing:.04em; color:var(--rust-soft); padding-left:1.2rem}
+/* 모바일: 90deg 그라데이션이 우측에서 밝아져 행 끝 글자가 옅은 사진 위에 얹히고 24ch가 화면폭을 넘겨 끝 글자가 잘린다 → 세로 그라데이션으로 균일하게 덮고 글줄폭을 좁힌다 */
+@media(max-width:860px){
+  .quoteband{min-height:clamp(300px,46vh,400px)}
+  .quoteband .bg::after{background:linear-gradient(160deg, rgba(21,23,26,.86) 0%, rgba(21,23,26,.62) 55%, rgba(21,23,26,.5) 100%)}
+  .quoteband blockquote{font-size:clamp(1.45rem,5.2vw,1.9rem); line-height:1.42; max-width:18ch}
+}
 
 /* 결과물 */
 .preview{display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1.2fr); gap:clamp(2rem,5vw,4rem); align-items:center}
@@ -162,33 +213,41 @@ header.nav{position:sticky; top:0; z-index:50; backdrop-filter:blur(10px); backg
 .toc{list-style:none; margin-top:1.2rem; display:flex; flex-direction:column; gap:.55rem}
 .toc li{font-size:.97rem; color:#46433f; padding-left:2rem; position:relative; line-height:1.4}
 .toc li .n{position:absolute; left:0; color:var(--rust); font-weight:700; font-variant-numeric:tabular-nums; opacity:.65}
-.excerpts{display:flex; flex-direction:column; gap:1rem}
-.excerpt{background:var(--light); border-radius:5px; padding:1.25rem 1.4rem; box-shadow:0 1px 2px rgba(20,22,28,.04); border-left:2px solid var(--rust)}
-.excerpt p{font-weight:300; font-size:1.04rem; line-height:1.55; letter-spacing:-.02em; color:var(--ink)}
+.excerpts{display:flex; flex-direction:column; gap:1.4rem}
+.excerpt{background:var(--light); border-radius:6px; padding:1.5rem 1.6rem; box-shadow:0 1px 2px rgba(20,22,28,.04); border-left:2px solid var(--rust)}
+.excerpt p{font-weight:300; font-size:1.04rem; line-height:1.58; letter-spacing:-.02em; color:var(--ink)}
 .excerpt .tag2{font-size:.72rem; color:var(--muted); margin-top:.7rem; letter-spacing:.02em}
 @media(max-width:760px){.inside{grid-template-columns:1fr}}
 
 /* After 샘플 */
 .samples{display:grid; grid-template-columns:repeat(3,1fr); gap:1rem; margin-top:clamp(1.8rem,4vw,2.4rem)}
-.sample{background:var(--light); border-radius:5px; padding:1.4rem; box-shadow:0 1px 2px rgba(20,22,28,.04)}
-.sample .q{font-weight:300; font-size:1.02rem; line-height:1.52; letter-spacing:-.02em; color:var(--ink)}
-.sample .q b{font-weight:700; color:var(--rust)}
+.sample{background:var(--light); border-radius:6px; padding:1.4rem 1.5rem; box-shadow:0 1px 2px rgba(20,22,28,.04)}
+.sample .q{font-weight:300; font-size:1.02rem; line-height:1.54; letter-spacing:-.02em; color:var(--ink)}
+/* 실천 키워드는 러스트로 짚되, 무강조 인용(.excerpt)과 위계 격차가 벌어지지 않게 굵기는 600으로 절제 */
+.sample .q b{font-weight:600; color:var(--rust)}
 @media(max-width:760px){.samples{grid-template-columns:1fr}}
 
 /* 과정 */
-.proc-head{display:flex; justify-content:space-between; align-items:flex-end; gap:2rem; flex-wrap:wrap}
-.proc-head .imgwrap{width:min(34%,330px); aspect-ratio:16/10; flex:none}
+/* 제목을 folio 바로 아래에 붙도록 상단 정렬(기존 flex-end는 제목을 이미지 바닥선까지 끌어내려 상단에 큰 공백이 생김) */
+.proc-head{display:flex; justify-content:space-between; align-items:flex-start; gap:2rem; flex-wrap:wrap}
+.proc-head .imgwrap{width:min(34%,330px); aspect-ratio:16/10; flex:none; max-height:9rem}
 .steps{display:grid; grid-template-columns:repeat(4,1fr); gap:clamp(1.2rem,2.5vw,2rem); margin-top:clamp(2.2rem,4vw,3rem)}
 .step{border-top:1px solid var(--rule); padding-top:1.1rem}
 .step h3{font-size:1.12rem; margin:.6rem 0 .45rem}
-.step p{font-size:.92rem; color:var(--muted); max-width:24ch}
+/* 모래 배경에서 --muted(#8C8C8C)는 본문 대비가 약해 한 단계 진한 따뜻한 그레이로 보정(섹션 스코프) */
+.step p{font-size:.92rem; color:#6f6b64; max-width:24ch}
 @media(max-width:820px){.steps{grid-template-columns:1fr 1fr; gap:1.8rem 1.2rem} .proc-head .imgwrap{display:none}}
+/* 아주 좁은 폭에서는 2열이면 단계 설명이 잘게 쪼개져 위계가 떨어진다 → 1열로 펴 호흡 확보 */
+@media(max-width:480px){.steps{grid-template-columns:1fr; gap:1.6rem}}
+/* F.05 마무리 노트: 데스크톱은 전폭으로 한 줄(기존 max-width:none과 동일), 모바일에서만 우측 여백을 확보해 끝 글자 잘림 기미를 없앤다 */
+.proc-note{max-width:none}
+@media(max-width:860px){.proc-note{max-width:46ch; word-break:break-word}}
 
 /* 가격 */
-.match{margin-top:1.4rem; display:flex; flex-direction:column; gap:.55rem; max-width:62ch}
+.match{margin-top:1.4rem; display:flex; flex-direction:column; gap:.55rem; max-width:min(62ch,100%)}
 .match .m{font-size:.98rem; color:#46433f}
 .match .m b{color:var(--rust); font-weight:700}
-.anchor-copy{margin-top:1rem; max-width:54ch; font-size:1.02rem; color:#46433f; line-height:1.6}
+.anchor-copy{margin-top:1rem; max-width:min(54ch,100%); font-size:1.02rem; color:#46433f; line-height:1.6}
 .anchor-copy b{color:var(--ink); font-weight:700}
 .tiers{display:grid; grid-template-columns:repeat(3,1fr); gap:clamp(1rem,2vw,1.4rem); margin-top:clamp(2rem,4vw,2.8rem); align-items:stretch}
 .tier{background:var(--light); border-radius:6px; padding:2rem 1.7rem; display:flex; flex-direction:column; box-shadow:0 1px 2px rgba(20,22,28,.04); transition:transform .3s var(--ease), box-shadow .3s var(--ease)}
@@ -201,26 +260,37 @@ header.nav{position:sticky; top:0; z-index:50; backdrop-filter:blur(10px); backg
 .price-label{font-size:.72rem; font-weight:600; letter-spacing:.04em; color:var(--rust); margin-bottom:.2rem}
 .price{font-weight:800; font-size:clamp(2rem,3vw,2.55rem); letter-spacing:-.04em; line-height:1; color:var(--ink); font-variant-numeric:tabular-nums}
 .price .cur{font-weight:500; font-size:.5em; color:var(--muted); margin-right:.12em; vertical-align:.16em}
-.price .tail{font-weight:500; font-size:.46em; color:var(--muted)}
+/* '~'(부터) 꼬리표를 통화기호와 같은 정렬 리듬으로: 베이스라인보다 살짝 올리고 좌측을 띄워 숫자와 분리 */
+.price .tail{font-weight:500; font-size:.5em; color:var(--muted); margin-left:.08em; vertical-align:.12em}
 .tier ul{list-style:none; margin:1.3rem 0 1.4rem; display:flex; flex-direction:column; gap:.65rem; flex:1}
 .tier li{font-size:.93rem; color:#46433f; padding-left:1.3rem; position:relative; line-height:1.5}
 .tier li::before{content:""; position:absolute; left:0; top:.52em; width:.42rem; height:.42rem; border-radius:50%; background:var(--rust); opacity:.5}
-.tier .meet{font-size:.82rem; color:#6b665f; margin-bottom:1.1rem; line-height:1.5}
-.tier .save{font-size:.78rem; color:var(--muted); margin-bottom:1.1rem}
+/* 보조문구 줄수가 카드마다 달라(meet 2줄 / save 1줄) 버튼 위 라인이 어긋남 → 최소 높이를 통일해 버튼 상단을 정렬 */
+.tier .meet,.tier .save{min-height:2.9em; margin-bottom:1.1rem; line-height:1.5}
+.tier .meet{font-size:.82rem; color:#6b665f}
+.tier .save{font-size:.8rem; color:#6f6b64}
 .tier .btn{justify-content:center; width:100%}
 .tier.feat .btn-ghost{background:var(--rust); color:#fff; border-color:var(--rust)}
 .tier.feat .btn-ghost:hover{background:var(--rust-deep)}
 .guarantee{background:var(--charcoal); color:#fff; border-radius:6px; padding:clamp(1.6rem,3vw,2.1rem) clamp(1.6rem,3vw,2.2rem); margin-top:clamp(1.8rem,4vw,2.6rem); display:flex; gap:1.3rem; align-items:flex-start}
-.guarantee .seal{flex:none; width:3.1rem; height:3.1rem; border-radius:50%; border:1.5px solid var(--rust); display:grid; place-items:center; color:var(--rust-soft); font-weight:800; font-size:.66rem; text-align:center; line-height:1.1}
+/* 원형 배지가 2줄 텍스트엔 빠듯해 답답 → 살짝 키우고 행간을 틔워 숨통 확보 */
+.guarantee .seal{flex:none; width:3.5rem; height:3.5rem; border-radius:50%; border:1.5px solid var(--rust); display:grid; place-items:center; color:var(--rust-soft); font-weight:800; font-size:.62rem; text-align:center; line-height:1.25}
 .guarantee h3{color:#fff; margin-bottom:.4rem}
-.guarantee p{color:#b4ada3; font-size:.96rem; max-width:62ch; line-height:1.6}
+.guarantee p{color:#b4ada3; font-size:.96rem; max-width:min(62ch,100%); line-height:1.6}
 .launch{margin-top:1.3rem; background:rgba(188,108,37,.08); border:1px solid var(--rule); border-radius:6px; padding:1.1rem 1.3rem; font-size:.95rem; color:#46433f; line-height:1.6}
 .launch b{color:var(--rust); font-weight:700}
 .tier-note{margin-top:1.4rem; font-size:.88rem; color:var(--muted); text-align:center; line-height:1.7; font-variant-numeric:tabular-nums}
 .trust{display:flex; flex-wrap:wrap; gap:.9rem 2rem; justify-content:center; margin-top:clamp(1.8rem,3vw,2.4rem); padding-top:clamp(1.6rem,3vw,2.2rem); border-top:1px solid var(--rule)}
 .trust .b{display:flex; align-items:center; gap:.55rem; font-size:.9rem; color:#46433f; font-weight:500}
 .trust .b::before{content:""; width:.5rem; height:.5rem; border-radius:50%; background:var(--rust)}
-@media(max-width:860px){.tiers{grid-template-columns:1fr; max-width:440px; margin-inline:auto}}
+@media(max-width:860px){.tiers{grid-template-columns:1fr; max-width:min(440px,100%); margin-inline:auto}}
+/* 모바일 가격 섹션 잘림 방지: keep-all + 가운뎃점(·)으로 길게 이어진 한글 구가 안 끊겨 우측이 잘리던 요소들에
+   국소적으로 break-word를 허용해 자연 줄바꿈시킨다. 카드 패딩도 좁은 폭에 맞춰 살짝 조여 둥근모서리·버튼이 화면 안에 들어오게 한다. */
+@media(max-width:480px){
+  .anchor-copy,.match .m,.guarantee p,.launch,.tier-note,.trust .b,.tier li,.tier .meet,.tier .save{word-break:break-word; line-break:auto}
+  .tier{padding:1.7rem 1.35rem}
+  .trust{gap:.7rem 1.4rem}
+}
 
 /* 저자 */
 .author-grid{display:grid; grid-template-columns:minmax(0,.92fr) minmax(320px,1.18fr) minmax(0,.92fr); gap:clamp(1.2rem,2.6vw,2.4rem); align-items:end}
@@ -261,20 +331,28 @@ header.nav{position:sticky; top:0; z-index:50; backdrop-filter:blur(10px); backg
 }
 
 /* 시리즈 */
-.series{display:grid; grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr); gap:clamp(2rem,5vw,4rem); align-items:center}
-.series .imgwrap{aspect-ratio:4/5}
+/* 이미지가 텍스트 칼럼보다 길어 center면 상단선이 어긋남 → stretch로 이미지를 칼럼 높이에 맞춰 제목과 같은 선에서 출발 */
+.series{display:grid; grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr); gap:clamp(2rem,5vw,4rem); align-items:stretch}
+.series .imgwrap{aspect-ratio:4/5; height:100%}
 .books{display:flex; flex-direction:column; gap:.9rem; margin-top:1.5rem}
 .book{background:var(--light); border-radius:5px; padding:1.15rem 1.35rem; box-shadow:0 1px 2px rgba(20,22,28,.04); transition:transform .3s var(--ease)}
 .book:hover{transform:translateX(4px)}
 .book .badge{font-size:.72rem; font-weight:700; letter-spacing:.04em; color:var(--rust)}
 .book h3{font-size:1.18rem; margin:.3rem 0 .28rem}
-.book p{font-size:.9rem; color:var(--muted); max-width:38ch}
+/* 크림 위 --muted(#8C8C8C)는 본문 대비가 약해 한 단계 진한 따뜻한 그레이로 보정(섹션 스코프) */
+.book p{font-size:.9rem; color:#6f6b64; max-width:38ch}
 .book.soon{opacity:.55}
 @media(max-width:820px){.series{grid-template-columns:1fr} .series .imgwrap{aspect-ratio:16/10; max-height:280px}}
 
 /* FAQ */
-.faq{max-width:780px; margin-top:clamp(2rem,4vw,3rem)}
+/* folio↔첫 질문 간격이 다른 섹션 헤더→본문보다 떠 보여 한 단계 좁힘 */
+.faq{max-width:780px; margin-top:clamp(1.4rem,3vw,2.2rem)}
 details{border-bottom:1px solid rgba(45,45,45,.12)}
+/* 첫 질문 상단 패딩만 줄여 folio 바로 아래에 붙이고, 마지막 질문 하단은 모래색 빈 띠가 과해 보이지 않게 약간 조임 */
+.faq details:first-of-type summary{padding-top:.6rem}
+.faq details:last-of-type{border-bottom:none}
+.faq details:last-of-type summary{padding-bottom:.4rem}
+.faq details:last-of-type[open] summary{padding-bottom:1.3rem}
 summary{font-weight:600; font-size:1.12rem; letter-spacing:-.02em; cursor:pointer; list-style:none; display:flex; justify-content:space-between; align-items:center; gap:1rem; padding:1.3rem 0}
 summary::-webkit-details-marker{display:none}
 summary::after{content:"+"; color:var(--rust); font-weight:400; font-size:1.4rem; transition:transform .25s var(--snap)}
@@ -298,12 +376,20 @@ details[open] .faq-body{grid-template-rows:1fr; opacity:1}
 .dark.closing .sub{color:#cfc9bf; margin-bottom:2rem; font-size:1.08rem; line-height:1.6; max-width:40ch; margin-inline:auto}
 .microcta{font-size:.86rem; color:#8d877d; margin-top:1rem}
 
-footer{background:#0f1113; color:#8a857c; padding-block:3.5rem 2.5rem; position:relative; z-index:2}
-.foot-top{display:flex; justify-content:space-between; flex-wrap:wrap; gap:1.5rem; margin-bottom:2.5rem}
+/* 클로징(#15171A)→푸터(#0f1113) 사이 미세 색단차를 '의도된 경계'로 보이게 얇은 룰을 둠 */
+footer{background:#0f1113; color:#8a857c; padding-block:3.5rem 2.5rem; position:relative; z-index:2; border-top:1px solid rgba(255,255,255,.06)}
+/* 브랜드(큰 800)와 링크(작은 .92rem)의 수직 중심을 맞춰 베이스라인 어긋남 해소 */
+.foot-top{display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1.5rem; margin-bottom:2.5rem}
 .foot-brand{font-weight:800; font-size:1.3rem; letter-spacing:-.03em; color:#fff}.foot-brand .dot{color:var(--rust)}
 .foot-links{display:flex; gap:1.6rem; flex-wrap:wrap}
 .foot-links a{color:#b4ada3; text-decoration:none; font-size:.92rem}.foot-links a:hover{color:var(--rust-soft)}
-.foot-legal{font-size:.8rem; color:#67625a; line-height:1.8; border-top:1px solid rgba(255,255,255,.08); padding-top:1.8rem; font-variant-numeric:tabular-nums}
+/* 법적 고지 텍스트는 한 단계 밝혀 AA에 근접, 윗 구분선은 사이트 러스트 룰 색 철학에 맞춰 저채도 러스트로 통일 */
+.foot-legal{font-size:.8rem; color:#857f76; line-height:1.8; border-top:1px solid rgba(224,176,122,.14); padding-top:1.8rem; font-variant-numeric:tabular-nums}
+/* 좁은 폭에서 브랜드 아래로 링크를 명확히 떨어뜨려 '인스타그램'이 우측으로 잘리는 문제 해소 */
+@media(max-width:600px){
+  .foot-top{flex-direction:column; align-items:flex-start; gap:1.2rem}
+  .foot-links{gap:1rem 1.4rem}
+}
 
 .mcta{position:fixed; left:0; right:0; bottom:0; z-index:60; display:none; align-items:center; justify-content:space-between; gap:1rem; background:rgba(21,23,26,.97); backdrop-filter:blur(8px); padding:.7rem 1.1rem; border-top:1px solid rgba(255,255,255,.1)}
 .mcta .p{color:#fff; font-size:.82rem; line-height:1.3}
@@ -345,8 +431,8 @@ footer{background:#0f1113; color:#8a857c; padding-block:3.5rem 2.5rem; position:
 <section class="hero" id="top">
   <div class="hero-text">
     <span class="kicker light anim" style="--d:0s">AI 시대 · 부모를 위한 진로·기질 검사</span>
-    <h1 class="anim" style="--d:.07s"><span class="thin">지도가 사라진 시대,</span><br><span class="thin">아이에게 줄 건</span> <span class="accent">나침반</span><span class="thin">입니다.</span></h1>
-    <p class="lead anim" style="--d:.14s"><span class="thin">의대·공무원이라는 ‘안전한 지도’가 흔들리는 시대 — 성적표로는 안 보이던 우리 아이의 흥미·기질·강점을, 임상심리전문가가 검사로 읽어</span> <b>「우리아이 마음설명서」 한 권</b><span class="thin">에 담아 드립니다. 받는 날부터, 아이를 대하는 말이 달라집니다.</span></p>
+    <h1 class="anim" style="--d:.07s"><span class="thin">지도가 사라진 시대,</span><br><span class="thin">아이에게 줄 건</span> <span style="white-space:nowrap"><span class="accent">나침반</span><span class="thin">입니다.</span></span></h1>
+    <p class="lead anim" style="--d:.14s"><span class="thin">의대·공무원이라는 ‘안전한 지도’가 흔들리는 시대 — 성적표로는 안 보이던 우리 아이의 흥미·기질·강점을, 임상심리전문가가 검사로 읽어</span> <b><span style="white-space:nowrap">「우리아이 마음설명서」</span> 한 권</b><span class="thin">에 담아 드립니다. 받는 날부터, 아이를 대하는 말이 달라집니다.</span></p>
     <div class="hero-cta anim" style="--d:.21s">
       <a href="#apply" class="btn btn-primary">우리아이 마음설명서 시작하기 <span class="arr">→</span></a>
       <a href="#preview" class="btn btn-outline-light">받게 되는 결과물 보기</a>
@@ -374,19 +460,19 @@ footer{background:#0f1113; color:#8a857c; padding-block:3.5rem 2.5rem; position:
 </section>
 
 <!-- 차별점 (다크) -->
-<section class="dark" id="diff" style="padding-block:var(--sec-lg)">
+<section class="dark" id="diff" style="padding:var(--sec-lg) 0 var(--sec)">
   <div class="wrap">
     <div class="folio reveal"><span class="f">F.02</span><span class="t">/ 차별점</span></div>
     <div class="reveal" style="max-width:30ch; margin-bottom:clamp(2.5rem,5vw,3.4rem)">
-      <h2 style="color:#fff"><span class="thin" style="color:#cfc9bf">검사 결과지 한 장이 아니라,</span><br>우리 아이 <span class="accent">설명서 한 권</span>을.</h2>
-      <p class="body-p" style="margin-top:1.1rem; color:#a59f96; max-width:46ch">결과지 한 장으로 끝나기 쉬운 심리검사를, 임상심리전문가가 부모님의 언어로 한 번 더 깊게 풀어 드립니다.</p>
+      <h2 style="color:#fff"><span class="thin" style="color:#cfc9bf">검사 결과지 <span class="nowrap">한 장이</span> 아니라,</span><br>우리 아이 <span class="accent">설명서 한 권</span>을.</h2>
+      <p class="body-p" style="margin-top:1.1rem; color:#c2bcb2; max-width:46ch">결과지 한 장으로 끝나기 쉬운 심리검사를, 임상심리전문가가 부모님의 언어로 한 번 더 깊게 풀어 드립니다.</p>
     </div>
     <div class="diff-grid reveal-group">
       <div class="diff-item" style="--i:0"><div class="idx">01</div><h3>한 번 더 깊게 푼다</h3><p>백분위 숫자가 아니라 “그래서 우리 아이는 어떤 아이이고 어떻게 도와야 하는지”까지. 결과지를 임상 해석으로 다시 풀어 책으로 만듭니다.</p></div>
-      <div class="diff-item" style="--i:1"><div class="idx">02</div><h3>흥미 × 기질 × 양육 교차</h3><p>흥미(Holland)·기질·성격(TCI)·부모 양육태도(PAT-2)를 따로 보지 않고 교차합니다. 단일 검사로는 못 하는 ‘우리 아이만의 조합’이 핵심입니다.</p></div>
+      <div class="diff-item" style="--i:1"><div class="idx">02</div><h3>흥미 × 기질 × 양육 교차</h3><p>흥미(Holland)·기질·성격(TCI)·부모 양육태도(<span class="nowrap">PAT-2</span>)를 따로 보지 않고 교차합니다. 단일 검사로는 못 하는 ‘우리 아이만의 조합’이 핵심입니다.</p></div>
       <div class="diff-item" style="--i:2"><div class="idx">03</div><h3>아이만이 아니라, 부모까지</h3><p>아이를 답답해하는 그 마음의 절반은 부모님의 기질에서 옵니다. 부모님 자신도 함께 진단해, 아이와의 ‘거리’를 맞추는 법을 안내합니다.</p></div>
     </div>
-    <p class="toolnote reveal">인터넷 무료 성격테스트가 아닙니다. <b>WISC-V·MMPI·TCI·Holland·PAT-2</b> — 병원·학교·상담센터에서 실제로 쓰는 표준화·정식 채점 검사이며, 임상심리전문가가 직접 검토합니다. (자동 검사 아님).</p>
+    <p class="toolnote reveal"><span class="tn-in">인터넷 무료 성격테스트가 아닙니다. <b><span class="nowrap">WISC-V</span>·<span class="nowrap">MMPI</span>·<span class="nowrap">TCI</span>·<span class="nowrap">Holland</span>·<span class="nowrap">PAT-2</span></b> — 병원·학교·상담센터에서 실제로 쓰는 표준화·정식 채점 검사이며, 임상심리전문가가 직접 검토합니다. (자동 검사 아님).</span></p>
   </div>
 </section>
 
@@ -395,17 +481,21 @@ footer{background:#0f1113; color:#8a857c; padding-block:3.5rem 2.5rem; position:
   <div class="wrap">
     <div class="folio reveal"><span class="f">F.03</span><span class="t">/ 검사만 받는 것과 무엇이 다른가</span></div>
     <div class="reveal" style="max-width:34ch"><h2><span class="thin">검사는 같아도,</span><br>남는 것이 다릅니다.</h2></div>
-    <div class="compare reveal">
-      <table class="ctable">
-        <thead><tr><th></th><th>일반 온라인 검사</th><th>센터 종합심리평가</th><th class="win">우리아이 마음설명서</th></tr></thead>
-        <tbody>
-          <tr><th>받는 것</th><td>점수표 PDF</td><td>평가 보고서</td><td class="win">이름 박힌 책 한 권</td></tr>
-          <tr><th>부모 언어로 풀이</th><td>없음</td><td>구두 상담 1회</td><td class="win">두고두고 펼쳐보는 책</td></tr>
-          <tr><th>아이 × 부모 교차</th><td>없음</td><td>아이만</td><td class="win">아이 흥미·기질·성격 × 부모 기질·성격·양육태도 교차</td></tr>
-          <tr><th>대략 비용</th><td>무료~몇만 원</td><td>30~60만 원</td><td class="win">19만 원부터</td></tr>
-          <tr><th>남는 것</th><td>검색하면 잊음</td><td>보고서 파일</td><td class="win">5년 뒤에도 책장에</td></tr>
-        </tbody>
-      </table>
+    <div class="compare-wrap reveal">
+      <div class="compare">
+        <table class="ctable">
+          <thead><tr><th></th><th>일반 온라인 검사</th><th>센터 종합심리평가</th><th class="win">우리아이 마음설명서</th></tr></thead>
+          <tbody>
+            <tr><th>받는 것</th><td data-col="일반 온라인 검사">점수표 PDF</td><td data-col="센터 종합심리평가">평가 보고서</td><td class="win" data-col="우리아이 마음설명서">이름 박힌 책 한 권</td></tr>
+            <tr><th>부모 언어로 풀이</th><td data-col="일반 온라인 검사">없음</td><td data-col="센터 종합심리평가">구두 상담 1회</td><td class="win" data-col="우리아이 마음설명서">두고두고 펼쳐보는 책</td></tr>
+            <tr><th>아이 × 부모 교차</th><td data-col="일반 온라인 검사">없음</td><td data-col="센터 종합심리평가">아이만</td><td class="win" data-col="우리아이 마음설명서">아이 흥미·기질·성격 × 부모 기질·성격·양육태도 교차</td></tr>
+            <tr><th>대략 비용</th><td data-col="일반 온라인 검사">무료~몇만 원</td><td data-col="센터 종합심리평가">30~60만 원</td><td class="win" data-col="우리아이 마음설명서">19만 원부터</td></tr>
+            <tr><th>남는 것</th><td data-col="일반 온라인 검사">검색하면 잊음</td><td data-col="센터 종합심리평가">보고서 파일</td><td class="win" data-col="우리아이 마음설명서">5년 뒤에도 책장에</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="compare-fade" aria-hidden="true"></div>
+      <p class="compare-hint"><span class="arrow">→</span> 옆으로 밀어보세요</p>
     </div>
   </div>
 </section>
@@ -488,7 +578,7 @@ footer{background:#0f1113; color:#8a857c; padding-block:3.5rem 2.5rem; position:
       <div class="step" style="--i:2"><div class="idx">03</div><h3>맞춤 책 제작</h3><p>분석을 한 권의 맞춤 책으로 제작합니다(POD 인쇄, 약 1주).</p></div>
       <div class="step" style="--i:3"><div class="idx">04</div><h3>배송</h3><p>검사부터 배송까지 약 2주. 실물 책으로 받아보세요.</p></div>
     </div>
-    <p class="sm reveal" style="margin-top:1.8rem; max-width:none"><b style="color:var(--rust); font-weight:700">베이직</b>만으로도 부모님이 스스로 읽고 적용하도록 설계했습니다. 줌으로 직접 묻고 싶을 때 프리미엄을 더하세요.</p>
+    <p class="sm reveal proc-note" style="margin-top:1.8rem"><b style="color:var(--rust); font-weight:700">베이직</b>만으로도 부모님이 스스로 읽고 적용하도록 설계했습니다. 줌으로 직접 묻고 싶을 때 프리미엄을 더하세요.</p>
   </div>
 </section>
 
@@ -582,7 +672,7 @@ footer{background:#0f1113; color:#8a857c; padding-block:3.5rem 2.5rem; position:
     <div class="series">
       <div class="imgwrap reveal"><img src="images/bookshelf.jpg" alt="책장에 꽂힌 책들" /></div>
       <div class="reveal">
-        <h2><span class="thin">검사가</span> 한 권의 책이 됩니다.</h2>
+        <h2><span class="thin">검사가</span> <span class="accent">한 권의 책</span>이 됩니다.</h2>
         <p class="body-p" style="margin-top:.8rem">「마음설명서」는 아이라는 한 명의 탐험가를 — 지능·기질·진로 세 갈래로 읽는 시리즈입니다.</p>
         <div class="books">
           <div class="book"><div class="badge">진로편</div><h3>나침반을 다시 쥐어주기</h3><p>흥미를 ‘직업 명사’가 아니라 ‘동사’로 읽는 법. AI 시대의 진로.</p></div>
