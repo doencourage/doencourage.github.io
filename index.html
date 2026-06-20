@@ -224,9 +224,12 @@ header.nav{position:sticky; top:0; z-index:50; backdrop-filter:blur(10px); backg
 
 /* 저자 */
 .author-grid{display:grid; grid-template-columns:minmax(0,.75fr) minmax(0,1.25fr); gap:clamp(2rem,5vw,4rem); align-items:center}
-.author-photo{aspect-ratio:4/5; border-radius:4px; position:relative; overflow:hidden; background:var(--cream)}
-.author-photo img{width:100%; height:100%; object-fit:cover; object-position:60% 16%; filter:saturate(.97) contrast(1.04)}
-.author-photo .cap{position:absolute; left:1rem; bottom:.9rem; font-size:.74rem; letter-spacing:.04em; color:var(--ink); font-weight:600}
+.author-photo{aspect-ratio:4/5; position:relative; overflow:visible; background:transparent; isolation:isolate}
+.author-photo::before{content:""; position:absolute; z-index:0; inset:7% -6% 0 -6%; background:radial-gradient(60% 52% at 54% 42%, rgba(224,176,122,.92), rgba(188,108,37,.5) 36%, rgba(188,108,37,.14) 60%, transparent 77%)}
+.author-photo img{position:relative; z-index:1; width:100%; height:100%; object-fit:cover; object-position:50% 13%; filter:saturate(1) contrast(1.03); -webkit-mask-image:linear-gradient(to bottom,#000 68%,transparent 95%); mask-image:linear-gradient(to bottom,#000 68%,transparent 95%)}
+.author-name{display:flex; align-items:baseline; gap:.55rem; flex-wrap:wrap; font-weight:800; font-size:clamp(1.6rem,2.6vw,2.15rem); letter-spacing:-.04em; color:var(--ink); margin:.4rem 0 .12rem}
+.author-name span{font-weight:500; font-size:.46em; letter-spacing:.08em; color:var(--muted)}
+.author-field{font-size:.92rem; font-weight:600; letter-spacing:-.01em; color:var(--rust); margin-bottom:1.1rem}
 .author-grid blockquote{border-left:2px solid var(--rust); padding-left:1.2rem; font-weight:300; letter-spacing:-.03em; font-size:clamp(1.3rem,2.3vw,1.75rem); line-height:1.45; margin:1rem 0 1.2rem}
 .author-grid .personal{font-size:1rem; color:#46433f; max-width:46ch; margin-bottom:1.1rem; line-height:1.6}
 .creds{display:flex; flex-direction:column; gap:.5rem; font-size:.95rem; color:#46433f}
@@ -528,15 +531,17 @@ footer{background:#0f1113; color:#8a857c; padding-block:3.5rem 2.5rem; position:
   <div class="wrap">
     <div class="folio reveal"><span class="f">F.07</span><span class="t">/ 저자</span></div>
     <div class="author-grid">
-      <div class="author-photo reveal"><img src="images/저자.png" alt="마음기록소 임상심리전문가 안계훈" /><div class="cap">임상심리전문가 안계훈</div></div>
+      <div class="author-photo reveal"><img src="images/저자.png" alt="마음기록소 임상심리전문가 안계훈" /></div>
       <div class="reveal">
         <blockquote>검사 결과지는 부모님 손에 들린 단서 한 장일 뿐, 아이를 매일 보시는 부모님의 관찰이 그 어떤 검사보다 풍부한 정보입니다.</blockquote>
-        <p class="personal">저도 아이를 키우는 부모입니다. 검사실에서 만난 수많은 아이 뒤에는, 늘 ‘내가 잘하고 있나’ 묻는 부모님이 계셨습니다. 결과를 부모님이 그대로 읽고 행동할 수 있는 언어로 옮기는 것 — 그것이 이 작업의 시작이었습니다.</p>
+        <div class="author-name">안계훈 <span>An Kye-hoon</span></div>
+        <div class="author-field">전문 분야 · 심리평가</div>
         <div class="creds">
-          <span>임상심리전문가 안계훈</span>
+          <span>임상심리전문가 · 한국임상심리학회 전문회원 (1322호)</span>
           <span>아동·청소년 심리평가 경력 15년</span>
           <span>「마음설명서」 진로편·기질편 저자</span>
-          <span>소속 · 자격번호 [추후 기재]</span>
+          <span>아주대학교 심리학과 일반대학원 졸업 (석사)</span>
+          <span>아주대학교 심리학과 졸업 (학사)</span>
         </div>
       </div>
     </div>
