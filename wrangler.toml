@@ -1,0 +1,7 @@
+# Cloudflare Workers — 정적 사이트(assets) 배포 설정
+# index.html + images + form 을 그대로 서빙(빌드 단계 없음).
+name = "maeum-home"
+compatibility_date = "2025-01-01"
+
+[assets]
+directory = "./"
