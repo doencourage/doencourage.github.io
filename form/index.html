@@ -1,0 +1,920 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>사전 면담지 · 마음기록소</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css">
+<style>
+:root{
+  --rust:#BC6C25;
+  --rust-deep:#A85B1E;
+  --rust-soft:#E0B07A;
+  --cream:#FDFCFB;
+  --sand:#EFE7DB;
+  --charcoal:#15171A;
+  --ink:#2D2D2D;
+  --muted:#8C8C8C;
+  --light:#FFFFFF;
+  --rule:rgba(188,108,37,.22);
+  --sans:'Pretendard', system-ui, -apple-system, sans-serif;
+  --maxw:1180px;
+  --pad-x:clamp(1.25rem,5vw,4.5rem);
+  --sec:clamp(4.5rem,11vh,8rem);
+  --sec-sm:clamp(2.6rem,6vh,4rem);
+  --ease:cubic-bezier(.16,1,.3,1);
+  --snap:cubic-bezier(.2,.85,.3,1);
+  --shadow:0 1px 2px rgba(20,22,28,.05), 0 14px 30px -18px rgba(20,22,28,.22);
+}
+
+*{box-sizing:border-box; margin:0; padding:0}
+
+html{scroll-behavior:smooth}
+
+body{
+  font-family:var(--sans);
+  color:var(--ink);
+  background:var(--cream);
+  line-height:1.62;
+  letter-spacing:-.011em;
+  word-break:keep-all;
+  overflow-wrap:break-word;
+  font-feature-settings:'tnum','ss01';
+  -webkit-font-smoothing:antialiased;
+  position:relative;
+}
+
+/* 미세 그레인 noise 1겹 */
+body::after{
+  content:"";
+  position:fixed; inset:0; z-index:9999; pointer-events:none;
+  opacity:.05;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+.wrap{max-width:720px; margin-inline:auto; padding-inline:var(--pad-x)}
+
+/* ===== 진행바 sticky ===== */
+.topbar{
+  position:sticky; top:0; z-index:50;
+  background:rgba(253,252,251,.92);
+  backdrop-filter:saturate(1.4) blur(10px);
+  -webkit-backdrop-filter:saturate(1.4) blur(10px);
+  border-bottom:1px solid var(--rule);
+}
+.topbar-inner{
+  max-width:720px; margin-inline:auto; padding:.7rem var(--pad-x) .8rem;
+}
+.progress-meta{
+  display:flex; justify-content:space-between; align-items:baseline;
+  font-size:.74rem; font-weight:700; letter-spacing:.04em; color:var(--muted);
+  margin-bottom:.5rem; font-variant-numeric:tabular-nums;
+}
+.progress-meta .cur{color:var(--rust)}
+.progress-meta .pct{color:var(--rust); font-weight:800}
+.progress{
+  height:3px; background:var(--sand); border-radius:999px; overflow:hidden;
+}
+.progress > span{
+  display:block; height:100%; background:var(--rust);
+  border-radius:999px; transition:width .4s var(--ease); width:0%;
+}
+
+/* ===== 다크 표지 헤더 ===== */
+.cover{
+  background:var(--charcoal); color:#fff;
+  padding:var(--sec) 0 calc(var(--sec) - 1rem);
+}
+.cover .wrap{max-width:720px}
+.kicker{
+  display:inline-flex; align-items:center; gap:.7rem;
+  font-weight:700; font-size:.74rem; letter-spacing:.04em;
+  color:var(--rust); margin-bottom:1.3rem;
+}
+.kicker.light{color:var(--rust-soft)}
+.kicker::before{content:""; width:1.9rem; height:1px; background:var(--rust)}
+.kicker.light::before{background:var(--rust-soft)}
+.brand{
+  font-weight:800; font-size:1rem; letter-spacing:-.01em;
+  color:var(--rust-soft); margin-bottom:1.6rem;
+}
+.cover h1{
+  font-weight:800; font-size:clamp(2.2rem,6.2vw,3.4rem);
+  letter-spacing:-.046em; line-height:1.06; text-wrap:balance;
+  margin-bottom:.9rem;
+}
+.cover .line{
+  font-weight:600; font-size:clamp(1rem,2.2vw,1.18rem);
+  color:var(--rust-soft); letter-spacing:-.02em; margin-bottom:1.5rem;
+}
+.cover .sub{
+  font-weight:400; font-size:clamp(1.02rem,1.6vw,1.15rem);
+  color:#cfc9bf; line-height:1.6; max-width:46ch; margin-bottom:2.2rem;
+}
+.guidance{
+  border-top:1px solid rgba(224,176,122,.28);
+  padding-top:1.6rem; display:grid; gap:.85rem;
+}
+.guidance li{
+  list-style:none; display:flex; gap:.7rem;
+  font-size:.96rem; color:#b4ada3; line-height:1.55;
+}
+.guidance li::before{
+  content:""; flex:none; width:6px; height:6px; border-radius:50%;
+  background:var(--rust); margin-top:.55rem;
+}
+.guidance li b{color:#cfc9bf; font-weight:600}
+
+/* ===== 다크 파트 구분 밴드 ===== */
+.band{
+  background:var(--charcoal); color:#fff;
+  padding:var(--sec-sm) 0;
+}
+.band .folio{border-top-color:rgba(224,176,122,.28)}
+.band .folio .t{color:#9a948b}
+.band .idx{display:block}
+.band h2{
+  font-weight:800; font-size:clamp(1.7rem,4.4vw,2.4rem);
+  letter-spacing:-.038em; line-height:1.12; text-wrap:balance;
+  margin-top:.2rem;
+}
+.band .part-tag{
+  font-weight:700; font-size:.78rem; letter-spacing:.06em;
+  color:var(--rust-soft); margin-bottom:.5rem; text-transform:uppercase;
+}
+
+/* ===== 폴리오 마크 ===== */
+.folio{
+  display:flex; align-items:baseline; gap:.7rem; padding-top:1.1rem;
+  margin-bottom:clamp(1.2rem,2.4vw,1.8rem); border-top:1px solid var(--rule);
+}
+.folio .f{
+  font-weight:700; font-size:.74rem; letter-spacing:.05em;
+  color:var(--rust); font-variant-numeric:tabular-nums;
+}
+.folio .t{
+  font-weight:600; font-size:.74rem; letter-spacing:.04em; color:var(--muted);
+}
+.band .folio .f{color:var(--rust-soft)}
+
+.idx{
+  font-weight:250; font-size:clamp(2.4rem,5vw,3.2rem);
+  color:rgba(188,108,37,.45); font-variant-numeric:tabular-nums;
+  line-height:1; letter-spacing:-.02em;
+}
+
+/* ===== 크림 작성 본문 ===== */
+.part-body{
+  background:var(--cream); padding:var(--sec-sm) 0;
+}
+.part-intro{
+  font-weight:400; font-size:clamp(1.05rem,1.6vw,1.18rem);
+  color:#46433f; line-height:1.62; max-width:44ch;
+  margin-bottom:clamp(1.8rem,3.5vw,2.6rem);
+}
+.subgroup-head{
+  display:flex; align-items:center; gap:.8rem;
+  margin:clamp(1.6rem,3vw,2.4rem) 0 1.2rem;
+  font-weight:700; font-size:.9rem; letter-spacing:.02em; color:var(--rust);
+}
+.subgroup-head::after{content:""; flex:1; height:1px; background:var(--rule)}
+.subgroup-head:first-child{margin-top:0}
+
+/* ===== 폼 카드 / 필드 ===== */
+.form-card{
+  background:var(--light); border-radius:8px; box-shadow:var(--shadow);
+  padding:clamp(1.5rem,4vw,2.4rem);
+}
+.field{margin-bottom:clamp(1.5rem,3vw,2rem)}
+.field:last-child{margin-bottom:0}
+.qcode{
+  font-weight:700; font-size:.7rem; letter-spacing:.06em;
+  color:var(--rust); font-variant-numeric:tabular-nums;
+  display:inline-block; margin-bottom:.4rem;
+}
+.field > label, .field legend, .field > .qlabel{
+  display:block; font-weight:600; font-size:1rem; letter-spacing:-.01em;
+  color:var(--ink); margin-bottom:.5rem; line-height:1.45;
+}
+.field > .qlabel{margin-top:0}
+.req{color:var(--rust); font-weight:700; margin-left:.2em}
+.field .hint{
+  font-size:.85rem; color:var(--muted); margin-top:.4rem; margin-bottom:.6rem;
+  font-variant-numeric:tabular-nums; line-height:1.5;
+}
+.field legend + .hint{margin-top:-.2rem}
+
+.input, .textarea, select{
+  width:100%; font-family:var(--sans); font-size:1rem; color:var(--ink);
+  line-height:1.5; letter-spacing:-.011em; background:var(--cream);
+  border:1px solid rgba(45,45,45,.14); border-radius:6px;
+  padding:.85em 1em;
+  transition:border-color .2s, box-shadow .2s, background .2s;
+  font-feature-settings:'tnum','ss01';
+}
+.textarea{min-height:7.5rem; resize:vertical; line-height:1.62}
+.input::placeholder, .textarea::placeholder{color:var(--muted)}
+.input:hover, .textarea:hover, select:hover{border-color:rgba(45,45,45,.26)}
+.input:focus, .textarea:focus, select:focus{
+  outline:none; border-color:var(--rust); background:var(--light);
+  box-shadow:0 0 0 3px rgba(188,108,37,.16);
+}
+.input[aria-invalid="true"]{
+  border-color:#B5462F; box-shadow:0 0 0 3px rgba(181,70,47,.14);
+}
+.field .error{color:#B5462F; font-size:.82rem; margin-top:.4rem; display:none}
+.field.invalid .error{display:block}
+
+input[type="tel"], input[type="number"], input[type="date"], .num{
+  font-variant-numeric:tabular-nums;
+}
+
+/* words3 */
+.words3{display:grid; grid-template-columns:repeat(3,1fr); gap:.6rem}
+.words3 .w{position:relative}
+.words3 .w .n{
+  position:absolute; left:.85em; top:50%; transform:translateY(-50%);
+  font-weight:700; font-size:.85rem; color:var(--rust);
+  font-variant-numeric:tabular-nums; pointer-events:none;
+}
+.words3 .w .input{padding-left:2em}
+
+/* RADIO / CHOICE */
+.choices{display:grid; gap:.6rem; margin-top:.2rem}
+fieldset{border:none}
+.choice{
+  display:block; position:relative; background:var(--light);
+  border:1px solid rgba(45,45,45,.12); border-radius:6px;
+  padding:.9rem 1.1rem .9rem 2.6rem; cursor:pointer; min-height:44px;
+  transition:border-color .2s, box-shadow .2s, transform .2s var(--snap);
+}
+.choice:hover{border-color:rgba(188,108,37,.4); transform:translateY(-1px)}
+.choice input{position:absolute; opacity:0; width:1px; height:1px}
+.choice .dot{
+  position:absolute; left:1rem; top:1.1rem; width:1.05rem; height:1.05rem;
+  border:1.5px solid rgba(45,45,45,.3); border-radius:50%;
+  transition:border-color .2s;
+}
+.choice input:checked ~ .dot{border-color:var(--rust)}
+.choice input:checked ~ .dot::after{
+  content:""; position:absolute; inset:3px; border-radius:50%; background:var(--rust);
+}
+.choice:has(input:checked){
+  outline:1.5px solid var(--rust); outline-offset:-1.5px;
+  background:rgba(188,108,37,.05);
+}
+.choice input:focus-visible ~ .dot{box-shadow:0 0 0 3px rgba(188,108,37,.16)}
+.choice .label{font-weight:600; font-size:.97rem; color:var(--ink); line-height:1.4}
+
+.followup{margin-top:.7rem}
+.followup .textarea{min-height:5rem}
+
+.relation-other{margin-top:.6rem}
+.relation-other .input:disabled{opacity:.5; cursor:not-allowed; background:var(--sand)}
+
+/* ===== 버튼 ===== */
+.btn{
+  display:inline-flex; align-items:center; justify-content:center; gap:.5em;
+  font-family:var(--sans); font-weight:700; font-size:1rem; letter-spacing:-.01em;
+  padding:.92em 1.8em; border-radius:999px; cursor:pointer;
+  border:1px solid transparent; text-decoration:none; min-height:44px;
+  transition:transform .22s var(--snap), background .22s, color .22s, border-color .22s;
+  white-space:nowrap;
+}
+.btn-primary{
+  background:var(--rust); color:#fff;
+  box-shadow:0 1px 0 rgba(255,255,255,.14) inset, 0 6px 16px -8px rgba(20,22,28,.45);
+}
+.btn-primary:hover{background:var(--rust-deep); transform:translateY(-2px)}
+.btn-ghost{background:transparent; color:var(--ink); border-color:rgba(45,45,45,.22)}
+.btn-ghost:hover{border-color:var(--rust); color:var(--rust); transform:translateY(-2px)}
+.btn-outline-light{background:transparent; color:#fff; border-color:rgba(255,255,255,.45)}
+.btn-outline-light:hover{border-color:#fff; transform:translateY(-2px)}
+.btn .arr{transition:transform .22s var(--snap)}
+.btn:hover .arr{transform:translateX(3px)}
+
+/* ===== 제출 영역 ===== */
+.submit-band{
+  background:var(--charcoal); color:#fff; padding:var(--sec) 0;
+}
+.submit-band h2{
+  font-weight:800; font-size:clamp(1.6rem,4vw,2.2rem);
+  letter-spacing:-.038em; line-height:1.12; margin-bottom:.9rem; text-wrap:balance;
+}
+.submit-band p{
+  font-weight:400; font-size:1.05rem; color:#cfc9bf;
+  line-height:1.6; max-width:42ch; margin-bottom:2rem;
+}
+.submit-actions{display:flex; flex-wrap:wrap; gap:.9rem; align-items:center}
+.submit-error{
+  display:none; margin-top:1.4rem; padding:1rem 1.2rem;
+  border:1px solid rgba(181,70,47,.5); border-radius:6px;
+  background:rgba(181,70,47,.12); color:#f0d7cf; font-size:.94rem; line-height:1.55;
+}
+.submit-error.show{display:block}
+
+/* ===== 자동저장 표시 ===== */
+.autosave-row{
+  display:flex; justify-content:space-between; align-items:center;
+  flex-wrap:wrap; gap:.6rem;
+  padding:1.4rem 0 .2rem; font-size:.82rem; color:var(--muted);
+}
+.autosave{
+  display:inline-flex; align-items:center; gap:.45rem;
+  font-variant-numeric:tabular-nums; transition:opacity .4s;
+}
+.autosave .dot-s{width:6px; height:6px; border-radius:50%; background:var(--rust); opacity:.7}
+.reset-link{
+  background:none; border:none; cursor:pointer; font-family:var(--sans);
+  font-size:.82rem; color:var(--muted); text-decoration:underline;
+  text-underline-offset:3px; padding:.4rem .2rem;
+}
+.reset-link:hover{color:var(--rust)}
+
+/* ===== 완료 화면 ===== */
+.done-screen{
+  display:none; background:var(--charcoal); color:#fff;
+  min-height:100vh; padding:var(--sec) 0;
+  align-items:center;
+}
+.done-screen.show{display:flex}
+.done-screen .wrap{max-width:620px}
+.done-mark{
+  width:3rem; height:3rem; border-radius:50%;
+  border:1.5px solid var(--rust-soft); display:flex; align-items:center; justify-content:center;
+  color:var(--rust-soft); font-size:1.4rem; margin-bottom:1.8rem;
+}
+.done-screen h2{
+  font-weight:800; font-size:clamp(2rem,5vw,2.8rem);
+  letter-spacing:-.042em; line-height:1.1; margin-bottom:1.1rem; text-wrap:balance;
+}
+.done-screen p{
+  font-weight:400; font-size:1.1rem; color:#cfc9bf;
+  line-height:1.65; max-width:40ch;
+}
+
+/* ===== reveal ===== */
+.reveal{opacity:0; transform:translateY(12px); transition:opacity .7s var(--ease), transform .7s var(--ease)}
+.reveal.in{opacity:1; transform:none}
+
+@media (max-width:520px){
+  .words3{grid-template-columns:1fr; gap:.5rem}
+  .submit-actions{flex-direction:column; align-items:stretch}
+  .submit-actions .btn{width:100%}
+}
+
+@media (prefers-reduced-motion: reduce){
+  *{animation:none!important; transition:none!important}
+  .reveal{opacity:1; transform:none}
+  html{scroll-behavior:auto}
+}
+</style>
+</head>
+<body>
+
+<!-- ===== sticky 진행바 ===== -->
+<div class="topbar">
+  <div class="topbar-inner">
+    <div class="progress-meta">
+      <span class="cur" id="curPart">PART A &middot; 기본 정보</span>
+      <span class="pct"><span id="pctNum">0</span>% 작성</span>
+    </div>
+    <div class="progress"><span id="progressFill"></span></div>
+  </div>
+</div>
+
+<!-- ===== 메인 폼 ===== -->
+<main id="formMain">
+
+  <!-- 다크 표지 -->
+  <header class="cover">
+    <div class="wrap">
+      <span class="kicker light">사전 비대면 면담</span>
+      <div class="brand">마음기록소</div>
+      <h1>사전 면담지</h1>
+      <div class="line">○○이의 마음설명서 &middot; 베이직</div>
+      <p class="sub" id="introSub">부모(주양육자) 1인이 자녀에 대해 작성하는 사전 비대면 면담 질문지입니다.</p>
+      <ul class="guidance" id="guidanceList"></ul>
+    </div>
+  </header>
+
+  <form id="interviewForm" autocomplete="off" novalidate>
+    <div id="partsContainer"></div>
+
+    <!-- 제출 영역 -->
+    <section class="submit-band">
+      <div class="wrap">
+        <h2>모두 적으셨나요?</h2>
+        <p>적어 주신 한 줄 한 줄이 자녀를 더 깊이 이해하는 길잡이가 됩니다. 준비되셨으면 제출해 주세요.</p>
+        <div class="submit-actions">
+          <button type="submit" class="btn btn-primary" id="submitBtn">
+            제출하기 <span class="arr">&rarr;</span>
+          </button>
+          <span style="font-size:.86rem; color:#a59f96">언제든 다시 와서 이어 쓰실 수 있어요.</span>
+        </div>
+        <div class="submit-error" id="submitError"></div>
+      </div>
+    </section>
+  </form>
+</main>
+
+<!-- ===== 완료 화면 ===== -->
+<section class="done-screen" id="doneScreen">
+  <div class="wrap">
+    <div class="done-mark">&#10003;</div>
+    <h2 id="doneTitle">소중한 이야기, 잘 받았습니다.</h2>
+    <p>들려주신 자녀의 이야기를 정성껏 읽고, 검사와 함께 깊이 들여다보겠습니다. 마음을 나눠 주셔서 감사합니다.</p>
+  </div>
+</section>
+
+<script>
+/* ===================================================================
+   배포 안내: 아래 SCRIPT_URL 에 Apps Script 웹앱 배포 URL을 붙여넣으세요.
+   (홈페이지 스토어-URL 패턴과 동일. placeholder 상태면 제출은 데모로 동작합니다.)
+   =================================================================== */
+const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzJVPwp_FxO33FF45swgwC9ywq9hZTIZ44M1VZN7tWcO2IuKHHn4OguWtRb-IqQ13FDCQ/exec';
+
+const STORAGE_KEY = 'maeum_preminterview_v1';
+
+/* ---- 폼 스키마 ---- */
+const SCHEMA = {"intro":{"title":"베이직 사전 면담 질문지","subtitle":"부모(주양육자) 1인이 자녀에 대해 작성하는 사전 비대면 면담 질문지입니다.","guidance":["총 59문항, 약 60분이 소요됩니다. 한 번에 작성하시지 않으셔도 됩니다. 중간 저장이 가능합니다.","단답형 또는 객관식: 한 줄","서술형: 3~5문장 정도가 적절합니다. 길이보다는 구체적인 장면 묘사가 중요합니다.","완벽하게 쓰지 않으셔도 됩니다. 떠오르는 대로 적어 주세요."]},"parts":[{"id":"A","title":"기본 정보","intro":"","fields":[{"id":"A1-1","label":"자녀의 이름을 적어 주세요.","type":"text","required":true},{"id":"A1-2","label":"자녀의 출생연월일을 적어 주세요.","type":"text","required":false,"helper":"(예: 2018년 5월 5일)"},{"id":"A1-3","label":"자녀의 성별을 알려 주세요.","type":"radio","required":false,"options":["남","여"]},{"id":"A1-4","label":"현재 다니고 있는 기관을 알려 주세요.","type":"text","required":false,"helper":"(예: ○○초등학교 2학년 / ○○어린이집 / ○○유치원 / 미취학 / 가정보육)"},{"id":"A2-1","label":"자녀의 형제자매 관계를 알려 주세요.","type":"text","required":false,"helper":"(예: 외동 / 첫째, 5살 동생 있음 / 둘째, 8살 형 있음)"},{"id":"A2-2","label":"현재 자녀와 함께 거주하시는 분들을 적어 주세요.","type":"text","required":false,"helper":"(예: 아빠·엄마·자녀 / 엄마·자녀 / 엄마·자녀·외할머니)"},{"id":"A3-1","label":"본 질문지를 작성하시는 분은 자녀와 어떤 관계이신가요?","type":"relation","required":false,"options":["어머니","아버지","그 외"]},{"id":"A3-2","label":"자녀와 함께 보내는 시간이 일주일에 대략 몇 시간 정도 되시나요?","type":"text","required":false}]},{"id":"B","title":"검사 동기와 기대","intro":"검사실 문을 두드리신 마음을 들려주세요.","fields":[{"id":"B1","label":"오늘 검사를 받으시려는 가장 큰 이유 또는 자녀에 대한 현재의 고민은 무엇인가요?","type":"textarea","required":false,"helper":"(서술형, 3~5문장)"},{"id":"B2","label":"이 검사를 통해 가장 알고 싶으신 것 한 가지를 꼽는다면 무엇인가요?","type":"textarea","required":false,"helper":"(서술형, 1~2문장)"},{"id":"B3","label":"자녀를 떠올렸을 때 부모님 마음에 가장 자주 떠오르는 단어 세 개를 적어 주세요.","type":"words3","required":false,"helper":"(예: 사랑스러움, 걱정, 미안함, 기특함, 답답함 등)"},{"id":"B4","label":"급변하는 세상 속에서도 자녀가 자신만의 중심을 잃지 않고 살아가기 위해, 부모님이 가장 길러 주고 싶은 자녀 내면의 힘이나 가치는 무엇인가요?","type":"textarea","required":false,"helper":"(서술형, 1~3문장)"}]},{"id":"C","title":"발달사·기질 단서","intro":"자녀의 어릴 때부터 지금까지의 모습을 짧게 들려주세요.","fields":[{"id":"C1-1","label":"자녀가 갓난아기였을 때 어떤 아기였나요?","type":"textarea","required":false,"helper":"(예: 잘 잤다, 자주 깼다, 순했다, 예민했다 등) (서술형, 2~3문장)"},{"id":"C1-2","label":"새로운 사람·새로운 환경에 처음 노출되었을 때 어떻게 반응했나요?","type":"textarea","required":false,"helper":"(서술형, 1~2문장)"},{"id":"C2-1","label":"걷기 시작하면서 자녀의 활동성은 어떠했나요?","type":"textarea","required":false,"helper":"(예: 한자리에 가만히 못 있는 아이, 한 가지를 오래 들여다보는 아이, 둘이 섞인 아이 등) (서술형, 1~2문장)"},{"id":"C2-2","label":"처음 어린이집·놀이방 같은 곳에 갔을 때, 어떤 적응 패턴을 보였나요?","type":"textarea","required":false,"helper":"(예: 첫날부터 잘 어울림, 한 달쯤 운 후 적응, 지금도 가끔 어려움 등) (서술형, 2~3문장)"},{"id":"C3-1","label":"새로운 장소에 가거나 낯선 사람을 만날 때, 자녀의 첫 반응은 주로 어떤가요?","type":"radio","required":false,"options":["호기심을 보이며 적극적으로 다가가는 편","잠시 살펴본 후 자기 페이스로 다가가는 편","충분히 관찰하며 신중하게 움직이는 편","부모 곁에서 한참 머물다가 천천히 들어가는 편"],"followupTextarea":true,"followupHelper":"추가로 떠오르는 장면이 있다면 적어 주세요"},{"id":"C3-2","label":"무언가 잘 안 풀리거나 어려운 문제에 부딪혔을 때, 자녀는 보통 어떻게 그 상황을 지나가나요?","type":"radio","required":false,"options":["끝까지 해보려 함","짜증을 내거나 던져버림","부모에게 대신 해 달라고 함","우는 등 감정 표현 후 다시 시도","슬쩍 다른 것으로 옮겨 감"],"followupTextarea":true,"followupHelper":"가장 최근에 본 장면 한 가지를 묘사해 주세요"},{"id":"C3-3","label":"주변 사람들의 기분이나 반응에 자녀는 얼마나 민감하게 반응하나요? 타인의 시선을 의식하여 행동을 수정하는 편인가요?","type":"textarea","required":false,"helper":"(서술형, 2~3문장)"},{"id":"C3-4","label":"자녀가 \"내가 할 거야!\"라고 고집을 부리며 스스로 선택하고 책임지려 하는 순간은 주로 언제인가요?","type":"textarea","required":false,"helper":"(서술형, 1~2문장)"},{"id":"C3-5","label":"또래 친구들과 어울릴 때 자녀는 주로 어떤 모습을 보이나요?","type":"radio","required":false,"options":["주도적으로 이끄는 편","친구의 의견을 잘 따르는 편","소수의 친구와 깊이 지내는 편","혼자 노는 것을 더 편안해하는 편","상황에 따라 달라짐"],"followupTextarea":true,"followupHelper":"가장 최근의 친구 관계 모습을 한 장면 묘사해 주세요"},{"id":"C3-6","label":"자녀의 감정 표현 방식은 어떤 편인가요?","type":"textarea","required":false,"helper":"(예: 솔직하게 말로 표현 / 표정으로만 / 화내거나 우는 등 폭발적 / 안으로 삼키는 편 등) (서술형, 2~3문장)"}]},{"id":"D","title":"흥미·재능의 단서","intro":"","fields":[{"id":"D1","label":"자녀가 일상에서 무엇을 할 때 가장 즐거워하며, 어떤 활동이나 주제에 시간 가는 줄 모르고 빠져드나요?","type":"textarea","required":false,"helper":"(서술형, 3~4문장 — 구체적 장면 묘사 권장)"},{"id":"D2","label":"자녀가 가장 좋아하는 책이나 콘텐츠(TV, 유튜브, 게임 등)는 무엇인가요? 어떤 점이 좋아 보이시나요?","type":"textarea","required":false,"helper":"(서술형, 2~3문장)"},{"id":"D3","label":"자녀가 싫어하는 활동 또는 쉽게 지루해하는 활동은 무엇인가요?","type":"textarea","required":false,"helper":"(서술형, 1~2문장)"},{"id":"D4","label":"자녀가 스스로 무언가를 만들거나 결과물을 보여 주는 일을 좋아하나요? 어떤 종류의 결과물인가요?","type":"textarea","required":false,"helper":"(예: 그림, 블록 작품, 글, 노래, 발표, 정리정돈, 수집한 컬렉션 등) (서술형, 1~2문장)"},{"id":"D5","label":"자녀가 질문을 많이 하는 편인가요? 어떤 종류의 질문을 자주 하나요?","type":"textarea","required":false,"helper":"(예: '왜?' 류의 원리 질문 / '어떻게?' 류의 방법 질문 / '누가?' 류의 사람 질문 / 거의 안 함) (서술형, 1~2문장)"},{"id":"D6","label":"자녀가 혼자 있는 시간과 사람들과 함께 있는 시간 중 어느 쪽에서 더 에너지를 얻는 것 같으신가요?","type":"textarea","required":false,"helper":"(서술형, 2~3문장)"},{"id":"D7","label":"어릴 때부터 지금까지 자녀가 꾸준히 좋아한 영역이 있다면 무엇인가요? 시간이 지나며 시들해진 영역이 있다면 그것은 무엇인가요?","type":"textarea","required":false,"helper":"(서술형, 2~3문장)"},{"id":"D8","label":"자녀의 숨겨진 재능 또는 남들은 잘 못 보는 강점이 있다면 무엇인가요?","type":"textarea","required":false,"helper":"(서술형, 2~3문장)"}]},{"id":"E","title":"일상의 갈등·통하는 순간","intro":"구체적 장면 묘사가 가장 중요한 영역입니다.","fields":[{"id":"E1","label":"부모님과 자녀가 '정말 잘 통한다'고 느끼는 순간은 언제인가요?","type":"textarea","required":false,"helper":"(서술형, 3~4문장 — 구체적 장면 하나를 묘사해 주세요)"},{"id":"E2","label":"반대로 '아이를 이해하기가 참 어렵다'고 느끼는 순간은 언제인가요?","type":"textarea","required":false,"helper":"(서술형, 3~4문장 — 구체적 장면 하나를 묘사해 주세요)"},{"id":"E3","label":"최근 한 달 안에 자녀와 부딪혔던 갈등 장면 중 가장 자주 반복되는 패턴 한 가지를 묘사해 주세요.","type":"textarea","required":false,"helper":"(서술형, 4~6문장 — 누가 무엇을 했고, 어떻게 끝났는지까지)"},{"id":"E4","label":"최근에 자녀의 행동 때문에 단호하게 규칙을 가르치거나 훈육하셨던 구체적인 상황은 무엇이었나요? 그때 자녀의 반응은 어떠했나요?","type":"textarea","required":false,"helper":"(서술형, 3~5문장)"},{"id":"E5","label":"자녀를 칭찬해 주실 때 어떤 표현을 자주 쓰시나요? 그 칭찬에 자녀가 어떻게 반응하나요?","type":"textarea","required":false,"helper":"(서술형, 2~3문장)"},{"id":"E6","label":"자녀가 울 때 부모님은 보통 어떻게 반응하시나요?","type":"textarea","required":false,"helper":"(서술형, 2~3문장)"},{"id":"E7","label":"자녀가 부모님께 의지하는 순간과 부모님을 밀어내려는 순간은 각각 언제인가요?","type":"textarea","required":false,"helper":"(서술형, 2~3문장)"},{"id":"E8","label":"자녀가 학교(어린이집·유치원)에서 돌아온 직후 어떤 모습인가요? 그날 있었던 일을 잘 이야기하나요?","type":"textarea","required":false,"helper":"(서술형, 2~3문장)"},{"id":"E9","label":"자녀가 잠들기 전의 모습은 어떤가요? 잠들기 어려워하는 편인가요? 어떤 의식이나 루틴이 있나요?","type":"textarea","required":false,"helper":"(서술형, 2~3문장)"},{"id":"E10","label":"자녀의 가장 큰 두려움 또는 가장 신경 쓰는 것이 무엇이라고 보시나요?","type":"textarea","required":false,"helper":"(서술형, 2~3문장)"}]},{"id":"F","title":"양육 환경과 부모 자신","intro":"이번 검사에서는 부모님께서도 기질 검사(TCI)와 양육태도 검사(PAT-2)를 받으셨습니다. 좋은 답·나쁜 답이 없는 영역이니, 솔직하게 적어 주실수록 해석이 정확해집니다.","fields":[{"id":"F1","label":"자녀가 태어났을 때 부모님의 마음은 어떠셨나요?","type":"textarea","required":false,"subgroup":"양육 환경","helper":"(예: 첫 만남의 감정, 양육에 대한 다짐, 걱정, 기대 등) (서술형, 2~3문장)"},{"id":"F2","label":"부모님 자신이 자라온 가정의 분위기는 어떠셨나요? 어머님(또는 아버님)이 부모님으로부터 받았던 양육 방식이 현재 자녀를 키우시는 방식에 어떻게 영향을 주고 있다고 보시나요?","type":"textarea","required":false,"subgroup":"양육 환경","helper":"(서술형, 3~5문장)"},{"id":"F3","label":"양육에서 가장 자신 있는 부분은 무엇인가요?","type":"textarea","required":false,"subgroup":"양육 환경","helper":"(서술형, 1~2문장)"},{"id":"F4","label":"양육에서 가장 어렵거나 자신 없는 부분은 무엇인가요?","type":"textarea","required":false,"subgroup":"양육 환경","helper":"(서술형, 1~2문장)"},{"id":"F5","label":"배우자(또는 공동 양육자)와 양육관이 가장 잘 맞는 영역과 가장 자주 부딪히는 영역은 각각 무엇인가요?","type":"textarea","required":false,"subgroup":"양육 환경","helper":"(서술형, 2~3문장. 한부모 가정이시거나 해당 사항이 없으시면 '해당 없음'으로 적어 주세요)"},{"id":"F6","label":"자녀에게 가장 자주 사용하시는 칭찬의 말 한두 마디를 적어 주세요.","type":"text","required":false,"subgroup":"양육 환경","helper":"(예: \"잘했어\", \"역시 우리 ○○\", \"엄마는 네가 자랑스러워\" 등)"},{"id":"F7","label":"자녀에게 가장 자주 사용하시는 훈육의 말 한두 마디를 적어 주세요.","type":"text","required":false,"subgroup":"양육 환경","helper":"(예: \"또?\", \"엄마가 몇 번 말했어\", \"네가 알아서 해\" 등)"},{"id":"F8","label":"자녀와 함께 보내는 시간 중 부모님이 가장 행복하다고 느끼시는 순간은 언제인가요?","type":"textarea","required":false,"subgroup":"양육 환경","helper":"(서술형, 2~3문장)"},{"id":"F9","label":"양육에 대해 누구의 영향을 가장 많이 받으시나요?","type":"textarea","required":false,"subgroup":"양육 환경","helper":"(예: 친정 어머니, 시어머니, 배우자, 책, 유튜브, 친구, SNS 등) (서술형, 1~2문장)"},{"id":"F10","label":"부모님 자신을 위한 자기돌봄의 시간은 일주일에 어느 정도 가지시나요? 어떤 활동인가요?","type":"textarea","required":false,"subgroup":"양육 환경","helper":"(서술형, 1~2문장)"},{"id":"F11","label":"부모님 자신은 어린 시절 어떤 아이였다고 기억하시나요? 지금의 자녀와 가장 닮은 점 하나와 가장 다른 점 하나를 꼽아 주세요.","type":"textarea","required":false,"subgroup":"부모 자신의 모습","helper":"(서술형, 3~5문장)"},{"id":"F12","label":"새로운 일(이사, 이직, 새 모임, 새 취미 등) 앞에서 부모님 자신은 보통 어떻게 움직이시는 편인가요?","type":"textarea","required":false,"subgroup":"부모 자신의 모습","helper":"(예: 일단 부딪혀 본다 / 충분히 알아본 뒤 움직인다 / 웬만하면 익숙한 쪽을 지킨다) (서술형, 1~2문장)"},{"id":"F13","label":"부모님 자신은 한번 시작한 일을 끝까지 밀고 가시는 편인가요, 상황에 따라 빠르게 방향을 바꾸시는 편인가요? 최근의 예를 하나 들어 주세요.","type":"textarea","required":false,"subgroup":"부모 자신의 모습","helper":"(서술형, 2~3문장)"},{"id":"F14","label":"자녀의 하루(학교에서 있었던 일, 친구 관계, 그날의 기분)를 평소 어느 정도까지 알고 계신가요? 주로 어떤 방법으로 알게 되시나요?","type":"textarea","required":false,"subgroup":"부모 자신의 모습","helper":"(서술형, 2~3문장)"},{"id":"F15","label":"자녀에 대한 기대를 주로 어떻게 전하시나요? 최근에 기대를 전했던 장면 하나를 묘사해 주세요.","type":"textarea","required":false,"subgroup":"부모 자신의 모습","helper":"(예: 말로 직접 / 칭찬에 얹어서 / 표정·분위기로 / 거의 드러내지 않음) (서술형, 2~3문장)"},{"id":"F16","label":"집안의 규칙(미디어 시간, 잠자리 시간 등)이 그날의 상황이나 부모님의 컨디션에 따라 느슨해지거나 엄격해질 때가 있나요? 주로 어떤 때 그런가요?","type":"textarea","required":false,"subgroup":"부모 자신의 모습","helper":"(서술형, 2~3문장. 누구에게나 있는 일입니다 — 솔직하게 적어 주실수록 해석이 정확해집니다)"},{"id":"F17","label":"자녀 때문에 화가 났을 때, 부모님의 화는 주로 어떤 모습으로 나타나나요?","type":"textarea","required":false,"subgroup":"부모 자신의 모습","helper":"(예: 목소리가 커진다 / 말이 없어진다 / 잔소리가 길어진다 / 그 자리를 잠시 뜬다) (서술형, 2~3문장)"}]},{"id":"G","title":"자유 서술","intro":"위 질문에 담기지 못한 이야기를 자유롭게 들려주세요.","fields":[{"id":"G1","label":"자녀에 대해 검사자가 꼭 알았으면 하는 것 한 가지를 적어 주세요.","type":"textarea","required":false,"helper":"(서술형, 자유 분량)"},{"id":"G2","label":"검사 결과 책자에 어떤 내용이 담기기를 가장 기대하시나요?","type":"textarea","required":false,"helper":"(서술형, 자유 분량)"}]}]};
+
+/* ---- util ---- */
+const $ = (s, p) => (p||document).querySelector(s);
+const esc = (s) => String(s==null?'':s)
+  .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+  .replace(/"/g,'&quot;').replace(/'/g,'&#39;');
+
+const PART_NUM = {A:'01',B:'02',C:'03',D:'04',E:'05',F:'06',G:'07'};
+
+/* fieldId -> {part, label} lookup (제출 payload용) */
+const FIELD_META = {};
+SCHEMA.parts.forEach(p => p.fields.forEach(f => {
+  FIELD_META[f.id] = {part:p.id, partTitle:p.title, label:f.label};
+}));
+
+/* ---- 렌더 ---- */
+function renderIntro(){
+  $('#introSub').textContent = SCHEMA.intro.subtitle;
+  const ul = $('#guidanceList');
+  ul.innerHTML = SCHEMA.intro.guidance.map(g => `<li><span>${esc(g)}</span></li>`).join('');
+}
+
+function fieldInner(f){
+  const code = `<span class="qcode">${esc(f.id)}</span>`;
+  const reqMark = f.required ? '<span class="req" aria-hidden="true">*</span>' : '';
+  const hint = f.helper ? `<p class="hint" id="hint-${f.id}">${esc(f.helper)}</p>` : '';
+  const describedBy = f.helper ? ` aria-describedby="hint-${f.id}"` : '';
+  const reqAttr = f.required ? ' aria-required="true"' : '';
+
+  // radio / relation : fieldset+legend
+  if(f.type === 'radio' || f.type === 'relation'){
+    const opts = f.options.map((opt,i) => {
+      const oid = `${f.id}__${i}`;
+      return `<label class="choice" for="${oid}">
+        <input type="radio" id="${oid}" name="${f.id}" value="${esc(opt)}" data-fid="${f.id}">
+        <span class="dot" aria-hidden="true"></span>
+        <span class="label">${esc(opt)}</span>
+      </label>`;
+    }).join('');
+
+    let extra = '';
+    if(f.type === 'relation'){
+      // '그 외' 선택 시 활성화되는 기타 입력
+      extra = `<div class="relation-other">
+        <label for="${f.id}__other" style="font-size:.85rem;color:var(--muted);margin-bottom:.4rem;display:block">그 외 — 관계를 적어 주세요</label>
+        <input type="text" class="input" id="${f.id}__other" data-fid="${f.id}-other" placeholder="예: 할머니, 위탁부모 등" disabled>
+      </div>`;
+    }
+    if(f.followupTextarea){
+      const ph = f.followupHelper ? esc(f.followupHelper) : '';
+      extra = `<div class="followup">
+        <label for="${f.id}__fu" style="font-size:.85rem;color:var(--muted);margin-bottom:.4rem;display:block">${ph}</label>
+        <textarea class="textarea" id="${f.id}__fu" data-fid="${f.id}-followup" placeholder="${ph}" rows="3"></textarea>
+      </div>`;
+    }
+
+    return `<fieldset>
+      ${code}
+      <legend>${esc(f.label)}${reqMark}</legend>
+      ${hint}
+      <div class="choices" role="radiogroup" aria-label="${esc(f.label)}">${opts}</div>
+      ${extra}
+      <p class="error" id="err-${f.id}">필수 항목입니다.</p>
+    </fieldset>`;
+  }
+
+  // words3 (B3) : 3칸
+  if(f.type === 'words3'){
+    const cells = [1,2,3].map(n => `<div class="w">
+      <span class="n" aria-hidden="true">${n}</span>
+      <input type="text" class="input" id="${f.id}__w${n}" data-fid="${f.id}-${n}" aria-label="${esc(f.label)} ${n}번째 단어">
+    </div>`).join('');
+    return `<p class="qlabel" id="lab-${f.id}">${code}${esc(f.label)}${reqMark}</p>
+      ${hint}
+      <div class="words3" role="group" aria-labelledby="lab-${f.id}">${cells}</div>
+      <p class="error" id="err-${f.id}">필수 항목입니다.</p>`;
+  }
+
+  // textarea
+  if(f.type === 'textarea'){
+    // 길이 힌트에 따라 rows 추정
+    let rows = 4;
+    const h = (f.helper||'');
+    if(/4~6|자유 분량|3~5/.test(h)) rows = 6;
+    else if(/3~4|2~3/.test(h)) rows = 4;
+    else if(/1~2|1~3/.test(h)) rows = 3;
+    return `<label for="${f.id}">${code}${esc(f.label)}${reqMark}</label>
+      ${hint}
+      <textarea class="textarea" id="${f.id}" data-fid="${f.id}" rows="${rows}"${describedBy}${reqAttr}></textarea>
+      <p class="error" id="err-${f.id}">필수 항목입니다.</p>`;
+  }
+
+  // date
+  if(f.type === 'date'){
+    return `<label for="${f.id}">${code}${esc(f.label)}${reqMark}</label>
+      ${hint}
+      <input type="date" class="input" id="${f.id}" data-fid="${f.id}"${describedBy}${reqAttr}>
+      <p class="error" id="err-${f.id}">필수 항목입니다.</p>`;
+  }
+
+  // text (default)
+  return `<label for="${f.id}">${code}${esc(f.label)}${reqMark}</label>
+    ${hint}
+    <input type="text" class="input" id="${f.id}" data-fid="${f.id}"${describedBy}${reqAttr}>
+    <p class="error" id="err-${f.id}">필수 항목입니다.</p>`;
+}
+
+function renderParts(){
+  const c = $('#partsContainer');
+  let html = '';
+  SCHEMA.parts.forEach(p => {
+    // 다크 구분 밴드
+    html += `<section class="band reveal">
+      <div class="wrap">
+        <div class="folio">
+          <span class="f">F.${PART_NUM[p.id]}</span>
+          <span class="t">/ Part ${p.id}</span>
+        </div>
+        <div class="part-tag">Part ${p.id}</div>
+        <span class="idx" aria-hidden="true">${PART_NUM[p.id]}</span>
+        <h2>${esc(p.title)}</h2>
+      </div>
+    </section>`;
+
+    // 크림 본문
+    html += `<section class="part-body" data-part="${p.id}"><div class="wrap">`;
+    if(p.intro){
+      html += `<p class="part-intro reveal">${esc(p.intro)}</p>`;
+    }
+    html += `<div class="form-card reveal">`;
+
+    let lastSub = null;
+    p.fields.forEach(f => {
+      if(f.subgroup && f.subgroup !== lastSub){
+        html += `<div class="subgroup-head">${esc(f.subgroup)}</div>`;
+        lastSub = f.subgroup;
+      }
+      const cls = (f.type==='radio'||f.type==='relation') ? 'field field-radio' : 'field';
+      html += `<div class="${cls}" data-field-id="${f.id}" data-required="${f.required?'1':'0'}">
+        ${fieldInner(f)}
+      </div>`;
+    });
+
+    html += `</div></div></section>`;
+  });
+  c.innerHTML = html;
+}
+
+/* ---- 자동저장: 수집/복원 ---- */
+function collectAll(){
+  const data = {};
+  document.querySelectorAll('[data-fid]').forEach(el => {
+    const fid = el.getAttribute('data-fid');
+    if(el.type === 'radio'){
+      if(el.checked) data[fid] = el.value;
+    } else {
+      if(el.value !== '') data[fid] = el.value;
+    }
+  });
+  return data;
+}
+
+function restoreAll(data){
+  if(!data) return;
+  Object.keys(data).forEach(fid => {
+    const val = data[fid];
+    // radio
+    const radios = document.querySelectorAll(`input[type="radio"][data-fid="${CSS.escape(fid)}"]`);
+    if(radios.length){
+      radios.forEach(r => { if(r.value === val) r.checked = true; });
+      return;
+    }
+    const el = document.querySelector(`[data-fid="${CSS.escape(fid)}"]:not([type="radio"])`);
+    if(el){ el.value = val; }
+  });
+  // relation '그 외' 활성화 동기화
+  syncRelationOthers();
+}
+
+/* relation: '그 외' 선택 시 기타 입력 활성화 */
+function syncRelationOthers(){
+  SCHEMA.parts.forEach(p => p.fields.forEach(f => {
+    if(f.type !== 'relation') return;
+    const other = document.getElementById(`${f.id}__other`);
+    if(!other) return;
+    const checked = document.querySelector(`input[name="${f.id}"]:checked`);
+    const isOther = checked && /그 외/.test(checked.value);
+    other.disabled = !isOther;
+    if(!isOther) other.value = '';
+  }));
+}
+
+/* ---- localStorage ---- */
+let saveTimer = null;
+function saveDraft(){
+  const data = collectAll();
+  try{
+    localStorage.setItem(STORAGE_KEY, JSON.stringify({data, savedAt: new Date().toISOString()}));
+  }catch(e){}
+  showSaved();
+  updateProgress();
+}
+function loadDraft(){
+  try{
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if(!raw) return null;
+    return JSON.parse(raw);
+  }catch(e){ return null; }
+}
+function clearDraft(){
+  try{ localStorage.removeItem(STORAGE_KEY); }catch(e){}
+}
+
+function showSaved(){
+  const el = $('#autosaveLabel');
+  if(!el) return;
+  const d = new Date();
+  const hh = String(d.getHours()).padStart(2,'0');
+  const mm = String(d.getMinutes()).padStart(2,'0');
+  el.innerHTML = `<span class="dot-s"></span>자동 저장됨 &middot; ${hh}:${mm}`;
+  el.style.opacity = '1';
+}
+
+/* ---- 진행률 ---- */
+function getAllFieldKeys(){
+  // 카운트 단위: data-fid 별로 묶되 radio는 그룹 1개, words3은 칸 단위 합산 안 함 → 필드 단위
+  // 간단히: '주요 응답 슬롯' = 각 schema field 1개 (words3는 3칸 중 하나라도 채우면 충족)
+  const keys = [];
+  SCHEMA.parts.forEach(p => p.fields.forEach(f => keys.push(f)));
+  return keys;
+}
+
+function isFieldFilled(f){
+  if(f.type === 'radio' || f.type === 'relation'){
+    return !!document.querySelector(`input[name="${f.id}"]:checked`);
+  }
+  if(f.type === 'words3'){
+    return [1,2,3].some(n => {
+      const el = document.getElementById(`${f.id}__w${n}`);
+      return el && el.value.trim() !== '';
+    });
+  }
+  const el = document.getElementById(f.id);
+  return el && el.value.trim() !== '';
+}
+
+function updateProgress(){
+  const fields = getAllFieldKeys();
+  const total = fields.length;
+  let filled = 0;
+  fields.forEach(f => { if(isFieldFilled(f)) filled++; });
+  const pct = total ? Math.round(filled/total*100) : 0;
+  $('#pctNum').textContent = pct;
+  $('#progressFill').style.width = pct + '%';
+}
+
+/* 현재 보이는 Part 갱신 (스크롤) */
+function updateCurrentPart(){
+  const bodies = document.querySelectorAll('.part-body');
+  let cur = SCHEMA.parts[0];
+  const mid = window.innerHeight * 0.35;
+  bodies.forEach(b => {
+    const r = b.getBoundingClientRect();
+    if(r.top <= mid){
+      const pid = b.getAttribute('data-part');
+      const found = SCHEMA.parts.find(p => p.id === pid);
+      if(found) cur = found;
+    }
+  });
+  $('#curPart').textContent = `PART ${cur.id} · ${cur.title}`;
+}
+
+/* ---- 제출 ---- */
+function buildPayload(){
+  const answers = [];
+  const flat = {};
+  SCHEMA.parts.forEach(p => p.fields.forEach(f => {
+    let value;
+    if(f.type === 'radio'){
+      const checked = document.querySelector(`input[name="${f.id}"]:checked`);
+      value = checked ? checked.value : '';
+      const fu = document.getElementById(`${f.id}__fu`);
+      if(fu && fu.value.trim()){
+        value = (value ? value + ' — ' : '') + fu.value.trim();
+      }
+    } else if(f.type === 'relation'){
+      const checked = document.querySelector(`input[name="${f.id}"]:checked`);
+      value = checked ? checked.value : '';
+      const other = document.getElementById(`${f.id}__other`);
+      if(other && !other.disabled && other.value.trim()){
+        value = '그 외: ' + other.value.trim();
+      }
+    } else if(f.type === 'words3'){
+      const ws = [1,2,3].map(n => {
+        const el = document.getElementById(`${f.id}__w${n}`);
+        return el ? el.value.trim() : '';
+      }).filter(Boolean);
+      value = ws.join(', ');
+    } else {
+      const el = document.getElementById(f.id);
+      value = el ? el.value.trim() : '';
+    }
+    answers.push({id:f.id, part:p.id, label:f.label, value});
+    flat[f.id] = value;
+  }));
+
+  const childName = flat['A1-1'] || '';
+  return {
+    submittedAt: new Date().toLocaleString('ko-KR'),
+    자녀이름: childName,
+    answers,
+    flat
+  };
+}
+
+function clearFieldError(fieldEl){
+  if(!fieldEl) return;
+  fieldEl.classList.remove('invalid');
+  const inp = fieldEl.querySelector('.input,.textarea');
+  if(inp) inp.setAttribute('aria-invalid','false');
+}
+
+function showRequiredError(){
+  const fieldEl = document.querySelector('[data-field-id="A1-1"]');
+  if(!fieldEl) return;
+  fieldEl.classList.add('invalid');
+  const inp = document.getElementById('A1-1');
+  if(inp){
+    inp.setAttribute('aria-invalid','true');
+    const err = document.getElementById('err-A1-1');
+    if(err) err.textContent = '자녀의 이름을 적어 주시면 작성을 마무리할 수 있어요.';
+  }
+  fieldEl.scrollIntoView({behavior:'smooth', block:'center'});
+  if(inp) setTimeout(()=>inp.focus(), 400);
+}
+
+function showSubmitMessage(msg){
+  const e = $('#submitError');
+  e.textContent = msg;
+  e.classList.add('show');
+}
+function hideSubmitMessage(){
+  $('#submitError').classList.remove('show');
+}
+
+function showDoneScreen(){
+  $('#formMain').style.display = 'none';
+  document.querySelector('.topbar').style.display = 'none';
+  const d = $('#doneScreen');
+  d.classList.add('show');
+  window.scrollTo(0,0);
+}
+
+async function handleSubmit(e){
+  e.preventDefault();
+  hideSubmitMessage();
+
+  // 필수: A1-1
+  const nameVal = (document.getElementById('A1-1')||{}).value || '';
+  if(!nameVal.trim()){
+    showRequiredError();
+    return;
+  }
+
+  const payload = buildPayload();
+  const btn = $('#submitBtn');
+  btn.disabled = true;
+  const orig = btn.innerHTML;
+  btn.innerHTML = '보내는 중…';
+
+  // placeholder 상태 → 데모 (부모에겐 노출 금지, 콘솔만)
+  if(SCRIPT_URL === 'PASTE_YOUR_APPS_SCRIPT_WEB_APP_URL_HERE'){
+    console.info('[데모] SCRIPT_URL 미설정 — 실제 전송 없이 완료 화면을 표시합니다. payload:', payload);
+    clearDraft();
+    showDoneScreen();
+    return;
+  }
+
+  try{
+    await fetch(SCRIPT_URL, {
+      method:'POST',
+      mode:'no-cors',
+      headers:{'Content-Type':'text/plain;charset=utf-8'},
+      body: JSON.stringify(payload)
+    });
+    // no-cors: 응답을 읽을 수 없으므로(opaque) throw 없이 통과하면 성공으로 간주
+    clearDraft();
+    showDoneScreen();
+  }catch(err){
+    console.error(err);
+    btn.disabled = false;
+    btn.innerHTML = orig;
+    showSubmitMessage('잠시 연결이 원활하지 않았어요. 적어 주신 내용은 그대로 저장되어 있으니, 잠시 후 다시 “제출하기”를 눌러 주세요.');
+  }
+}
+
+/* ---- reveal observer ---- */
+function setupReveal(){
+  if(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+    document.querySelectorAll('.reveal').forEach(el => el.classList.add('in'));
+    return;
+  }
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(en => {
+      if(en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target); }
+    });
+  }, {threshold:.12});
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+}
+
+/* ---- autosave 행 삽입 (제출 밴드 위) ---- */
+function insertAutosaveRow(){
+  const form = $('#interviewForm');
+  const submitBand = form.querySelector('.submit-band');
+  const row = document.createElement('div');
+  row.className = 'part-body';
+  row.style.paddingTop = '0';
+  row.style.paddingBottom = '0';
+  row.innerHTML = `<div class="wrap"><div class="autosave-row">
+    <span class="autosave" id="autosaveLabel" style="opacity:0"><span class="dot-s"></span>자동 저장됨</span>
+    <button type="button" class="reset-link" id="resetBtn">처음부터 다시 작성</button>
+  </div></div>`;
+  form.insertBefore(row, submitBand);
+}
+
+/* ---- init ---- */
+function init(){
+  renderIntro();
+  renderParts();
+  insertAutosaveRow();
+
+  const draft = loadDraft();
+  if(draft && draft.data){ restoreAll(draft.data); }
+
+  updateProgress();
+  updateCurrentPart();
+  setupReveal();
+
+  // 입력 이벤트 → 자동저장(디바운스) + 진행률
+  const form = $('#interviewForm');
+  form.addEventListener('input', (e) => {
+    if(e.target.matches('[data-field-id="A1-1"] .input, #A1-1')){
+      clearFieldError(document.querySelector('[data-field-id="A1-1"]'));
+    }
+    updateProgress();
+    clearTimeout(saveTimer);
+    saveTimer = setTimeout(saveDraft, 500);
+  });
+  form.addEventListener('change', (e) => {
+    if(e.target.type === 'radio'){ syncRelationOthers(); }
+    updateProgress();
+    saveDraft();
+  });
+
+  form.addEventListener('submit', handleSubmit);
+
+  // 처음부터 다시
+  document.getElementById('resetBtn').addEventListener('click', () => {
+    if(confirm('지금까지 작성하신 내용을 모두 지우고 처음부터 다시 시작할까요?')){
+      clearDraft();
+      location.reload();
+    }
+  });
+
+  // 스크롤 → 현재 Part
+  let ticking = false;
+  window.addEventListener('scroll', () => {
+    if(!ticking){
+      window.requestAnimationFrame(() => { updateCurrentPart(); ticking = false; });
+      ticking = true;
+    }
+  }, {passive:true});
+}
+
+if(document.readyState === 'loading'){
+  document.addEventListener('DOMContentLoaded', init);
+} else { init(); }
+</script>
+</body>
+</html>

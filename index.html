@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>마음기록소 — ○○이의 마음설명서 · 진로·기질 맞춤 검사</title>
+<meta name="description" content="AI 시대, 부모를 위한 진로·기질 맞춤 검사. 임상심리전문가가 검사 결과를 ‘○○이의 마음설명서’ 한 권으로 풀어 드립니다. 초4~고등 대상." />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" rel="stylesheet" />
+
+<style>
+:root{
+  --rust:#BC6C25; --rust-deep:#A85B1E; --rust-soft:#E0B07A;
+  --cream:#FDFCFB; --sand:#EFE7DB; --charcoal:#15171A; --ink:#2D2D2D; --muted:#8C8C8C; --light:#FFFFFF;
+  --sans:'Pretendard', system-ui, -apple-system, sans-serif;
+  --maxw:1180px; --pad-x:clamp(1.25rem, 5vw, 4.5rem);
+  --sec:clamp(4.5rem,11vh,8rem); --sec-lg:clamp(6.5rem,16vh,11rem); --sec-sm:clamp(3.5rem,8vh,6rem);
+  --ease:cubic-bezier(.16,1,.3,1); --snap:cubic-bezier(.2,.85,.3,1);
+  --shadow:0 1px 2px rgba(20,22,28,.05), 0 14px 30px -18px rgba(20,22,28,.22);
+  --rule:rgba(188,108,37,.22);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans); color:var(--ink); background:var(--cream); line-height:1.62;
+  letter-spacing:-.011em; word-break:keep-all; overflow-wrap:break-word;
+  font-feature-settings:'tnum','ss01'; -webkit-font-smoothing:antialiased; overflow-x:hidden}
+body::after{content:""; position:fixed; inset:0; pointer-events:none; z-index:1; opacity:.05;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='150' height='150'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+.wrap{max-width:var(--maxw); margin-inline:auto; padding-inline:var(--pad-x)}
+section{position:relative; z-index:2}
+img{display:block; max-width:100%}
+
+.imgwrap{position:relative; overflow:hidden; border-radius:4px; background:var(--sand)}
+.imgwrap img{width:100%; height:100%; object-fit:cover; filter:saturate(.92) contrast(1.04); transition:transform .6s var(--ease)}
+.imgwrap::after{content:""; position:absolute; inset:0; background:linear-gradient(160deg, transparent 55%, rgba(26,22,18,.20)); mix-blend-mode:soft-light}
+.imgwrap:hover img{transform:scale(1.045)}
+
+h1,h2,h3{font-weight:800; letter-spacing:-.04em; line-height:1.1; color:var(--ink); text-wrap:balance}
+h1{font-size:clamp(2.6rem,6.2vw,4.6rem); letter-spacing:-.046em; line-height:1.04}
+h2{font-size:clamp(1.9rem,3.9vw,2.7rem); letter-spacing:-.038em; line-height:1.12}
+h3{font-size:clamp(1.25rem,2vw,1.5rem); font-weight:700; letter-spacing:-.025em; line-height:1.25}
+.thin{font-weight:300; letter-spacing:-.03em}
+.accent{color:var(--rust)}
+.lead{font-size:clamp(1.12rem,1.6vw,1.25rem); font-weight:400; letter-spacing:-.015em; line-height:1.55; color:var(--ink); max-width:38ch}
+.muted{color:var(--muted)}
+.body-p{font-size:1rem; max-width:44ch; color:#46433f}
+.sm{font-size:.94rem; color:var(--muted); max-width:46ch}
+
+.folio{display:flex; align-items:baseline; gap:.7rem; padding-top:1.1rem; margin-bottom:clamp(1.6rem,3vw,2.4rem); border-top:1px solid rgba(188,108,37,.22); border-top-color:var(--rule)}
+.folio .f{font-weight:700; font-size:.74rem; letter-spacing:.05em; color:var(--rust); font-variant-numeric:tabular-nums}
+.folio .t{font-weight:600; font-size:.74rem; letter-spacing:.04em; color:var(--muted)}
+.dark .folio{border-top-color:rgba(224,176,122,.28)} .dark .folio .t{color:#9a948b}
+
+.kicker{display:inline-flex; align-items:center; gap:.7rem; font-weight:700; font-size:.74rem; letter-spacing:.04em; color:var(--rust); margin-bottom:1.3rem}
+.kicker::before{content:""; width:1.9rem; height:1px; background:var(--rust)}
+.kicker.light{color:var(--rust-soft)} .kicker.light::before{background:var(--rust-soft)}
+
+.idx{font-weight:250; font-size:clamp(2.4rem,5vw,3.2rem); letter-spacing:-.04em; line-height:1; color:rgba(188,108,37,.45); font-variant-numeric:tabular-nums}
+
+.btn{display:inline-flex; align-items:center; gap:.5em; font-family:var(--sans); font-weight:700; font-size:1rem; letter-spacing:-.01em;
+  padding:.92em 1.8em; border-radius:999px; cursor:pointer; border:1px solid transparent; text-decoration:none;
+  transition:transform .22s var(--snap), background .22s, color .22s, border-color .22s; white-space:nowrap}
+.btn-primary{background:var(--rust); color:#fff; box-shadow:0 1px 0 rgba(255,255,255,.14) inset, 0 6px 16px -8px rgba(20,22,28,.45)}
+.btn-primary:hover{background:var(--rust-deep); transform:translateY(-2px)}
+.btn-ghost{background:transparent; color:var(--ink); border-color:rgba(45,45,45,.22)}
+.btn-ghost:hover{border-color:var(--rust); color:var(--rust); transform:translateY(-2px)}
+.btn-outline-light{background:transparent; color:#fff; border-color:rgba(255,255,255,.45)}
+.btn-outline-light:hover{border-color:#fff; background:rgba(255,255,255,.07); transform:translateY(-2px)}
+.btn .arr{transition:transform .22s var(--snap)} .btn:hover .arr{transform:translateX(3px)}
+
+header.nav{position:sticky; top:0; z-index:50; backdrop-filter:blur(10px); background:rgba(253,252,251,.85); border-bottom:1px solid rgba(45,45,45,.07)}
+.nav-in{display:flex; align-items:center; justify-content:space-between; height:64px}
+.brand{font-weight:800; font-size:1.22rem; letter-spacing:-.03em; color:var(--ink); text-decoration:none}
+.brand .dot{color:var(--rust)}
+.nav-links{display:flex; gap:1.9rem; align-items:center}
+.nav-links a{color:var(--ink); text-decoration:none; font-size:.92rem; font-weight:500; letter-spacing:-.01em; opacity:.8; transition:opacity .2s, color .2s}
+.nav-links a:hover{opacity:1; color:var(--rust)}
+.nav-links .btn{padding:.5em 1.2em; font-size:.88rem}
+@media(max-width:860px){ .nav-links a:not(.btn){display:none} }
+
+/* HERO */
+.hero{display:grid; grid-template-columns:minmax(0,1fr) minmax(0,.66fr); background:var(--charcoal); color:#fff; overflow:hidden; min-height:clamp(540px,84vh,780px)}
+.hero-text{align-self:center; padding:clamp(2.6rem,7vh,4.4rem) clamp(2rem,4vw,3.4rem) clamp(2.6rem,7vh,4.4rem) var(--pad-x)}
+.hero h1{color:#fff; margin-bottom:1.4rem; max-width:15ch}
+.hero .lead{color:rgba(255,255,255,.84); margin-bottom:2rem}
+.hero .lead b{color:#fff; font-weight:600}
+.hero-cta{display:flex; gap:.8rem; flex-wrap:wrap; margin-bottom:1.5rem}
+.hero-note{font-size:.9rem; color:rgba(255,255,255,.6); font-variant-numeric:tabular-nums}
+.hero-note b{color:var(--rust-soft); font-weight:700}
+.hero-media{position:relative; overflow:hidden}
+.hero-media img{width:100%; height:100%; object-fit:cover; filter:saturate(.9) contrast(1.06)}
+.hero-media::after{content:""; position:absolute; inset:0; background:linear-gradient(90deg, var(--charcoal) 0%, rgba(21,23,26,.35) 26%, rgba(21,23,26,0) 62%)}
+@media(max-width:860px){ .hero{grid-template-columns:1fr; min-height:auto} .hero-media{height:240px} .hero-media::after{background:linear-gradient(0deg, rgba(21,23,26,.5), transparent 60%)} }
+
+.cream{background:var(--cream)} .sand{background:var(--sand)}
+.dark{background:var(--charcoal); color:#e7e2da}
+.dark h1,.dark h2,.dark h3{color:#fff} .dark .muted,.dark .body-p,.dark .sm{color:#a59f96}
+
+.quote{border-left:2px solid var(--rust); padding-left:1.15rem; font-weight:300; letter-spacing:-.03em; line-height:1.42}
+.pullquote{font-size:clamp(1.5rem,3vw,2.2rem); max-width:21ch; margin-top:1.3rem}
+.qsrc{font-size:.84rem; color:var(--muted); margin-top:.8rem; letter-spacing:.02em}
+
+/* 1인칭 독백 */
+.voices{font-weight:300; letter-spacing:-.022em; font-size:clamp(1.2rem,2.3vw,1.62rem); line-height:1.52; color:var(--ink); max-width:30ch; border-left:2px solid var(--rust); padding-left:1.2rem; margin-bottom:1.8rem}
+.voices b{font-weight:700}
+
+.split{display:grid; grid-template-columns:minmax(0,1.35fr) minmax(0,1fr); gap:clamp(2rem,5vw,4.2rem); align-items:center}
+.split .imgwrap{aspect-ratio:4/5; height:100%}
+@media(max-width:860px){.split{grid-template-columns:1fr; gap:1.8rem} .split .imgwrap{aspect-ratio:16/11}}
+
+.diff-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:clamp(1.4rem,3vw,2.6rem)}
+.diff-item{border-top:1px solid rgba(255,255,255,.15); padding-top:1.2rem}
+.diff-item h3{margin:.7rem 0 .55rem; color:#fff}
+.diff-item p{font-size:.97rem; color:#b4ada3; max-width:34ch}
+@media(max-width:820px){.diff-grid{grid-template-columns:1fr; gap:1.8rem}}
+.toolnote{margin-top:clamp(2.4rem,5vw,3.4rem); padding-top:1.4rem; border-top:1px solid rgba(255,255,255,.15); font-size:1.02rem; color:#cfc9bf; max-width:64ch; line-height:1.6}
+.toolnote b{color:#fff; font-weight:700}
+
+/* 비교표 */
+.compare{margin-top:clamp(1.8rem,4vw,2.8rem); overflow-x:auto}
+.ctable{width:100%; border-collapse:collapse; min-width:600px; font-size:.95rem}
+.ctable th,.ctable td{text-align:left; padding:.9rem 1rem; border-bottom:1px solid rgba(45,45,45,.1); vertical-align:top; line-height:1.45}
+.ctable thead th{font-weight:700; font-size:.82rem; letter-spacing:.01em; color:var(--muted)}
+.ctable thead th.win{color:var(--rust); font-size:.95rem}
+.ctable tbody th{font-weight:600; color:var(--ink); width:22%}
+.ctable td{color:#5b5750}
+.ctable td.win{background:rgba(188,108,37,.07); color:var(--ink); font-weight:600}
+.ctable thead th.win,.ctable td.win{border-left:1.5px solid rgba(188,108,37,.4); border-right:1.5px solid rgba(188,108,37,.4)}
+
+/* 풀배경 인용 밴드 */
+.quoteband{position:relative; min-height:clamp(360px,52vh,460px); display:flex; align-items:center; color:#fff; overflow:hidden; background:var(--charcoal)}
+.quoteband .bg{position:absolute; inset:0; z-index:0}
+.quoteband .bg img{width:100%; height:100%; object-fit:cover; filter:saturate(.9) contrast(1.05)}
+.quoteband .bg::after{content:""; position:absolute; inset:0; background:linear-gradient(90deg, rgba(21,23,26,.9) 0%, rgba(21,23,26,.5) 46%, rgba(21,23,26,.08) 100%)}
+.quoteband .wrap{position:relative; z-index:3}
+.quoteband blockquote{border-left:2px solid var(--rust); padding-left:1.2rem; font-weight:300; letter-spacing:-.03em; font-size:clamp(1.6rem,3.5vw,2.6rem); line-height:1.38; max-width:24ch}
+.quoteband cite{display:block; margin-top:1.2rem; font-style:normal; font-size:.82rem; letter-spacing:.04em; color:var(--rust-soft); padding-left:1.2rem}
+
+/* 결과물 */
+.preview{display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1.2fr); gap:clamp(2rem,5vw,4rem); align-items:center}
+.book3d{perspective:1500px; display:flex; justify-content:center; padding:.5rem}
+.book3d .cover{width:min(80%,300px); aspect-ratio:3/4.1; border-radius:3px 8px 8px 3px; position:relative;
+  background:linear-gradient(150deg,#23262b,#15171A); box-shadow:var(--shadow), inset 13px 0 20px -15px rgba(0,0,0,.55);
+  transform:rotateY(calc(-12deg + var(--ry,0deg))) rotateX(calc(3deg + var(--rx,0deg))); transform-style:preserve-3d;
+  padding:2.1rem 1.5rem; display:flex; flex-direction:column; justify-content:space-between; color:#fff; transition:transform .3s var(--ease)}
+.book3d .cover::before{content:""; position:absolute; left:0; top:0; bottom:0; width:14px; background:linear-gradient(90deg, rgba(255,255,255,.07), rgba(0,0,0,.32)); border-radius:3px 0 0 3px}
+.book3d .sp{width:32px; height:2px; background:var(--rust)}
+.book3d .cover h4{font-weight:700; font-size:1.3rem; line-height:1.3; letter-spacing:-.03em; color:#fff}
+.book3d .cover .rname{color:var(--rust-soft)}
+.book3d .cover small{font-size:.7rem; letter-spacing:.06em; color:rgba(255,255,255,.5)}
+.preview h2{margin-bottom:.9rem}
+.spec{display:flex; flex-direction:column; gap:.6rem; margin-top:1.2rem; font-size:.96rem; color:#46433f; max-width:44ch}
+.spec span{padding-left:1.3rem; position:relative}
+.spec span::before{content:""; position:absolute; left:0; top:.55em; width:.45rem; height:.45rem; border-radius:50%; background:var(--rust)}
+@media(max-width:860px){.preview{grid-template-columns:1fr; gap:2.4rem} .book3d .cover{transform:rotateY(-8deg)}}
+
+/* 책 속 미리보기 */
+.inside{margin-top:clamp(2.6rem,5vw,3.6rem); display:grid; grid-template-columns:1fr 1fr; gap:clamp(1.6rem,4vw,3rem); align-items:start}
+.vol{font-weight:800; font-size:clamp(1.35rem,2.4vw,1.85rem); letter-spacing:-.035em; color:var(--ink); font-variant-numeric:tabular-nums}
+.vol span{color:var(--rust)}
+.toc{list-style:none; margin-top:1.2rem; display:flex; flex-direction:column; gap:.55rem}
+.toc li{font-size:.97rem; color:#46433f; padding-left:2rem; position:relative; line-height:1.4}
+.toc li .n{position:absolute; left:0; color:var(--rust); font-weight:700; font-variant-numeric:tabular-nums; opacity:.65}
+.excerpts{display:flex; flex-direction:column; gap:1rem}
+.excerpt{background:var(--light); border-radius:5px; padding:1.25rem 1.4rem; box-shadow:0 1px 2px rgba(20,22,28,.04); border-left:2px solid var(--rust)}
+.excerpt p{font-weight:300; font-size:1.04rem; line-height:1.55; letter-spacing:-.02em; color:var(--ink)}
+.excerpt .tag2{font-size:.72rem; color:var(--muted); margin-top:.7rem; letter-spacing:.02em}
+@media(max-width:760px){.inside{grid-template-columns:1fr}}
+
+/* After 샘플 */
+.samples{display:grid; grid-template-columns:repeat(3,1fr); gap:1rem; margin-top:clamp(1.8rem,4vw,2.4rem)}
+.sample{background:var(--light); border-radius:5px; padding:1.4rem; box-shadow:0 1px 2px rgba(20,22,28,.04)}
+.sample .q{font-weight:300; font-size:1.02rem; line-height:1.52; letter-spacing:-.02em; color:var(--ink)}
+.sample .q b{font-weight:700; color:var(--rust)}
+@media(max-width:760px){.samples{grid-template-columns:1fr}}
+
+/* 과정 */
+.proc-head{display:flex; justify-content:space-between; align-items:flex-end; gap:2rem; flex-wrap:wrap}
+.proc-head .imgwrap{width:min(34%,330px); aspect-ratio:16/10; flex:none}
+.steps{display:grid; grid-template-columns:repeat(4,1fr); gap:clamp(1.2rem,2.5vw,2rem); margin-top:clamp(2.2rem,4vw,3rem)}
+.step{border-top:1px solid var(--rule); padding-top:1.1rem}
+.step h3{font-size:1.12rem; margin:.6rem 0 .45rem}
+.step p{font-size:.92rem; color:var(--muted); max-width:24ch}
+@media(max-width:820px){.steps{grid-template-columns:1fr 1fr; gap:1.8rem 1.2rem} .proc-head .imgwrap{display:none}}
+
+/* 가격 */
+.match{margin-top:1.4rem; display:flex; flex-direction:column; gap:.55rem; max-width:62ch}
+.match .m{font-size:.98rem; color:#46433f}
+.match .m b{color:var(--rust); font-weight:700}
+.anchor-copy{margin-top:1rem; max-width:54ch; font-size:1.02rem; color:#46433f; line-height:1.6}
+.anchor-copy b{color:var(--ink); font-weight:700}
+.tiers{display:grid; grid-template-columns:repeat(3,1fr); gap:clamp(1rem,2vw,1.4rem); margin-top:clamp(2rem,4vw,2.8rem); align-items:stretch}
+.tier{background:var(--light); border-radius:6px; padding:2rem 1.7rem; display:flex; flex-direction:column; box-shadow:0 1px 2px rgba(20,22,28,.04); transition:transform .3s var(--ease), box-shadow .3s var(--ease)}
+.tier:hover{transform:translateY(-3px); box-shadow:var(--shadow)}
+.tier.feat{outline:1.5px solid var(--rust); outline-offset:-1.5px}
+.tier .tag{align-self:flex-start; font-size:.72rem; font-weight:700; letter-spacing:.04em; color:#fff; background:var(--rust); padding:.3em .8em; border-radius:3px; margin-bottom:1rem; visibility:hidden}
+.tier.feat .tag{visibility:visible}
+.tier h3{font-size:1.45rem; margin-bottom:.25rem}
+.tier .who{font-size:.85rem; color:var(--muted); margin-bottom:1.2rem}
+.price-label{font-size:.72rem; font-weight:600; letter-spacing:.04em; color:var(--rust); margin-bottom:.2rem}
+.price{font-weight:800; font-size:clamp(2rem,3vw,2.55rem); letter-spacing:-.04em; line-height:1; color:var(--ink); font-variant-numeric:tabular-nums}
+.price .cur{font-weight:500; font-size:.5em; color:var(--muted); margin-right:.12em; vertical-align:.16em}
+.price .tail{font-weight:500; font-size:.46em; color:var(--muted)}
+.tier ul{list-style:none; margin:1.3rem 0 1.4rem; display:flex; flex-direction:column; gap:.65rem; flex:1}
+.tier li{font-size:.93rem; color:#46433f; padding-left:1.3rem; position:relative; line-height:1.5}
+.tier li::before{content:""; position:absolute; left:0; top:.52em; width:.42rem; height:.42rem; border-radius:50%; background:var(--rust); opacity:.5}
+.tier .meet{font-size:.82rem; color:#6b665f; margin-bottom:1.1rem; line-height:1.5}
+.tier .save{font-size:.78rem; color:var(--muted); margin-bottom:1.1rem}
+.tier .btn{justify-content:center; width:100%}
+.tier.feat .btn-ghost{background:var(--rust); color:#fff; border-color:var(--rust)}
+.tier.feat .btn-ghost:hover{background:var(--rust-deep)}
+.guarantee{background:var(--charcoal); color:#fff; border-radius:6px; padding:clamp(1.6rem,3vw,2.1rem) clamp(1.6rem,3vw,2.2rem); margin-top:clamp(1.8rem,4vw,2.6rem); display:flex; gap:1.3rem; align-items:flex-start}
+.guarantee .seal{flex:none; width:3.1rem; height:3.1rem; border-radius:50%; border:1.5px solid var(--rust); display:grid; place-items:center; color:var(--rust-soft); font-weight:800; font-size:.66rem; text-align:center; line-height:1.1}
+.guarantee h3{color:#fff; margin-bottom:.4rem}
+.guarantee p{color:#b4ada3; font-size:.96rem; max-width:62ch; line-height:1.6}
+.launch{margin-top:1.3rem; background:rgba(188,108,37,.08); border:1px solid var(--rule); border-radius:6px; padding:1.1rem 1.3rem; font-size:.95rem; color:#46433f; line-height:1.6}
+.launch b{color:var(--rust); font-weight:700}
+.tier-note{margin-top:1.4rem; font-size:.88rem; color:var(--muted); text-align:center; line-height:1.7; font-variant-numeric:tabular-nums}
+.trust{display:flex; flex-wrap:wrap; gap:.9rem 2rem; justify-content:center; margin-top:clamp(1.8rem,3vw,2.4rem); padding-top:clamp(1.6rem,3vw,2.2rem); border-top:1px solid var(--rule)}
+.trust .b{display:flex; align-items:center; gap:.55rem; font-size:.9rem; color:#46433f; font-weight:500}
+.trust .b::before{content:""; width:.5rem; height:.5rem; border-radius:50%; background:var(--rust)}
+@media(max-width:860px){.tiers{grid-template-columns:1fr; max-width:440px; margin-inline:auto}}
+
+/* 저자 */
+.author-grid{display:grid; grid-template-columns:minmax(0,.75fr) minmax(0,1.25fr); gap:clamp(2rem,5vw,4rem); align-items:center}
+.author-photo{aspect-ratio:4/5; border-radius:4px; position:relative; overflow:hidden; background:#0d0e10}
+.author-photo img{width:100%; height:100%; object-fit:cover; object-position:60% 16%; filter:saturate(.97) contrast(1.04)}
+.author-photo .cap{position:absolute; left:1rem; bottom:.9rem; font-size:.74rem; letter-spacing:.04em; color:rgba(255,255,255,.82); font-weight:600}
+.author-grid blockquote{border-left:2px solid var(--rust); padding-left:1.2rem; font-weight:300; letter-spacing:-.03em; font-size:clamp(1.3rem,2.3vw,1.75rem); line-height:1.45; margin:1rem 0 1.2rem}
+.author-grid .personal{font-size:1rem; color:#46433f; max-width:46ch; margin-bottom:1.1rem; line-height:1.6}
+.creds{display:flex; flex-direction:column; gap:.5rem; font-size:.95rem; color:#46433f}
+.creds span{padding-left:1.2rem; position:relative}.creds span::before{content:"—"; position:absolute; left:0; color:var(--rust)}
+@media(max-width:820px){.author-grid{grid-template-columns:1fr; gap:1.8rem} .author-photo{max-width:230px; aspect-ratio:1}}
+
+/* 시리즈 */
+.series{display:grid; grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr); gap:clamp(2rem,5vw,4rem); align-items:center}
+.series .imgwrap{aspect-ratio:4/5}
+.books{display:flex; flex-direction:column; gap:.9rem; margin-top:1.5rem}
+.book{background:var(--light); border-radius:5px; padding:1.15rem 1.35rem; box-shadow:0 1px 2px rgba(20,22,28,.04); transition:transform .3s var(--ease)}
+.book:hover{transform:translateX(4px)}
+.book .badge{font-size:.72rem; font-weight:700; letter-spacing:.04em; color:var(--rust)}
+.book h3{font-size:1.18rem; margin:.3rem 0 .28rem}
+.book p{font-size:.9rem; color:var(--muted); max-width:38ch}
+.book.soon{opacity:.55}
+@media(max-width:820px){.series{grid-template-columns:1fr} .series .imgwrap{aspect-ratio:16/10; max-height:280px}}
+
+/* FAQ */
+.faq{max-width:780px; margin-top:clamp(2rem,4vw,3rem)}
+details{border-bottom:1px solid rgba(45,45,45,.12)}
+summary{font-weight:600; font-size:1.12rem; letter-spacing:-.02em; cursor:pointer; list-style:none; display:flex; justify-content:space-between; align-items:center; gap:1rem; padding:1.3rem 0}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+"; color:var(--rust); font-weight:400; font-size:1.4rem; transition:transform .25s var(--snap)}
+details[open] summary::after{transform:rotate(45deg)}
+.faq-body{display:grid; grid-template-rows:0fr; opacity:.3; transition:grid-template-rows .38s var(--ease), opacity .38s ease}
+.faq-body>div{min-height:0; overflow:hidden}
+details[open] .faq-body{grid-template-rows:1fr; opacity:1}
+.faq-body p{color:#46433f; font-size:.98rem; padding-bottom:1.3rem; max-width:64ch}
+
+/* 사전 신청 */
+.apply-sec{text-align:center}
+.apply-card{max-width:640px; margin:clamp(1.6rem,3vw,2.4rem) auto 0; background:var(--light); border-radius:8px; padding:clamp(1.9rem,4vw,2.8rem); box-shadow:var(--shadow)}
+.apply-card h2{margin-bottom:.8rem}
+.apply-card p{color:#46433f; max-width:48ch; margin:0 auto 1.6rem; line-height:1.6}
+.apply-card .btn{font-size:1.05rem; padding:1em 2.1em}
+.apply-card .note{font-size:.85rem; color:var(--muted); margin-top:1.1rem; font-variant-numeric:tabular-nums}
+
+/* 클로징 */
+.closing{text-align:center}
+.closing h2{max-width:20ch; margin:0 auto 1.1rem}
+.dark.closing .sub{color:#cfc9bf; margin-bottom:2rem; font-size:1.08rem; line-height:1.6; max-width:40ch; margin-inline:auto}
+.microcta{font-size:.86rem; color:#8d877d; margin-top:1rem}
+
+footer{background:#0f1113; color:#8a857c; padding-block:3.5rem 2.5rem; position:relative; z-index:2}
+.foot-top{display:flex; justify-content:space-between; flex-wrap:wrap; gap:1.5rem; margin-bottom:2.5rem}
+.foot-brand{font-weight:800; font-size:1.3rem; letter-spacing:-.03em; color:#fff}.foot-brand .dot{color:var(--rust)}
+.foot-links{display:flex; gap:1.6rem; flex-wrap:wrap}
+.foot-links a{color:#b4ada3; text-decoration:none; font-size:.92rem}.foot-links a:hover{color:var(--rust-soft)}
+.foot-legal{font-size:.8rem; color:#67625a; line-height:1.8; border-top:1px solid rgba(255,255,255,.08); padding-top:1.8rem; font-variant-numeric:tabular-nums}
+
+.mcta{position:fixed; left:0; right:0; bottom:0; z-index:60; display:none; align-items:center; justify-content:space-between; gap:1rem; background:rgba(21,23,26,.97); backdrop-filter:blur(8px); padding:.7rem 1.1rem; border-top:1px solid rgba(255,255,255,.1)}
+.mcta .p{color:#fff; font-size:.82rem; line-height:1.3}
+.mcta .p b{font-weight:800; font-size:1.02rem; color:var(--rust-soft); font-variant-numeric:tabular-nums; letter-spacing:-.02em}
+.mcta .btn{padding:.68em 1.35em; font-size:.92rem}
+@media(max-width:960px){ .mcta{display:flex} body{padding-bottom:62px} }
+
+.reveal{opacity:0; transform:translateY(14px); transition:opacity .8s var(--ease), transform .8s var(--ease)}
+.reveal.in{opacity:1; transform:none}
+.reveal-group>*{opacity:0; transform:translateY(12px); transition:opacity .7s var(--ease), transform .7s var(--ease)}
+.reveal-group.in>*{opacity:1; transform:none; transition-delay:calc(var(--i,0)*70ms)}
+@keyframes riseIn{from{opacity:0; transform:translateY(16px)} to{opacity:1; transform:none}}
+.hero .anim{opacity:0; animation:riseIn .85s var(--ease) both; animation-delay:var(--d,0s)}
+@media (prefers-reduced-motion: reduce){
+  .reveal,.reveal-group>*{opacity:1!important; transform:none!important}
+  .hero .anim{animation:none!important; opacity:1!important}
+  *{animation:none!important} html{scroll-behavior:auto} .imgwrap:hover img{transform:none}
+}
+</style>
+</head>
+<body>
+
+<!-- 내비 -->
+<header class="nav">
+  <div class="wrap nav-in">
+    <a href="#top" class="brand">마음기록소<span class="dot">.</span></a>
+    <nav class="nav-links">
+      <a href="#diff">차별점</a>
+      <a href="#preview">결과물</a>
+      <a href="#tiers">검사·가격</a>
+      <a href="#author">저자</a>
+      <a href="#faq">FAQ</a>
+      <a href="#apply" class="btn btn-primary">구매하기</a>
+    </nav>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero" id="top">
+  <div class="hero-text">
+    <span class="kicker light anim" style="--d:0s">AI 시대 · 부모를 위한 진로·기질 검사</span>
+    <h1 class="anim" style="--d:.07s"><span class="thin">지도가 사라진 시대,</span><br><span class="thin">아이에게 줄 건</span> <span class="accent">나침반</span><span class="thin">입니다.</span></h1>
+    <p class="lead anim" style="--d:.14s"><span class="thin">의대·공무원이라는 ‘안전한 지도’가 흔들리는 시대 — 성적표로는 안 보이던 우리 아이의 흥미·기질·강점을, 임상심리전문가가 검사로 읽어</span> <b>「○○이의 마음설명서」 한 권</b><span class="thin">에 담아 드립니다. 받는 날부터, 아이를 대하는 말이 달라집니다.</span></p>
+    <div class="hero-cta anim" style="--d:.21s">
+      <a href="#apply" class="btn btn-primary">○○이의 마음설명서 시작하기 <span class="arr">→</span></a>
+      <a href="#preview" class="btn btn-outline-light">받게 되는 결과물 보기</a>
+    </div>
+    <p class="hero-note anim" style="--d:.28s"><b>초4~고등</b> 자녀 · 온라인 검사 · 임상심리전문가 직접 분석 · 맞춤 책 배송(약 2주)</p>
+  </div>
+  <div class="hero-media"><img src="images/atmosphere.jpg" alt="" /></div>
+</section>
+
+<!-- 공감 -->
+<section class="cream" style="padding-block:var(--sec)">
+  <div class="wrap">
+    <div class="folio reveal"><span class="f">F.01</span><span class="t">/ 공감</span></div>
+    <div class="split">
+      <div class="reveal">
+        <blockquote class="voices">학원을 세 군데 보내도 성적은 그대로. 책상 앞에 앉혀놔도 마음은 딴 데. <b>‘내가 뭘 잘못 키운 걸까.’</b></blockquote>
+        <h2><span class="thin">좋은 말은 많은데,</span><br>왜 우리 아이에겐 안 맞을까요</h2>
+        <p class="body-p" style="margin-top:1.2rem">옆집 아이에게 통한 그 학원, 그 방법이 우리 아이에겐 왜 안 통하는지 — 아이가 게을러서가 아니라, <b>설계도가 남의 것</b>이었기 때문입니다.</p>
+        <blockquote class="quote pullquote">세상에는 <span class="accent">모든 아이에게 통하는</span> 이상적인 양육법이 존재하지 않습니다.</blockquote>
+        <p class="qsrc">마음설명서 · 기질편</p>
+      </div>
+      <div class="imgwrap reveal"><img src="images/child.jpg" alt="책상에 앉아 공부하는 아이" /></div>
+    </div>
+  </div>
+</section>
+
+<!-- 차별점 (다크) -->
+<section class="dark" id="diff" style="padding-block:var(--sec-lg)">
+  <div class="wrap">
+    <div class="folio reveal"><span class="f">F.02</span><span class="t">/ 차별점</span></div>
+    <div class="reveal" style="max-width:30ch; margin-bottom:clamp(2.5rem,5vw,3.4rem)">
+      <h2 style="color:#fff"><span class="thin" style="color:#cfc9bf">검사 결과지 한 장이 아니라,</span><br>우리 아이 <span class="accent">설명서 한 권</span>을.</h2>
+      <p class="body-p" style="margin-top:1.1rem; color:#a59f96; max-width:46ch">결과지 한 장으로 끝나기 쉬운 심리검사를, 임상심리전문가가 부모님의 언어로 한 번 더 깊게 풀어 드립니다.</p>
+    </div>
+    <div class="diff-grid reveal-group">
+      <div class="diff-item" style="--i:0"><div class="idx">01</div><h3>한 번 더 깊게 푼다</h3><p>백분위 숫자가 아니라 “그래서 우리 아이는 어떤 아이이고 어떻게 도와야 하는지”까지. 결과지를 임상 해석으로 다시 풀어 책으로 만듭니다.</p></div>
+      <div class="diff-item" style="--i:1"><div class="idx">02</div><h3>흥미 × 기질 × 양육 교차</h3><p>흥미(Holland)·기질·성격(TCI)·부모 양육태도(PAT-2)를 따로 보지 않고 교차합니다. 단일 검사로는 못 하는 ‘우리 아이만의 조합’이 핵심입니다.</p></div>
+      <div class="diff-item" style="--i:2"><div class="idx">03</div><h3>아이만이 아니라, 부모까지</h3><p>아이를 답답해하는 그 마음의 절반은 부모님의 기질에서 옵니다. 부모님 자신도 함께 진단해, 아이와의 ‘거리’를 맞추는 법을 안내합니다.</p></div>
+    </div>
+    <p class="toolnote reveal">인터넷 무료 성격테스트가 아닙니다. <b>WISC-V·MMPI·TCI·Holland·PAT-2</b> — 병원·학교·상담센터에서 실제로 쓰는 표준화·정식 채점 검사이며, 채점과 해석은 전문가가 직접 합니다(자동 채점 아님).</p>
+  </div>
+</section>
+
+<!-- 비교 -->
+<section class="cream" style="padding-block:var(--sec)">
+  <div class="wrap">
+    <div class="folio reveal"><span class="f">F.03</span><span class="t">/ 검사만 받는 것과 무엇이 다른가</span></div>
+    <div class="reveal" style="max-width:34ch"><h2><span class="thin">검사는 같아도,</span><br>남는 것이 다릅니다.</h2></div>
+    <div class="compare reveal">
+      <table class="ctable">
+        <thead><tr><th></th><th>일반 온라인 검사</th><th>센터 종합심리평가</th><th class="win">○○이의 마음설명서</th></tr></thead>
+        <tbody>
+          <tr><th>받는 것</th><td>점수표 PDF</td><td>평가 보고서</td><td class="win">이름 박힌 책 한 권</td></tr>
+          <tr><th>부모 언어로 풀이</th><td>없음</td><td>구두 상담 1회</td><td class="win">두고두고 펼쳐보는 책</td></tr>
+          <tr><th>아이 × 부모 교차</th><td>없음</td><td>아이만</td><td class="win">흥미·기질·양육 교차</td></tr>
+          <tr><th>대략 비용</th><td>무료~몇만 원</td><td>30~60만 원</td><td class="win">19만 원부터</td></tr>
+          <tr><th>남는 것</th><td>검색하면 잊음</td><td>보고서 파일</td><td class="win">5년 뒤에도 책장에</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- 인용 밴드 -->
+<section class="quoteband">
+  <div class="bg"><img src="images/reading.jpg" alt="" /></div>
+  <div class="wrap reveal">
+    <blockquote>좋아하지 않는 일은 AI가 더 잘하고 더 싸게 해 버립니다. <span class="accent" style="color:var(--rust-soft)">좋아하는 일만이</span> 아이를 끝까지 데려갑니다.</blockquote>
+    <cite>마음설명서 · 진로편</cite>
+  </div>
+</section>
+
+<!-- 결과물 미리보기 -->
+<section class="cream" id="preview" style="padding-block:var(--sec-lg)">
+  <div class="wrap">
+    <div class="folio reveal"><span class="f">F.04</span><span class="t">/ 받게 되는 것</span></div>
+    <div class="preview">
+      <div class="book3d reveal" id="book3d">
+        <div class="cover">
+          <div><div class="sp"></div><small style="display:block;margin-top:.9rem">마음기록소</small></div>
+          <div><h4><span class="rname">○○이</span>의<br>마음설명서</h4><small style="display:block;margin-top:.9rem">임상심리전문가 분석 · 맞춤 제작</small></div>
+        </div>
+      </div>
+      <div class="reveal">
+        <h2><span class="thin">검사 2주 뒤,</span><br>아이 이름이 박힌 한 권이 도착합니다.</h2>
+        <p class="body-p" style="margin-top:1rem">화면 속 점수표가 아니라, 펼쳐 읽는 실물 책입니다. 우리 아이의 기질·흥미·양육 조합을 풀어낸, 세상에 한 권뿐인 설명서.</p>
+        <div class="spec">
+          <span>아이 이름으로 맞춤 제작되는 실물 책 (POD 인쇄)</span>
+          <span>검사 결과 + 임상 해석 + ‘이번 주 한 가지’ 실천 가이드</span>
+          <span>흥미·기질·양육태도 교차 분석 리포트</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 책 속 미리보기 -->
+    <div class="inside reveal">
+      <div>
+        <div class="vol">약 <span>60~80</span>페이지 · <span>6</span>개 챕터 · 양장 제본</div>
+        <ul class="toc">
+          <li><span class="n">01</span>○○이는 어떤 아이인가</li>
+          <li><span class="n">02</span>흥미의 지도 — 좋아하는 것의 정체</li>
+          <li><span class="n">03</span>기질이라는 타고난 운영체제</li>
+          <li><span class="n">04</span>부모인 나와 아이 사이의 거리</li>
+          <li><span class="n">05</span>강점을 진로의 언어로</li>
+          <li><span class="n">06</span>오늘부터의 한 가지</li>
+        </ul>
+        <p class="sm" style="margin-top:1rem">※ 가목차 예시 — 실제 책은 아이 검사 결과에 따라 구성이 달라집니다.</p>
+      </div>
+      <div class="excerpts">
+        <div class="excerpt"><p>“○○이는 새로운 걸 깊게 파고들 때 살아납니다. 그래서 ‘많이 시키기’보다 ‘하나를 끝까지’가 맞습니다.”</p><div class="tag2">실제 책 톤 · 예시 가공</div></div>
+        <div class="excerpt"><p>“어머님의 빠른 실행 기질과 ○○이의 신중한 기질이 만나면, 재촉이 아니라 ‘기다림 한 박자’가 필요합니다.”</p><div class="tag2">실제 책 톤 · 예시 가공</div></div>
+      </div>
+    </div>
+
+    <!-- After 샘플 -->
+    <div class="reveal" style="margin-top:clamp(2.6rem,5vw,3.6rem); max-width:32ch">
+      <h3 style="font-size:clamp(1.3rem,2.4vw,1.8rem); font-weight:800; letter-spacing:-.035em"><span class="thin">점수표가 아니라,</span><br>오늘 저녁에 바로 쓸 한 문장.</h3>
+    </div>
+    <div class="samples reveal-group">
+      <div class="sample" style="--i:0"><p class="q">○○이의 말대답은 반항이 아니라 <b>자기 기준이 강한 기질</b>입니다. “하지 마” 대신 <b>“네 기준은 뭐야?”</b>로 물어보세요.</p></div>
+      <div class="sample" style="--i:1"><p class="q">새로운 환경에서 경계가 높은 아이입니다. “빨리 적응해”보다 <b>먼저 예측 가능성을 주는 한마디</b>가 더 잘 듣습니다.</p></div>
+      <div class="sample" style="--i:2"><p class="q">지속에 에너지가 필요한 아이라, <b>학원 하나를 줄이면</b> 남은 하나에 더 오래 집중합니다.</p></div>
+    </div>
+    <p class="sm reveal" style="margin-top:1rem; max-width:none">※ 실제 책 톤의 예시 문장입니다. 우리 아이의 문장은 검사 결과로 새로 쓰입니다.</p>
+  </div>
+</section>
+
+<!-- 과정 -->
+<section class="sand" id="process" style="padding-block:var(--sec)">
+  <div class="wrap">
+    <div class="folio reveal"><span class="f">F.05</span><span class="t">/ 검사 과정</span></div>
+    <div class="proc-head reveal">
+      <div style="max-width:30ch"><h2><span class="thin">집에서 검사하고,</span><br>책으로 받습니다.</h2></div>
+      <div class="imgwrap"><img src="images/desk.jpg" alt="" /></div>
+    </div>
+    <div class="steps reveal-group">
+      <div class="step" style="--i:0"><div class="idx">01</div><h3>온라인 검사</h3><p>아이·부모가 집에서 응답합니다. 채점·해석은 전문가가 직접 합니다(자동 채점 아님).</p></div>
+      <div class="step" style="--i:1"><div class="idx">02</div><h3>전문가 분석</h3><p>임상심리전문가가 결과를 교차 분석해 우리 아이만의 해석을 정리합니다.</p></div>
+      <div class="step" style="--i:2"><div class="idx">03</div><h3>맞춤 책 제작</h3><p>분석을 한 권의 맞춤 책으로 제작합니다(POD 인쇄, 약 1주).</p></div>
+      <div class="step" style="--i:3"><div class="idx">04</div><h3>배송</h3><p>검사부터 배송까지 약 2주. 실물 책으로 받아보세요.</p></div>
+    </div>
+    <p class="sm reveal" style="margin-top:1.8rem; max-width:none"><b style="color:var(--rust); font-weight:700">베이직</b>만으로도 부모님이 스스로 읽고 적용하도록 설계했습니다. 줌으로 직접 묻고 싶을 때 프리미엄을 더하세요.</p>
+  </div>
+</section>
+
+<!-- 가격 -->
+<section class="cream" id="tiers" style="padding-block:var(--sec)">
+  <div class="wrap">
+    <div class="folio reveal"><span class="f">F.06</span><span class="t">/ 검사 구성 · 가격</span></div>
+    <div class="reveal" style="max-width:40ch"><h2><span class="thin">우리 집에 맞는</span><br>한 가지를 고르세요.</h2>
+      <p class="anchor-copy">심리검사 한 가지만 사설로 받아도 보통 10만~20만 원. <b>마음기록소는 흥미·기질·양육 세 검사를 교차 분석해 ‘세상에 한 권뿐인 책’까지 드리고 19만 원부터</b>입니다.</p>
+      <div class="match">
+        <div class="m"><b>베이직</b> — 검사 결과를 책으로 차분히 읽고 적용하실 분 (대부분 여기서 시작합니다)</div>
+        <div class="m"><b>프리미엄</b> — 결과를 두고 전문가와 직접 1:1로 묻고 싶으실 분</div>
+        <div class="m"><b>VIP</b> — 학습·지능 강점까지 정밀하게 보고, 부모도 함께 진단하실 분</div>
+      </div>
+    </div>
+    <div class="tiers reveal-group">
+      <div class="tier feat" style="--i:0">
+        <span class="tag">처음이라면, 베이직</span><h3>베이직</h3><p class="who">비대면 완결 · 대부분 여기서 시작</p>
+        <div class="price-label">런칭가</div><div class="price"><span class="cur">₩</span>190,000</div>
+        <ul><li>아이 기질·성격 검사 (TCI)</li><li>진로 흥미 검사 (Holland)</li><li>부모 양육태도 검사 (PAT-2)</li><li>교차 분석 맞춤 책 1권</li><li>읽고 바로 적용하는 ‘이번 주 한 가지’ 실천 가이드</li></ul>
+        <p class="meet">해설이 필요 없게, 책이 부모님 언어로 다 풀어 드립니다 · 비대면 완결</p>
+        <a href="#apply" class="btn btn-ghost">베이직으로 시작하기</a>
+      </div>
+      <div class="tier" style="--i:1">
+        <span class="tag">해설 추가</span><h3>프리미엄</h3><p class="who">전문가 1:1 해설까지</p>
+        <div class="price-label">런칭가</div><div class="price"><span class="cur">₩</span>390,000</div>
+        <ul><li>베이직 구성 전체 포함</li><li>부모 1인 성격검사 (MMPI)</li><li>부모 1인 기질·성격 (TCI)</li><li>줌 30분 전문가 해설</li></ul>
+        <p class="meet">결과를 두고 직접 질문하고 싶을 때 — 줌 30분 해설 포함</p>
+        <a href="#apply" class="btn btn-ghost">프리미엄으로 시작하기</a>
+      </div>
+      <div class="tier" style="--i:2">
+        <span class="tag">정밀</span><h3>VIP</h3><p class="who">지능검사 + 부모 2인 함께</p>
+        <div class="price-label">런칭가</div><div class="price"><span class="cur">₩</span>690,000<span class="tail">~</span></div>
+        <ul><li>프리미엄 구성 전체 포함</li><li>아이 지능검사 (WISC-V, 대면)</li><li>부모 2인 MMPI · TCI</li><li>대면 + 줌 전문가 해설</li></ul>
+        <p class="save">※ WISC-V 지능검사만 사설기관 통상 25~40만 원</p>
+        <a href="#apply" class="btn btn-ghost">VIP로 시작하기</a>
+      </div>
+    </div>
+
+    <!-- 보장 -->
+    <div class="guarantee reveal">
+      <div class="seal">검사 전<br>전액환불</div>
+      <div>
+        <h3>구매하셔도, 검사 시작 전이라면 100% 환불</h3>
+        <p>구매 후라도 검사를 시작하기 전이라면 사유 불문 전액 환불해 드립니다. 그러니 부담 없이 시작하세요. — 검사가 시작되면 전문가 분석·맞춤 제작에 들어가므로 그 이후에는 환불이 어렵습니다.</p>
+      </div>
+    </div>
+
+    <!-- 런칭 혜택 -->
+    <p class="launch reveal"><b>2026년 첫 100가정 한정</b> — 후기 작성을 조건으로 ‘부모 기질 미니 리포트’를 무료로 더해 드립니다(선착순).</p>
+
+    <p class="tier-note reveal">한부모 가정은 ‘한부모 옵션’으로 부모 검사·해설을 1인 기준으로 조정해 드립니다. 가격은 런칭 기념가이며 조기 신청분 한정입니다.</p>
+    <div class="trust reveal">
+      <div class="b">검사 시작 전 전액 환불</div>
+      <div class="b">임상심리전문가 직접 분석</div>
+      <div class="b">표준화 정식 심리검사</div>
+      <div class="b">검사~배송 약 2주</div>
+    </div>
+  </div>
+</section>
+
+<!-- 저자 -->
+<section class="sand" id="author" style="padding-block:var(--sec)">
+  <div class="wrap">
+    <div class="folio reveal"><span class="f">F.07</span><span class="t">/ 저자</span></div>
+    <div class="author-grid">
+      <div class="author-photo reveal"><img src="images/저자.png" alt="마음기록소 임상심리전문가 안계훈" /><div class="cap">임상심리전문가 안계훈</div></div>
+      <div class="reveal">
+        <blockquote>검사 결과지는 부모님 손에 들린 단서 한 장일 뿐, 아이를 매일 보시는 부모님의 관찰이 그 어떤 검사보다 풍부한 정보입니다.</blockquote>
+        <p class="personal">저도 아이를 키우는 부모입니다. 검사실에서 만난 수많은 아이 뒤에는, 늘 ‘내가 잘하고 있나’ 묻는 부모님이 계셨습니다. 결과를 부모님이 그대로 읽고 행동할 수 있는 언어로 옮기는 것 — 그것이 이 작업의 시작이었습니다.</p>
+        <div class="creds">
+          <span>임상심리전문가 안계훈</span>
+          <span>아동·청소년 심리평가 경력 15년</span>
+          <span>「마음설명서」 진로편·기질편 저자</span>
+          <span>소속 · 자격번호 [추후 기재]</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 시리즈 -->
+<section class="cream" style="padding-block:var(--sec)">
+  <div class="wrap">
+    <div class="folio reveal"><span class="f">F.08</span><span class="t">/ 시리즈</span></div>
+    <div class="series">
+      <div class="imgwrap reveal"><img src="images/bookshelf.jpg" alt="책장에 꽂힌 책들" /></div>
+      <div class="reveal">
+        <h2><span class="thin">검사가</span> 한 권의 책이 됩니다.</h2>
+        <p class="body-p" style="margin-top:.8rem">「마음설명서」는 아이라는 한 명의 탐험가를 — 지능·기질·진로 세 갈래로 읽는 시리즈입니다.</p>
+        <div class="books">
+          <div class="book"><div class="badge">진로편</div><h3>나침반을 다시 쥐어주기</h3><p>흥미를 ‘직업 명사’가 아니라 ‘동사’로 읽는 법. AI 시대의 진로.</p></div>
+          <div class="book"><div class="badge">기질편</div><h3>아이와 나 사이의 거리</h3><p>바꿀 수 없는 기질, 맞출 수 있는 양육. 우리 집 ‘궁합’ 읽기.</p></div>
+          <div class="book soon"><div class="badge">지능편 · 예정</div><h3>곧 만나요</h3><p>아이의 강점과 학습 결을 읽는 세 번째 이야기.</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="sand" id="faq" style="padding-block:var(--sec-sm)">
+  <div class="wrap">
+    <div class="folio reveal"><span class="f">F.09</span><span class="t">/ 자주 묻는 질문</span></div>
+    <div class="faq reveal">
+      <details><summary>베이직만 사면 해석을 제가 못 하는 거 아닌가요?</summary><div class="faq-body"><div><p>아닙니다. 베이직 책은 전문가가 부모님이 그대로 읽고 행동할 수 있는 언어로 씁니다. 줌 해설(프리미엄·VIP)은 ‘더 깊은 대화’를 원하실 때의 선택이지 필수가 아닙니다.</p></div></div></details>
+      <details><summary>이게 인터넷 무료 검사랑 뭐가 다른가요?</summary><div class="faq-body"><div><p>WISC-V·MMPI·TCI·Holland·PAT-2는 병원·학교·상담센터에서 실제로 쓰는 표준화·정식 채점 심리검사입니다. 자동 채점이 아니라 임상심리전문가가 직접 채점·해석합니다.</p></div></div></details>
+      <details><summary>구매 후 취소·환불할 수 있나요?</summary><div class="faq-body"><div><p>네. 검사를 시작하기 전이라면 사유 불문 전액 환불해 드립니다. 검사가 시작되면 전문가 분석·맞춤 제작에 들어가므로 그 이후에는 환불이 어렵습니다.</p></div></div></details>
+      <details><summary>대상 연령이 어떻게 되나요?</summary><div class="faq-body"><div><p>초등 4학년부터 고등학생까지를 기준으로 합니다. 미취학·초등 저학년도 일부 검사가 가능하니 문의해 주세요.</p></div></div></details>
+      <details><summary>검사부터 책 받기까지 얼마나 걸리나요?</summary><div class="faq-body"><div><p>약 2주입니다. 검사·분석 후 맞춤 책을 POD로 제작하는 데 약 1주가 포함됩니다.</p></div></div></details>
+      <details><summary>한부모 가정인데 VIP 구성이 부담돼요.</summary><div class="faq-body"><div><p>‘한부모 옵션’으로 부모 검사·해설을 1인 기준으로 조정해 드립니다. 가격도 그에 맞춰 안내드리니 편히 문의해 주세요.</p></div></div></details>
+      <details><summary>결제는 어떻게 하나요?</summary><div class="faq-body"><div><p>구매 버튼을 누르면 네이버 스마트스토어 상품 페이지로 연결되어 안전하게 결제하실 수 있습니다. 카드사 안전결제·네이버페이로 보호되며, 저희는 결제 정보를 따로 보관하지 않습니다.</p></div></div></details>
+    </div>
+  </div>
+</section>
+
+<!-- 사전 신청 -->
+<section class="cream apply-sec" id="apply" style="padding-block:var(--sec)">
+  <div class="wrap reveal">
+    <div class="folio" style="justify-content:center; border:0; padding-top:0"><span class="f">구매</span><span class="t">/ ○○이의 마음설명서</span></div>
+    <h2><span class="thin">아이의 진로 고민은,</span><br>미룬다고 줄지 않습니다.</h2>
+    <div class="apply-card">
+      <p>「○○이의 마음설명서」는 <b>네이버 스마트스토어에서 안전하게</b> 구매하실 수 있습니다. <b>2026년 첫 100가정</b>에게는 후기 작성을 조건으로 ‘부모 기질 미니 리포트’를 무료로 더해 드립니다(선착순).</p>
+      <!-- ★런칭 TODO: href를 네이버 스마트스토어/카페24 상품 URL로 교체 (구매 링크는 여기 한 곳) -->
+      <a href="#" class="btn btn-primary" data-store="main">스토어에서 구매하기 <span class="arr">→</span></a>
+      <p class="note">결제는 네이버 스마트스토어 안전결제(카드사 안전결제·네이버페이)로 진행됩니다 · 검사 시작 전이라면 100% 환불.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 클로징 -->
+<section class="dark closing" style="padding-block:var(--sec-lg)">
+  <div class="wrap reveal">
+    <h2><span class="thin" style="color:#cfc9bf">지금 검사받은 아이는,</span><br>친구들이 헤맬 때 <span class="accent">“나는 이게 맞아”</span>라고 말합니다.</h2>
+    <p class="sub">부모님은, 이미 충분히 잘하고 계십니다. 방향을 함께 찾는 일만, 저희가 돕겠습니다.</p>
+    <a href="#apply" class="btn btn-primary">○○이의 마음설명서 시작하기 <span class="arr">→</span></a>
+    <p class="microcta">망설이는 사이에도, 아이는 자라고 있습니다.</p>
+  </div>
+</section>
+
+<!-- 푸터 -->
+<footer>
+  <div class="wrap">
+    <div class="foot-top">
+      <div class="foot-brand">마음기록소<span class="dot">.</span></div>
+      <div class="foot-links">
+        <a href="#diff">차별점</a><a href="#tiers">검사·가격</a><a href="#faq">FAQ</a><a href="#apply">신청</a>
+        <!-- TODO: 인스타 주소 --><a href="#" target="_blank" rel="noopener">인스타그램</a>
+      </div>
+    </div>
+    <div class="foot-legal">
+      마음기록소 · doencourage.com<br>
+      상호 / 대표자 / 사업자등록번호 / 통신판매업신고 / 주소 / 연락처 [사업자 등록 후 채우기]<br>
+      © 2026 마음기록소. All rights reserved.
+    </div>
+  </div>
+</footer>
+
+<!-- 모바일/소형 하단 고정바 -->
+<div class="mcta">
+  <div class="p">○○이의 마음설명서 · 베이직<br><b>₩190,000~</b></div>
+  <a href="#apply" class="btn btn-primary">구매하기</a>
+</div>
+
+<script>
+(function(){
+  var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(!reduce){
+    var io = new IntersectionObserver(function(es){
+      es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} });
+    }, {threshold:0.12, rootMargin:'0px 0px -7% 0px'});
+    document.querySelectorAll('.reveal, .reveal-group').forEach(function(el){ io.observe(el); });
+    var b = document.getElementById('book3d');
+    if(b){ var cover = b.querySelector('.cover');
+      b.addEventListener('mousemove', function(ev){ var r=b.getBoundingClientRect(); var x=(ev.clientX-r.left)/r.width-.5, y=(ev.clientY-r.top)/r.height-.5;
+        cover.style.setProperty('--ry',(x*10).toFixed(2)+'deg'); cover.style.setProperty('--rx',(-y*8).toFixed(2)+'deg'); });
+      b.addEventListener('mouseleave', function(){ cover.style.setProperty('--ry','0deg'); cover.style.setProperty('--rx','0deg'); });
+    }
+  }
+})();
+</script>
+</body>
+</html>
