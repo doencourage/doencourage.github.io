@@ -1,0 +1,14 @@
+영상 출처 / 라이선스 (임시 스톡 — 추후 자체 촬영본으로 교체 예정)
+
+hero.mp4
+  - 출처: Mixkit (https://mixkit.co) 무료 스톡, video id 42741 "Girl reading a book sitting near a window"
+  - 직접 URL: https://assets.mixkit.co/videos/42741/42741-720.mp4
+  - 라이선스: Mixkit License (상업적 사용 가능, 출처표기 불필요, 단독 재배포·재판매 금지)
+
+band.mp4
+  - 출처: Mixkit (https://mixkit.co) 무료 스톡, video id 3819 "Book being leafed through, seen in detail"
+  - 직접 URL: https://assets.mixkit.co/videos/3819/3819-720.mp4
+  - 라이선스: Mixkit License (상업적 사용 가능, 출처표기 불필요, 단독 재배포·재판매 금지)
+
+poster 이미지: 기존 images/atmosphere.jpg(hero), images/reading.jpg(band) 재사용.
+교체 방법: 같은 파일명(images/video/hero.mp4, band.mp4)으로 덮어쓰면 끝.

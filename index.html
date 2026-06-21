@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>마음기록소 — 우리아이 마음설명서 · 진로·기질 맞춤 검사</title>
+<title>마음기록소 · 우리아이 마음설명서 · 진로·기질 맞춤 검사</title>
 <meta name="description" content="AI 시대, 부모를 위한 진로·기질 맞춤 검사. 임상심리전문가가 검사 결과를 ‘우리아이 마음설명서’ 한 권으로 풀어 드립니다. 초4~고등 대상." />
 
 <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -68,6 +68,11 @@ h3{font-size:clamp(1.25rem,2vw,1.5rem); font-weight:700; letter-spacing:-.025em;
 .btn-outline-light{background:transparent; color:#fff; border-color:rgba(255,255,255,.45)}
 .btn-outline-light:hover{border-color:#fff; background:rgba(255,255,255,.07); transform:translateY(-2px)}
 .btn .arr{transition:transform .22s var(--snap)} .btn:hover .arr{transform:translateX(3px)}
+.btn:active{transform:translateY(-1px) scale(.985)}
+.btn:focus-visible{outline:2px solid var(--rust); outline-offset:3px}
+.btn-primary:focus-visible{outline-color:var(--charcoal)}
+.btn-outline-light:focus-visible{outline-color:#fff}
+.nav-links a:focus-visible,.foot-links a:focus-visible,summary:focus-visible{outline:2px solid var(--rust); outline-offset:3px; border-radius:4px}
 
 header.nav{position:sticky; top:0; z-index:50; backdrop-filter:blur(10px); background:rgba(253,252,251,.85); border-bottom:1px solid rgba(45,45,45,.07)}
 .nav-in{display:flex; align-items:center; justify-content:space-between; height:64px}
@@ -98,7 +103,7 @@ header.nav{position:sticky; top:0; z-index:50; backdrop-filter:blur(10px); backg
 .hero-note{font-size:.9rem; color:rgba(255,255,255,.6); font-variant-numeric:tabular-nums; max-width:42ch}
 .hero-note b{color:var(--rust-soft); font-weight:700}
 .hero-media{position:relative; overflow:hidden}
-.hero-media img{width:100%; height:100%; object-fit:cover; filter:saturate(.9) contrast(1.06)}
+.hero-media img,.hero-media video{width:100%; height:100%; object-fit:cover; filter:saturate(.9) contrast(1.06)}
 .hero-media::after{content:""; position:absolute; inset:0; background:linear-gradient(90deg, var(--charcoal) 0%, rgba(21,23,26,.35) 26%, rgba(21,23,26,0) 62%)}
 @media(max-width:860px){ .hero{grid-template-columns:1fr; min-height:auto} .hero-media{height:240px} .hero-media::after{background:linear-gradient(0deg, rgba(21,23,26,.5), transparent 60%)}
   .hero-text{padding-block:clamp(2.4rem,6vh,3.4rem) clamp(2.4rem,6vh,3.4rem)}
@@ -128,11 +133,32 @@ header.nav{position:sticky; top:0; z-index:50; backdrop-filter:blur(10px); backg
 .diff-item h3{margin:.7rem 0 .55rem; color:#fff; font-size:1.18rem}
 .diff-item p{font-size:.97rem; color:#c2bcb2; max-width:34ch}
 @media(max-width:820px){.diff-grid{grid-template-columns:1fr; gap:1.8rem}}
-/* 구분선은 그리드 전폭으로 긋되(diff-item 룰과 끝선 정렬) 본문 글줄만 64ch로 좁힌다 */
-.toolnote{margin-top:clamp(2.4rem,5vw,3.4rem); padding-top:1.4rem; border-top:1px solid rgba(255,255,255,.15); font-size:1.02rem; color:#c2bcb2; max-width:none; line-height:1.6}
-.toolnote .tn-in{display:block; max-width:64ch}
-.toolnote b{color:#fff; font-weight:700}
 .nowrap{white-space:nowrap}
+
+/* 표준화 검사 카드 (F.02 하단 모듈) · 비대칭 벤토, 더블베젤 */
+.tests{margin-top:clamp(2.6rem,5vw,3.6rem); padding-top:clamp(2rem,4vw,2.6rem); border-top:1px solid rgba(255,255,255,.15)}
+.tests .kicker{margin-bottom:1rem}
+.tests h3{color:#fff; font-size:clamp(1.4rem,2.8vw,2rem); letter-spacing:-.035em; line-height:1.18; max-width:24ch; margin-bottom:.55rem}
+.tests h3 .thin{color:#cfc9bf}
+.tests .lead2{color:#b4ada3; font-size:1rem; max-width:52ch; margin-bottom:clamp(1.6rem,3vw,2.2rem)}
+.bento{display:grid; grid-template-columns:repeat(6,1fr); grid-auto-rows:minmax(72px,auto); gap:clamp(.6rem,1.4vw,.9rem)}
+.tile{position:relative; border:1px solid rgba(188,108,37,.30); border-radius:8px; background:linear-gradient(180deg,#1d2126,#16181c); padding:1.15rem 1.25rem; box-shadow:0 18px 40px -28px rgba(188,108,37,.32); display:flex; flex-direction:column; min-width:0; transition:transform .3s var(--ease), border-color .3s}
+.tile::before{content:""; position:absolute; inset:5px; border:1px solid rgba(255,255,255,.05); border-radius:4px; pointer-events:none}
+.bento .tile:hover{transform:translateY(-3px); border-color:rgba(188,108,37,.55)}
+.tile .abbr{font-weight:800; letter-spacing:-.02em; color:#fff; line-height:1; font-size:1.5rem}
+.tile .nm{font-size:.74rem; color:var(--rust-soft); font-weight:600; margin:.35rem 0 .6rem; letter-spacing:.01em}
+.tile .desc{font-size:.84rem; color:#b4ada3; line-height:1.55; flex:1}
+.tile .chip{align-self:flex-start; margin-top:.85rem; font-size:.62rem; font-weight:700; letter-spacing:.04em; color:var(--rust-soft); border:1px solid rgba(188,108,37,.4); border-radius:999px; padding:.2em .6em}
+.tile.feat{grid-column:span 3; grid-row:span 2; background:linear-gradient(165deg,#262b31,#15171A)}
+.tile.feat .abbr{font-size:2.6rem}
+.tile.feat .desc{font-size:.95rem; color:#cfc9bf; max-width:34ch}
+.tile.hol,.tile.pat{grid-column:span 3}
+.tile.add{grid-column:span 3; background:#191c20; border-color:rgba(188,108,37,.26)}
+.tile.add .abbr{font-size:1.2rem; color:#e7e2da}
+.tile.add .desc{font-size:.8rem}
+.tile.add .chip{color:#9a948b; border-color:rgba(255,255,255,.14)}
+@media(max-width:760px){.bento{grid-template-columns:1fr 1fr} .tile.feat{grid-column:span 2; grid-row:auto} .tile.hol,.tile.pat,.tile.add{grid-column:span 1}}
+@media(max-width:460px){.bento{grid-template-columns:1fr} .tile.feat,.tile.hol,.tile.pat,.tile.add{grid-column:span 1}}
 
 /* 비교표 */
 .compare-wrap{position:relative}
@@ -176,7 +202,7 @@ header.nav{position:sticky; top:0; z-index:50; backdrop-filter:blur(10px); backg
 /* 풀배경 인용 밴드 */
 .quoteband{position:relative; min-height:clamp(360px,52vh,460px); display:flex; align-items:center; color:#fff; overflow:hidden; background:var(--charcoal)}
 .quoteband .bg{position:absolute; inset:0; z-index:0}
-.quoteband .bg img{width:100%; height:100%; object-fit:cover; filter:saturate(.9) contrast(1.05)}
+.quoteband .bg img,.quoteband .bg video{width:100%; height:100%; object-fit:cover; filter:saturate(.9) contrast(1.05)}
 .quoteband .bg::after{content:""; position:absolute; inset:0; background:linear-gradient(90deg, rgba(21,23,26,.9) 0%, rgba(21,23,26,.5) 46%, rgba(21,23,26,.08) 100%)}
 .quoteband .wrap{position:relative; z-index:3}
 .quoteband blockquote{border-left:2px solid var(--rust); padding-left:1.2rem; font-weight:300; letter-spacing:-.03em; font-size:clamp(1.6rem,3.5vw,2.6rem); line-height:1.38; max-width:24ch; text-wrap:balance}
@@ -321,7 +347,7 @@ header.nav{position:sticky; top:0; z-index:50; backdrop-filter:blur(10px); backg
 .author-field{font-size:.9rem; font-weight:600; letter-spacing:-.005em; color:var(--rust); margin:1.5rem 0 1.15rem; padding-top:1.2rem; border-top:1px solid var(--rule)}
 .author-quote{border-left:2px solid var(--rust); padding-left:1.35rem; font-weight:300; letter-spacing:-.03em; font-size:clamp(1.2rem,1.75vw,1.5rem); line-height:1.55; color:var(--ink); margin:0; text-wrap:pretty}
 .creds{display:flex; flex-direction:column; gap:.58rem; font-size:.93rem; line-height:1.45; color:#46433f}
-.creds span{padding-left:1.25rem; position:relative}.creds span::before{content:"—"; position:absolute; left:0; color:var(--rust); font-weight:500}
+.creds span{padding-left:1.25rem; position:relative}.creds span::before{content:""; position:absolute; left:0; top:.62em; width:.7rem; height:1.5px; background:var(--rust)}
 @media(max-width:860px){
   .author-grid{grid-template-columns:1fr; gap:1.8rem; justify-items:start; align-items:start}
   .author-photo{order:-1; max-width:340px; width:100%; align-self:center; aspect-ratio:31/40}
@@ -432,14 +458,19 @@ footer{background:#0f1113; color:#8a857c; padding-block:3.5rem 2.5rem; position:
   <div class="hero-text">
     <span class="kicker light anim" style="--d:0s">AI 시대 · 부모를 위한 진로·기질 검사</span>
     <h1 class="anim" style="--d:.07s"><span class="thin">지도가 사라진 시대,</span><br><span class="thin">아이에게 줄 건</span> <span style="white-space:nowrap"><span class="accent">나침반</span><span class="thin">입니다.</span></span></h1>
-    <p class="lead anim" style="--d:.14s"><span class="thin">의대·공무원이라는 ‘안전한 지도’가 흔들리는 시대 — 성적표로는 안 보이던 우리 아이의 흥미·기질·강점을, 임상심리전문가가 검사로 읽어</span> <b><span style="white-space:nowrap">「우리아이 마음설명서」</span> 한 권</b><span class="thin">에 담아 드립니다. 받는 날부터, 아이를 대하는 말이 달라집니다.</span></p>
+    <p class="lead anim" style="--d:.14s"><span class="thin">의대·공무원이라는 ‘안전한 지도’가 흔들리는 시대, 성적표로는 안 보이던 우리 아이의 흥미·기질·강점을, 임상심리전문가가 검사로 읽어</span> <b><span style="white-space:nowrap">「우리아이 마음설명서」</span> 한 권</b><span class="thin">에 담아 드립니다. 받는 날부터, 아이를 대하는 말이 달라집니다.</span></p>
     <div class="hero-cta anim" style="--d:.21s">
       <a href="#apply" class="btn btn-primary">우리아이 마음설명서 시작하기 <span class="arr">→</span></a>
       <a href="#preview" class="btn btn-outline-light">받게 되는 결과물 보기</a>
     </div>
     <p class="hero-note anim" style="--d:.28s"><b>초4~고등</b> 자녀 · 온라인 검사 · 임상심리전문가 직접 분석 · 맞춤 책 배송(약 2주)</p>
   </div>
-  <div class="hero-media"><img src="images/atmosphere.jpg" alt="" /></div>
+  <div class="hero-media">
+    <video class="hero-vid" muted loop playsinline preload="metadata" poster="images/atmosphere.jpg" aria-hidden="true">
+      <source src="images/video/hero.mp4" type="video/mp4" />
+      <img src="images/atmosphere.jpg" alt="" />
+    </video>
+  </div>
 </section>
 
 <!-- 공감 -->
@@ -450,7 +481,7 @@ footer{background:#0f1113; color:#8a857c; padding-block:3.5rem 2.5rem; position:
       <div class="reveal">
         <blockquote class="voices">학원을 세 군데 보내도 성적은 그대로. 책상 앞에 앉혀놔도 마음은 딴 데. <b>‘내가 뭘 잘못 키운 걸까.’</b></blockquote>
         <h2><span class="thin">좋은 말은 많은데,</span><br>왜 우리 아이에겐 안 맞을까요</h2>
-        <p class="body-p" style="margin-top:1.2rem">옆집 아이에게 통한 그 학원, 그 방법이 우리 아이에겐 왜 안 통하는지 — 아이가 게을러서가 아니라, <b>설계도가 남의 것</b>이었기 때문입니다.</p>
+        <p class="body-p" style="margin-top:1.2rem">옆집 아이에게 통한 그 학원, 그 방법이 우리 아이에겐 왜 안 통하는지, 아이가 게을러서가 아니라, <b>설계도가 남의 것</b>이었기 때문입니다.</p>
         <blockquote class="quote pullquote">세상에는 <span class="accent">모든 아이에게 통하는</span> 이상적인 양육법이 존재하지 않습니다.</blockquote>
         <p class="qsrc">마음설명서 · 기질편</p>
       </div>
@@ -472,7 +503,42 @@ footer{background:#0f1113; color:#8a857c; padding-block:3.5rem 2.5rem; position:
       <div class="diff-item" style="--i:1"><div class="idx">02</div><h3>흥미 × 기질 × 양육 교차</h3><p>흥미(Holland)·기질·성격(TCI)·부모 양육태도(<span class="nowrap">PAT-2</span>)를 따로 보지 않고 교차합니다. 단일 검사로는 못 하는 ‘우리 아이만의 조합’이 핵심입니다.</p></div>
       <div class="diff-item" style="--i:2"><div class="idx">03</div><h3>아이만이 아니라, 부모까지</h3><p>아이를 답답해하는 그 마음의 절반은 부모님의 기질에서 옵니다. 부모님 자신도 함께 진단해, 아이와의 ‘거리’를 맞추는 법을 안내합니다.</p></div>
     </div>
-    <p class="toolnote reveal"><span class="tn-in">인터넷 무료 성격테스트가 아닙니다. <b><span class="nowrap">WISC-V</span>·<span class="nowrap">MMPI</span>·<span class="nowrap">TCI</span>·<span class="nowrap">Holland</span>·<span class="nowrap">PAT-2</span></b> — 병원·학교·상담센터에서 실제로 쓰는 표준화·정식 채점 검사이며, 임상심리전문가가 직접 검토합니다. (자동 검사 아님).</span></p>
+    <!-- 표준화 검사 카드 (기존 toolnote를 카드 모듈로 승격) -->
+    <div class="tests reveal">
+      <span class="kicker light">표준화 · 정식 채점 심리검사</span>
+      <h3><span class="thin">무료 성격테스트가 아니라,</span><br>병원·학교에서 쓰는 검사로 읽습니다.</h3>
+      <p class="lead2">자동 채점이 아니라 임상심리전문가가 직접 채점·해석합니다.</p>
+      <div class="bento reveal-group">
+        <div class="tile feat" style="--i:0">
+          <div class="abbr">TCI</div>
+          <div class="nm">기질 및 성격검사 · 핵심</div>
+          <div class="desc">타고난 기질 4축(자극추구·위험회피·사회적 민감성·인내력)과 성격을 측정합니다. 바꿀 수 없는 ‘운영체제’를 읽어 양육의 기준선을 잡습니다.</div>
+          <div class="chip">베이직부터 포함</div>
+        </div>
+        <div class="tile hol" style="--i:1">
+          <div class="abbr">Holland</div>
+          <div class="nm">진로 흥미검사 · 핵심</div>
+          <div class="desc">흥미 유형(RIASEC)으로 ‘좋아하는 것의 정체’를 진로 언어로 번역합니다.</div>
+        </div>
+        <div class="tile pat" style="--i:2">
+          <div class="abbr"><span class="nowrap">PAT-2</span></div>
+          <div class="nm">부모 양육태도검사 · 핵심</div>
+          <div class="desc">부모의 양육태도를 진단해 아이와의 ‘거리’를 맞춥니다.</div>
+        </div>
+        <div class="tile add mmpi" style="--i:3">
+          <div class="abbr">MMPI</div>
+          <div class="nm">성격검사 · 심화</div>
+          <div class="desc">부모·청소년의 정서·성격을 임상 표준으로 봅니다.</div>
+          <div class="chip">프리미엄 +</div>
+        </div>
+        <div class="tile add wisc" style="--i:4">
+          <div class="abbr"><span class="nowrap">WISC-V</span></div>
+          <div class="nm">지능검사 · 심화</div>
+          <div class="desc">언어·시공간·작업기억·처리속도 인지강점을 봅니다(대면).</div>
+          <div class="chip">VIP</div>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -502,7 +568,12 @@ footer{background:#0f1113; color:#8a857c; padding-block:3.5rem 2.5rem; position:
 
 <!-- 인용 밴드 -->
 <section class="quoteband">
-  <div class="bg"><img src="images/reading.jpg" alt="" /></div>
+  <div class="bg">
+    <video class="band-vid" muted loop playsinline preload="metadata" poster="images/reading.jpg" aria-hidden="true">
+      <source src="images/video/band.mp4" type="video/mp4" />
+      <img src="images/reading.jpg" alt="" />
+    </video>
+  </div>
   <div class="wrap reveal">
     <blockquote>좋아하지 않는 일은 AI가 더 잘하고 더 싸게 해 버립니다. <span class="accent" style="color:var(--rust-soft)">좋아하는 일만이</span> 아이를 끝까지 데려갑니다.</blockquote>
     <cite>마음설명서 · 진로편</cite>
@@ -537,13 +608,13 @@ footer{background:#0f1113; color:#8a857c; padding-block:3.5rem 2.5rem; position:
         <div class="vol">약 <span>60~80</span>페이지 · <span>6</span>개 챕터 · 양장 제본</div>
         <ul class="toc">
           <li><span class="n">01</span>○○이는 어떤 아이인가</li>
-          <li><span class="n">02</span>흥미의 지도 — 좋아하는 것의 정체</li>
+          <li><span class="n">02</span>흥미의 지도 · 좋아하는 것의 정체</li>
           <li><span class="n">03</span>기질이라는 타고난 운영체제</li>
           <li><span class="n">04</span>부모인 나와 아이 사이의 거리</li>
           <li><span class="n">05</span>강점을 진로의 언어로</li>
           <li><span class="n">06</span>오늘부터의 한 가지</li>
         </ul>
-        <p class="sm" style="margin-top:1rem">※ 가목차 예시 — 실제 책은 아이 검사 결과에 따라 구성이 달라집니다.</p>
+        <p class="sm" style="margin-top:1rem">※ 가목차 예시. 실제 책은 아이 검사 결과에 따라 구성이 달라집니다.</p>
       </div>
       <div class="excerpts">
         <div class="excerpt"><p>“○○이는 새로운 걸 깊게 파고들 때 살아납니다. 그래서 ‘많이 시키기’보다 ‘하나를 끝까지’가 맞습니다.”</p><div class="tag2">실제 책 톤 · 예시 가공</div></div>
@@ -589,9 +660,9 @@ footer{background:#0f1113; color:#8a857c; padding-block:3.5rem 2.5rem; position:
     <div class="reveal" style="max-width:40ch"><h2><span class="thin">우리 집에 맞는</span><br>한 가지를 고르세요.</h2>
       <p class="anchor-copy">심리검사 한 가지만 사설로 받아도 보통 10만~20만 원. <b>마음기록소는 아이의 흥미·기질·성격뿐 아니라 양육자의 기질·성격·양육태도까지 교차 분석해 ‘세상에 한 권뿐인 책’까지 드리고 19만 원부터</b>입니다.</p>
       <div class="match">
-        <div class="m"><b>베이직</b> — 검사 결과를 책으로 차분히 읽고 적용하실 분 (대부분 여기서 시작합니다)</div>
-        <div class="m"><b>프리미엄</b> — 결과를 두고 전문가와 직접 1:1로 묻고 싶으실 분</div>
-        <div class="m"><b>VIP</b> — 학습·지능 강점까지 정밀하게 보고, 부모도 함께 진단하실 분</div>
+        <div class="m"><b>베이직</b> · 검사 결과를 책으로 차분히 읽고 적용하실 분 (대부분 여기서 시작합니다)</div>
+        <div class="m"><b>프리미엄</b> · 결과를 두고 전문가와 직접 1:1로 묻고 싶으실 분</div>
+        <div class="m"><b>VIP</b> · 학습·지능 강점까지 정밀하게 보고, 부모도 함께 진단하실 분</div>
       </div>
     </div>
     <div class="tiers reveal-group">
@@ -606,7 +677,7 @@ footer{background:#0f1113; color:#8a857c; padding-block:3.5rem 2.5rem; position:
         <span class="tag">해설 추가</span><h3>프리미엄</h3><p class="who">전문가 1:1 해설까지</p>
         <div class="price-label">런칭가</div><div class="price"><span class="cur">₩</span>390,000</div>
         <ul><li>베이직 구성 전체 포함</li><li>부모 1인 성격검사 (MMPI)</li><li>부모 1인 기질·성격 (TCI)</li><li>줌 30분 전문가 해설</li></ul>
-        <p class="meet">결과를 두고 직접 질문하고 싶을 때 — 줌 30분 해설 포함</p>
+        <p class="meet">결과를 두고 직접 질문하고 싶을 때, 줌 30분 해설 포함</p>
         <a href="#apply" class="btn btn-ghost">프리미엄으로 시작하기</a>
       </div>
       <div class="tier" style="--i:2">
@@ -623,12 +694,12 @@ footer{background:#0f1113; color:#8a857c; padding-block:3.5rem 2.5rem; position:
       <div class="seal">검사 전<br>전액환불</div>
       <div>
         <h3>구매하셔도, 검사 시작 전이라면 100% 환불</h3>
-        <p>구매 후라도 검사를 시작하기 전이라면 사유 불문 전액 환불해 드립니다. 그러니 부담 없이 시작하세요. — 검사가 시작되면 전문가 분석·맞춤 제작에 들어가므로 그 이후에는 환불이 어렵습니다.</p>
+        <p>구매 후라도 검사를 시작하기 전이라면 사유 불문 전액 환불해 드립니다. 그러니 부담 없이 시작하세요. 검사가 시작되면 전문가 분석·맞춤 제작에 들어가므로 그 이후에는 환불이 어렵습니다.</p>
       </div>
     </div>
 
     <!-- 런칭 혜택 -->
-    <p class="launch reveal"><b>2026년 첫 100가정 한정</b> — 후기 작성을 조건으로 ‘부모 기질 미니 리포트’를 무료로 더해 드립니다(선착순).</p>
+    <p class="launch reveal"><b>2026년 첫 100가정 한정</b>, 후기 작성을 조건으로 ‘부모 기질 미니 리포트’를 무료로 더해 드립니다(선착순).</p>
 
     <p class="tier-note reveal">한부모 가정은 ‘한부모 옵션’으로 부모 검사·해설을 1인 기준으로 조정해 드립니다. 가격은 런칭 기념가이며 조기 신청분 한정입니다.</p>
     <div class="trust reveal">
@@ -673,7 +744,7 @@ footer{background:#0f1113; color:#8a857c; padding-block:3.5rem 2.5rem; position:
       <div class="imgwrap reveal"><img src="images/bookshelf.jpg" alt="책장에 꽂힌 책들" /></div>
       <div class="reveal">
         <h2><span class="thin">검사가</span> <span class="accent">한 권의 책</span>이 됩니다.</h2>
-        <p class="body-p" style="margin-top:.8rem">「마음설명서」는 아이라는 한 명의 탐험가를 — 지능·기질·진로 세 갈래로 읽는 시리즈입니다.</p>
+        <p class="body-p" style="margin-top:.8rem">「마음설명서」는 아이라는 한 명의 탐험가를, 지능·기질·진로 세 갈래로 읽는 시리즈입니다.</p>
         <div class="books">
           <div class="book"><div class="badge">진로편</div><h3>나침반을 다시 쥐어주기</h3><p>흥미를 ‘직업 명사’가 아니라 ‘동사’로 읽는 법. AI 시대의 진로.</p></div>
           <div class="book"><div class="badge">기질편</div><h3>아이와 나 사이의 거리</h3><p>바꿀 수 없는 기질, 맞출 수 있는 양육. 우리 집 ‘궁합’ 읽기.</p></div>
@@ -751,7 +822,20 @@ footer{background:#0f1113; color:#8a857c; padding-block:3.5rem 2.5rem; position:
 <script>
 (function(){
   var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var vids = document.querySelectorAll('video');
+  if(reduce){
+    vids.forEach(function(v){ try{ v.pause(); v.removeAttribute('autoplay'); }catch(e){} });
+  }
   if(!reduce){
+    var hv = document.querySelector('.hero-vid');
+    if(hv){ var ph = hv.play(); if(ph && ph.catch){ ph.catch(function(){}); } }
+    var band = document.querySelector('.band-vid');
+    if(band && 'IntersectionObserver' in window){
+      var vio = new IntersectionObserver(function(es){ es.forEach(function(e){
+        if(e.isIntersecting){ var pp = band.play(); if(pp && pp.catch){ pp.catch(function(){}); } } else { band.pause(); }
+      }); }, {threshold:0.2});
+      vio.observe(band);
+    } else if(band){ var pb = band.play(); if(pb && pb.catch){ pb.catch(function(){}); } }
     var io = new IntersectionObserver(function(es){
       es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} });
     }, {threshold:0.12, rootMargin:'0px 0px -7% 0px'});
