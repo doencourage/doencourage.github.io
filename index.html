@@ -16,8 +16,8 @@
   --sans:'Pretendard', system-ui, -apple-system, sans-serif;
   --maxw:1180px; --pad-x:clamp(1.25rem, 5vw, 4.5rem);
   --sec:clamp(4.5rem,11vh,8rem); --sec-lg:clamp(6.5rem,16vh,11rem); --sec-sm:clamp(3.5rem,8vh,6rem);
-  --ease:cubic-bezier(.16,1,.3,1); --snap:cubic-bezier(.2,.85,.3,1);
-  --shadow:0 1px 2px rgba(20,22,28,.05), 0 14px 30px -18px rgba(20,22,28,.22);
+  --ease:cubic-bezier(.16,1,.3,1); --snap:cubic-bezier(.2,.85,.3,1); --reveal:cubic-bezier(.22,.7,.24,1);
+  --shadow:0 1px 2px rgba(20,22,28,.05), 0 12px 26px -16px rgba(20,22,28,.20), 0 30px 60px -34px rgba(20,22,28,.16);
   --rule:rgba(188,108,37,.22);
 }
 *{margin:0;padding:0;box-sizing:border-box}
@@ -25,7 +25,7 @@ html{scroll-behavior:smooth}
 body{font-family:var(--sans); color:var(--ink); background:var(--cream); line-height:1.62;
   letter-spacing:-.011em; word-break:keep-all; overflow-wrap:break-word;
   font-feature-settings:'tnum','ss01'; -webkit-font-smoothing:antialiased; overflow-x:hidden}
-body::after{content:""; position:fixed; inset:0; pointer-events:none; z-index:1; opacity:.05;
+body::after{content:""; position:fixed; inset:0; pointer-events:none; z-index:1; opacity:.038;
   background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='150' height='150'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
 .wrap{max-width:var(--maxw); margin-inline:auto; padding-inline:var(--pad-x)}
 section{position:relative; z-index:2}
@@ -37,34 +37,35 @@ img{display:block; max-width:100%}
 .imgwrap:hover img{transform:scale(1.045)}
 
 h1,h2,h3{font-weight:800; letter-spacing:-.04em; line-height:1.1; color:var(--ink); text-wrap:balance}
-h1{font-size:clamp(2.6rem,6.2vw,4.6rem); letter-spacing:-.046em; line-height:1.04}
+h1{font-size:clamp(2.6rem,6.2vw,4.6rem); letter-spacing:-.046em; line-height:1.04; text-rendering:optimizeLegibility; font-feature-settings:'tnum','ss01','case'}
 h2{font-size:clamp(1.9rem,3.9vw,2.7rem); letter-spacing:-.038em; line-height:1.12}
 h3{font-size:clamp(1.25rem,2vw,1.5rem); font-weight:700; letter-spacing:-.025em; line-height:1.25}
 .thin{font-weight:300; letter-spacing:-.03em}
 .accent{color:var(--rust)}
-.lead{font-size:clamp(1.12rem,1.6vw,1.25rem); font-weight:400; letter-spacing:-.015em; line-height:1.55; color:var(--ink); max-width:38ch}
+.lead{font-size:clamp(1.12rem,1.6vw,1.25rem); font-weight:400; letter-spacing:-.016em; line-height:1.56; color:var(--ink); max-width:40ch; text-wrap:pretty}
 .muted{color:var(--muted)}
 .body-p{font-size:1rem; max-width:44ch; color:#46433f}
 .sm{font-size:.94rem; color:var(--muted); max-width:46ch}
 
-.folio{display:flex; align-items:baseline; gap:.7rem; padding-top:1.1rem; margin-bottom:clamp(1.6rem,3vw,2.4rem); border-top:1px solid rgba(188,108,37,.22); border-top-color:var(--rule)}
+.folio{display:flex; align-items:baseline; gap:.7rem; padding-top:1.1rem; margin-bottom:clamp(1.6rem,3vw,2.4rem); border-top:1px solid var(--rule); position:relative}
+.folio::before{content:""; position:absolute; top:-1px; left:0; width:2.4rem; height:2px; background:var(--rust); border-radius:2px}
 .folio .f{font-weight:700; font-size:.74rem; letter-spacing:.05em; color:var(--rust); font-variant-numeric:tabular-nums}
 .folio .t{font-weight:600; font-size:.74rem; letter-spacing:.04em; color:var(--muted)}
 .dark .folio{border-top-color:rgba(224,176,122,.28)} .dark .folio .t{color:#9a948b}
 
-.kicker{display:inline-flex; align-items:center; gap:.7rem; font-weight:700; font-size:.74rem; letter-spacing:.04em; color:var(--rust); margin-bottom:1.3rem}
-.kicker::before{content:""; width:1.9rem; height:1px; background:var(--rust)}
+.kicker{display:inline-flex; align-items:center; gap:.8rem; font-weight:700; font-size:.74rem; letter-spacing:.07em; color:var(--rust); margin-bottom:1.3rem}
+.kicker::before{content:""; width:1.9rem; height:2px; border-radius:2px; background:var(--rust)}
 .kicker.light{color:var(--rust-soft)} .kicker.light::before{background:var(--rust-soft)}
 
-.idx{font-weight:250; font-size:clamp(2.4rem,5vw,3.2rem); letter-spacing:-.04em; line-height:1; color:rgba(188,108,37,.45); font-variant-numeric:tabular-nums}
+.idx{font-weight:250; font-size:clamp(2.4rem,5vw,3.2rem); letter-spacing:-.04em; line-height:1; color:rgba(188,108,37,.38); font-variant-numeric:tabular-nums}
 
 .btn{display:inline-flex; align-items:center; gap:.5em; font-family:var(--sans); font-weight:700; font-size:1rem; letter-spacing:-.01em;
   padding:.92em 1.8em; border-radius:999px; cursor:pointer; border:1px solid transparent; text-decoration:none;
   transition:transform .22s var(--snap), background .22s, color .22s, border-color .22s; white-space:nowrap}
-.btn-primary{background:var(--rust); color:#fff; box-shadow:0 1px 0 rgba(255,255,255,.14) inset, 0 6px 16px -8px rgba(20,22,28,.45)}
+.btn-primary{background:var(--rust); color:#fff; box-shadow:0 1px 0 rgba(255,255,255,.16) inset, 0 4px 10px -4px rgba(120,64,18,.35), 0 12px 24px -12px rgba(120,64,18,.40)}
 .btn-primary:hover{background:var(--rust-deep); transform:translateY(-2px)}
-.btn-ghost{background:transparent; color:var(--ink); border-color:rgba(45,45,45,.22)}
-.btn-ghost:hover{border-color:var(--rust); color:var(--rust); transform:translateY(-2px)}
+.btn-ghost{background:transparent; color:var(--ink); border-color:rgba(45,45,45,.28)}
+.btn-ghost:hover{border-color:var(--rust); color:var(--rust); background:rgba(188,108,37,.05); transform:translateY(-2px)}
 .btn-outline-light{background:transparent; color:#fff; border-color:rgba(255,255,255,.45)}
 .btn-outline-light:hover{border-color:#fff; background:rgba(255,255,255,.07); transform:translateY(-2px)}
 .btn .arr{transition:transform .22s var(--snap)} .btn:hover .arr{transform:translateX(3px)}
@@ -97,17 +98,17 @@ header.nav{position:sticky; top:0; z-index:50; backdrop-filter:blur(10px); backg
 .hero-text{align-self:center; padding:clamp(2.6rem,7vh,4.4rem) clamp(2rem,4vw,3.4rem) clamp(2.6rem,7vh,4.4rem) var(--pad-x)}
 .hero h1{color:#fff; margin-bottom:1.4rem; max-width:15ch}
 .hero h1 .accent{color:var(--rust-soft)}
-.hero .lead{color:rgba(255,255,255,.84); margin-bottom:2rem}
+.hero .lead{color:rgba(255,255,255,.86); margin-bottom:2.2rem}
 .hero .lead b{color:#fff; font-weight:600}
 .hero-cta{display:flex; gap:.8rem; flex-wrap:wrap; margin-bottom:1.5rem}
-.hero-note{font-size:.9rem; color:rgba(255,255,255,.6); font-variant-numeric:tabular-nums; max-width:42ch}
+.hero-note{font-size:.9rem; color:rgba(255,255,255,.66); font-variant-numeric:tabular-nums; max-width:42ch; padding-top:1.1rem; border-top:1px solid rgba(224,176,122,.2); letter-spacing:-.005em}
 .hero-note b{color:var(--rust-soft); font-weight:700}
 .hero-media{position:relative; overflow:hidden}
 .hero-media img,.hero-media video{width:100%; height:100%; object-fit:cover; filter:saturate(.9) contrast(1.06)}
-.hero-media::after{content:""; position:absolute; inset:0; background:linear-gradient(90deg, var(--charcoal) 0%, rgba(21,23,26,.35) 26%, rgba(21,23,26,0) 62%)}
+.hero-media::after{content:""; position:absolute; inset:0; background:linear-gradient(90deg, var(--charcoal) 0%, rgba(21,23,26,.42) 24%, rgba(21,23,26,.06) 58%, rgba(21,23,26,0) 100%), linear-gradient(0deg, rgba(21,23,26,.34) 0%, rgba(21,23,26,0) 30%); box-shadow:inset 0 0 120px -40px rgba(0,0,0,.55)}
 @media(max-width:860px){ .hero{grid-template-columns:1fr; min-height:auto} .hero-media{height:240px} .hero-media::after{background:linear-gradient(0deg, rgba(21,23,26,.5), transparent 60%)}
   .hero-text{padding-block:clamp(2.4rem,6vh,3.4rem) clamp(2.4rem,6vh,3.4rem)}
-  .hero-note{font-size:.85rem; line-height:1.55; max-width:34ch}
+  .hero-note{font-size:.85rem; line-height:1.55; max-width:34ch; padding-top:.95rem}
 }
 
 .cream{background:var(--cream)} .sand{background:var(--sand)}
@@ -115,11 +116,13 @@ header.nav{position:sticky; top:0; z-index:50; backdrop-filter:blur(10px); backg
 .dark h1,.dark h2,.dark h3{color:#fff} .dark .muted,.dark .body-p,.dark .sm{color:#a59f96}
 
 .quote{border-left:2px solid var(--rust); padding-left:1.15rem; font-weight:300; letter-spacing:-.03em; line-height:1.42}
-.pullquote{font-size:clamp(1.5rem,3vw,2.2rem); max-width:21ch; margin-top:1.3rem}
-.qsrc{font-size:.84rem; color:var(--muted); margin-top:.8rem; letter-spacing:.02em}
+.pullquote{position:relative; font-size:clamp(1.5rem,3vw,2.2rem); line-height:1.34; max-width:19ch; margin-top:clamp(2.2rem,4vw,3rem)}
+.pullquote::before{content:"\201C"; position:absolute; left:-.06em; top:-.62em; font-size:2.7em; font-weight:800; line-height:1; color:var(--rust); opacity:.14; pointer-events:none}
+.qsrc{display:inline-flex; align-items:center; gap:.55rem; font-size:.74rem; font-weight:700; color:var(--rust); margin-top:1.05rem; letter-spacing:.07em}
+.qsrc::before{content:""; width:1rem; height:2px; border-radius:2px; background:var(--rust); flex:none}
 
 /* 1인칭 독백 */
-.voices{font-weight:300; letter-spacing:-.022em; font-size:clamp(1.2rem,2.3vw,1.62rem); line-height:1.52; color:var(--ink); max-width:30ch; border-left:2px solid var(--rust); padding-left:1.2rem; margin-bottom:1.8rem}
+.voices{font-weight:300; letter-spacing:-.024em; font-size:clamp(1.2rem,2.3vw,1.62rem); line-height:1.58; color:#46433f; max-width:28ch; border-left:2px solid var(--rust); padding-left:1.45rem; margin-bottom:clamp(1.9rem,4vw,2.4rem); text-wrap:balance}
 .voices b{font-weight:700}
 
 .split{display:grid; grid-template-columns:minmax(0,1.35fr) minmax(0,1fr); gap:clamp(2rem,5vw,4.2rem); align-items:start}
@@ -129,31 +132,34 @@ header.nav{position:sticky; top:0; z-index:50; backdrop-filter:blur(10px); backg
 @media(max-width:860px){.split{grid-template-columns:1fr; gap:1.8rem} .split .imgwrap{aspect-ratio:16/11}}
 
 .diff-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:clamp(1.4rem,3vw,2.6rem)}
-.diff-item{border-top:1px solid rgba(255,255,255,.15); padding-top:1.2rem}
+.diff-item{position:relative; border-top:1px solid rgba(255,255,255,.12); padding-top:1.3rem; transition:border-color .3s var(--ease)}
+.diff-item::before{content:""; position:absolute; top:-1px; left:0; width:1.6rem; height:2px; background:var(--rust); border-radius:2px; opacity:.7}
+.diff-item:hover{border-top-color:rgba(224,176,122,.28)}
 .diff-item h3{margin:.7rem 0 .55rem; color:#fff; font-size:1.18rem}
 .diff-item p{font-size:.97rem; color:#c2bcb2; max-width:34ch}
 @media(max-width:820px){.diff-grid{grid-template-columns:1fr; gap:1.8rem}}
 .nowrap{white-space:nowrap}
 
 /* 표준화 검사 카드 (F.02 하단 모듈) · 비대칭 벤토, 더블베젤 */
-.tests{margin-top:clamp(2.6rem,5vw,3.6rem); padding-top:clamp(2rem,4vw,2.6rem); border-top:1px solid rgba(255,255,255,.15)}
+.tests{position:relative; margin-top:clamp(2.6rem,5vw,3.6rem); padding-top:clamp(2rem,4vw,2.6rem); border-top:1px solid rgba(255,255,255,.15)}
+.tests::before{content:""; position:absolute; top:-1px; left:0; width:2.4rem; height:2px; background:var(--rust); border-radius:2px}
 .tests .kicker{margin-bottom:1rem}
 .tests h3{color:#fff; font-size:clamp(1.4rem,2.8vw,2rem); letter-spacing:-.035em; line-height:1.18; max-width:24ch; margin-bottom:.55rem}
 .tests h3 .thin{color:#cfc9bf}
 .tests .lead2{color:#b4ada3; font-size:1rem; max-width:52ch; margin-bottom:clamp(1.6rem,3vw,2.2rem)}
 .bento{display:grid; grid-template-columns:repeat(6,1fr); grid-auto-rows:minmax(72px,auto); gap:clamp(.6rem,1.4vw,.9rem)}
-.tile{position:relative; border:1px solid rgba(188,108,37,.30); border-radius:8px; background:linear-gradient(180deg,#1d2126,#16181c); padding:1.15rem 1.25rem; box-shadow:0 18px 40px -28px rgba(188,108,37,.32); display:flex; flex-direction:column; min-width:0; transition:transform .3s var(--ease), border-color .3s}
+.tile{position:relative; border:1px solid rgba(188,108,37,.28); border-radius:9px; background:linear-gradient(180deg,#1d2126,#16181c); padding:1.2rem 1.3rem; box-shadow:0 1px 0 rgba(255,255,255,.04) inset, 0 18px 40px -28px rgba(188,108,37,.30); display:flex; flex-direction:column; min-width:0; transition:transform .32s var(--ease), border-color .32s var(--ease), box-shadow .32s var(--ease)}
 .tile::before{content:""; position:absolute; inset:5px; border:1px solid rgba(255,255,255,.05); border-radius:4px; pointer-events:none}
-.bento .tile:hover{transform:translateY(-3px); border-color:rgba(188,108,37,.55)}
+.bento .tile:hover{transform:translateY(-4px); border-color:rgba(188,108,37,.52); box-shadow:0 1px 0 rgba(255,255,255,.06) inset, 0 26px 50px -26px rgba(188,108,37,.45)}
 .tile .abbr{font-weight:800; letter-spacing:-.02em; color:#fff; line-height:1; font-size:1.5rem}
-.tile .nm{font-size:.74rem; color:var(--rust-soft); font-weight:600; margin:.35rem 0 .6rem; letter-spacing:.01em}
+.tile .nm{font-size:.72rem; color:var(--rust-soft); font-weight:700; margin:.4rem 0 .65rem; letter-spacing:.05em}
 .tile .desc{font-size:.84rem; color:#b4ada3; line-height:1.55; flex:1}
 .tile .chip{align-self:flex-start; margin-top:.85rem; font-size:.62rem; font-weight:700; letter-spacing:.04em; color:var(--rust-soft); border:1px solid rgba(188,108,37,.4); border-radius:999px; padding:.2em .6em}
 .tile.feat{grid-column:span 3; grid-row:span 2; background:linear-gradient(165deg,#262b31,#15171A)}
-.tile.feat .abbr{font-size:2.6rem}
+.tile.feat .abbr{font-size:2.6rem; letter-spacing:-.045em}
 .tile.feat .desc{font-size:.95rem; color:#cfc9bf; max-width:34ch}
 .tile.hol,.tile.pat{grid-column:span 3}
-.tile.add{grid-column:span 3; background:#191c20; border-color:rgba(188,108,37,.26)}
+.tile.add{grid-column:span 3; background:linear-gradient(180deg,#1b1e23,#15171a); border-color:rgba(188,108,37,.22)}
 .tile.add .abbr{font-size:1.2rem; color:#e7e2da}
 .tile.add .desc{font-size:.8rem}
 .tile.add .chip{color:#9a948b; border-color:rgba(255,255,255,.14)}
@@ -164,13 +170,17 @@ header.nav{position:sticky; top:0; z-index:50; backdrop-filter:blur(10px); backg
 .compare-wrap{position:relative}
 .compare{margin-top:clamp(1.8rem,4vw,2.8rem); overflow-x:auto}
 .ctable{width:100%; border-collapse:collapse; min-width:600px; font-size:.95rem}
-.ctable th,.ctable td{text-align:left; padding:.9rem 1rem; border-bottom:1px solid rgba(45,45,45,.1); vertical-align:top; line-height:1.45}
-.ctable thead th{font-weight:700; font-size:.82rem; letter-spacing:.01em; color:var(--muted)}
-.ctable thead th.win{color:var(--rust); font-size:.95rem}
+.ctable th,.ctable td{text-align:left; padding:.95rem 1rem; border-bottom:1px solid rgba(45,45,45,.1); vertical-align:top; line-height:1.5}
+.ctable thead th{font-weight:700; font-size:.74rem; letter-spacing:.06em; color:var(--muted); padding-bottom:.85rem; border-bottom:1.5px solid rgba(45,45,45,.14); vertical-align:bottom}
+.ctable thead th.win{color:var(--rust); font-size:.86rem; font-weight:800; letter-spacing:.01em; border-bottom-color:var(--rust)}
 .ctable tbody th{font-weight:600; color:var(--ink); width:22%}
+.ctable tbody tr:nth-child(odd) td:not(.win),.ctable tbody tr:nth-child(odd) th{background:rgba(45,45,45,.018)}
+.ctable tbody td:not(.win){font-variant-numeric:tabular-nums}
 .ctable td{color:#5b5750}
 .ctable td.win{background:rgba(188,108,37,.07); color:var(--ink); font-weight:600}
 .ctable thead th.win,.ctable td.win{border-left:1.5px solid rgba(188,108,37,.4); border-right:1.5px solid rgba(188,108,37,.4)}
+.ctable thead th.win{border-top:2px solid var(--rust)}
+.ctable tbody tr:last-child td.win{border-bottom:1.5px solid rgba(188,108,37,.4)}
 /* 데스크톱에선 표가 폭 안에 다 들어가 부가 단서가 불필요 → 모바일 카드 전용 요소는 숨김 */
 .compare-fade,.compare-hint{display:none}
 /* 모바일: 390px에선 표의 결론(승자) 컬럼 '우리아이 마음설명서'가 우측으로 잘려 안 보이고 스크롤 단서도 없었다.
@@ -203,10 +213,12 @@ header.nav{position:sticky; top:0; z-index:50; backdrop-filter:blur(10px); backg
 .quoteband{position:relative; min-height:clamp(360px,52vh,460px); display:flex; align-items:center; color:#fff; overflow:hidden; background:var(--charcoal)}
 .quoteband .bg{position:absolute; inset:0; z-index:0}
 .quoteband .bg img,.quoteband .bg video{width:100%; height:100%; object-fit:cover; filter:saturate(.9) contrast(1.05)}
-.quoteband .bg::after{content:""; position:absolute; inset:0; background:linear-gradient(90deg, rgba(21,23,26,.9) 0%, rgba(21,23,26,.5) 46%, rgba(21,23,26,.08) 100%)}
+.quoteband .bg::after{content:""; position:absolute; inset:0; background:linear-gradient(90deg, rgba(15,17,19,.92) 0%, rgba(18,20,23,.6) 40%, rgba(21,23,26,.18) 78%, rgba(21,23,26,.05) 100%), linear-gradient(0deg, rgba(15,17,19,.4), transparent 38%)}
 .quoteband .wrap{position:relative; z-index:3}
-.quoteband blockquote{border-left:2px solid var(--rust); padding-left:1.2rem; font-weight:300; letter-spacing:-.03em; font-size:clamp(1.6rem,3.5vw,2.6rem); line-height:1.38; max-width:24ch; text-wrap:balance}
-.quoteband cite{display:block; margin-top:1.2rem; font-style:normal; font-size:.82rem; letter-spacing:.04em; color:var(--rust-soft); padding-left:1.2rem}
+.quoteband blockquote{position:relative; border-left:2px solid var(--rust); padding-left:1.2rem; font-weight:300; letter-spacing:-.03em; font-size:clamp(1.6rem,3.5vw,2.6rem); line-height:1.38; max-width:24ch; text-wrap:balance}
+.quoteband blockquote::before{content:"\201C"; position:absolute; left:.55rem; top:-.46em; font-size:2.3em; font-weight:800; line-height:1; color:var(--rust-soft); opacity:.22; pointer-events:none}
+.quoteband cite{display:flex; align-items:center; gap:.7rem; margin-top:1.3rem; font-style:normal; font-weight:600; font-size:.78rem; letter-spacing:.06em; color:var(--rust-soft); padding-left:1.2rem}
+.quoteband cite::before{content:""; width:1.6rem; height:1.5px; background:var(--rust-soft); border-radius:2px; opacity:.8; flex:none}
 /* 모바일: 90deg 그라데이션이 우측에서 밝아져 행 끝 글자가 옅은 사진 위에 얹히고 24ch가 화면폭을 넘겨 끝 글자가 잘린다 → 세로 그라데이션으로 균일하게 덮고 글줄폭을 좁힌다 */
 @media(max-width:860px){
   .quoteband{min-height:clamp(300px,46vh,400px)}
@@ -218,14 +230,14 @@ header.nav{position:sticky; top:0; z-index:50; backdrop-filter:blur(10px); backg
 .preview{display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1.2fr); gap:clamp(2rem,5vw,4rem); align-items:center}
 .book3d{perspective:1500px; display:flex; justify-content:center; padding:.5rem}
 .book3d .cover{width:min(80%,300px); aspect-ratio:3/4.1; border-radius:3px 8px 8px 3px; position:relative;
-  background:linear-gradient(150deg,#23262b,#15171A); box-shadow:var(--shadow), inset 13px 0 20px -15px rgba(0,0,0,.55);
+  background:linear-gradient(150deg,#23262b,#15171A); box-shadow:0 2px 4px rgba(20,22,28,.10), 0 34px 60px -30px rgba(20,22,28,.55), inset 13px 0 20px -15px rgba(0,0,0,.55), inset -2px 0 5px -2px rgba(0,0,0,.4);
   transform:rotateY(calc(-12deg + var(--ry,0deg))) rotateX(calc(3deg + var(--rx,0deg))); transform-style:preserve-3d;
   padding:2.1rem 1.5rem; display:flex; flex-direction:column; justify-content:space-between; color:#fff; transition:transform .3s var(--ease)}
 .book3d .cover::before{content:""; position:absolute; left:0; top:0; bottom:0; width:14px; background:linear-gradient(90deg, rgba(255,255,255,.07), rgba(0,0,0,.32)); border-radius:3px 0 0 3px}
-.book3d .sp{width:32px; height:2px; background:var(--rust)}
+.book3d .sp{width:34px; height:2px; border-radius:2px; background:var(--rust); box-shadow:0 0 0 1px rgba(224,176,122,.25), 0 0 7px rgba(188,108,37,.55)}
 .book3d .cover h4{font-weight:700; font-size:1.3rem; line-height:1.3; letter-spacing:-.03em; color:#fff}
 .book3d .cover .rname{color:var(--rust-soft)}
-.book3d .cover small{font-size:.7rem; letter-spacing:.06em; color:rgba(255,255,255,.5)}
+.book3d .cover small{font-size:.66rem; font-weight:600; letter-spacing:.16em; color:rgba(255,255,255,.52)}
 .preview h2{margin-bottom:.9rem}
 .spec{display:flex; flex-direction:column; gap:.6rem; margin-top:1.2rem; font-size:.96rem; color:#46433f; max-width:44ch}
 .spec span{padding-left:1.3rem; position:relative}
@@ -234,20 +246,24 @@ header.nav{position:sticky; top:0; z-index:50; backdrop-filter:blur(10px); backg
 
 /* 책 속 미리보기 */
 .inside{margin-top:clamp(2.6rem,5vw,3.6rem); display:grid; grid-template-columns:1fr 1fr; gap:clamp(1.6rem,4vw,3rem); align-items:start}
-.vol{font-weight:800; font-size:clamp(1.35rem,2.4vw,1.85rem); letter-spacing:-.035em; color:var(--ink); font-variant-numeric:tabular-nums}
-.vol span{color:var(--rust)}
+.vol{font-weight:700; font-size:clamp(1.2rem,2.1vw,1.55rem); letter-spacing:.005em; color:#6f6b64; font-variant-numeric:tabular-nums; padding-bottom:1rem; border-bottom:1px solid var(--rule)}
+.vol span{color:var(--rust); font-weight:800; font-size:1.18em; letter-spacing:-.02em}
 .toc{list-style:none; margin-top:1.2rem; display:flex; flex-direction:column; gap:.55rem}
-.toc li{font-size:.97rem; color:#46433f; padding-left:2rem; position:relative; line-height:1.4}
-.toc li .n{position:absolute; left:0; color:var(--rust); font-weight:700; font-variant-numeric:tabular-nums; opacity:.65}
+.toc li{display:grid; grid-template-columns:1.9rem 1fr; align-items:baseline; column-gap:.55rem; font-size:.97rem; color:#46433f; line-height:1.5; padding:.1rem 0}
+.toc li .n{color:var(--rust); font-weight:700; font-variant-numeric:tabular-nums; opacity:.7}
 .excerpts{display:flex; flex-direction:column; gap:1.4rem}
-.excerpt{background:var(--light); border-radius:6px; padding:1.5rem 1.6rem; box-shadow:0 1px 2px rgba(20,22,28,.04); border-left:2px solid var(--rust)}
+.excerpt{background:var(--light); border-radius:6px; padding:1.5rem 1.6rem; box-shadow:0 1px 2px rgba(20,22,28,.05), 0 14px 30px -22px rgba(20,22,28,.18); border-left:2px solid var(--rust); transition:transform .3s var(--ease), box-shadow .3s var(--ease)}
+.excerpt:hover{transform:translateY(-3px); box-shadow:var(--shadow)}
 .excerpt p{font-weight:300; font-size:1.04rem; line-height:1.58; letter-spacing:-.02em; color:var(--ink)}
+.excerpt{position:relative}
+.excerpt::before{content:"\201C"; position:absolute; top:.5rem; right:1.1rem; font-size:3rem; line-height:1; font-weight:800; color:var(--rust); opacity:.12; pointer-events:none}
 .excerpt .tag2{font-size:.72rem; color:var(--muted); margin-top:.7rem; letter-spacing:.02em}
 @media(max-width:760px){.inside{grid-template-columns:1fr}}
 
 /* After 샘플 */
 .samples{display:grid; grid-template-columns:repeat(3,1fr); gap:1rem; margin-top:clamp(1.8rem,4vw,2.4rem)}
-.sample{background:var(--light); border-radius:6px; padding:1.4rem 1.5rem; box-shadow:0 1px 2px rgba(20,22,28,.04)}
+.sample{background:var(--light); border-radius:6px; padding:1.4rem 1.5rem; box-shadow:0 1px 2px rgba(20,22,28,.05), 0 14px 30px -22px rgba(20,22,28,.18); border-top:2px solid transparent; transition:transform .3s var(--ease), box-shadow .3s var(--ease), border-color .3s var(--ease)}
+.sample:hover{transform:translateY(-3px); box-shadow:var(--shadow); border-top-color:var(--rust)}
 .sample .q{font-weight:300; font-size:1.02rem; line-height:1.54; letter-spacing:-.02em; color:var(--ink)}
 /* 실천 키워드는 러스트로 짚되, 무강조 인용(.excerpt)과 위계 격차가 벌어지지 않게 굵기는 600으로 절제 */
 .sample .q b{font-weight:600; color:var(--rust)}
@@ -257,12 +273,14 @@ header.nav{position:sticky; top:0; z-index:50; backdrop-filter:blur(10px); backg
 /* 제목을 folio 바로 아래에 붙도록 상단 정렬(기존 flex-end는 제목을 이미지 바닥선까지 끌어내려 상단에 큰 공백이 생김) */
 .proc-head{display:flex; justify-content:space-between; align-items:flex-start; gap:2rem; flex-wrap:wrap}
 .proc-head .imgwrap{width:min(34%,330px); aspect-ratio:16/10; flex:none; max-height:9rem}
-.steps{display:grid; grid-template-columns:repeat(4,1fr); gap:clamp(1.2rem,2.5vw,2rem); margin-top:clamp(2.2rem,4vw,3rem)}
+.steps{position:relative; display:grid; grid-template-columns:repeat(4,1fr); gap:clamp(1.2rem,2.5vw,2rem); margin-top:clamp(2.2rem,4vw,3rem)}
+/* 네 단계를 한 줄의 가는 선이 관통해 '흩어진 타일'이 아닌 '한 흐름의 순서'로 읽히게 한다(상단 러스트 룰과 같은 선상). 모바일 2열/1열에선 단계가 접혀 연결선이 어긋나므로 끈다. */
+.steps::before{content:""; position:absolute; top:0; left:0; right:0; height:1px; background:linear-gradient(90deg, var(--rust) 0, var(--rust) 2.4rem, var(--rule) 2.4rem, var(--rule) 100%); pointer-events:none}
 .step{border-top:1px solid var(--rule); padding-top:1.1rem}
 .step h3{font-size:1.12rem; margin:.6rem 0 .45rem}
 /* 모래 배경에서 --muted(#8C8C8C)는 본문 대비가 약해 한 단계 진한 따뜻한 그레이로 보정(섹션 스코프) */
 .step p{font-size:.92rem; color:#6f6b64; max-width:24ch}
-@media(max-width:820px){.steps{grid-template-columns:1fr 1fr; gap:1.8rem 1.2rem} .proc-head .imgwrap{display:none}}
+@media(max-width:820px){.steps{grid-template-columns:1fr 1fr; gap:1.8rem 1.2rem} .steps::before{display:none} .proc-head .imgwrap{display:none}}
 /* 아주 좁은 폭에서는 2열이면 단계 설명이 잘게 쪼개져 위계가 떨어진다 → 1열로 펴 호흡 확보 */
 @media(max-width:480px){.steps{grid-template-columns:1fr; gap:1.6rem}}
 /* F.05 마무리 노트: 데스크톱은 전폭으로 한 줄(기존 max-width:none과 동일), 모바일에서만 우측 여백을 확보해 끝 글자 잘림 기미를 없앤다 */
@@ -278,19 +296,25 @@ header.nav{position:sticky; top:0; z-index:50; backdrop-filter:blur(10px); backg
 .tiers{display:grid; grid-template-columns:repeat(3,1fr); gap:clamp(1rem,2vw,1.4rem); margin-top:clamp(2rem,4vw,2.8rem); align-items:stretch}
 .tier{background:var(--light); border-radius:6px; padding:2rem 1.7rem; display:flex; flex-direction:column; box-shadow:0 1px 2px rgba(20,22,28,.04); transition:transform .3s var(--ease), box-shadow .3s var(--ease)}
 .tier:hover{transform:translateY(-3px); box-shadow:var(--shadow)}
-.tier.feat{outline:1.5px solid var(--rust); outline-offset:-1.5px}
+.tier.feat{outline:1.5px solid var(--rust); outline-offset:-1.5px; transform:translateY(-6px); box-shadow:0 2px 4px rgba(20,22,28,.05), 0 26px 50px -26px rgba(188,108,37,.40); position:relative; overflow:hidden}
+.tier.feat::before{content:""; position:absolute; left:0; right:0; top:0; height:3px; background:linear-gradient(90deg,var(--rust),var(--rust-soft))}
+.tier.feat:hover{transform:translateY(-9px)}
 .tier .tag{align-self:flex-start; font-size:.72rem; font-weight:700; letter-spacing:.04em; color:#fff; background:var(--rust); padding:.3em .8em; border-radius:3px; margin-bottom:1rem; visibility:hidden}
 .tier.feat .tag{visibility:visible}
 .tier h3{font-size:1.45rem; margin-bottom:.25rem}
 .tier .who{font-size:.85rem; color:var(--muted); margin-bottom:1.2rem}
-.price-label{font-size:.72rem; font-weight:600; letter-spacing:.04em; color:var(--rust); margin-bottom:.2rem}
+.price-label{display:inline-flex; align-items:center; gap:.45rem; font-size:.7rem; font-weight:700; letter-spacing:.11em; text-transform:uppercase; color:var(--rust); margin-bottom:.5rem}
+.price-label::before{content:""; width:.85rem; height:2px; border-radius:2px; background:var(--rust)}
 .price{font-weight:800; font-size:clamp(2rem,3vw,2.55rem); letter-spacing:-.04em; line-height:1; color:var(--ink); font-variant-numeric:tabular-nums}
-.price .cur{font-weight:500; font-size:.5em; color:var(--muted); margin-right:.12em; vertical-align:.16em}
+.price{letter-spacing:-.035em}
+.price .num{font-feature-settings:'tnum'; letter-spacing:-.012em}
+.price .cur{font-weight:600; font-size:.42em; color:var(--rust); letter-spacing:.02em; margin-right:.2em; vertical-align:.34em}
 /* '~'(부터) 꼬리표를 통화기호와 같은 정렬 리듬으로: 베이스라인보다 살짝 올리고 좌측을 띄워 숫자와 분리 */
-.price .tail{font-weight:500; font-size:.5em; color:var(--muted); margin-left:.08em; vertical-align:.12em}
+.price .tail{font-weight:600; font-size:.42em; color:var(--muted); letter-spacing:.02em; margin-left:.16em; vertical-align:.34em}
 .tier ul{list-style:none; margin:1.3rem 0 1.4rem; display:flex; flex-direction:column; gap:.65rem; flex:1}
 .tier li{font-size:.93rem; color:#46433f; padding-left:1.3rem; position:relative; line-height:1.5}
 .tier li::before{content:""; position:absolute; left:0; top:.52em; width:.42rem; height:.42rem; border-radius:50%; background:var(--rust); opacity:.5}
+.tier.feat li::before{opacity:.85; box-shadow:0 0 0 3px rgba(188,108,37,.10)}
 /* 보조문구 줄수가 카드마다 달라(meet 2줄 / save 1줄) 버튼 위 라인이 어긋남 → 최소 높이를 통일해 버튼 상단을 정렬 */
 .tier .meet,.tier .save{min-height:2.9em; margin-bottom:1.1rem; line-height:1.5}
 .tier .meet{font-size:.82rem; color:#6b665f}
@@ -300,10 +324,10 @@ header.nav{position:sticky; top:0; z-index:50; backdrop-filter:blur(10px); backg
 .tier.feat .btn-ghost:hover{background:var(--rust-deep)}
 .guarantee{background:var(--charcoal); color:#fff; border-radius:6px; padding:clamp(1.6rem,3vw,2.1rem) clamp(1.6rem,3vw,2.2rem); margin-top:clamp(1.8rem,4vw,2.6rem); display:flex; gap:1.3rem; align-items:flex-start}
 /* 원형 배지가 2줄 텍스트엔 빠듯해 답답 → 살짝 키우고 행간을 틔워 숨통 확보 */
-.guarantee .seal{flex:none; width:3.5rem; height:3.5rem; border-radius:50%; border:1.5px solid var(--rust); display:grid; place-items:center; color:var(--rust-soft); font-weight:800; font-size:.62rem; text-align:center; line-height:1.25}
+.guarantee .seal{flex:none; width:3.6rem; height:3.6rem; border-radius:50%; border:1.5px solid var(--rust); box-shadow:0 0 0 4px rgba(188,108,37,.12); display:grid; place-items:center; color:var(--rust-soft); font-weight:800; font-size:.62rem; text-align:center; line-height:1.25}
 .guarantee h3{color:#fff; margin-bottom:.4rem}
 .guarantee p{color:#b4ada3; font-size:.96rem; max-width:min(62ch,100%); line-height:1.6}
-.launch{margin-top:1.3rem; background:rgba(188,108,37,.08); border:1px solid var(--rule); border-radius:6px; padding:1.1rem 1.3rem; font-size:.95rem; color:#46433f; line-height:1.6}
+.launch{margin-top:1.3rem; background:rgba(188,108,37,.08); border:1px solid var(--rule); border-left:3px solid var(--rust); border-radius:6px; padding:1.05rem 1.3rem; font-size:.95rem; color:#46433f; line-height:1.6}
 .launch b{color:var(--rust); font-weight:700}
 .tier-note{margin-top:1.4rem; font-size:.88rem; color:var(--muted); text-align:center; line-height:1.7; font-variant-numeric:tabular-nums}
 .trust{display:flex; flex-wrap:wrap; gap:.9rem 2rem; justify-content:center; margin-top:clamp(1.8rem,3vw,2.4rem); padding-top:clamp(1.6rem,3vw,2.2rem); border-top:1px solid var(--rule)}
@@ -343,10 +367,13 @@ header.nav{position:sticky; top:0; z-index:50; backdrop-filter:blur(10px); backg
 .author-photo::after{content:""; position:absolute; z-index:2; left:-6%; right:-6%; bottom:0; height:24%; pointer-events:none;
   background:linear-gradient(to bottom, rgba(239,231,219,0) 0%, rgba(239,231,219,.65) 62%, var(--sand) 100%)}
 .author-name{font-weight:800; font-size:clamp(2rem,3.1vw,2.7rem); letter-spacing:-.045em; line-height:1.02; color:var(--ink); margin:0}
-.author-en{font-weight:500; font-size:.9rem; letter-spacing:.16em; text-transform:uppercase; color:var(--muted); margin:.4rem 0 0}
-.author-field{font-size:.9rem; font-weight:600; letter-spacing:-.005em; color:var(--rust); margin:1.5rem 0 1.15rem; padding-top:1.2rem; border-top:1px solid var(--rule)}
-.author-quote{border-left:2px solid var(--rust); padding-left:1.35rem; font-weight:300; letter-spacing:-.03em; font-size:clamp(1.2rem,1.75vw,1.5rem); line-height:1.55; color:var(--ink); margin:0; text-wrap:pretty}
-.creds{display:flex; flex-direction:column; gap:.58rem; font-size:.93rem; line-height:1.45; color:#46433f}
+.author-en{display:inline-flex; align-items:center; gap:.7rem; font-weight:600; font-size:.82rem; letter-spacing:.2em; text-transform:uppercase; color:var(--muted); margin:.55rem 0 0}
+.author-en::before{content:""; width:1.4rem; height:1.5px; background:var(--rust); border-radius:2px; opacity:.85}
+.author-field{font-size:.78rem; font-weight:700; letter-spacing:.04em; color:var(--rust); margin:1.5rem 0 1.15rem; padding-top:1.2rem; border-top:1px solid var(--rule)}
+.author-quote{position:relative; border-left:2px solid var(--rust); padding-left:1.35rem; font-weight:300; letter-spacing:-.03em; font-size:clamp(1.2rem,1.75vw,1.5rem); line-height:1.55; color:var(--ink); margin:0; text-wrap:pretty}
+.author-quote::before{content:"\201C"; position:absolute; left:.7rem; top:-.42em; font-size:2.4em; font-weight:800; line-height:1; color:var(--rust); opacity:.16; pointer-events:none}
+.creds{display:flex; flex-direction:column; gap:.6rem; font-size:.92rem; line-height:1.5; color:#5b5750}
+.creds span:first-child{color:var(--ink); font-weight:600}
 .creds span{padding-left:1.25rem; position:relative}.creds span::before{content:""; position:absolute; left:0; top:.62em; width:.7rem; height:1.5px; background:var(--rust)}
 @media(max-width:860px){
   .author-grid{grid-template-columns:1fr; gap:1.8rem; justify-items:start; align-items:start}
@@ -361,13 +388,19 @@ header.nav{position:sticky; top:0; z-index:50; backdrop-filter:blur(10px); backg
 .series{display:grid; grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr); gap:clamp(2rem,5vw,4rem); align-items:stretch}
 .series .imgwrap{aspect-ratio:4/5; height:100%}
 .books{display:flex; flex-direction:column; gap:.9rem; margin-top:1.5rem}
-.book{background:var(--light); border-radius:5px; padding:1.15rem 1.35rem; box-shadow:0 1px 2px rgba(20,22,28,.04); transition:transform .3s var(--ease)}
-.book:hover{transform:translateX(4px)}
-.book .badge{font-size:.72rem; font-weight:700; letter-spacing:.04em; color:var(--rust)}
+.book{position:relative; background:var(--light); border-radius:6px; padding:1.15rem 1.35rem 1.15rem 1.55rem; box-shadow:0 1px 2px rgba(20,22,28,.04); transition:transform .3s var(--ease), box-shadow .3s var(--ease)}
+.book::before{content:""; position:absolute; left:0; top:.9rem; bottom:.9rem; width:2px; border-radius:2px; background:var(--rust); opacity:.28; transition:opacity .3s var(--ease), top .3s var(--ease), bottom .3s var(--ease)}
+.book:hover{transform:translateX(4px); box-shadow:var(--shadow)}
+.book:hover::before{opacity:.7; top:.55rem; bottom:.55rem}
+.book .badge{display:inline-block; font-size:.68rem; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--rust); padding-bottom:.4rem; border-bottom:1.5px solid rgba(188,108,37,.3)}
 .book h3{font-size:1.18rem; margin:.3rem 0 .28rem}
 /* 크림 위 --muted(#8C8C8C)는 본문 대비가 약해 한 단계 진한 따뜻한 그레이로 보정(섹션 스코프) */
 .book p{font-size:.9rem; color:#6f6b64; max-width:38ch}
-.book.soon{opacity:.55}
+.book.soon{opacity:1; background:transparent; box-shadow:none; border:1px dashed rgba(188,108,37,.3); color:#6f6b64}
+.book.soon::before{display:none}
+.book.soon:hover{transform:none; box-shadow:none}
+.book.soon h3,.book.soon p{color:#6f6b64}
+.book.soon .badge{color:#9a948b; border-bottom-color:rgba(140,140,140,.3)}
 @media(max-width:820px){.series{grid-template-columns:1fr} .series .imgwrap{aspect-ratio:16/10; max-height:280px}}
 
 /* FAQ */
@@ -379,54 +412,76 @@ details{border-bottom:1px solid rgba(45,45,45,.12)}
 .faq details:last-of-type{border-bottom:none}
 .faq details:last-of-type summary{padding-bottom:.4rem}
 .faq details:last-of-type[open] summary{padding-bottom:1.3rem}
-summary{font-weight:600; font-size:1.12rem; letter-spacing:-.02em; cursor:pointer; list-style:none; display:flex; justify-content:space-between; align-items:center; gap:1rem; padding:1.3rem 0}
+summary{font-weight:600; font-size:1.12rem; letter-spacing:-.02em; cursor:pointer; list-style:none; display:flex; justify-content:space-between; align-items:center; gap:1rem; padding:1.3rem .9rem; margin-inline:-.9rem; border-radius:7px; color:var(--ink); transition:background .25s var(--ease), color .2s}
 summary::-webkit-details-marker{display:none}
-summary::after{content:"+"; color:var(--rust); font-weight:400; font-size:1.4rem; transition:transform .25s var(--snap)}
-details[open] summary::after{transform:rotate(45deg)}
-.faq-body{display:grid; grid-template-rows:0fr; opacity:.3; transition:grid-template-rows .38s var(--ease), opacity .38s ease}
+summary:hover{background:rgba(188,108,37,.06); color:var(--rust)}
+details[open] summary{color:var(--rust)}
+summary::after{content:"+"; flex:none; width:1.65rem; height:1.65rem; display:grid; place-items:center; color:var(--rust); font-weight:400; font-size:1.25rem; line-height:1; border:1px solid var(--rule); border-radius:6px; transition:transform .3s var(--snap), background .25s var(--ease), color .25s, border-color .25s}
+summary:hover::after{border-color:var(--rust); background:rgba(188,108,37,.08)}
+details[open] summary::after{transform:rotate(45deg); background:var(--rust); color:#fff; border-color:var(--rust)}
+.faq-body{display:grid; grid-template-rows:0fr; opacity:0; transition:grid-template-rows .42s var(--ease), opacity .3s ease}
 .faq-body>div{min-height:0; overflow:hidden}
 details[open] .faq-body{grid-template-rows:1fr; opacity:1}
-.faq-body p{color:#46433f; font-size:.98rem; padding-bottom:1.3rem; max-width:64ch}
+/* 답변 키라인과 본문 사이 호흡을 한 단계 틔우고(.9→1.1rem), 답변 진입 시 미세 슬라이드로 펼침에 무게를 줌 */
+.faq-body p{color:#46433f; font-size:.98rem; line-height:1.66; padding:.18rem 0 1.5rem 1.1rem; max-width:62ch; border-left:2px solid rgba(188,108,37,.28); transform:translateY(-2px); transition:transform .42s var(--ease)}
+details[open] .faq-body p{transform:none}
 
 /* 사전 신청 */
 .apply-sec{text-align:center}
-.apply-card{max-width:640px; margin:clamp(1.6rem,3vw,2.4rem) auto 0; background:var(--light); border-radius:8px; padding:clamp(1.9rem,4vw,2.8rem); box-shadow:var(--shadow)}
+.apply-card{position:relative; max-width:640px; margin:clamp(1.6rem,3vw,2.4rem) auto 0; background:var(--light); border-radius:10px; padding:clamp(2.1rem,4vw,3rem); box-shadow:var(--shadow); overflow:hidden}
+.apply-card::before{content:""; position:absolute; left:0; right:0; top:0; height:3px; background:linear-gradient(90deg,var(--rust),var(--rust-soft))}
 .apply-card h2{margin-bottom:.8rem}
 .apply-card p{color:#46433f; max-width:48ch; margin:0 auto 1.6rem; line-height:1.6}
-.apply-card .btn{font-size:1.05rem; padding:1em 2.1em}
-.apply-card .note{font-size:.85rem; color:var(--muted); margin-top:1.1rem; font-variant-numeric:tabular-nums}
+.apply-card .btn{font-size:1.06rem; padding:1.02em 2.4em; box-shadow:0 1px 0 rgba(255,255,255,.14) inset, 0 10px 24px -10px rgba(188,108,37,.55)}
+/* 결제 안내 노트: 위에 짧은 중앙 룰을 둬 CTA와 분리하고, 사이트 캡션 트래킹 체계(+.01em)에 맞춤 */
+.apply-card .note{font-size:.85rem; color:var(--muted); margin-top:1.45rem; padding-top:1.25rem; letter-spacing:.01em; line-height:1.6; font-variant-numeric:tabular-nums; position:relative; display:inline-block}
+.apply-card .note::before{content:""; position:absolute; top:0; left:50%; transform:translateX(-50%); width:2.2rem; height:2px; border-radius:2px; background:var(--rust); opacity:.4}
 
 /* 클로징 */
 .closing{text-align:center}
-.closing h2{max-width:20ch; margin:0 auto 1.1rem}
-.dark.closing .sub{color:#cfc9bf; margin-bottom:2rem; font-size:1.08rem; line-height:1.6; max-width:40ch; margin-inline:auto}
-.microcta{font-size:.86rem; color:#8d877d; margin-top:1rem}
+.closing h2{max-width:18ch; margin:0 auto 1.5rem; line-height:1.16; letter-spacing:-.045em; font-size:clamp(2.05rem,4.4vw,3.05rem)}
+/* 마무리 클라이맥스 문장: 강조구를 인용처럼 띄워 '기억에 남는 한 줄'로. 러스트소프트 밑선으로 밑줄이 아닌 받침을 둠 */
+.closing h2 .said{position:relative; white-space:nowrap; padding-bottom:.06em; font-size:1.16em; color:#fff; letter-spacing:-.03em; text-shadow:0 0 38px rgba(224,176,122,.22)}
+.closing h2 .said::after{content:""; position:absolute; left:.04em; right:.04em; bottom:-.04em; height:2px; border-radius:2px; background:linear-gradient(90deg,var(--rust),var(--rust-soft)); opacity:.85}
+.dark.closing .sub{color:#e7e2da; margin-bottom:2.1rem; font-size:clamp(1.12rem,1.5vw,1.28rem); font-weight:300; line-height:1.6; max-width:34ch; margin-inline:auto; text-wrap:balance}
+/* 닫는 속삭임: 위에 짧은 중앙 헤어라인을 둬 CTA와 분리하고 '여운'으로 읽히게 함 */
+.microcta{font-size:.86rem; color:#9a948b; margin-top:1.7rem; padding-top:1.4rem; letter-spacing:.005em; position:relative; display:inline-block}
+.microcta::before{content:""; position:absolute; top:0; left:50%; transform:translateX(-50%); width:2.2rem; height:2px; border-radius:2px; background:var(--rust); opacity:.6}
 
 /* 클로징(#15171A)→푸터(#0f1113) 사이 미세 색단차를 '의도된 경계'로 보이게 얇은 룰을 둠 */
 footer{background:#0f1113; color:#8a857c; padding-block:3.5rem 2.5rem; position:relative; z-index:2; border-top:1px solid rgba(255,255,255,.06)}
 /* 브랜드(큰 800)와 링크(작은 .92rem)의 수직 중심을 맞춰 베이스라인 어긋남 해소 */
 .foot-top{display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1.5rem; margin-bottom:2.5rem}
-.foot-brand{font-weight:800; font-size:1.3rem; letter-spacing:-.03em; color:#fff}.foot-brand .dot{color:var(--rust)}
+/* 브랜드 마크 위에 사이트 공통 2px 러스트 액센트틱(folio·kicker와 동일 모티프)을 둬 푸터까지 같은 인장으로 닫는다 */
+.foot-brand{position:relative; font-weight:800; font-size:1.3rem; letter-spacing:-.03em; color:#fff; padding-top:.85rem}.foot-brand .dot{color:var(--rust)}
+.foot-brand::before{content:""; position:absolute; top:0; left:0; width:1.9rem; height:2px; border-radius:2px; background:var(--rust)}
 .foot-links{display:flex; gap:1.6rem; flex-wrap:wrap}
-.foot-links a{color:#b4ada3; text-decoration:none; font-size:.92rem}.foot-links a:hover{color:var(--rust-soft)}
+.foot-links a{color:#b4ada3; text-decoration:none; font-size:.92rem; transition:color .2s}.foot-links a:hover{color:var(--rust-soft)}
 /* 법적 고지 텍스트는 한 단계 밝혀 AA에 근접, 윗 구분선은 사이트 러스트 룰 색 철학에 맞춰 저채도 러스트로 통일 */
-.foot-legal{font-size:.8rem; color:#857f76; line-height:1.8; border-top:1px solid rgba(224,176,122,.14); padding-top:1.8rem; font-variant-numeric:tabular-nums}
+.foot-legal{font-size:.8rem; color:#857f76; line-height:1.85; border-top:1px solid rgba(224,176,122,.14); padding-top:1.8rem; font-variant-numeric:tabular-nums}
+/* 법적 고지 위계: 상호·도메인 줄을 살짝 밝히고 트래킹을 줘 '발신처'로 먼저 읽히게, 나머지 행은 차분히 가라앉힘 */
+.foot-legal .org{color:#b4ada3; font-weight:600; letter-spacing:.005em}
+.foot-legal .copy{color:#6f6a62; letter-spacing:.02em}
 /* 좁은 폭에서 브랜드 아래로 링크를 명확히 떨어뜨려 '인스타그램'이 우측으로 잘리는 문제 해소 */
 @media(max-width:600px){
   .foot-top{flex-direction:column; align-items:flex-start; gap:1.2rem}
   .foot-links{gap:1rem 1.4rem}
 }
 
-.mcta{position:fixed; left:0; right:0; bottom:0; z-index:60; display:none; align-items:center; justify-content:space-between; gap:1rem; background:rgba(21,23,26,.97); backdrop-filter:blur(8px); padding:.7rem 1.1rem; border-top:1px solid rgba(255,255,255,.1)}
+.mcta{position:fixed; left:0; right:0; bottom:0; z-index:60; display:none; align-items:center; justify-content:space-between; gap:1rem; background:rgba(21,23,26,.97); backdrop-filter:blur(8px); padding:.7rem 1.1rem; border-top:1px solid rgba(255,255,255,.1); box-shadow:0 -10px 24px -16px rgba(0,0,0,.6)}
+/* 바 상단 모서리에 사이트 러스트 액센트 헤어라인을 얹어 떠 있는 결제바를 브랜드 인장으로 닫는다 */
+.mcta::before{content:""; position:absolute; left:0; right:0; top:-1px; height:2px; background:linear-gradient(90deg,var(--rust),var(--rust-soft) 60%,transparent)}
 .mcta .p{color:#fff; font-size:.82rem; line-height:1.3}
-.mcta .p b{font-weight:800; font-size:1.02rem; color:var(--rust-soft); font-variant-numeric:tabular-nums; letter-spacing:-.02em}
+.mcta .p b{font-weight:800; font-size:1.04rem; color:var(--rust-soft); font-variant-numeric:tabular-nums; letter-spacing:-.02em}
+/* 가격 꼬리표 '~'(부터): tiers의 .tail과 같은 정렬 리듬으로 살짝 작게·옅게 올려 숫자와 분리 */
+.mcta .p b .tail{font-weight:500; font-size:.7em; color:rgba(224,176,122,.7); margin-left:.04em; vertical-align:.08em; letter-spacing:0}
 .mcta .btn{padding:.68em 1.35em; font-size:.92rem}
 @media(max-width:960px){ .mcta{display:flex} body{padding-bottom:62px} }
 
-.reveal{opacity:0; transform:translateY(14px); transition:opacity .8s var(--ease), transform .8s var(--ease)}
+.reveal{opacity:0; transform:translateY(14px); transition:opacity .66s var(--reveal), transform .72s var(--reveal); will-change:opacity,transform}
 .reveal.in{opacity:1; transform:none}
-.reveal-group>*{opacity:0; transform:translateY(12px); transition:opacity .7s var(--ease), transform .7s var(--ease)}
-.reveal-group.in>*{opacity:1; transform:none; transition-delay:calc(var(--i,0)*70ms)}
+.reveal-group>*{opacity:0; transform:translateY(14px); transition:opacity .7s var(--reveal), transform .76s var(--reveal); will-change:opacity,transform}
+.reveal-group.in>*{opacity:1; transform:none; transition-delay:calc(min(var(--i,0),6)*60ms)}
 @keyframes riseIn{from{opacity:0; transform:translateY(16px)} to{opacity:1; transform:none}}
 .hero .anim{opacity:0; animation:riseIn .85s var(--ease) both; animation-delay:var(--d,0s)}
 @media (prefers-reduced-motion: reduce){
@@ -668,21 +723,21 @@ footer{background:#0f1113; color:#8a857c; padding-block:3.5rem 2.5rem; position:
     <div class="tiers reveal-group">
       <div class="tier feat" style="--i:0">
         <span class="tag">처음이라면, 베이직</span><h3>베이직</h3><p class="who">비대면 완결 · 대부분 여기서 시작</p>
-        <div class="price-label">런칭가</div><div class="price"><span class="cur">₩</span>190,000</div>
+        <div class="price-label">런칭가</div><div class="price"><span class="cur">₩</span><span class="num">190,000</span></div>
         <ul><li>아이 기질·성격 검사 (TCI)</li><li>진로 흥미 검사 (Holland)</li><li>부모 양육태도 검사 (PAT-2)</li><li>교차 분석 맞춤 책 1권</li><li>읽고 바로 적용하는 ‘이번 주 한 가지’ 실천 가이드</li></ul>
         <p class="meet">해설이 필요 없게, 책이 부모님 언어로 다 풀어 드립니다 · 비대면 완결</p>
         <a href="#apply" class="btn btn-ghost">베이직으로 시작하기</a>
       </div>
       <div class="tier" style="--i:1">
         <span class="tag">해설 추가</span><h3>프리미엄</h3><p class="who">전문가 1:1 해설까지</p>
-        <div class="price-label">런칭가</div><div class="price"><span class="cur">₩</span>390,000</div>
+        <div class="price-label">런칭가</div><div class="price"><span class="cur">₩</span><span class="num">390,000</span></div>
         <ul><li>베이직 구성 전체 포함</li><li>부모 1인 성격검사 (MMPI)</li><li>부모 1인 기질·성격 (TCI)</li><li>줌 30분 전문가 해설</li></ul>
         <p class="meet">결과를 두고 직접 질문하고 싶을 때, 줌 30분 해설 포함</p>
         <a href="#apply" class="btn btn-ghost">프리미엄으로 시작하기</a>
       </div>
       <div class="tier" style="--i:2">
         <span class="tag">정밀</span><h3>VIP</h3><p class="who">지능검사 + 부모 2인 함께</p>
-        <div class="price-label">런칭가</div><div class="price"><span class="cur">₩</span>690,000<span class="tail">~</span></div>
+        <div class="price-label">런칭가</div><div class="price"><span class="cur">₩</span><span class="num">690,000</span><span class="tail">~</span></div>
         <ul><li>프리미엄 구성 전체 포함</li><li>아이 지능검사 (WISC-V, 대면)</li><li>부모 2인 MMPI · TCI</li><li>대면 + 줌 전문가 해설</li></ul>
         <p class="save">※ WISC-V 지능검사만 사설기관 통상 25~40만 원</p>
         <a href="#apply" class="btn btn-ghost">VIP로 시작하기</a>
@@ -788,7 +843,7 @@ footer{background:#0f1113; color:#8a857c; padding-block:3.5rem 2.5rem; position:
 <!-- 클로징 -->
 <section class="dark closing" style="padding-block:var(--sec-lg)">
   <div class="wrap reveal">
-    <h2><span class="thin" style="color:#cfc9bf">지금 검사받은 아이는,</span><br>친구들이 헤맬 때 <span class="accent">“나는 이게 맞아”</span>라고 말합니다.</h2>
+    <h2><span class="thin" style="color:#cfc9bf">지금 검사받은 아이는,</span><br>친구들이 헤맬 때 <span class="accent said">“나는 이게 맞아”</span>라고 말합니다.</h2>
     <p class="sub">부모님은, 이미 충분히 잘하고 계십니다. 방향을 함께 찾는 일만, 저희가 돕겠습니다.</p>
     <a href="#apply" class="btn btn-primary">우리아이 마음설명서 시작하기 <span class="arr">→</span></a>
     <p class="microcta">망설이는 사이에도, 아이는 자라고 있습니다.</p>
@@ -806,16 +861,16 @@ footer{background:#0f1113; color:#8a857c; padding-block:3.5rem 2.5rem; position:
       </div>
     </div>
     <div class="foot-legal">
-      마음기록소 · doencourage.com<br>
+      <span class="org">마음기록소 · doencourage.com</span><br>
       상호 / 대표자 / 사업자등록번호 / 통신판매업신고 / 주소 / 연락처 [사업자 등록 후 채우기]<br>
-      © 2026 마음기록소. All rights reserved.
+      <span class="copy">© 2026 마음기록소. All rights reserved.</span>
     </div>
   </div>
 </footer>
 
 <!-- 모바일/소형 하단 고정바 -->
 <div class="mcta">
-  <div class="p">우리아이 마음설명서 · 베이직<br><b>₩190,000~</b></div>
+  <div class="p">우리아이 마음설명서 · 베이직<br><b>₩190,000<span class="tail">~</span></b></div>
   <a href="#apply" class="btn btn-primary">구매하기</a>
 </div>
 
