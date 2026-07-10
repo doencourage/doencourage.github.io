@@ -1,0 +1,121 @@
+/* 마음기록소 가이드 글 공용 스타일 — 모든 guide/*.html 이 링크한다. 한 곳만 고치면 전체 반영. */
+:root{
+  --rust:#BC6C25; --rust-deep:#A85B1E; --rust-soft:#E0B07A;
+  --cream:#FDFCFB; --sand:#EFE7DB; --charcoal:#15171A; --ink:#2D2D2D; --muted:#8C8C8C; --light:#FFFFFF;
+  --sans:'Pretendard', system-ui, -apple-system, sans-serif;
+  --maxw:1180px; --measure:38rem; --pad-x:clamp(1.25rem, 5vw, 3rem);
+  --ease:cubic-bezier(.16,1,.3,1); --snap:cubic-bezier(.2,.85,.3,1);
+  --rule:rgba(188,108,37,.22); --shadow:0 1px 2px rgba(20,22,28,.05), 0 14px 30px -22px rgba(20,22,28,.18);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans); color:var(--ink); background:var(--cream); line-height:1.75;
+  letter-spacing:-.011em; word-break:keep-all; overflow-wrap:break-word; -webkit-font-smoothing:antialiased}
+.wrap{max-width:var(--maxw); margin-inline:auto; padding-inline:var(--pad-x)}
+a{color:inherit} img{display:block; max-width:100%}
+
+header.nav{position:sticky; top:0; z-index:50; backdrop-filter:blur(10px); background:rgba(253,252,251,.85); border-bottom:1px solid rgba(45,45,45,.07)}
+.nav-in{display:flex; align-items:center; justify-content:space-between; height:60px}
+.brand{font-weight:800; font-size:1.18rem; letter-spacing:-.03em; color:var(--ink); text-decoration:none}
+.brand .dot{color:var(--rust)}
+.nav-links{display:flex; gap:1.6rem; align-items:center}
+.nav-links a{color:var(--ink); text-decoration:none; font-size:.92rem; font-weight:500; opacity:.82; transition:opacity .2s,color .2s}
+.nav-links a:hover{opacity:1; color:var(--rust)}
+.nav-links a.active{opacity:1; color:var(--rust); font-weight:700}
+.nav-links a.buy{background:var(--rust); color:#fff; font-weight:700; padding:.52em 1.15em; border-radius:999px; opacity:1}
+.nav-links a.buy:hover{background:var(--rust-deep); color:#fff}
+@media(max-width:620px){ .nav-links{gap:1rem} .nav-links a:not(.buy):not(.active){display:none} }
+
+.article{padding-block:clamp(2rem,5vw,3.4rem) clamp(3rem,7vw,5rem)}
+.col{max-width:var(--measure); margin-inline:auto}
+.crumb{max-width:var(--measure); margin:0 auto clamp(1.4rem,3vw,2rem); font-size:.8rem; color:var(--muted)}
+.crumb a{text-decoration:none; color:var(--muted)} .crumb a:hover{color:var(--rust)}
+.crumb .sep{margin:0 .45rem; opacity:.5}
+/* 리드(헤더) 이미지 — 수채 배너, 본문 폭에 정렬 */
+.hero-fig{max-width:var(--measure); margin:0 auto clamp(1.6rem,3.5vw,2.4rem); border-radius:12px; overflow:hidden; box-shadow:0 1px 2px rgba(20,22,28,.05), 0 18px 40px -28px rgba(20,22,28,.28)}
+.hero-fig img{width:100%; height:auto}
+.kicker{display:inline-flex; align-items:center; gap:.7rem; font-weight:700; font-size:.72rem; letter-spacing:.07em; color:var(--rust); margin-bottom:1.1rem}
+.kicker::before{content:""; width:1.7rem; height:2px; border-radius:2px; background:var(--rust)}
+h1.title{font-weight:800; font-size:clamp(1.9rem,4.4vw,2.9rem); letter-spacing:-.04em; line-height:1.16; color:var(--ink); text-wrap:balance; margin-bottom:1.4rem}
+.byline{display:flex; align-items:center; gap:.85rem; padding:1.1rem 0; border-top:1px solid var(--rule); border-bottom:1px solid var(--rule)}
+.byline .ph{flex:none; width:44px; height:44px; border-radius:50%; overflow:hidden; background:var(--sand); border:1.5px solid var(--rust-soft)}
+.byline .ph img{width:100%; height:100%; object-fit:cover; object-position:50% 22%}
+.byline .who{font-size:.9rem; line-height:1.4}
+.byline .who b{font-weight:700; color:var(--ink)} .byline .who .role{color:var(--rust); font-weight:600}
+.byline .meta{margin-left:auto; text-align:right; font-size:.78rem; color:var(--muted); line-height:1.5; font-variant-numeric:tabular-nums}
+@media(max-width:520px){ .byline .meta{display:none} }
+.tldr{margin:clamp(1.8rem,4vw,2.6rem) 0; background:var(--light); border:1px solid var(--rule); border-left:3px solid var(--rust); border-radius:8px; padding:1.4rem 1.5rem; box-shadow:var(--shadow)}
+.tldr .lab{display:inline-flex; align-items:center; gap:.5rem; font-size:.7rem; font-weight:800; letter-spacing:.08em; color:var(--rust); text-transform:uppercase; margin-bottom:.6rem}
+.tldr .lab::before{content:""; width:.8rem; height:2px; background:var(--rust); border-radius:2px}
+.tldr p{font-size:1.06rem; line-height:1.7; color:var(--ink)}
+.tldr em{font-style:normal; color:var(--rust-deep); font-weight:600} .tldr b{font-weight:700}
+
+.prose{font-size:1.06rem; color:#3a3733}
+.prose p{margin:1.15rem 0}
+.prose h2{font-weight:800; font-size:clamp(1.4rem,2.6vw,1.75rem); letter-spacing:-.035em; line-height:1.28; color:var(--ink); margin:clamp(2.4rem,5vw,3.2rem) 0 1rem; padding-top:1.4rem; border-top:1px solid var(--rule); position:relative}
+.prose h2::before{content:""; position:absolute; top:-1px; left:0; width:2.2rem; height:2px; background:var(--rust); border-radius:2px}
+.prose h3{font-weight:700; font-size:1.14rem; letter-spacing:-.02em; color:var(--ink); margin:1.8rem 0 .6rem}
+.prose b{font-weight:700; color:var(--ink)}
+.prose ul{list-style:none; margin:1.1rem 0; display:flex; flex-direction:column; gap:.7rem}
+.prose ul li{position:relative; padding-left:1.4rem; line-height:1.65}
+.prose ul li::before{content:""; position:absolute; left:0; top:.62em; width:.44rem; height:.44rem; border-radius:50%; background:var(--rust); opacity:.6}
+.prose ol{margin:1.1rem 0; padding-left:0; counter-reset:s; list-style:none; display:flex; flex-direction:column; gap:.75rem}
+.prose ol li{position:relative; padding-left:2.1rem; line-height:1.65; counter-increment:s}
+.prose ol li::before{content:counter(s); position:absolute; left:0; top:.05em; width:1.5rem; height:1.5rem; display:grid; place-items:center; font-size:.78rem; font-weight:800; color:#fff; background:var(--rust); border-radius:6px}
+
+/* 진로글 — 렌즈 카드 */
+.lenses{margin:1.3rem 0; display:flex; flex-direction:column; gap:.7rem}
+.lens{display:grid; grid-template-columns:auto 1fr; gap:0 1rem; align-items:start; border:1px solid var(--rule); border-radius:9px; padding:1.1rem 1.25rem; background:var(--light)}
+.lens .n{grid-row:span 2; width:2.1rem; height:2.1rem; display:grid; place-items:center; font-weight:800; font-size:.9rem; color:#fff; background:var(--rust); border-radius:8px}
+.lens h3{margin:0; font-size:1.08rem}
+.lens p{margin:.25rem 0 0; font-size:.96rem; color:#5b5750; line-height:1.6}
+.lens .tool{font-size:.72rem; font-weight:700; color:var(--rust); letter-spacing:.03em}
+
+/* 기질글 — 축 표 */
+.axes{margin:1.2rem 0; border:1px solid var(--rule); border-radius:8px; overflow:hidden}
+.axes div{display:grid; grid-template-columns:8.5rem 1fr; gap:1rem; padding:.85rem 1.1rem; font-size:.98rem; line-height:1.55}
+.axes div:nth-child(odd){background:rgba(188,108,37,.04)}
+.axes b{color:var(--rust-deep)}
+@media(max-width:480px){ .axes div{grid-template-columns:1fr; gap:.15rem} }
+
+.pull{margin:clamp(2rem,4vw,2.8rem) 0; border-left:2px solid var(--rust); padding-left:1.3rem; font-weight:300; letter-spacing:-.03em; font-size:clamp(1.4rem,3vw,1.9rem); line-height:1.4; color:var(--ink); text-wrap:balance}
+.pull b{font-weight:700; color:var(--rust-deep)}
+.sources{margin-top:clamp(2.4rem,5vw,3rem); padding-top:1.4rem; border-top:1px solid var(--rule)}
+.sources .lab{font-size:.72rem; font-weight:800; letter-spacing:.06em; color:var(--muted); text-transform:uppercase; margin-bottom:.8rem}
+.sources ol{list-style:decimal; padding-left:1.3rem; display:flex; flex-direction:column; gap:.5rem}
+.sources li{font-size:.9rem; color:#5b5750; line-height:1.55}
+.disc{margin-top:1rem; font-size:.82rem; color:var(--muted); line-height:1.6; font-style:italic}
+.faqsec{max-width:var(--measure); margin:clamp(2.6rem,5vw,3.4rem) auto 0}
+.faqsec h2{font-weight:800; font-size:1.4rem; letter-spacing:-.03em; margin-bottom:.6rem}
+details{border-bottom:1px solid rgba(45,45,45,.12)}
+summary{font-weight:600; font-size:1.04rem; letter-spacing:-.02em; cursor:pointer; list-style:none; display:flex; justify-content:space-between; align-items:center; gap:1rem; padding:1.15rem .2rem; color:var(--ink)}
+summary::-webkit-details-marker{display:none}
+summary:hover{color:var(--rust)}
+summary::after{content:"+"; flex:none; width:1.5rem; height:1.5rem; display:grid; place-items:center; color:var(--rust); font-size:1.2rem; border:1px solid var(--rule); border-radius:6px; transition:transform .3s var(--snap)}
+details[open] summary{color:var(--rust)} details[open] summary::after{transform:rotate(45deg); background:var(--rust); color:#fff}
+.faq-a{padding:.1rem .2rem 1.3rem 1rem; border-left:2px solid rgba(188,108,37,.28); color:#46433f; font-size:.98rem; line-height:1.7; margin-bottom:.4rem}
+.authorcard{max-width:var(--measure); margin:clamp(2.6rem,5vw,3.4rem) auto 0; background:var(--sand); border-radius:12px; padding:clamp(1.5rem,3vw,2rem); display:flex; gap:1.3rem; align-items:flex-start}
+.authorcard .ph{flex:none; width:88px; height:88px; border-radius:10px; overflow:hidden; background:var(--cream); border:1px solid var(--rust-soft)}
+.authorcard .ph img{width:100%; height:100%; object-fit:cover; object-position:50% 18%}
+.authorcard .nm{font-weight:800; font-size:1.2rem; letter-spacing:-.03em}
+.authorcard .role{color:var(--rust); font-weight:700; font-size:.82rem; margin:.2rem 0 .7rem}
+.authorcard .creds{font-size:.86rem; color:#5b5750; line-height:1.65}
+.authorcard .creds span{display:block}
+.softcta{max-width:var(--measure); margin:clamp(2.4rem,5vw,3rem) auto 0; background:var(--charcoal); color:#fff; border-radius:12px; padding:clamp(1.8rem,4vw,2.4rem); position:relative; overflow:hidden}
+.softcta::before{content:""; position:absolute; left:0; right:0; top:0; height:3px; background:linear-gradient(90deg,var(--rust),var(--rust-soft))}
+.softcta h3{font-weight:800; font-size:1.3rem; letter-spacing:-.03em; color:#fff; margin-bottom:.6rem; line-height:1.35}
+.softcta p{color:#b4ada3; font-size:.98rem; line-height:1.65; max-width:44ch; margin-bottom:1.3rem}
+.btn{display:inline-flex; align-items:center; gap:.5em; font-weight:700; font-size:1rem; padding:.85em 1.7em; border-radius:999px; text-decoration:none; background:var(--rust); color:#fff; transition:transform .2s var(--snap), background .2s}
+.btn:hover{background:var(--rust-deep); transform:translateY(-2px)}
+.btn .arr{transition:transform .2s} .btn:hover .arr{transform:translateX(3px)}
+.related{max-width:var(--measure); margin:clamp(2.6rem,5vw,3.4rem) auto 0}
+.related .lab{font-size:.72rem; font-weight:800; letter-spacing:.06em; color:var(--muted); text-transform:uppercase; margin-bottom:1rem}
+.related .grid{display:grid; grid-template-columns:1fr; gap:.8rem}
+.rcard{display:block; background:var(--light); border-radius:8px; padding:1.1rem 1.3rem; text-decoration:none; box-shadow:0 1px 2px rgba(20,22,28,.04); border-left:2px solid rgba(188,108,37,.3); transition:transform .25s var(--ease), box-shadow .25s var(--ease)}
+.rcard:hover{transform:translateX(4px); box-shadow:var(--shadow)}
+.rcard .b{font-size:.68rem; font-weight:700; letter-spacing:.08em; color:var(--rust); text-transform:uppercase}
+.rcard h4{font-weight:700; font-size:1.04rem; letter-spacing:-.02em; color:var(--ink); margin:.25rem 0 .2rem}
+.rcard p{font-size:.86rem; color:#6f6b64; line-height:1.5}
+footer{background:#0f1113; color:#8a857c; padding-block:2.6rem 2rem; margin-top:clamp(3rem,6vw,4.5rem)}
+.foot-brand{font-weight:800; font-size:1.2rem; color:#fff}.foot-brand .dot{color:var(--rust)}
+.foot-legal{font-size:.78rem; color:#857f76; line-height:1.8; margin-top:1rem; border-top:1px solid rgba(224,176,122,.14); padding-top:1.2rem}

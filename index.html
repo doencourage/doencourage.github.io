@@ -4,18 +4,23 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>마음기록소 · 우리아이 마음설명서 · 진로·기질 맞춤 검사</title>
-<meta name="description" content="AI 시대, 부모를 위한 진로·기질 맞춤 검사. 임상심리전문가가 검사 결과를 ‘우리아이 마음설명서’ 한 권으로 풀어 드립니다. 초4~고등 대상." />
+<meta name="description" content="AI 시대, 부모를 위한 진로·기질 맞춤 검사. 임상심리전문가의 설계·감수로 검사 결과를 ‘우리아이 마음설명서’ 한 권에 담아 드립니다. 초4~고등 대상." />
 
 <link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;500;600&display=swap" rel="stylesheet" />
 
 <style>
 :root{
   --rust:#BC6C25; --rust-deep:#A85B1E; --rust-soft:#E0B07A;
-  --cream:#FDFCFB; --sand:#EFE7DB; --charcoal:#15171A; --ink:#2D2D2D; --muted:#8C8C8C; --light:#FFFFFF;
+  --cream:#FDFCFB; --sand:#EFE7DB; --charcoal:#211C18; --ink:#2D2D2D; --muted:#8C8C8C; --light:#FFFFFF;
   --sans:'Pretendard', system-ui, -apple-system, sans-serif;
+  --serif:'Noto Serif KR', 'Nanum Myeongjo', serif;
   --maxw:1180px; --pad-x:clamp(1.25rem, 5vw, 4.5rem);
   --sec:clamp(4.5rem,11vh,8rem); --sec-lg:clamp(6.5rem,16vh,11rem); --sec-sm:clamp(3.5rem,8vh,6rem);
+  /* 책 목업 사진을 수채 일러스트의 따뜻한 페이퍼톤에 맞춰 통일하는 공통 그레이딩(톤 분열 해소) */
+  --paper-grade:saturate(.9) sepia(.12) brightness(1.035) contrast(.96);
   --ease:cubic-bezier(.16,1,.3,1); --snap:cubic-bezier(.2,.85,.3,1); --reveal:cubic-bezier(.22,.7,.24,1);
   --shadow:0 1px 2px rgba(20,22,28,.05), 0 12px 26px -16px rgba(20,22,28,.20), 0 30px 60px -34px rgba(20,22,28,.16);
   --rule:rgba(188,108,37,.22);
@@ -24,7 +29,7 @@
 html{scroll-behavior:smooth}
 body{font-family:var(--sans); color:var(--ink); background:var(--cream); line-height:1.62;
   letter-spacing:-.011em; word-break:keep-all; overflow-wrap:break-word;
-  font-feature-settings:'tnum','ss01'; -webkit-font-smoothing:antialiased; overflow-x:hidden}
+  font-feature-settings:'tnum','ss01'; -webkit-font-smoothing:antialiased; overflow-x:clip}
 body::after{content:""; position:fixed; inset:0; pointer-events:none; z-index:1; opacity:.038;
   background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='150' height='150'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
 .wrap{max-width:var(--maxw); margin-inline:auto; padding-inline:var(--pad-x)}
@@ -58,6 +63,8 @@ h3{font-size:clamp(1.25rem,2vw,1.5rem); font-weight:700; letter-spacing:-.025em;
 .kicker.light{color:var(--rust-soft)} .kicker.light::before{background:var(--rust-soft)}
 
 .idx{font-weight:250; font-size:clamp(2.4rem,5vw,3.2rem); letter-spacing:-.04em; line-height:1; color:rgba(188,108,37,.38); font-variant-numeric:tabular-nums}
+/* 다크 배경(F.02) 위에선 러스트 38%가 소실 → 웜탄으로 올려 밝은 구간 넘버럴과 위계 통일 */
+.dark .idx{color:#c79a6b}
 
 .btn{display:inline-flex; align-items:center; gap:.5em; font-family:var(--sans); font-weight:700; font-size:1rem; letter-spacing:-.01em;
   padding:.92em 1.8em; border-radius:999px; cursor:pointer; border:1px solid transparent; text-decoration:none;
@@ -82,7 +89,7 @@ header.nav{position:sticky; top:0; z-index:50; backdrop-filter:blur(10px); backg
 .nav-links{display:flex; gap:1.9rem; align-items:center}
 .nav-links a{color:var(--ink); text-decoration:none; font-size:.92rem; font-weight:500; letter-spacing:-.01em; opacity:.8; transition:opacity .2s, color .2s}
 .nav-links a:hover{opacity:1; color:var(--rust)}
-.nav-links .btn{padding:.5em 1.2em; font-size:.88rem}
+.nav-links .btn{padding:.5em 1.2em; font-size:.88rem; min-height:44px}
 @media(max-width:860px){
   .nav-links a:not(.btn){display:none}
   .nav-links{gap:0}
@@ -110,14 +117,45 @@ header.nav{position:sticky; top:0; z-index:50; backdrop-filter:blur(10px); backg
   .hero-text{padding-block:clamp(2.4rem,6vh,3.4rem) clamp(2.4rem,6vh,3.4rem)}
   .hero-note{font-size:.85rem; line-height:1.55; max-width:34ch; padding-top:.95rem}
 }
+/* 크림 히어로 변형 — 판매 랜딩: 실물 목업3(연출 플랫레이) 주도. 은유 대신 실물이 판다(적대 패널 만장일치) */
+.hero--cream{background:var(--cream); color:var(--ink)}
+.hero--cream .hero-text{background:var(--cream)}
+.hero--cream h1{color:var(--charcoal)}
+.hero--cream h1 .accent{color:var(--rust)}
+.hero--cream .lead{color:#5b564e}
+.hero--cream .lead b{color:var(--charcoal)}
+.hero--cream .hero-note{color:#8a857c; border-top-color:rgba(21,23,26,.12)}
+.hero--cream .hero-note b{color:var(--rust)}
+.hero--cream .hero-media{background:var(--cream); padding:0; overflow:hidden}
+.hero--cream .hero-media::after{display:none}
+.hero--cream .hero-media img{width:100%; height:100%; object-fit:cover; object-position:50% 48%; filter:var(--paper-grade); border-radius:0; box-shadow:none}
+@media(max-width:860px){ .hero--cream .hero-media{height:auto} .hero--cream .hero-media img{height:auto} }
+
+/* 증명 밴드 (히어로 직후·폴리오 없음) — 실물 목업4 검사→책 before/after로 가격 정당화 */
+.proof{background:#f7f1e8; padding-block:clamp(3.2rem,7vh,5.5rem)}
+.proof-in{display:grid; grid-template-columns:minmax(0,1.05fr) minmax(0,1fr); gap:clamp(2rem,5vw,4rem); align-items:center}
+.proof-media img{width:100%; height:auto; border-radius:0; filter:var(--paper-grade); box-shadow:none}
+.proof-text .kicker{margin-bottom:1rem}
+
+/* 저자 신뢰띠 (증명밴드 직후 · 조기 신뢰 확보 — 저자 섹션이 하단에만 있어 신뢰가 늦게 등장하던 문제 보완) */
+.credbar{background:var(--cream); border-top:1px solid var(--rule); border-bottom:1px solid var(--rule)}
+.credbar .wrap{display:flex; align-items:center; justify-content:center; flex-wrap:wrap; gap:.35rem 1rem; padding-block:clamp(.95rem,2.2vw,1.3rem); text-align:center}
+.credbar .cb-lead{font-size:.93rem; color:#5b564e; line-height:1.55}
+.credbar .cb-title{color:var(--rust); font-weight:800}
+.credbar .cb-name{font-weight:800; color:var(--ink)}
+.credbar .cb-lic{color:var(--muted); font-weight:500}
+.credbar .cb-cred{font-size:.83rem; color:var(--muted)}
+.credbar a{font-size:.83rem; font-weight:700; color:var(--rust); white-space:nowrap; display:inline-flex; align-items:center; gap:.3rem}
+@media(max-width:820px){.proof-in{grid-template-columns:1fr; gap:1.6rem}}
 
 .cream{background:var(--cream)} .sand{background:var(--sand)}
 .dark{background:var(--charcoal); color:#e7e2da}
 .dark h1,.dark h2,.dark h3{color:#fff} .dark .muted,.dark .body-p,.dark .sm{color:#a59f96}
 
 .quote{border-left:2px solid var(--rust); padding-left:1.15rem; font-weight:300; letter-spacing:-.03em; line-height:1.42}
-.pullquote{position:relative; font-size:clamp(1.5rem,3vw,2.2rem); line-height:1.34; max-width:19ch; margin-top:clamp(2.2rem,4vw,3rem)}
-.pullquote::before{content:"\201C"; position:absolute; left:-.06em; top:-.62em; font-size:2.7em; font-weight:800; line-height:1; color:var(--rust); opacity:.14; pointer-events:none}
+.pullquote{position:relative; font-family:var(--serif); font-weight:500; letter-spacing:-.01em; font-size:clamp(1.5rem,3vw,2.2rem); line-height:1.4; max-width:20ch; margin-top:clamp(2.2rem,4vw,3rem)}
+/* 러스트 인용부호 글리프는 F.03 인용밴드 한 곳에만 남겨 오렌지 반복을 솎음(러스트 좌측선은 유지) */
+.pullquote::before{content:none}
 .qsrc{display:inline-flex; align-items:center; gap:.55rem; font-size:.74rem; font-weight:700; color:var(--rust); margin-top:1.05rem; letter-spacing:.07em}
 .qsrc::before{content:""; width:1rem; height:2px; border-radius:2px; background:var(--rust); flex:none}
 
@@ -140,6 +178,10 @@ header.nav{position:sticky; top:0; z-index:50; backdrop-filter:blur(10px); backg
 @media(max-width:820px){.diff-grid{grid-template-columns:1fr; gap:1.8rem}}
 .nowrap{white-space:nowrap}
 
+/* F.02 헤더+인용 2컬럼(우측 데드존 제거, 2026-07-09 검증 #7) — 인용을 헤더 오른쪽에 짝지어 검은 여백을 채운다 */
+.diff-head{display:grid; grid-template-columns:minmax(0,.95fr) minmax(0,1.05fr); gap:clamp(2rem,5vw,4rem); align-items:end; margin-bottom:clamp(2.6rem,5vw,3.6rem)}
+@media(max-width:860px){.diff-head{grid-template-columns:1fr; gap:1.7rem; align-items:start; margin-bottom:clamp(2.2rem,5vw,3rem)}}
+
 /* 표준화 검사 카드 (F.02 하단 모듈) · 비대칭 벤토, 더블베젤 */
 .tests{position:relative; margin-top:clamp(2.6rem,5vw,3.6rem); padding-top:clamp(2rem,4vw,2.6rem); border-top:1px solid rgba(255,255,255,.15)}
 .tests::before{content:""; position:absolute; top:-1px; left:0; width:2.4rem; height:2px; background:var(--rust); border-radius:2px}
@@ -148,23 +190,29 @@ header.nav{position:sticky; top:0; z-index:50; backdrop-filter:blur(10px); backg
 .tests h3 .thin{color:#cfc9bf}
 .tests .lead2{color:#b4ada3; font-size:1rem; max-width:52ch; margin-bottom:clamp(1.6rem,3vw,2.2rem)}
 .bento{display:grid; grid-template-columns:repeat(6,1fr); grid-auto-rows:minmax(72px,auto); gap:clamp(.6rem,1.4vw,.9rem)}
-.tile{position:relative; border:1px solid rgba(188,108,37,.28); border-radius:9px; background:linear-gradient(180deg,#1d2126,#16181c); padding:1.2rem 1.3rem; box-shadow:0 1px 0 rgba(255,255,255,.04) inset, 0 18px 40px -28px rgba(188,108,37,.30); display:flex; flex-direction:column; min-width:0; transition:transform .32s var(--ease), border-color .32s var(--ease), box-shadow .32s var(--ease)}
+.tile{position:relative; border:1px solid rgba(199,154,107,.34); border-radius:9px; background:linear-gradient(180deg,#2e2823,#241f1b); padding:1.2rem 1.3rem; box-shadow:0 1px 0 rgba(255,255,255,.04) inset, 0 18px 40px -28px rgba(188,108,37,.30); display:flex; flex-direction:column; min-width:0; transition:transform .32s var(--ease), border-color .32s var(--ease), box-shadow .32s var(--ease)}
 .tile::before{content:""; position:absolute; inset:5px; border:1px solid rgba(255,255,255,.05); border-radius:4px; pointer-events:none}
 .bento .tile:hover{transform:translateY(-4px); border-color:rgba(188,108,37,.52); box-shadow:0 1px 0 rgba(255,255,255,.06) inset, 0 26px 50px -26px rgba(188,108,37,.45)}
-.tile .abbr{font-weight:800; letter-spacing:-.02em; color:#fff; line-height:1; font-size:1.5rem}
-.tile .nm{font-size:.72rem; color:var(--rust-soft); font-weight:700; margin:.4rem 0 .65rem; letter-spacing:.05em}
+/* 약어는 부제(러스트 eyebrow)로 내리고, 부모가 알아보는 한글 기능명을 제목으로 올린다 */
+.tile .abbr{font-weight:700; letter-spacing:.1em; color:var(--rust-soft); line-height:1; font-size:.72rem}
+.tile .nm{font-size:1.15rem; color:#fff; font-weight:800; margin:.45rem 0 .7rem; letter-spacing:-.015em; line-height:1.22}
 .tile .desc{font-size:.84rem; color:#b4ada3; line-height:1.55; flex:1}
 .tile .chip{align-self:flex-start; margin-top:.85rem; font-size:.62rem; font-weight:700; letter-spacing:.04em; color:var(--rust-soft); border:1px solid rgba(188,108,37,.4); border-radius:999px; padding:.2em .6em}
-.tile.feat{grid-column:span 3; grid-row:span 2; background:linear-gradient(165deg,#262b31,#15171A)}
-.tile.feat .abbr{font-size:2.6rem; letter-spacing:-.045em}
+.tile.feat{grid-column:span 3; grid-row:span 2; background:linear-gradient(165deg,#342d26,#241f1b)}
+.tile.feat .abbr{font-size:.8rem; letter-spacing:.12em}
+.tile.feat .nm{font-size:1.5rem; margin-top:.55rem}
 .tile.feat .desc{font-size:.95rem; color:#cfc9bf; max-width:34ch}
 .tile.hol,.tile.pat{grid-column:span 3}
-.tile.add{grid-column:span 2; background:linear-gradient(180deg,#1b1e23,#15171a); border-color:rgba(188,108,37,.22)}
-.tile.add .abbr{font-size:1.2rem; color:#e7e2da}
-.tile.add .desc{font-size:.8rem}
-.tile.add .chip{color:#9a948b; border-color:rgba(255,255,255,.14)}
+.tile.add{grid-column:span 2; background:linear-gradient(180deg,#282320,#201b18); border-color:rgba(199,154,107,.24)}
+.tile.add .abbr{font-size:.72rem; color:var(--rust-soft)}
+/* 심화(add) 타일도 제목·설명·칩 대비를 올려 WISC-V(VIP 지능검사)가 눌리지 않게 — 핵심 대비 살짝만 낮춤 */
+.tile.add .nm{font-size:1.05rem; color:#f0ece4}
+.tile.add .desc{font-size:.8rem; color:#bcb5ab}
+.tile.add .chip{color:#c7a074; border-color:rgba(199,154,107,.34)}
 @media(max-width:760px){.bento{grid-template-columns:1fr 1fr} .tile.feat{grid-column:span 2; grid-row:auto} .tile.hol,.tile.pat,.tile.add{grid-column:span 1}}
-@media(max-width:460px){.bento{grid-template-columns:1fr} .tile.feat,.tile.hol,.tile.pat,.tile.add{grid-column:span 1}}
+/* 460px 이하에서도 대(2칸)–소(1칸) 리듬을 남겨 다크 섹션이 단조로운 1열 터널로 길어지지 않게(2026-07-09 검증 PL2).
+   .wisc(=.add.wisc)를 add보다 뒤에 둬 span 2가 이기게 한다. */
+@media(max-width:460px){.bento{grid-template-columns:1fr 1fr} .tile.hol,.tile.pat,.tile.add{grid-column:span 1} .tile.feat,.tile.wisc{grid-column:span 2} .tile{padding:1.05rem 1rem} .tile .desc{font-size:.8rem}}
 
 /* 비교표 */
 .compare-wrap{position:relative}
@@ -195,13 +243,14 @@ header.nav{position:sticky; top:0; z-index:50; backdrop-filter:blur(10px); backg
   .ctable{font-size:.95rem}
   .ctable thead{display:none}
   /* 카드 폭을 뷰포트에 직접 묶어 wrap 우측 패딩 누락과 무관하게 화면 밖으로 못 나가게 한다 */
-  .ctable tbody tr{background:var(--light); border-radius:7px; padding:1.05rem 1.1rem 1.1rem; box-sizing:border-box;
-    max-width:calc(100vw - 2.6rem); box-shadow:0 1px 2px rgba(20,22,28,.04); margin-bottom:.9rem}
+  /* 카드·행 패딩을 조여 5장 카드 표의 총길이를 줄이고(2026-07-09 검증 PL1), 값도 keep-all로 어절 유지 */
+  .ctable tbody tr{background:var(--light); border-radius:7px; padding:.85rem 1rem .9rem; box-sizing:border-box;
+    max-width:calc(100vw - 2.6rem); box-shadow:0 1px 2px rgba(20,22,28,.04); margin-bottom:.7rem}
   .ctable tbody tr:last-child{margin-bottom:0}
   .ctable tbody th{font-size:1rem; font-weight:700; color:var(--ink); text-align:left;
-    padding:0 0 .7rem; border-bottom:1px solid rgba(45,45,45,.08); margin-bottom:.55rem}
-  .ctable tbody td{display:grid; grid-template-columns:6.8em minmax(0,1fr); align-items:baseline; gap:.2rem .7rem;
-    padding:.34rem 0; border:0; color:#5b5750; line-height:1.42; word-break:break-word; overflow-wrap:anywhere}
+    padding:0 0 .55rem; border-bottom:1px solid rgba(45,45,45,.08); margin-bottom:.45rem}
+  .ctable tbody td{display:grid; grid-template-columns:6.8em minmax(0,1fr); align-items:baseline; gap:.15rem .7rem;
+    padding:.27rem 0; border:0; color:#5b5750; line-height:1.4; word-break:keep-all; overflow-wrap:anywhere}
   .ctable tbody td::before{content:attr(data-col); font-size:.8rem; font-weight:600; color:var(--muted); word-break:keep-all}
   /* 결론 컬럼: 카드 안에서 러스트 배경으로 띄워 '이 표의 답'임을 분명히 한다 */
   .ctable tbody td.win{margin-top:.5rem; padding:.55rem .7rem; border-radius:5px; background:rgba(188,108,37,.09);
@@ -212,10 +261,10 @@ header.nav{position:sticky; top:0; z-index:50; backdrop-filter:blur(10px); backg
 /* 풀배경 인용 밴드 */
 .quoteband{position:relative; min-height:clamp(360px,52vh,460px); display:flex; align-items:center; color:#fff; overflow:hidden; background:var(--charcoal)}
 .quoteband .bg{position:absolute; inset:0; z-index:0}
-.quoteband .bg img,.quoteband .bg video{width:100%; height:100%; object-fit:cover; filter:saturate(.9) contrast(1.05)}
-.quoteband .bg::after{content:""; position:absolute; inset:0; background:linear-gradient(90deg, rgba(15,17,19,.92) 0%, rgba(18,20,23,.6) 40%, rgba(21,23,26,.18) 78%, rgba(21,23,26,.05) 100%), linear-gradient(0deg, rgba(15,17,19,.4), transparent 38%)}
+.quoteband .bg img,.quoteband .bg video{width:100%; height:100%; object-fit:cover; filter:saturate(.82) sepia(.2) contrast(1.03) brightness(1.03)}
+.quoteband .bg::after{content:""; position:absolute; inset:0; background:linear-gradient(90deg, rgba(33,27,22,.92) 0%, rgba(40,33,26,.6) 40%, rgba(46,38,31,.18) 78%, rgba(46,38,31,.05) 100%), linear-gradient(0deg, rgba(33,27,22,.42), transparent 38%)}
 .quoteband .wrap{position:relative; z-index:3}
-.quoteband blockquote{position:relative; border-left:2px solid var(--rust); padding-left:1.2rem; font-weight:300; letter-spacing:-.03em; font-size:clamp(1.6rem,3.5vw,2.6rem); line-height:1.38; max-width:24ch; text-wrap:balance}
+.quoteband blockquote{position:relative; border-left:2px solid var(--rust); padding-left:1.2rem; font-family:var(--serif); font-weight:500; letter-spacing:-.01em; font-size:clamp(1.55rem,3.4vw,2.5rem); line-height:1.44; max-width:24ch; text-wrap:balance}
 .quoteband blockquote::before{content:"\201C"; position:absolute; left:.55rem; top:-.46em; font-size:2.3em; font-weight:800; line-height:1; color:var(--rust-soft); opacity:.22; pointer-events:none}
 .quoteband cite{display:flex; align-items:center; gap:.7rem; margin-top:1.3rem; font-style:normal; font-weight:600; font-size:.78rem; letter-spacing:.06em; color:var(--rust-soft); padding-left:1.2rem}
 .quoteband cite::before{content:""; width:1.6rem; height:1.5px; background:var(--rust-soft); border-radius:2px; opacity:.8; flex:none}
@@ -228,21 +277,13 @@ header.nav{position:sticky; top:0; z-index:50; backdrop-filter:blur(10px); backg
 
 /* 결과물 */
 .preview{display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1.2fr); gap:clamp(2rem,5vw,4rem); align-items:center}
-.book3d{perspective:1500px; display:flex; justify-content:center; padding:.5rem}
-.book3d .cover{width:min(80%,300px); aspect-ratio:3/4.1; border-radius:3px 8px 8px 3px; position:relative;
-  background:linear-gradient(150deg,#23262b,#15171A); box-shadow:0 2px 4px rgba(20,22,28,.10), 0 34px 60px -30px rgba(20,22,28,.55), inset 13px 0 20px -15px rgba(0,0,0,.55), inset -2px 0 5px -2px rgba(0,0,0,.4);
-  transform:rotateY(calc(-12deg + var(--ry,0deg))) rotateX(calc(3deg + var(--rx,0deg))); transform-style:preserve-3d;
-  padding:2.1rem 1.5rem; display:flex; flex-direction:column; justify-content:space-between; color:#fff; transition:transform .3s var(--ease)}
-.book3d .cover::before{content:""; position:absolute; left:0; top:0; bottom:0; width:14px; background:linear-gradient(90deg, rgba(255,255,255,.07), rgba(0,0,0,.32)); border-radius:3px 0 0 3px}
-.book3d .sp{width:34px; height:2px; border-radius:2px; background:var(--rust); box-shadow:0 0 0 1px rgba(224,176,122,.25), 0 0 7px rgba(188,108,37,.55)}
-.book3d .cover h4{font-weight:700; font-size:1.3rem; line-height:1.3; letter-spacing:-.03em; color:#fff}
-.book3d .cover .rname{color:var(--rust-soft)}
-.book3d .cover small{font-size:.66rem; font-weight:600; letter-spacing:.16em; color:rgba(255,255,255,.52)}
+.bookshot{background:transparent; overflow:visible; display:flex; justify-content:center; padding:.5rem}
+.bookshot img{width:min(96%,400px); height:auto; border-radius:6px; filter:var(--paper-grade); box-shadow:0 2px 4px rgba(20,22,28,.10), 0 40px 70px -30px rgba(60,40,18,.5), 0 14px 30px -16px rgba(60,40,18,.3)}
 .preview h2{margin-bottom:.9rem}
 .spec{display:flex; flex-direction:column; gap:.6rem; margin-top:1.2rem; font-size:.96rem; color:#46433f; max-width:44ch}
 .spec span{padding-left:1.3rem; position:relative}
 .spec span::before{content:""; position:absolute; left:0; top:.55em; width:.45rem; height:.45rem; border-radius:50%; background:var(--rust)}
-@media(max-width:860px){.preview{grid-template-columns:1fr; gap:2.4rem} .book3d .cover{transform:rotateY(-8deg)}}
+@media(max-width:860px){.preview{grid-template-columns:1fr; gap:2.4rem} .bookshot img{width:min(84%,340px)}}
 
 /* 책 속 미리보기 */
 .inside{margin-top:clamp(2.6rem,5vw,3.6rem); display:grid; grid-template-columns:1fr 1fr; gap:clamp(1.6rem,4vw,3rem); align-items:start}
@@ -266,7 +307,7 @@ header.nav{position:sticky; top:0; z-index:50; backdrop-filter:blur(10px); backg
 .sample:hover{transform:translateY(-3px); box-shadow:var(--shadow); border-top-color:var(--rust)}
 .sample .q{font-weight:300; font-size:1.02rem; line-height:1.54; letter-spacing:-.02em; color:var(--ink)}
 /* 실천 키워드는 러스트로 짚되, 무강조 인용(.excerpt)과 위계 격차가 벌어지지 않게 굵기는 600으로 절제 */
-.sample .q b{font-weight:600; color:var(--rust)}
+.sample .q b{font-weight:700; color:var(--ink)}
 @media(max-width:760px){.samples{grid-template-columns:1fr}}
 
 /* 과정 */
@@ -289,8 +330,9 @@ header.nav{position:sticky; top:0; z-index:50; backdrop-filter:blur(10px); backg
 
 /* 가격 */
 .match{margin-top:1.4rem; display:flex; flex-direction:column; gap:.55rem; max-width:min(62ch,100%)}
-.match .m{font-size:.98rem; color:#46433f}
-.match .m b{color:var(--rust); font-weight:700}
+.match .m{display:grid; grid-template-columns:4.6em minmax(0,1fr); gap:.15rem .85rem; align-items:baseline; font-size:.98rem; color:#46433f}
+.match .m span{color:#46433f}
+.match .m b{color:var(--ink); font-weight:700}
 .anchor-copy{margin-top:1rem; max-width:min(54ch,100%); font-size:1.02rem; color:#46433f; line-height:1.6}
 .anchor-copy b{color:var(--ink); font-weight:700}
 .tiers{display:grid; grid-template-columns:repeat(3,1fr); gap:clamp(1rem,2vw,1.4rem); margin-top:clamp(2rem,4vw,2.8rem); align-items:stretch}
@@ -299,7 +341,7 @@ header.nav{position:sticky; top:0; z-index:50; backdrop-filter:blur(10px); backg
 .tier.feat{outline:1.5px solid var(--rust); outline-offset:-1.5px; transform:translateY(-6px); box-shadow:0 2px 4px rgba(20,22,28,.05), 0 26px 50px -26px rgba(188,108,37,.40); position:relative; overflow:hidden}
 .tier.feat::before{content:""; position:absolute; left:0; right:0; top:0; height:3px; background:linear-gradient(90deg,var(--rust),var(--rust-soft))}
 .tier.feat:hover{transform:translateY(-9px)}
-.tier .tag{align-self:flex-start; font-size:.72rem; font-weight:700; letter-spacing:.04em; color:#fff; background:var(--rust); padding:.3em .8em; border-radius:3px; margin-bottom:1rem; visibility:hidden}
+.tier .tag{align-self:flex-start; font-size:.72rem; font-weight:700; letter-spacing:.04em; color:#fff; background:var(--rust); padding:.3em .85em; border-radius:999px; margin-bottom:1rem; visibility:hidden}
 .tier.feat .tag{visibility:visible}
 .tier h3{font-size:1.45rem; margin-bottom:.25rem}
 .tier .who{font-size:.85rem; color:var(--muted); margin-bottom:1.2rem}
@@ -323,23 +365,22 @@ header.nav{position:sticky; top:0; z-index:50; backdrop-filter:blur(10px); backg
 .tier.feat .btn-ghost{background:var(--rust); color:#fff; border-color:var(--rust)}
 .tier.feat .btn-ghost:hover{background:var(--rust-deep)}
 .guarantee{background:var(--charcoal); color:#fff; border-radius:6px; padding:clamp(1.6rem,3vw,2.1rem) clamp(1.6rem,3vw,2.2rem); margin-top:clamp(1.8rem,4vw,2.6rem); display:flex; gap:1.3rem; align-items:flex-start}
-/* 원형 배지가 2줄 텍스트엔 빠듯해 답답 → 살짝 키우고 행간을 틔워 숨통 확보 */
-.guarantee .seal{flex:none; width:3.6rem; height:3.6rem; border-radius:50%; border:1.5px solid var(--rust); box-shadow:0 0 0 4px rgba(188,108,37,.12); display:grid; place-items:center; color:var(--rust-soft); font-weight:800; font-size:.62rem; text-align:center; line-height:1.25}
+/* 원형 씰(10px 2줄이 테두리에 닿아 조악)을 한 줄 캡슐 칩으로 승격(2026-07-09 디자인 검증 PL6) */
+.guarantee .seal{flex:none; align-self:flex-start; border-radius:999px; padding:.42rem .9rem; background:rgba(224,176,122,.16); color:var(--rust-soft); font-weight:700; font-size:.72rem; letter-spacing:.04em; white-space:nowrap}
 .guarantee h3{color:#fff; margin-bottom:.4rem}
-.guarantee p{color:#b4ada3; font-size:.96rem; max-width:min(62ch,100%); line-height:1.6}
-.launch{margin-top:1.3rem; background:rgba(188,108,37,.08); border:1px solid var(--rule); border-left:3px solid var(--rust); border-radius:6px; padding:1.05rem 1.3rem; font-size:.95rem; color:#46433f; line-height:1.6}
-.launch b{color:var(--rust); font-weight:700}
-.tier-note{margin-top:1.4rem; font-size:.88rem; color:var(--muted); text-align:center; line-height:1.7; font-variant-numeric:tabular-nums}
-.trust{display:flex; flex-wrap:wrap; gap:.9rem 2rem; justify-content:center; margin-top:clamp(1.8rem,3vw,2.4rem); padding-top:clamp(1.6rem,3vw,2.2rem); border-top:1px solid var(--rule)}
-.trust .b{display:flex; align-items:center; gap:.55rem; font-size:.9rem; color:#46433f; font-weight:500}
-.trust .b::before{content:""; width:.5rem; height:.5rem; border-radius:50%; background:var(--rust)}
-@media(max-width:860px){.tiers{grid-template-columns:1fr; max-width:min(440px,100%); margin-inline:auto}}
-/* 모바일 가격 섹션 잘림 방지: keep-all + 가운뎃점(·)으로 길게 이어진 한글 구가 안 끊겨 우측이 잘리던 요소들에
-   국소적으로 break-word를 허용해 자연 줄바꿈시킨다. 카드 패딩도 좁은 폭에 맞춰 살짝 조여 둥근모서리·버튼이 화면 안에 들어오게 한다. */
+.guarantee p{color:#cfc7ba; font-size:.96rem; max-width:min(62ch,100%); line-height:1.6}
+/* 런칭 혜택은 별도 alert 배너 대신 환불 박스 안 두 번째 문단으로 흡수(웜 헤어라인 구분) — 결제 직전 공지 스택 감량(2026-07-09 디자인 검증 #4) */
+.guarantee .extra{margin-top:1.05rem; padding-top:1.05rem; border-top:1px solid rgba(224,176,122,.22); font-size:.92rem; color:#bdb3a4; line-height:1.6; max-width:min(62ch,100%)}
+.guarantee .extra b{color:var(--rust-soft); font-weight:700}
+.tier-note{margin-top:1.4rem; font-size:.88rem; color:var(--muted); text-align:center; line-height:1.7; font-variant-numeric:tabular-nums; text-wrap:pretty}
+/* .trust 신뢰 뱃지 행 제거 — 상단 credbar와 역할 중복이라 결제 직전 잡음만 됐다(2026-07-09 디자인 검증 #4) */
+@media(max-width:860px){.tiers{grid-template-columns:1fr; max-width:min(440px,100%); margin-inline:auto} .tier.feat{transform:none}}
+@media(hover:none){.tier:hover,.tier.feat:hover{transform:none}}
+/* 모바일 가격 섹션: 한글은 어절 단위(keep-all)로 유지하고, 폭을 넘길 때만 overflow-wrap:anywhere로 예외 처리.
+   기존 break-word는 '어렵습/니다'처럼 어절 중간을 끊어 결제 구간 조판이 깨져 보였다(2026-07-09 디자인 검증 #1). */
 @media(max-width:480px){
-  .anchor-copy,.match .m,.guarantee p,.launch,.tier-note,.trust .b,.tier li,.tier .meet,.tier .save{word-break:break-word; line-break:auto}
+  .anchor-copy,.match .m,.guarantee p,.guarantee .extra,.tier-note,.tier li,.tier .meet,.tier .save{word-break:keep-all; overflow-wrap:anywhere}
   .tier{padding:1.7rem 1.35rem}
-  .trust{gap:.7rem 1.4rem}
 }
 
 /* 저자 */
@@ -347,31 +388,24 @@ header.nav{position:sticky; top:0; z-index:50; backdrop-filter:blur(10px); backg
 /* 좌/우 칼럼은 인물 어깨 높이 부근에 글이 앉도록 바닥에서 살짝 띄움 */
 .author-meta{padding-bottom:clamp(1rem,3vw,2.6rem)}
 .author-quote-col{padding-bottom:clamp(1rem,3vw,2.6rem)}
-.author-photo{position:relative; aspect-ratio:9/10; overflow:visible; background:transparent; isolation:isolate; align-self:end}
-/* 따뜻한 헤일로 — 머리 뒤에만. cover 프레이밍 기준 인물 머리(상단 중앙) 위치에 맞춤 */
-.author-photo::before{content:""; position:absolute; z-index:0; left:48.5%; top:24%; width:76%; padding-bottom:76%; height:0; transform:translate(-50%,-50%);
-  background:radial-gradient(circle at 50% 50%,
-    rgba(233,188,134,.90) 0%,
-    rgba(216,144,74,.56) 28%,
-    rgba(188,108,37,.26) 47%,
-    rgba(188,108,37,.08) 64%,
-    transparent 78%);
-  filter:blur(3px)}
-/* 원본 PNG가 우측으로 치우쳐 있어(좌측 투명여백 30%/우측 6%) object-fit으로는 가운데 정렬이 안 된다.
-   contain으로 비율을 지키되 scale로 키우고 translateX로 인물 본체를 칼럼 중앙으로 끌어온다. 바닥 기준 정렬. */
+/* 저자 컷아웃(누끼)을 '밝은 웜 seamless 배경 위 포트레이트'로 깔끔하게: 주황 헤일로·drop-shadow·어두워지는 그라디언트를 모두 제거.
+   누끼 가장자리에 원본 밝은 스튜디오 배경 잔여(옅은 fringe)가 있어, 어두워지는 배경/그림자를 얹으면 '배경이 두 겹'으로 보였다.
+   fringe가 묻히는 밝은 단색 배경 + 그림자 없음으로 해결(2026-07-09 사용자 피드백·디자인 검증 #3). */
+.author-photo{position:relative; aspect-ratio:9/10; overflow:hidden; border-radius:14px; background:#F3ECDD; isolation:isolate; align-self:end}
+.author-photo::before{content:none}
+/* 원본 PNG가 우측으로 치우쳐 있어(좌측 투명여백 30%/우측 6%) contain 비율을 지키며 translateX로 인물을 칼럼 중앙으로. 바닥 기준. */
 .author-photo img{position:absolute; z-index:1; left:0; bottom:0; width:100%; height:100%; object-fit:contain; object-position:50% 100%;
-  transform-origin:60% 100%; transform:translateX(-9%) scale(1.34);
-  filter:saturate(1.02) contrast(1.03) drop-shadow(0 16px 26px rgba(80,46,12,.16));
-  -webkit-mask-image:linear-gradient(to bottom,#000 80%,rgba(0,0,0,.5) 92%,transparent 100%); mask-image:linear-gradient(to bottom,#000 80%,rgba(0,0,0,.5) 92%,transparent 100%)}
-/* 인물 바닥을 모래색 배경으로 부드럽게 접지 */
-.author-photo::after{content:""; position:absolute; z-index:2; left:-6%; right:-6%; bottom:0; height:24%; pointer-events:none;
-  background:linear-gradient(to bottom, rgba(239,231,219,0) 0%, rgba(239,231,219,.65) 62%, var(--sand) 100%)}
+  transform-origin:60% 100%; transform:translateX(-8%) scale(1.2);
+  filter:sepia(.1) saturate(1) brightness(1.02) contrast(1.02)}
+/* 인물 하단이 잘리는 지점을 카드 배경색과 동일하게 살짝만 접지(하드컷 방지, 그림자 아님) */
+.author-photo::after{content:""; position:absolute; z-index:2; left:0; right:0; bottom:0; height:14%; pointer-events:none;
+  background:linear-gradient(to bottom, rgba(243,236,221,0), #F3ECDD)}
 .author-name{font-weight:800; font-size:clamp(2rem,3.1vw,2.7rem); letter-spacing:-.045em; line-height:1.02; color:var(--ink); margin:0}
 .author-en{display:inline-flex; align-items:center; gap:.7rem; font-weight:600; font-size:.82rem; letter-spacing:.2em; text-transform:uppercase; color:var(--muted); margin:.55rem 0 0}
 .author-en::before{content:""; width:1.4rem; height:1.5px; background:var(--rust); border-radius:2px; opacity:.85}
 .author-field{font-size:.78rem; font-weight:700; letter-spacing:.04em; color:var(--rust); margin:1.5rem 0 1.15rem; padding-top:1.2rem; border-top:1px solid var(--rule)}
-.author-quote{position:relative; border-left:2px solid var(--rust); padding-left:1.35rem; font-weight:300; letter-spacing:-.03em; font-size:clamp(1.2rem,1.75vw,1.5rem); line-height:1.55; color:var(--ink); margin:0; text-wrap:pretty}
-.author-quote::before{content:"\201C"; position:absolute; left:.7rem; top:-.42em; font-size:2.4em; font-weight:800; line-height:1; color:var(--rust); opacity:.16; pointer-events:none}
+.author-quote{position:relative; border-left:2px solid var(--rust); padding-left:1.35rem; font-family:var(--serif); font-weight:500; letter-spacing:-.01em; font-size:clamp(1.2rem,1.75vw,1.5rem); line-height:1.6; color:var(--ink); margin:0; text-wrap:pretty}
+.author-quote::before{content:none}
 .creds{display:flex; flex-direction:column; gap:.6rem; font-size:.92rem; line-height:1.5; color:#5b5750}
 .creds span:first-child{color:var(--ink); font-weight:600}
 .creds span{padding-left:1.25rem; position:relative}.creds span::before{content:""; position:absolute; left:0; top:.62em; width:.7rem; height:1.5px; background:var(--rust)}
@@ -387,6 +421,14 @@ header.nav{position:sticky; top:0; z-index:50; backdrop-filter:blur(10px); backg
 /* 이미지가 텍스트 칼럼보다 길어 center면 상단선이 어긋남 → stretch로 이미지를 칼럼 높이에 맞춰 제목과 같은 선에서 출발 */
 .series{display:grid; grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr); gap:clamp(2rem,5vw,4rem); align-items:stretch}
 .series .imgwrap{aspect-ratio:4/5; height:100%}
+/* 시리즈 좌측: 스톡 사진 대신 실제 3부작 표지 — 가운데 한 권을 살짝 띄운 진열 */
+.series .imgwrap.covers3{aspect-ratio:auto; overflow:visible; background:transparent; display:flex; align-items:center; justify-content:center; gap:clamp(.5rem,1.6vw,1rem)}
+.series .imgwrap.covers3::after{display:none}
+.series .imgwrap.covers3 img{width:31%; height:auto; object-fit:contain; filter:none; border-radius:5px; box-shadow:0 10px 26px rgba(20,22,28,.18); transition:transform .35s var(--ease)}
+.series .imgwrap.covers3:hover img{transform:none}
+.series .imgwrap.covers3 img:nth-child(2){transform:translateY(-16px)}
+.series .imgwrap.covers3 img:hover{transform:translateY(-8px)}
+.series .imgwrap.covers3 img:nth-child(2):hover{transform:translateY(-24px)}
 .books{display:flex; flex-direction:column; gap:.9rem; margin-top:1.5rem}
 .book{position:relative; background:var(--light); border-radius:6px; padding:1.15rem 1.35rem 1.15rem 1.55rem; box-shadow:0 1px 2px rgba(20,22,28,.04); transition:transform .3s var(--ease), box-shadow .3s var(--ease)}
 .book::before{content:""; position:absolute; left:0; top:.9rem; bottom:.9rem; width:2px; border-radius:2px; background:var(--rust); opacity:.28; transition:opacity .3s var(--ease), top .3s var(--ease), bottom .3s var(--ease)}
@@ -441,22 +483,24 @@ details[open] .faq-body p{transform:none}
 .closing{text-align:center}
 .closing h2{max-width:18ch; margin:0 auto 1.5rem; line-height:1.26; letter-spacing:-.045em; font-size:clamp(2.05rem,4.4vw,3.05rem)}
 /* 마무리 클라이맥스 문장: 강조구를 인용처럼 띄워 '기억에 남는 한 줄'로. 러스트소프트 밑선으로 밑줄이 아닌 받침을 둠 */
-.closing h2 .said{position:relative; white-space:nowrap; padding-bottom:.06em; font-size:1.16em; color:#fff; letter-spacing:-.03em; text-shadow:0 0 38px rgba(224,176,122,.22)}
-.closing h2 .said::after{content:""; position:absolute; left:.04em; right:.04em; bottom:-.04em; height:2px; border-radius:2px; background:linear-gradient(90deg,var(--rust),var(--rust-soft)); opacity:.85}
+/* 강조 절제(2026-07-09 디자인 검증 PL4): 크기 점프 축소·글로우 제거·그라디언트 밑선을 단색 러스트로 낮춰 '한 줄'만 담담히 받침 */
+.closing h2 .said{position:relative; white-space:nowrap; padding-bottom:.06em; font-size:1.04em; color:#fff; letter-spacing:-.03em}
+.closing h2 .said::after{content:""; position:absolute; left:.04em; right:.04em; bottom:-.04em; height:2px; border-radius:2px; background:var(--rust); opacity:.55}
 .dark.closing .sub{color:#e7e2da; margin-bottom:2.1rem; font-size:clamp(1.12rem,1.5vw,1.28rem); font-weight:300; line-height:1.6; max-width:34ch; margin-inline:auto; text-wrap:balance}
 /* 닫는 속삭임: 위에 짧은 중앙 헤어라인을 둬 CTA와 분리하고 '여운'으로 읽히게 함 */
-.microcta{font-size:.86rem; color:#9a948b; margin-top:1.7rem; padding-top:1.4rem; letter-spacing:.005em; position:relative; display:inline-block}
+/* 버튼 아래 독립 행으로 중앙 정렬(inline-block이면 CTA 옆 같은 라인박스에 붙어 중앙축이 깨졌다 — 2026-07-09 디자인 검증 #2) */
+.microcta{font-size:.86rem; color:#9a948b; padding-top:1.4rem; letter-spacing:.005em; position:relative; display:block; width:fit-content; margin:1.9rem auto 0}
 .microcta::before{content:""; position:absolute; top:0; left:50%; transform:translateX(-50%); width:2.2rem; height:2px; border-radius:2px; background:var(--rust); opacity:.6}
 
-/* 클로징(#15171A)→푸터(#0f1113) 사이 미세 색단차를 '의도된 경계'로 보이게 얇은 룰을 둠 */
-footer{background:#0f1113; color:#8a857c; padding-block:3.5rem 2.5rem; position:relative; z-index:2; border-top:1px solid rgba(255,255,255,.06)}
+/* 푸터를 쿨 블랙 대신 클로징(웜차콜)보다 한 단계 깊은 웜 블랙으로 통일(2026-07-09 디자인 검증 PL8) */
+footer{background:#171310; color:#8a857c; padding-block:3.5rem 2.5rem; position:relative; z-index:2; border-top:1px solid rgba(224,176,122,.08)}
 /* 브랜드(큰 800)와 링크(작은 .92rem)의 수직 중심을 맞춰 베이스라인 어긋남 해소 */
 .foot-top{display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1.5rem; margin-bottom:2.5rem}
 /* 브랜드 마크 위에 사이트 공통 2px 러스트 액센트틱(folio·kicker와 동일 모티프)을 둬 푸터까지 같은 인장으로 닫는다 */
 .foot-brand{position:relative; font-weight:800; font-size:1.3rem; letter-spacing:-.03em; color:#fff; padding-top:.85rem}.foot-brand .dot{color:var(--rust)}
 .foot-brand::before{content:""; position:absolute; top:0; left:0; width:1.9rem; height:2px; border-radius:2px; background:var(--rust)}
 .foot-links{display:flex; gap:1.6rem; flex-wrap:wrap}
-.foot-links a{color:#b4ada3; text-decoration:none; font-size:.92rem; transition:color .2s}.foot-links a:hover{color:var(--rust-soft)}
+.foot-links a{display:inline-flex; align-items:center; min-height:44px; color:#b4ada3; text-decoration:none; font-size:.92rem; transition:color .2s}.foot-links a:hover{color:var(--rust-soft)}
 /* 법적 고지 텍스트는 한 단계 밝혀 AA에 근접, 윗 구분선은 사이트 러스트 룰 색 철학에 맞춰 저채도 러스트로 통일 */
 .foot-legal{font-size:.8rem; color:#857f76; line-height:1.85; border-top:1px solid rgba(224,176,122,.14); padding-top:1.8rem; font-variant-numeric:tabular-nums}
 /* 법적 고지 위계: 상호·도메인 줄을 살짝 밝히고 트래킹을 줘 '발신처'로 먼저 읽히게, 나머지 행은 차분히 가라앉힘 */
@@ -498,33 +542,51 @@ footer{background:#0f1113; color:#8a857c; padding-block:3.5rem 2.5rem; position:
   <div class="wrap nav-in">
     <a href="#top" class="brand">마음기록소<span class="dot">.</span></a>
     <nav class="nav-links">
-      <a href="#diff">차별점</a>
-      <a href="#preview">결과물</a>
-      <a href="#tiers">검사·가격</a>
+      <a href="#diff">검사 소개</a>
+      <a href="guide/index.html">가이드</a>
       <a href="#author">저자</a>
-      <a href="#faq">FAQ</a>
       <a href="#apply" class="btn btn-primary">구매하기</a>
     </nav>
   </div>
 </header>
 
 <!-- HERO -->
-<section class="hero" id="top">
+<section class="hero hero--cream" id="top">
   <div class="hero-text">
-    <span class="kicker light anim" style="--d:0s">AI 시대 · 부모를 위한 진로·기질 검사</span>
+    <span class="kicker anim" style="--d:0s">AI 시대 · 부모를 위한 진로·기질·성격 검사</span>
     <h1 class="anim" style="--d:.07s"><span class="thin">지도가 사라진 시대,</span><br><span class="thin">아이에게 줄 건</span> <span style="white-space:nowrap"><span class="accent">나침반</span><span class="thin">입니다.</span></span></h1>
-    <p class="lead anim" style="--d:.14s"><span class="thin">의대·공무원이라는 ‘안전한 지도’가 흔들리는 시대, 성적표로는 안 보이던 우리 아이의 흥미·기질·강점을, 임상심리전문가가 검사로 읽어</span> <b><span style="white-space:nowrap">「우리아이 마음설명서」</span> 한 권</b><span class="thin">에 담아 드립니다. 받는 날부터, 아이를 대하는 말이 달라집니다.</span></p>
+    <p class="lead anim" style="--d:.14s"><span class="thin">의대·공무원이라는 ‘안전한 지도’가 흔들리는 시대, 성적표로는 안 보이던 우리 아이의 흥미·기질·성격을, 임상심리전문가의 임상 기준으로 읽어</span> <b><span style="white-space:nowrap">「우리아이 마음설명서」</span> 한 권</b><span class="thin">에 담아 드립니다. 받는 날부터, 아이를 대하는 말이 달라집니다.</span></p>
     <div class="hero-cta anim" style="--d:.21s">
       <a href="#apply" class="btn btn-primary">우리아이 마음설명서 시작하기 <span class="arr">→</span></a>
-      <a href="#preview" class="btn btn-outline-light">받게 되는 결과물 보기</a>
+      <a href="#preview" class="btn btn-ghost">받게 되는 결과물 보기</a>
     </div>
-    <p class="hero-note anim" style="--d:.28s"><b>초4~고등</b> 자녀 · 온라인 검사 · 임상심리전문가 직접 분석 · 맞춤 책 배송(약 2주)</p>
+    <p class="hero-note anim" style="--d:.28s"><b>초4~고등</b> 자녀 · 온라인 검사 · 임상심리전문가 설계·감수 · 맞춤 책 배송(약 2주)</p>
   </div>
   <div class="hero-media">
-    <video class="hero-vid" muted loop playsinline preload="metadata" poster="images/atmosphere.jpg" aria-hidden="true">
-      <source src="images/video/hero.mp4" type="video/mp4" />
-      <img src="images/atmosphere.jpg" alt="" />
-    </video>
+    <img src="images/web-book-styled.jpg" alt="린넨 위에 놓인 「우리아이 마음설명서」 양장책과 놋 나침반·만년필 연출 사진" />
+  </div>
+</section>
+
+<!-- 증명 밴드: 검사 결과 → 아이만의 책 (가치제안·가격 정당화) -->
+<section class="proof">
+  <div class="wrap proof-in">
+    <!-- 내지 스프레드(nano/gpt-image 2026-07-09): 표준화 검사 결과지 → 펼친 책 내지(챕터·본문·풀쿼트가 읽히는 실제 조판) before/after. 표지 반복 해소·내용 증명. 프롬프트: _작업/이미지/내지스프레드_프롬프트.md -->
+    <div class="proof-media reveal"><img src="images/web-book-spread.jpg" alt="딱딱한 심리검사 결과지가 화살표를 지나, 아이 이야기가 담긴 양장책의 펼친 내지로 바뀌는 비교 이미지" /></div>
+    <div class="proof-text reveal">
+      <span class="kicker">검사 결과 → 한 권의 책</span>
+      <h2><span class="thin">손에 쥔 건 딱딱한 검사지,</span><br>받는 건 <span class="accent">아이만의 책</span>입니다.</h2>
+      <p class="body-p" style="margin-top:1rem">MMPI·SCT 같은 표준화 검사 결과를, 임상심리전문가의 임상 기준에 따라 우리 아이의 언어로 다시 씁니다. 숫자와 그래프가 아니라, 오늘 저녁 바로 건넬 한 문장이 되어 도착합니다.</p>
+      <a href="#preview" class="btn btn-ghost" style="margin-top:.4rem">무엇을 받는지 자세히 <span class="arr">→</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- 저자 신뢰띠 -->
+<section class="credbar">
+  <div class="wrap">
+    <span class="cb-lead">이 검사는 <span class="cb-title">임상심리전문가</span> <span class="cb-name">안계훈</span>이 설계·감수합니다<span class="cb-lic"> · 한국심리학회 제1322호</span></span>
+    <span class="cb-cred">· 법원·경찰·교육청 위촉 아동·청소년 심리 전문가</span>
+    <a href="#author">저자 소개 <span class="arr">→</span></a>
   </div>
 </section>
 
@@ -540,7 +602,7 @@ footer{background:#0f1113; color:#8a857c; padding-block:3.5rem 2.5rem; position:
         <blockquote class="quote pullquote"><span class="accent">사랑이 식은 게 아니라,</span> 맞춤이 어긋난 겁니다.</blockquote>
         <p class="qsrc">마음설명서 · 기질편</p>
       </div>
-      <div class="imgwrap reveal"><img src="images/child.jpg" alt="책상에 앉아 공부하는 아이" /></div>
+      <div class="imgwrap reveal"><img src="images/web-landing-child.jpg" alt="책상에 홀로 앉아 있는 아이 수채화" /></div>
     </div>
   </div>
 </section>
@@ -549,14 +611,17 @@ footer{background:#0f1113; color:#8a857c; padding-block:3.5rem 2.5rem; position:
 <section class="dark" id="diff" style="padding:var(--sec-lg) 0 var(--sec)">
   <div class="wrap">
     <div class="folio reveal"><span class="f">F.02</span><span class="t">/ 차별점</span></div>
-    <div class="reveal" style="max-width:30ch; margin-bottom:clamp(2.5rem,5vw,3.4rem)">
-      <h2 style="color:#fff"><span class="thin" style="color:#cfc9bf">검사 결과지 <span class="nowrap">한 장이</span> 아니라,</span><br>우리 아이 <span class="accent">설명서 한 권</span>을.</h2>
-      <p class="body-p" style="margin-top:1.1rem; color:#c2bcb2; max-width:46ch">결과지 한 장으로 끝나기 쉬운 심리검사를, 임상심리전문가가 부모님의 언어로 한 번 더 깊게 풀어 드립니다.</p>
+    <!-- 헤더+인용을 2컬럼으로 짝지어 우측 데드존 제거(2026-07-09 디자인 검증 #7) — 모바일 1열 복귀 -->
+    <div class="diff-head reveal">
+      <div style="max-width:34ch">
+        <h2 style="color:#fff"><span class="thin" style="color:#cfc9bf">더 깊게, 서로 겹쳐,</span><br><span class="accent">부모까지</span> 읽습니다.</h2>
+        <p class="body-p" style="margin-top:1.1rem; color:#c2bcb2">백분위 숫자에서 멈추지 않고, 흥미·기질·성격에 부모의 양육태도까지 교차해 ‘우리 아이만의 조합’을 읽어냅니다.</p>
+      </div>
+      <blockquote style="max-width:36ch; margin:0; border-left:2px solid var(--rust); padding-left:1.4rem; font-family:var(--serif); font-weight:500; letter-spacing:-.01em; font-size:clamp(1.35rem,2.3vw,1.85rem); line-height:1.5; color:#fff; text-wrap:balance">
+        <span style="color:var(--rust-soft)">“왜 우리 아이는 이럴까?”</span>가 <span style="color:var(--rust-soft)">“아, 그래서 그랬구나”</span>로 바뀌는 순간, 진짜 양육이 시작됩니다.
+        <cite style="display:flex; align-items:center; gap:.7rem; margin-top:1.1rem; font-style:normal; font-weight:600; font-size:.76rem; letter-spacing:.06em; color:var(--rust-soft)"><span style="width:1.6rem; height:1.5px; background:var(--rust-soft); border-radius:2px; opacity:.8; flex:none"></span>마음설명서 · 기질편</cite>
+      </blockquote>
     </div>
-    <blockquote class="reveal" style="max-width:32ch; margin-bottom:clamp(2.6rem,5vw,3.6rem); border-left:2px solid var(--rust); padding-left:1.4rem; font-weight:300; letter-spacing:-.03em; font-size:clamp(1.4rem,2.5vw,1.95rem); line-height:1.42; color:#fff; text-wrap:balance">
-      <span style="color:var(--rust-soft)">“왜 우리 아이는 이럴까?”</span>가 <span style="color:var(--rust-soft)">“아, 그래서 그랬구나”</span>로 바뀌는 순간, 진짜 양육이 시작됩니다.
-      <cite style="display:flex; align-items:center; gap:.7rem; margin-top:1.1rem; font-style:normal; font-weight:600; font-size:.76rem; letter-spacing:.06em; color:var(--rust-soft)"><span style="width:1.6rem; height:1.5px; background:var(--rust-soft); border-radius:2px; opacity:.8; flex:none"></span>마음설명서 · 기질편</cite>
-    </blockquote>
     <div class="diff-grid reveal-group">
       <div class="diff-item" style="--i:0"><div class="idx">01</div><h3>한 번 더 깊게 푼다</h3><p>백분위 숫자가 아니라 “그래서 우리 아이는 어떤 아이이고 어떻게 도와야 하는지”까지. 결과지를 임상 해석으로 다시 풀어 책으로 만듭니다.</p></div>
       <div class="diff-item" style="--i:1"><div class="idx">02</div><h3>흥미 × 기질 × 양육 교차</h3><p>흥미(Holland)·기질·성격(TCI)·부모 양육태도(<span class="nowrap">PAT-2</span>)를 따로 보지 않고 교차합니다. 단일 검사로는 못 하는 ‘우리 아이만의 조합’이 핵심입니다.</p></div>
@@ -566,7 +631,7 @@ footer{background:#0f1113; color:#8a857c; padding-block:3.5rem 2.5rem; position:
     <div class="tests reveal">
       <span class="kicker light">표준화 · 정식 채점 심리검사</span>
       <h3><span class="thin">무료 성격테스트가 아니라,</span><br>병원·학교에서 쓰는 검사로 읽습니다.</h3>
-      <p class="lead2">자동 채점이 아니라 임상심리전문가가 직접 채점·해석합니다.</p>
+      <p class="lead2">자동 채점이 아니라 임상심리전문가의 기준으로 채점·해석하는 정식 심리검사입니다.</p>
       <div class="bento reveal-group">
         <div class="tile feat" style="--i:0">
           <div class="abbr">TCI</div>
@@ -634,10 +699,7 @@ footer{background:#0f1113; color:#8a857c; padding-block:3.5rem 2.5rem; position:
 <!-- 인용 밴드 -->
 <section class="quoteband">
   <div class="bg">
-    <video class="band-vid" muted loop playsinline preload="metadata" poster="images/reading.jpg" aria-hidden="true">
-      <source src="images/video/band.mp4" type="video/mp4" />
-      <img src="images/reading.jpg" alt="" />
-    </video>
+    <img src="images/web-landing-band.jpg" alt="" />
   </div>
   <div class="wrap reveal">
     <blockquote>좋아하지 않는 일은 AI가 더 잘하고 더 싸게 해 버립니다. <span class="accent" style="color:var(--rust-soft)">좋아하는 일만이</span> 아이를 끝까지 데려갑니다.</blockquote>
@@ -650,12 +712,7 @@ footer{background:#0f1113; color:#8a857c; padding-block:3.5rem 2.5rem; position:
   <div class="wrap">
     <div class="folio reveal"><span class="f">F.04</span><span class="t">/ 받게 되는 것</span></div>
     <div class="preview">
-      <div class="book3d reveal" id="book3d">
-        <div class="cover">
-          <div><div class="sp"></div><small style="display:block;margin-top:.9rem">마음기록소</small></div>
-          <div><h4><span class="rname">우리아이</span><br>마음설명서</h4><small style="display:block;margin-top:.9rem">임상심리전문가 분석 · 맞춤 제작</small></div>
-        </div>
-      </div>
+      <div class="bookshot reveal"><img src="images/web-book-3d.jpg" alt="아이 이름이 박힌 「우리아이 마음설명서」 실물 양장 하드커버 입체 사진" /></div>
       <div class="reveal">
         <h2><span class="thin">검사 2주 뒤,</span><br>아이 이름이 박힌 한 권이 도착합니다.</h2>
         <p class="body-p" style="margin-top:1rem">화면 속 점수표가 아니라, 펼쳐 읽는 실물 책입니다. 우리 아이의 기질·흥미·양육 조합을 풀어낸, 세상에 한 권뿐인 설명서.</p>
@@ -709,12 +766,12 @@ footer{background:#0f1113; color:#8a857c; padding-block:3.5rem 2.5rem; position:
       <div class="imgwrap"><img src="images/desk.jpg" alt="" /></div>
     </div>
     <div class="steps reveal-group">
-      <div class="step" style="--i:0"><div class="idx">01</div><h3>온라인 검사</h3><p>아이·부모가 집에서 응답합니다. 임상심리전문가가 직접 검토합니다. (자동 검사 아님).</p></div>
-      <div class="step" style="--i:1"><div class="idx">02</div><h3>전문가 분석</h3><p>임상심리전문가가 결과를 교차 분석해 우리 아이만의 해석을 정리합니다.</p></div>
+      <div class="step" style="--i:0"><div class="idx">01</div><h3>온라인 검사</h3><p>아이·부모가 집에서 응답합니다. 임상심리전문가의 기준으로 검토합니다. (자동 검사 아님).</p></div>
+      <div class="step" style="--i:1"><div class="idx">02</div><h3>전문가 분석</h3><p>임상심리전문가가 설계·감수한 기준으로 결과를 교차 분석해, 우리 아이만의 해석으로 정리합니다.</p></div>
       <div class="step" style="--i:2"><div class="idx">03</div><h3>맞춤 책 제작</h3><p>분석을 한 권의 맞춤 책으로 제작합니다(약 1주).</p></div>
       <div class="step" style="--i:3"><div class="idx">04</div><h3>배송</h3><p>검사부터 배송까지 약 2주. 실물 책으로 받아보세요.</p></div>
     </div>
-    <p class="sm reveal proc-note" style="margin-top:1.8rem"><b style="color:var(--rust); font-weight:700">베이직</b>만으로도 부모님이 스스로 읽고 적용하도록 설계했습니다. 줌으로 전문가에게 직접 묻고 싶을 때 VIP를 더하세요.</p>
+    <p class="sm reveal proc-note" style="margin-top:1.8rem"><b style="color:var(--ink); font-weight:700">베이직</b>만으로도 부모님이 스스로 읽고 적용하도록 설계했습니다. 줌으로 전문가에게 직접 묻고 싶을 때 VIP를 더하세요.</p>
   </div>
 </section>
 
@@ -723,11 +780,11 @@ footer{background:#0f1113; color:#8a857c; padding-block:3.5rem 2.5rem; position:
   <div class="wrap">
     <div class="folio reveal"><span class="f">F.06</span><span class="t">/ 검사 구성 · 가격</span></div>
     <div class="reveal" style="max-width:40ch"><h2><span class="thin">우리 집에 맞는</span><br>한 가지를 고르세요.</h2>
-      <p class="anchor-copy">심리검사 한 가지만 사설로 받아도 보통 10만~20만 원. <b>마음기록소는 아이의 흥미·기질·성격뿐 아니라 양육자의 기질·성격·양육태도까지 교차 분석해 ‘세상에 한 권뿐인 책’까지 드리고 19만 원부터</b>입니다.</p>
+      <p class="anchor-copy">심리검사 한 가지만 사설로 받아도 보통 10만~20만 원. <b>마음기록소는 아이와 양육자를 함께 교차 분석해, ‘세상에 한 권뿐인 책’까지 19만 원부터 드립니다.</b></p>
       <div class="match">
-        <div class="m"><b>베이직</b> · 검사 결과를 책으로 차분히 읽고 적용하실 분 (대부분 여기서 시작합니다)</div>
-        <div class="m"><b>프리미엄</b> · 양육자 두 분의 성격·마음까지 함께 깊이 보고 싶으실 분</div>
-        <div class="m"><b>VIP</b> · 아이 지능까지 정밀하게 보고, 전문가 해설로 직접 묻고 싶으실 분</div>
+        <div class="m"><b>베이직</b><span>검사 결과를 책으로 차분히 읽고 적용</span></div>
+        <div class="m"><b>프리미엄</b><span>양육자 두 분의 성격·마음까지 함께</span></div>
+        <div class="m"><b>VIP</b><span>아이 지능검사 + 전문가 1:1 해설</span></div>
       </div>
     </div>
     <div class="tiers reveal-group">
@@ -754,25 +811,17 @@ footer{background:#0f1113; color:#8a857c; padding-block:3.5rem 2.5rem; position:
       </div>
     </div>
 
-    <!-- 보장 -->
+    <!-- 보장 + 런칭 혜택 (하나의 다크 박스로 통합) -->
     <div class="guarantee reveal">
-      <div class="seal">검사 전<br>전액환불</div>
+      <div class="seal">검사 전 전액환불</div>
       <div>
         <h3>구매하셔도, 검사 시작 전이라면 100% 환불</h3>
         <p>구매 후라도 검사를 시작하기 전이라면 사유 불문 전액 환불해 드립니다. 그러니 부담 없이 시작하세요. 검사가 시작되면 전문가 분석·맞춤 제작에 들어가므로 그 이후에는 환불이 어렵습니다.</p>
+        <p class="extra"><b>2026년 첫 100가정 한정</b>, 후기 작성을 조건으로 ‘부모 기질 미니 리포트’를 무료로 더해 드립니다(선착순).</p>
       </div>
     </div>
 
-    <!-- 런칭 혜택 -->
-    <p class="launch reveal"><b>2026년 첫 100가정 한정</b>, 후기 작성을 조건으로 ‘부모 기질 미니 리포트’를 무료로 더해 드립니다(선착순).</p>
-
     <p class="tier-note reveal">한부모 가정은 ‘한부모 옵션’으로 부모 검사·해설을 1인 기준으로 조정해 드립니다. 가격은 런칭 기념가이며 조기 신청분 한정입니다.</p>
-    <div class="trust reveal">
-      <div class="b">검사 시작 전 전액 환불</div>
-      <div class="b">임상심리전문가 직접 분석</div>
-      <div class="b">표준화 정식 심리검사</div>
-      <div class="b">검사~배송 약 2주</div>
-    </div>
   </div>
 </section>
 
@@ -786,11 +835,11 @@ footer{background:#0f1113; color:#8a857c; padding-block:3.5rem 2.5rem; position:
         <div class="author-en">An Kye-hoon</div>
         <div class="author-field">전문 분야 · 심리평가</div>
         <div class="creds">
-          <span>임상심리전문가 · 한국임상심리학회 전문회원 (1322호)</span>
-          <span>아동·청소년 심리평가 경력 15년</span>
-          <span>「마음설명서」 진로편·기질편 저자</span>
-          <span>아주대학교 심리학과 일반대학원 졸업 (석사)</span>
-          <span>아주대학교 심리학과 졸업 (학사)</span>
+          <span>임상심리전문가 (한국심리학회 제1322호)</span>
+          <span>아주대학교 대학원 심리학 석사 (아동·청소년 임상심리) · 심리학과 학사</span>
+          <span>「임상심리전문가의 마음 설명서」 지능·기질·진로 3부작 저자</span>
+          <span>경찰청 진술분석가·범죄심리사 슈퍼바이저 · 아동·청소년 임상 슈퍼비전</span>
+          <span>법원·경찰·교육청 위촉 아동·청소년 심리 전문가</span>
         </div>
       </div>
       <div class="author-photo reveal"><img src="images/저자.png" alt="마음기록소 임상심리전문가 안계훈" /></div>
@@ -806,7 +855,11 @@ footer{background:#0f1113; color:#8a857c; padding-block:3.5rem 2.5rem; position:
   <div class="wrap">
     <div class="folio reveal"><span class="f">F.08</span><span class="t">/ 검사의 깊이</span></div>
     <div class="series">
-      <div class="imgwrap reveal"><img src="images/bookshelf.jpg" alt="책장에 꽂힌 책들" /></div>
+      <div class="imgwrap covers3 reveal">
+        <img src="images/cover-jinro.png" alt="「AI 시대, 진로 방향 찾기」 진로 편 표지" />
+        <img src="images/cover-gijil.png" alt="「바꿀 수 없는, 기질 이해하기」 기질 편 표지" />
+        <img src="images/cover-jineung.png" alt="「숫자 너머, 지능 다시 읽기」 지능 편 표지" />
+      </div>
       <div class="reveal">
         <h2><span class="thin">아이를 읽는 세 갈래를,</span><br><span class="accent">책으로 써 온 사람</span>이 설계했습니다.</h2>
         <p class="body-p" style="margin-top:.8rem">마음기록소의 검사와 해석은 임상심리전문가 안계훈이 직접 설계했습니다. 아이를 읽는 진로·기질·지능 세 결을, 같은 주제로 한 권씩 풀어 온 사람입니다.</p>
@@ -825,8 +878,8 @@ footer{background:#0f1113; color:#8a857c; padding-block:3.5rem 2.5rem; position:
   <div class="wrap">
     <div class="folio reveal"><span class="f">F.09</span><span class="t">/ 자주 묻는 질문</span></div>
     <div class="faq reveal">
-      <details><summary>베이직만 사면 해석을 제가 못 하는 거 아닌가요?</summary><div class="faq-body"><div><p>아닙니다. 베이직 책은 전문가가 부모님이 그대로 읽고 행동할 수 있는 언어로 씁니다. 줌 해설(VIP)은 ‘더 깊은 대화’를 원하실 때의 선택이지 필수가 아닙니다.</p></div></div></details>
-      <details><summary>이게 인터넷 무료 검사랑 뭐가 다른가요?</summary><div class="faq-body"><div><p>WISC-V·MMPI-2·TCI·Holland·PAT-2·SCT는 병원·학교·상담센터에서 실제로 쓰는 표준화·정식 채점 심리검사입니다. 자동 채점이 아니라 임상심리전문가가 직접 채점·해석합니다.</p></div></div></details>
+      <details><summary>베이직만 사면 해석을 제가 못 하는 거 아닌가요?</summary><div class="faq-body"><div><p>아닙니다. 베이직 책은 전문가가 감수한 해석을 부모님이 그대로 읽고 행동할 수 있는 언어로 담습니다. 줌 해설(VIP)은 ‘더 깊은 대화’를 원하실 때의 선택이지 필수가 아닙니다.</p></div></div></details>
+      <details><summary>이게 인터넷 무료 검사랑 뭐가 다른가요?</summary><div class="faq-body"><div><p>WISC-V·MMPI-2·TCI·Holland·PAT-2·SCT는 병원·학교·상담센터에서 실제로 쓰는 표준화·정식 채점 심리검사입니다. 자동 채점이 아니라 임상심리전문가의 기준으로 채점·해석하는 정식 심리검사입니다.</p></div></div></details>
       <details><summary>구매 후 취소·환불할 수 있나요?</summary><div class="faq-body"><div><p>네. 검사를 시작하기 전이라면 사유 불문 전액 환불해 드립니다. 검사가 시작되면 전문가 분석·맞춤 제작에 들어가므로 그 이후에는 환불이 어렵습니다.</p></div></div></details>
       <details><summary>대상 연령이 어떻게 되나요?</summary><div class="faq-body"><div><p>초등 4학년부터 고등학생까지를 기준으로 합니다. 미취학·초등 저학년도 일부 검사가 가능하니 문의해 주세요.</p></div></div></details>
       <details><summary>검사부터 책 받기까지 얼마나 걸리나요?</summary><div class="faq-body"><div><p>약 2주입니다. 검사·분석 후 맞춤 책을 제작하는 데 약 1주가 포함됩니다.</p></div></div></details>
@@ -905,12 +958,6 @@ footer{background:#0f1113; color:#8a857c; padding-block:3.5rem 2.5rem; position:
       es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} });
     }, {threshold:0.12, rootMargin:'0px 0px -7% 0px'});
     document.querySelectorAll('.reveal, .reveal-group').forEach(function(el){ io.observe(el); });
-    var b = document.getElementById('book3d');
-    if(b){ var cover = b.querySelector('.cover');
-      b.addEventListener('mousemove', function(ev){ var r=b.getBoundingClientRect(); var x=(ev.clientX-r.left)/r.width-.5, y=(ev.clientY-r.top)/r.height-.5;
-        cover.style.setProperty('--ry',(x*10).toFixed(2)+'deg'); cover.style.setProperty('--rx',(-y*8).toFixed(2)+'deg'); });
-      b.addEventListener('mouseleave', function(){ cover.style.setProperty('--ry','0deg'); cover.style.setProperty('--rx','0deg'); });
-    }
   }
 })();
 </script>
