@@ -4,6 +4,21 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>사전 면담지 · 마음기록소</title>
+<link rel="canonical" href="https://doencourage.com/form/" />
+<meta name="robots" content="noindex, follow" />
+<meta name="description" content="검사 점수만으로는 알 수 없는 이야기를 여쭙습니다. ★ 13문항만 채우면 제출됩니다." />
+<!-- 카카오톡·SNS 링크 미리보기 카드 (noindex와 무관하게 동작) -->
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="마음기록소" />
+<meta property="og:locale" content="ko_KR" />
+<meta property="og:url" content="https://doencourage.com/form/" />
+<meta property="og:title" content="사전 면담지 · 마음기록소" />
+<meta property="og:description" content="검사 점수만으로는 알 수 없는 이야기를 여쭙습니다. ★ 13문항만 채우면 제출됩니다." />
+<meta property="og:image" content="https://doencourage.com/images/og-form.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content="사전 면담지 · 마음기록소" />
+<meta name="twitter:card" content="summary_large_image" />
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css">
 <style>
 :root{
@@ -1248,6 +1263,13 @@ function init(){
   document.querySelectorAll('.entry-card[data-respondent]').forEach(card => {
     card.addEventListener('click', () => startForm(card.getAttribute('data-respondent')));
   });
+  /* 랜딩·구매 안내 딥링크: /form/?who=self 로 들어오면 성인 입장 자동 선택 */
+  try{
+    if(new URLSearchParams(location.search).get('who') === 'self'){
+      const card = document.querySelector('.entry-card[data-respondent="self_adult"]');
+      if(card){ card.click(); }
+    }
+  }catch(e){}
 }
 
 if(document.readyState === 'loading'){
