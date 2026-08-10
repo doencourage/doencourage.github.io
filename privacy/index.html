@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>개인정보처리방침 | 마음기록소</title>
+<meta name="description" content="마음기록소 개인정보처리방침 — 아동 심리검사·맞춤 책 제작 과정에서 수집하는 개인정보(민감정보 포함)의 처리 기준을 안내합니다." />
+<meta name="robots" content="noindex, follow" />
+<link rel="canonical" href="https://doencourage.com/privacy/" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" rel="stylesheet" />
+<style>
+:root{
+  --rust:#BC6C25; --rust-deep:#A85B1E; --rust-soft:#E0B07A;
+  --cream:#FDFCFB; --sand:#EFE7DB; --charcoal:#15171A; --ink:#2D2D2D; --muted:#8C8C8C; --light:#FFFFFF;
+  --sans:'Pretendard', system-ui, -apple-system, sans-serif;
+  --maxw:820px; --pad-x:clamp(1.25rem, 5vw, 3rem);
+  --ease:cubic-bezier(.16,1,.3,1); --rule:rgba(188,108,37,.22);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans); color:var(--ink); background:var(--cream); line-height:1.75;
+  letter-spacing:-.011em; word-break:keep-all; -webkit-font-smoothing:antialiased}
+.wrap{max-width:var(--maxw); margin-inline:auto; padding-inline:var(--pad-x)}
+a{color:var(--rust); text-decoration:none} a:hover{text-decoration:underline}
+
+header.nav{position:sticky; top:0; z-index:50; backdrop-filter:blur(10px); background:rgba(253,252,251,.85); border-bottom:1px solid rgba(45,45,45,.07)}
+.nav-in{display:flex; align-items:center; justify-content:space-between; height:62px; max-width:1120px; margin-inline:auto; padding-inline:var(--pad-x)}
+.brand{font-weight:800; font-size:1.2rem; letter-spacing:-.03em; color:var(--ink)}
+.brand .dot{color:var(--rust)}
+.nav-links{display:flex; gap:1.4rem; align-items:center}
+.nav-links a{color:var(--ink); font-size:.92rem; font-weight:500; opacity:.82}
+.nav-links a:hover{opacity:1; color:var(--rust); text-decoration:none}
+.nav-links a.buy{background:var(--rust); color:#fff; font-weight:700; padding:.52em 1.15em; border-radius:999px; opacity:1}
+.nav-links a.buy:hover{background:var(--rust-deep)}
+@media(max-width:620px){ .nav-links{gap:.9rem} .nav-links a:not(.buy){display:none} }
+
+.doc-hero{background:var(--sand); padding-block:clamp(2rem,5vw,3rem)}
+.crumb{font-size:.8rem; color:var(--muted); margin-bottom:1rem}
+.crumb a{color:var(--muted)} .crumb .sep{margin:0 .4rem; opacity:.5}
+.doc-hero h1{font-weight:800; font-size:clamp(1.7rem,4vw,2.4rem); letter-spacing:-.04em; line-height:1.15}
+.doc-hero .meta{margin-top:.9rem; font-size:.9rem; color:#6f6b64}
+
+.legal{padding-block:clamp(2rem,4vw,3rem) clamp(3rem,6vw,4.5rem)}
+.legal .intro{font-size:1rem; color:#57534c; background:#fff; border-left:3px solid var(--rust-soft); border-radius:0 10px 10px 0; padding:1.1rem 1.3rem; margin-bottom:2.2rem}
+.legal h2{font-weight:800; font-size:1.18rem; letter-spacing:-.03em; margin:2.4rem 0 .8rem; padding-top:1.6rem; border-top:1px solid var(--rule)}
+.legal h2:first-of-type{border-top:none; padding-top:0; margin-top:0}
+.legal h3{font-weight:700; font-size:1.02rem; margin:1.4rem 0 .5rem; color:#3a362f}
+.legal p{margin-bottom:.85rem; color:#413d37}
+.legal ul,.legal ol{margin:.4rem 0 1rem 1.2rem; color:#413d37}
+.legal li{margin-bottom:.45rem}
+.legal .tbl{width:100%; border-collapse:collapse; margin:.6rem 0 1.2rem; font-size:.92rem}
+.legal .tbl th,.legal .tbl td{border:1px solid rgba(45,45,45,.14); padding:.6rem .7rem; text-align:left; vertical-align:top}
+.legal .tbl th{background:var(--sand); font-weight:700; color:#3a362f}
+.legal .fill{background:#FBEFDD; color:var(--rust-deep); font-weight:700; padding:0 .25em; border-radius:3px}
+.legal .note{font-size:.9rem; color:#6f6b64}
+.legal strong{font-weight:700; color:#2b2823}
+.back{display:inline-block; margin-top:2rem; font-weight:600}
+
+footer{background:#0f1113; color:#8a857c; padding-block:2.4rem 1.8rem; margin-top:2rem}
+.foot-brand{font-weight:800; font-size:1.15rem; color:#fff}.foot-brand .dot{color:var(--rust)}
+.foot-links{margin-top:.9rem; display:flex; gap:1.1rem; flex-wrap:wrap; font-size:.85rem}
+.foot-links a{color:#b4ada3} .foot-links a:hover{color:var(--rust-soft); text-decoration:none}
+.foot-legal{font-size:.78rem; color:#857f76; line-height:1.85; margin-top:1rem; border-top:1px solid rgba(224,176,122,.14); padding-top:1.1rem}
+.foot-legal .org{color:#b4ada3; font-weight:600}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-in">
+    <a href="../index.html" class="brand">마음기록소<span class="dot">.</span></a>
+    <nav class="nav-links">
+      <a href="../index.html">검사 소개</a>
+      <a href="../guide/index.html">가이드</a>
+      <a href="../terms/index.html">이용약관</a>
+      <a href="../index.html#apply" class="buy">구매하기</a>
+    </nav>
+  </div>
+</header>
+
+<section class="doc-hero">
+  <div class="wrap">
+    <nav class="crumb"><a href="../index.html">홈</a><span class="sep">›</span>개인정보처리방침</nav>
+    <h1>개인정보처리방침</h1>
+    <div class="meta">시행일: 2026년 7월 15일 · 최종 개정: 2026년 7월 15일</div>
+  </div>
+</section>
+
+<article class="legal">
+  <div class="wrap">
+    <p class="intro">마음기록소(이하 ‘회사’)는 아동·청소년 심리검사와 맞춤 책 제작 서비스를 제공하는 과정에서 이용자와 그 자녀의 개인정보를 수집·이용합니다. 회사는 「개인정보 보호법」 등 관계 법령을 준수하며, 특히 <strong>건강·심리검사 결과 등 민감정보</strong>를 안전하게 보호하기 위해 본 방침을 수립·공개합니다. 심리검사 결과는 회사가 취급하는 가장 민감한 정보이므로, 그 처리 기준을 아래에 구체적으로 밝힙니다.</p>
+
+    <h2>제1조 (수집하는 개인정보 항목)</h2>
+    <p>회사는 서비스 제공을 위해 다음의 개인정보를 수집합니다. 자녀에 관한 정보는 법정대리인(보호자)이 대신 제공합니다.</p>
+    <h3>1. 사전 면담 신청서(온라인 폼) 작성 시</h3>
+    <ul>
+      <li><strong>필수</strong> — 신청자(보호자) 이름·연락처(휴대전화)·이메일, 자녀의 이름·성별·생년(학년), 가족 구성, 자녀의 발달·기질·양육·학습·진로에 관한 서술 응답</li>
+      <li><strong>민감정보(별도 동의)</strong> — 자녀 및 보호자의 건강·정서 상태, 발달·의료·상담 이력, 장애 관련 정보, 심리·성격에 관한 서술 등 면담 신청서에 기재된 건강·심리 관련 정보</li>
+    </ul>
+    <h3>2. 심리검사 실시 및 맞춤 책 제작 과정에서</h3>
+    <ul>
+      <li>심리검사 응답 및 <strong>검사 결과(민감정보)</strong> — TCI·Holland·PAT-2·MMPI-2·SCT·WISC-V 등 실시한 검사의 원자료 및 채점·해석 결과</li>
+      <li>맞춤 책 배송을 위한 수령인 이름·주소·연락처</li>
+    </ul>
+    <h3>3. 자동 수집 항목</h3>
+    <ul>
+      <li>서비스 이용 과정에서 접속 로그, 브라우저 종류 등 최소한의 접속 정보가 호스팅·분석 목적으로 자동 생성될 수 있습니다. 결제는 네이버 스마트스토어에서 이루어지며, 회사는 카드번호 등 <strong>결제 정보를 수집·보관하지 않습니다.</strong></li>
+    </ul>
+
+    <h2>제2조 (개인정보의 수집·이용 목적)</h2>
+    <ul>
+      <li>심리검사 신청·실시·채점·해석 및 결과 상담(줌 해설 등)</li>
+      <li>검사 결과를 바탕으로 한 맞춤 책의 설계·제작·배송</li>
+      <li>본인 및 보호자 확인, 문의 응대, 환불·민원 처리</li>
+      <li>서비스 관련 공지 및 이용 안내</li>
+    </ul>
+
+    <h2>제3조 (민감정보의 처리)</h2>
+    <p>회사가 취급하는 <strong>건강 정보, 심리검사 결과, 발달·상담 이력 등은 「개인정보 보호법」 제23조에 따른 민감정보</strong>입니다. 회사는 정보주체(및 자녀의 법정대리인)로부터 다른 개인정보와 구분하여 <strong>별도의 동의</strong>를 받은 경우에 한하여 이를 수집·이용하며, 검사 채점·해석 및 맞춤 책 제작이라는 서비스 본연의 목적 외로는 이용하지 않습니다. 민감정보는 접근 권한을 최소화하여 관리합니다.</p>
+
+    <h2>제4조 (만 14세 미만 아동의 개인정보)</h2>
+    <p>본 서비스의 검사 대상은 대부분 미성년 아동·청소년입니다. 회사는 자녀에 관한 개인정보(민감정보 포함)를 <strong>법정대리인(보호자)의 동의</strong>를 받아 보호자로부터 수집하며, 법정대리인은 자녀의 개인정보에 대한 열람·정정·삭제·처리정지를 요구할 수 있습니다.</p>
+
+    <h2>제5조 (개인정보의 보유 및 이용 기간)</h2>
+    <p>회사는 수집 목적이 달성되면 지체 없이 개인정보를 파기하는 것을 원칙으로 합니다. 다만 다음의 경우에는 명시한 기간 동안 보관합니다.</p>
+    <table class="tbl">
+      <tr><th>항목</th><th>보유 기간</th><th>근거</th></tr>
+      <tr><td>사전 면담 신청서·검사 결과 등 서비스 이행 자료</td><td>서비스 완료(책 전달) 후 1년, 이후 파기</td><td>서비스 이행·사후 문의 대응</td></tr>
+      <tr><td>계약·청약철회 등에 관한 기록</td><td>5년</td><td>전자상거래법</td></tr>
+      <tr><td>소비자 불만·분쟁 처리에 관한 기록</td><td>3년</td><td>전자상거래법</td></tr>
+    </table>
+    <p class="note">※ 결제 관련 기록은 네이버 스마트스토어(네이버파이낸셜 등)의 방침에 따라 보관됩니다.</p>
+
+    <h2>제6조 (개인정보의 제3자 제공)</h2>
+    <p>회사는 이용자의 개인정보를 본 방침에 명시한 목적 범위를 넘어 제3자에게 제공하지 않습니다. 다만 이용자가 사전에 동의한 경우 또는 법령에 특별한 규정이 있는 경우는 예외로 합니다.</p>
+
+    <h2>제7조 (개인정보 처리의 위탁)</h2>
+    <p>회사는 원활한 서비스 제공을 위해 아래와 같이 개인정보 처리를 위탁하며, 위탁계약 시 개인정보가 안전하게 관리되도록 필요한 사항을 규정합니다.</p>
+    <table class="tbl">
+      <tr><th>수탁자</th><th>위탁 업무</th></tr>
+      <tr><td>네이버(주)·네이버파이낸셜(주)</td><td>스마트스토어를 통한 주문·결제 처리</td></tr>
+      <tr><td>Google LLC</td><td>온라인 면담 신청서 수집·저장(설문/스프레드시트)</td></tr>
+      <tr><td>Cloudflare, Inc. / GitHub, Inc.</td><td>웹사이트 호스팅·배포</td></tr>
+      <tr><td>부크크(주)</td><td>맞춤 책 인쇄·제작</td></tr>
+      <tr><td>우정사업본부(우체국택배)</td><td>맞춤 책 배송</td></tr>
+    </table>
+    <h3>국외 이전에 관한 사항</h3>
+    <p>위 수탁자 중 Google LLC, Cloudflare, Inc., GitHub, Inc.는 국외에 서버를 둘 수 있어, 신청서 데이터 저장 및 웹사이트 호스팅 과정에서 개인정보가 국외로 이전·보관될 수 있습니다. 이전되는 항목·목적·보유기간은 본 방침에 기재된 바와 같으며, 이용자는 신청 시 이에 관한 동의를 거부할 수 있으나 이 경우 서비스 이용이 제한될 수 있습니다.</p>
+
+    <h2>제8조 (정보주체와 법정대리인의 권리·행사 방법)</h2>
+    <p>이용자(및 자녀의 법정대리인)는 언제든지 자신 및 자녀의 개인정보에 대한 <strong>열람·정정·삭제·처리정지</strong>를 요구할 수 있습니다. 아래 개인정보 보호책임자에게 서면·이메일로 요청하시면 지체 없이 조치합니다.</p>
+
+    <h2>제9조 (개인정보의 파기)</h2>
+    <p>보유 기간이 지나거나 처리 목적이 달성된 개인정보는 지체 없이 파기합니다. 전자적 파일은 복구할 수 없는 방법으로 삭제하고, 출력물은 분쇄 또는 소각합니다.</p>
+
+    <h2>제10조 (개인정보의 안전성 확보 조치)</h2>
+    <ul>
+      <li>민감정보 등에 대한 접근 권한의 최소화 및 관리</li>
+      <li>개인정보가 저장된 시스템에 대한 접근 통제 및 비밀번호 관리</li>
+      <li>개인정보 취급 인원의 최소화 및 보안 준수</li>
+    </ul>
+
+    <h2>제11조 (쿠키 등 자동 수집 장치의 운영)</h2>
+    <p>웹사이트는 서비스 제공에 필요한 최소한의 범위에서 쿠키를 사용할 수 있으며, 이용자는 브라우저 설정을 통해 쿠키 저장을 거부할 수 있습니다.</p>
+
+    <h2>제12조 (개인정보 보호책임자)</h2>
+    <p>이용자는 개인정보 보호 관련 문의·불만·피해구제를 아래 책임자에게 요청할 수 있습니다.</p>
+    <ul>
+      <li>개인정보 보호책임자: 안계훈 (임상심리전문가, 한국심리학회 제1322호)</li>
+      <li>이메일: do.encourage.go@gmail.com</li>
+      <li>연락처: 010-9085-3510</li>
+    </ul>
+    <p class="note">기타 개인정보 침해에 대한 신고·상담은 개인정보분쟁조정위원회(1833-6972), 개인정보침해신고센터(118), 대검찰청(1301), 경찰청(182)에 문의하실 수 있습니다.</p>
+
+    <h2>제13조 (방침의 변경)</h2>
+    <p>본 방침은 법령·서비스의 변경에 따라 개정될 수 있으며, 개정 시 웹사이트를 통해 공지합니다.</p>
+    <p class="note">공고일자: 2026년 7월 15일 · 시행일자: 2026년 7월 15일</p>
+
+    <a href="../index.html" class="back">← 마음기록소 홈으로</a>
+  </div>
+</article>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-brand">마음기록소<span class="dot">.</span></div>
+    <div class="foot-links">
+      <a href="../index.html">검사 소개</a>
+      <a href="../guide/index.html">가이드</a>
+      <a href="../terms/index.html">이용약관</a>
+      <a href="index.html">개인정보처리방침</a>
+    </div>
+    <div class="foot-legal">
+      <span class="org">마음기록소 · doencourage.com</span> · 임상심리전문가 안계훈<br>
+      © 2026 마음기록소. All rights reserved.
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

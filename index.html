@@ -4,7 +4,20 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>마음기록소 · 우리아이 마음설명서 · 진로·기질 맞춤 검사</title>
-<meta name="description" content="AI 시대, 부모를 위한 진로·기질 맞춤 검사. 임상심리전문가의 설계·감수로 검사 결과를 ‘우리아이 마음설명서’ 한 권에 담아 드립니다. 초4~고등 대상." />
+<meta name="description" content="AI 시대, 부모를 위한 진로·기질 맞춤 검사. 임상심리전문가의 감수로 검사 결과를 ‘우리아이 마음설명서’ 한 권에 담아 드립니다. 초4~고등 대상." />
+<link rel="canonical" href="https://doencourage.com/" />
+
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="마음기록소" />
+<meta property="og:title" content="마음기록소 · 우리아이 마음설명서 · 진로·기질 맞춤 검사" />
+<meta property="og:description" content="임상심리전문가의 감수로, 진로·기질 맞춤 검사 결과를 ‘우리아이 마음설명서’ 한 권에 담아 드립니다. 초4~고등 대상." />
+<meta property="og:url" content="https://doencourage.com/" />
+<meta property="og:image" content="https://doencourage.com/images/web-book-styled.jpg" />
+<meta property="og:locale" content="ko_KR" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="마음기록소 · 우리아이 마음설명서" />
+<meta name="twitter:description" content="임상심리전문가 감수. 진로·기질 맞춤 검사를 ‘우리아이 마음설명서’ 한 권에." />
+<meta name="twitter:image" content="https://doencourage.com/images/web-book-styled.jpg" />
 
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -90,10 +103,16 @@ header.nav{position:sticky; top:0; z-index:50; backdrop-filter:blur(10px); backg
 .nav-links a{color:var(--ink); text-decoration:none; font-size:.92rem; font-weight:500; letter-spacing:-.01em; opacity:.8; transition:opacity .2s, color .2s}
 .nav-links a:hover{opacity:1; color:var(--rust)}
 .nav-links .btn{padding:.5em 1.2em; font-size:.88rem; min-height:44px}
+/* 모바일 내비(2026-07-14 수정): 예전엔 860px↓에서 링크를 전부 숨겨 휴대폰에서 가이드·저자에 도달할 방법이 아예 없었다.
+   하단 고정바(.mcta, 960px↓ 상시 노출)에 구매하기가 이미 있으므로, 모바일에선 내비의 구매하기 버튼을 접고 링크를 그대로 노출한다. */
 @media(max-width:860px){
-  .nav-links a:not(.btn){display:none}
-  .nav-links{gap:0}
-  .nav-links .btn{padding:.52em 1.05em; font-size:.84rem}
+  .nav-links{gap:1.1rem}
+  .nav-links .btn{display:none}
+  .nav-links a:not(.btn){font-size:.9rem; opacity:.9}
+}
+@media(max-width:420px){
+  .nav-links{gap:.85rem}
+  .nav-links a:not(.btn){font-size:.85rem}
 }
 @media(max-width:420px){
   header.nav .wrap{padding-inline:clamp(.9rem,4vw,1.25rem)}
@@ -353,6 +372,12 @@ header.nav{position:sticky; top:0; z-index:50; backdrop-filter:blur(10px); backg
 .price .cur{font-weight:600; font-size:.42em; color:var(--rust); letter-spacing:.02em; margin-right:.2em; vertical-align:.34em}
 /* '~'(부터) 꼬리표를 통화기호와 같은 정렬 리듬으로: 베이스라인보다 살짝 올리고 좌측을 띄워 숫자와 분리 */
 .price .tail{font-weight:600; font-size:.42em; color:var(--muted); letter-spacing:.02em; margin-left:.16em; vertical-align:.34em}
+/* 정상가(취소선)+런칭 할인 표기: 정상가는 '런칭 후 실제로 받을 정가'이며 현재는 출시 기념 할인가로 판매 */
+.felt-line{margin-top:.6rem; font-size:.82rem; line-height:1.5; color:#6b665f; background:rgba(188,108,37,.07); border-radius:5px; padding:.5em .7em; font-variant-numeric:tabular-nums}
+.felt-line b{color:var(--rust); font-weight:800}
+.price-was{margin-top:.5rem; font-size:.82rem; color:var(--muted); letter-spacing:-.008em}
+.price-was s{color:#a89f92}
+.price-was .off{color:var(--rust); font-weight:700}
 .tier ul{list-style:none; margin:1.3rem 0 1.4rem; display:flex; flex-direction:column; gap:.65rem; flex:1}
 .tier li{font-size:.93rem; color:#46433f; padding-left:1.3rem; position:relative; line-height:1.5}
 .tier li::before{content:""; position:absolute; left:0; top:.52em; width:.42rem; height:.42rem; border-radius:50%; background:var(--rust); opacity:.5}
@@ -364,6 +389,15 @@ header.nav{position:sticky; top:0; z-index:50; backdrop-filter:blur(10px); backg
 .tier .btn{justify-content:center; width:100%}
 .tier.feat .btn-ghost{background:var(--rust); color:#fff; border-color:var(--rust)}
 .tier.feat .btn-ghost:hover{background:var(--rust-deep)}
+/* 출시예정 티어(프리미엄·VIP) — 지금은 베이직만 판매한다. 상품이 열리면 .soon 과 .btn-soon 을 걷어내고
+   버튼을 다시 <a href="#apply">로 되돌리면 된다. */
+.tier.soon{background:#f7f4ee; box-shadow:none}
+.tier.soon:hover{transform:none; box-shadow:none}
+.tier.soon .tag{visibility:visible; background:transparent; color:#8a8378; border:1px solid rgba(45,45,45,.22)}
+.tier.soon h3,.tier.soon .price{color:#6f6b64}
+.tier.soon li::before{opacity:.3}
+.btn-soon{justify-content:center; width:100%; background:transparent; color:#8a8378; border:1px solid rgba(45,45,45,.18); cursor:default; pointer-events:none}
+.match .m .soon-mark{color:#8a8378; font-size:.86em}
 .guarantee{background:var(--charcoal); color:#fff; border-radius:6px; padding:clamp(1.6rem,3vw,2.1rem) clamp(1.6rem,3vw,2.2rem); margin-top:clamp(1.8rem,4vw,2.6rem); display:flex; gap:1.3rem; align-items:flex-start}
 /* 원형 씰(10px 2줄이 테두리에 닿아 조악)을 한 줄 캡슐 칩으로 승격(2026-07-09 디자인 검증 PL6) */
 .guarantee .seal{flex:none; align-self:flex-start; border-radius:999px; padding:.42rem .9rem; background:rgba(224,176,122,.16); color:var(--rust-soft); font-weight:700; font-size:.72rem; letter-spacing:.04em; white-space:nowrap}
@@ -475,7 +509,30 @@ details[open] .faq-body p{transform:none}
 .apply-card h2{margin-bottom:.8rem}
 .apply-card p{color:#46433f; max-width:48ch; margin:0 auto 1.6rem; line-height:1.6}
 .apply-card .btn{font-size:1.06rem; padding:1.02em 2.4em; box-shadow:0 1px 0 rgba(255,255,255,.14) inset, 0 10px 24px -10px rgba(188,108,37,.55)}
+/* 티어별 구매 버튼(3개): 스마트스토어 마케팅링크 1:1 연결 */
+.apply-card .buy-tiers{display:flex; flex-direction:column; gap:.7rem; max-width:360px; margin:0 auto}
+.apply-card .buy-tiers .btn{width:100%; font-size:1rem; padding:.92em 1.5em}
 /* 결제 안내 노트: 위에 짧은 중앙 룰을 둬 CTA와 분리하고, 사이트 캡션 트래킹 체계(+.01em)에 맞춤 */
+/* 체감가 계산표 — 정상가에서 할인·적립·증정을 차례로 빼서 실제 부담액을 보여준다.
+   ★금액을 고칠 때는 .felt-total 의 숫자와 각 줄의 합이 어긋나지 않게 함께 고칠 것. */
+.felt{max-width:420px; margin:0 auto 1.7rem; text-align:left; font-variant-numeric:tabular-nums}
+.felt dl{margin:0}
+.felt .row{display:flex; align-items:baseline; justify-content:space-between; gap:1rem; margin-bottom:.62rem}
+.felt dt{font-size:.93rem; color:#46433f}
+.felt dd{margin:0; font-size:.95rem; color:#46433f; font-weight:600; text-align:right; white-space:nowrap}
+.felt .row.sub dt{padding-left:.95rem; position:relative; font-size:.88rem; color:#6b665f}
+.felt .row.sub dt::before{content:"└"; position:absolute; left:0; color:#b3aca1; font-size:.8em}
+.felt .row.sub dd{font-size:.9rem; color:var(--rust); font-weight:700}
+.felt .rule{height:1px; background:rgba(45,45,45,.12); margin:.9rem 0}
+.felt .row.sale dt,.felt .row.sale dd{font-weight:700; color:var(--ink); font-size:1rem}
+.felt .cap{font-size:.78rem; color:#8a8378; line-height:1.55; margin-top:.9rem}
+.felt-total{margin-top:1rem; background:var(--charcoal); border-radius:8px; padding:1.05rem 1.2rem;
+  display:flex; align-items:center; justify-content:space-between; gap:.8rem}
+.felt-total .lb{color:#e8e2d8; font-size:.9rem; font-weight:700; line-height:1.4}
+.felt-total .lb span{display:block; font-size:.72rem; font-weight:500; color:#a9a196; margin-top:.2rem}
+.felt-total .amt{color:#fff; font-size:1.55rem; font-weight:800; letter-spacing:-.02em; white-space:nowrap}
+.felt-total .amt .won{font-size:.62em; font-weight:700; margin-left:.12em}
+@media(max-width:420px){.felt-total{flex-direction:column; align-items:flex-start; gap:.5rem}}
 .apply-card .note{font-size:.85rem; color:var(--muted); margin-top:1.45rem; padding-top:1.25rem; letter-spacing:.01em; line-height:1.6; font-variant-numeric:tabular-nums; position:relative; display:inline-block}
 .apply-card .note::before{content:""; position:absolute; top:0; left:50%; transform:translateX(-50%); width:2.2rem; height:2px; border-radius:2px; background:var(--rust); opacity:.4}
 
@@ -506,6 +563,7 @@ footer{background:#171310; color:#8a857c; padding-block:3.5rem 2.5rem; position:
 /* 법적 고지 위계: 상호·도메인 줄을 살짝 밝히고 트래킹을 줘 '발신처'로 먼저 읽히게, 나머지 행은 차분히 가라앉힘 */
 .foot-legal .org{color:#b4ada3; font-weight:600; letter-spacing:.005em}
 .foot-legal .copy{color:#6f6a62; letter-spacing:.02em}
+.foot-legal a{color:#a89a86; text-decoration:underline; text-underline-offset:2px}.foot-legal a:hover{color:var(--rust-soft)}
 /* 좁은 폭에서 브랜드 아래로 링크를 명확히 떨어뜨려 '인스타그램'이 우측으로 잘리는 문제 해소 */
 @media(max-width:600px){
   .foot-top{flex-direction:column; align-items:flex-start; gap:1.2rem}
@@ -560,10 +618,10 @@ footer{background:#171310; color:#8a857c; padding-block:3.5rem 2.5rem; position:
       <a href="#apply" class="btn btn-primary">우리아이 마음설명서 시작하기 <span class="arr">→</span></a>
       <a href="#preview" class="btn btn-ghost">받게 되는 결과물 보기</a>
     </div>
-    <p class="hero-note anim" style="--d:.28s"><b>초4~고등</b> 자녀 · 온라인 검사 · 임상심리전문가 설계·감수 · 맞춤 책 배송(약 2주)</p>
+    <p class="hero-note anim" style="--d:.28s"><b>초4~고등</b> 자녀 · 온라인 검사 · 임상심리전문가 감수 · 맞춤 책 배송(약 2주)</p>
   </div>
   <div class="hero-media">
-    <img src="images/web-book-styled.jpg" alt="린넨 위에 놓인 「우리아이 마음설명서」 양장책과 놋 나침반·만년필 연출 사진" />
+    <img src="images/web-book-styled.jpg" alt="린넨 위에 놓인 「우리아이 마음설명서」 책과 놋 나침반·만년필 연출 사진" />
   </div>
 </section>
 
@@ -571,7 +629,7 @@ footer{background:#171310; color:#8a857c; padding-block:3.5rem 2.5rem; position:
 <section class="proof">
   <div class="wrap proof-in">
     <!-- 내지 스프레드(nano/gpt-image 2026-07-09): 표준화 검사 결과지 → 펼친 책 내지(챕터·본문·풀쿼트가 읽히는 실제 조판) before/after. 표지 반복 해소·내용 증명. 프롬프트: _작업/이미지/내지스프레드_프롬프트.md -->
-    <div class="proof-media reveal"><img src="images/web-book-spread.jpg" alt="딱딱한 심리검사 결과지가 화살표를 지나, 아이 이야기가 담긴 양장책의 펼친 내지로 바뀌는 비교 이미지" /></div>
+    <div class="proof-media reveal"><img src="images/web-book-spread.jpg" alt="딱딱한 심리검사 결과지가 화살표를 지나, 아이 이야기가 담긴 책의 펼친 내지로 바뀌는 비교 이미지" /></div>
     <div class="proof-text reveal">
       <span class="kicker">검사 결과 → 한 권의 책</span>
       <h2><span class="thin">손에 쥔 건 딱딱한 검사지,</span><br>받는 건 <span class="accent">아이만의 책</span>입니다.</h2>
@@ -584,7 +642,7 @@ footer{background:#171310; color:#8a857c; padding-block:3.5rem 2.5rem; position:
 <!-- 저자 신뢰띠 -->
 <section class="credbar">
   <div class="wrap">
-    <span class="cb-lead">이 검사는 <span class="cb-title">임상심리전문가</span> <span class="cb-name">안계훈</span>이 설계·감수합니다<span class="cb-lic"> · 한국심리학회 제1322호</span></span>
+    <span class="cb-lead">이 검사는 <span class="cb-title">임상심리전문가</span> <span class="cb-name">안계훈</span>이 감수합니다<span class="cb-lic"> · 한국심리학회 제1322호</span></span>
     <span class="cb-cred">· 법원·경찰·교육청 위촉 아동·청소년 심리 전문가</span>
     <a href="#author">저자 소개 <span class="arr">→</span></a>
   </div>
@@ -712,7 +770,7 @@ footer{background:#171310; color:#8a857c; padding-block:3.5rem 2.5rem; position:
   <div class="wrap">
     <div class="folio reveal"><span class="f">F.04</span><span class="t">/ 받게 되는 것</span></div>
     <div class="preview">
-      <div class="bookshot reveal"><img src="images/web-book-3d.jpg" alt="아이 이름이 박힌 「우리아이 마음설명서」 실물 양장 하드커버 입체 사진" /></div>
+      <div class="bookshot reveal"><img src="images/web-book-3d.jpg" alt="아이 이름이 박힌 「우리아이 마음설명서」 실물 책 입체 사진" /></div>
       <div class="reveal">
         <h2><span class="thin">검사 2주 뒤,</span><br>아이 이름이 박힌 한 권이 도착합니다.</h2>
         <p class="body-p" style="margin-top:1rem">화면 속 점수표가 아니라, 펼쳐 읽는 실물 책입니다. 우리 아이의 기질·흥미·양육 조합을 풀어낸, 세상에 한 권뿐인 설명서.</p>
@@ -727,7 +785,7 @@ footer{background:#171310; color:#8a857c; padding-block:3.5rem 2.5rem; position:
     <!-- 책 속 미리보기 -->
     <div class="inside reveal">
       <div>
-        <div class="vol">약 <span>60~80</span>페이지 · <span>6</span>개 챕터 · 양장 제본</div>
+        <div class="vol">약 <span>60~80</span>페이지 · <span>6</span>개 챕터 · 소프트커버</div>
         <ul class="toc">
           <li><span class="n">01</span>○○이는 어떤 아이인가</li>
           <li><span class="n">02</span>흥미의 지도 · 좋아하는 것의 정체</li>
@@ -767,11 +825,11 @@ footer{background:#171310; color:#8a857c; padding-block:3.5rem 2.5rem; position:
     </div>
     <div class="steps reveal-group">
       <div class="step" style="--i:0"><div class="idx">01</div><h3>온라인 검사</h3><p>아이·부모가 집에서 응답합니다. 임상심리전문가의 기준으로 검토합니다. (자동 검사 아님).</p></div>
-      <div class="step" style="--i:1"><div class="idx">02</div><h3>전문가 분석</h3><p>임상심리전문가가 설계·감수한 기준으로 결과를 교차 분석해, 우리 아이만의 해석으로 정리합니다.</p></div>
+      <div class="step" style="--i:1"><div class="idx">02</div><h3>전문가 분석</h3><p>임상심리전문가가 세운 기준으로 결과를 교차 분석해, 우리 아이만의 해석으로 정리합니다.</p></div>
       <div class="step" style="--i:2"><div class="idx">03</div><h3>맞춤 책 제작</h3><p>분석을 한 권의 맞춤 책으로 제작합니다(약 1주).</p></div>
       <div class="step" style="--i:3"><div class="idx">04</div><h3>배송</h3><p>검사부터 배송까지 약 2주. 실물 책으로 받아보세요.</p></div>
     </div>
-    <p class="sm reveal proc-note" style="margin-top:1.8rem"><b style="color:var(--ink); font-weight:700">베이직</b>만으로도 부모님이 스스로 읽고 적용하도록 설계했습니다. 줌으로 전문가에게 직접 묻고 싶을 때 VIP를 더하세요.</p>
+    <p class="sm reveal proc-note" style="margin-top:1.8rem"><b style="color:var(--ink); font-weight:700">베이직</b>만으로도 부모님이 스스로 읽고 적용하도록 설계했습니다. 지금 판매하는 구성이 이 베이직입니다.</p>
   </div>
 </section>
 
@@ -783,31 +841,32 @@ footer{background:#171310; color:#8a857c; padding-block:3.5rem 2.5rem; position:
       <p class="anchor-copy">심리검사 한 가지만 사설로 받아도 보통 10만~20만 원. <b>마음기록소는 아이와 양육자를 함께 교차 분석해, ‘세상에 한 권뿐인 책’까지 19만 원부터 드립니다.</b></p>
       <div class="match">
         <div class="m"><b>베이직</b><span>검사 결과를 책으로 차분히 읽고 적용</span></div>
-        <div class="m"><b>프리미엄</b><span>양육자 두 분의 성격·마음까지 함께</span></div>
-        <div class="m"><b>VIP</b><span>아이 지능검사 + 전문가 1:1 해설</span></div>
+        <div class="m"><b>프리미엄</b><span>양육자 두 분의 성격·마음까지 함께 <span class="soon-mark">(출시예정)</span></span></div>
+        <div class="m"><b>VIP</b><span>아이 지능검사 + 전문가 1:1 해설 <span class="soon-mark">(출시예정)</span></span></div>
       </div>
     </div>
     <div class="tiers reveal-group">
       <div class="tier feat" style="--i:0">
         <span class="tag">처음이라면, 베이직</span><h3>베이직</h3><p class="who">비대면 완결 · 대부분 여기서 시작</p>
-        <div class="price-label">런칭가</div><div class="price"><span class="cur">₩</span><span class="num">190,000</span></div>
+        <div class="price-label">런칭가</div><div class="price"><span class="cur">₩</span><span class="num">190,000</span></div><div class="price-was">정상가 <s>250,000원</s> · <span class="off">출시 기념 24% 할인</span></div>
+        <div class="felt-line">증정·포인트 적립까지 더한 <b>최대 체감가 154,050원</b></div>
         <ul><li>아이 기질·성격 검사 (TCI)</li><li>아이 진로 흥미 검사 (Holland)</li><li>주양육자 기질·성격 검사 (TCI)</li><li>주양육자 양육태도 검사 (PAT-2)</li><li>교차 분석 맞춤 책 1권 + ‘이번 주 한 가지’ 실천 가이드</li></ul>
         <p class="meet">해설이 필요 없게, 책이 부모님 언어로 다 풀어 드립니다 · 비대면 완결</p>
         <a href="#apply" class="btn btn-ghost">베이직으로 시작하기</a>
       </div>
-      <div class="tier" style="--i:1">
-        <span class="tag">보호자 2인 심층</span><h3>프리미엄</h3><p class="who">양육자 두 분까지 깊이</p>
-        <div class="price-label">런칭가</div><div class="price"><span class="cur">₩</span><span class="num">390,000</span></div>
+      <div class="tier soon" style="--i:1">
+        <span class="tag">출시예정</span><h3>프리미엄</h3><p class="who">양육자 두 분까지 깊이</p>
+        <div class="price-label">출시 예정가</div><div class="price"><span class="cur">₩</span><span class="num">390,000</span></div><div class="price-was">정상가 520,000원 기준</div>
         <ul><li>베이직 구성 전체 포함</li><li>보호자 2인 성격검사 (MMPI-2)</li><li>보호자 2인 문장완성검사 (SCT)</li><li>보호자 2인 기질·성격 검사 (TCI)</li></ul>
         <p class="meet">두 양육자가 각각 TCI·MMPI-2·SCT, 주양육자는 PAT-2까지. 아이를 보는 두 시선을 함께 읽습니다.</p>
-        <a href="#apply" class="btn btn-ghost">프리미엄으로 시작하기</a>
+        <span class="btn btn-soon">출시예정</span>
       </div>
-      <div class="tier" style="--i:2">
-        <span class="tag">정밀 + 해설</span><h3>VIP</h3><p class="who">지능검사 + 전문가 해설</p>
-        <div class="price-label">런칭가</div><div class="price"><span class="cur">₩</span><span class="num">690,000</span><span class="tail">~</span></div>
+      <div class="tier soon" style="--i:2">
+        <span class="tag">출시예정</span><h3>VIP</h3><p class="who">지능검사 + 전문가 해설</p>
+        <div class="price-label">출시 예정가</div><div class="price"><span class="cur">₩</span><span class="num">690,000</span><span class="tail">~</span></div><div class="price-was">정상가 920,000원 기준</div>
         <ul><li>프리미엄 구성 전체 포함</li><li>아이 지능검사 (WISC-V, 대면)</li><li>줌 30분 전문가 1:1 해설</li></ul>
         <p class="save">※ WISC-V 지능검사만 사설기관 통상 25~40만 원</p>
-        <a href="#apply" class="btn btn-ghost">VIP로 시작하기</a>
+        <span class="btn btn-soon">출시예정</span>
       </div>
     </div>
 
@@ -817,11 +876,11 @@ footer{background:#171310; color:#8a857c; padding-block:3.5rem 2.5rem; position:
       <div>
         <h3>구매하셔도, 검사 시작 전이라면 100% 환불</h3>
         <p>구매 후라도 검사를 시작하기 전이라면 사유 불문 전액 환불해 드립니다. 그러니 부담 없이 시작하세요. 검사가 시작되면 전문가 분석·맞춤 제작에 들어가므로 그 이후에는 환불이 어렵습니다.</p>
-        <p class="extra"><b>2026년 첫 100가정 한정</b>, 후기 작성을 조건으로 ‘부모 기질 미니 리포트’를 무료로 더해 드립니다(선착순).</p>
+        <p class="extra"><b>2026년 첫 100가정 한정</b> — 저자가 집필한 「임상심리전문가의 마음설명서: 진로편」을 함께 드립니다(선착순). 구매와 후기 적립을 더해 네이버페이 포인트가 최대 13,950원 쌓입니다.</p>
       </div>
     </div>
 
-    <p class="tier-note reveal">한부모 가정은 ‘한부모 옵션’으로 부모 검사·해설을 1인 기준으로 조정해 드립니다. 가격은 런칭 기념가이며 조기 신청분 한정입니다.</p>
+    <p class="tier-note reveal">지금은 베이직만 판매합니다. 프리미엄·VIP는 준비 중이며 열리는 대로 이 페이지에서 안내드리겠습니다. 가격은 런칭 기념가이며 조기 신청분 한정입니다.</p>
   </div>
 </section>
 
@@ -878,12 +937,12 @@ footer{background:#171310; color:#8a857c; padding-block:3.5rem 2.5rem; position:
   <div class="wrap">
     <div class="folio reveal"><span class="f">F.09</span><span class="t">/ 자주 묻는 질문</span></div>
     <div class="faq reveal">
-      <details><summary>베이직만 사면 해석을 제가 못 하는 거 아닌가요?</summary><div class="faq-body"><div><p>아닙니다. 베이직 책은 전문가가 감수한 해석을 부모님이 그대로 읽고 행동할 수 있는 언어로 담습니다. 줌 해설(VIP)은 ‘더 깊은 대화’를 원하실 때의 선택이지 필수가 아닙니다.</p></div></div></details>
+      <details><summary>베이직만 사면 해석을 제가 못 하는 거 아닌가요?</summary><div class="faq-body"><div><p>아닙니다. 베이직 책은 전문가가 감수한 해석을 부모님이 그대로 읽고 행동할 수 있는 언어로 담습니다. 줌 해설(VIP, 출시예정)은 ‘더 깊은 대화’를 원하실 때의 선택이지 필수가 아닙니다.</p></div></div></details>
       <details><summary>이게 인터넷 무료 검사랑 뭐가 다른가요?</summary><div class="faq-body"><div><p>WISC-V·MMPI-2·TCI·Holland·PAT-2·SCT는 병원·학교·상담센터에서 실제로 쓰는 표준화·정식 채점 심리검사입니다. 자동 채점이 아니라 임상심리전문가의 기준으로 채점·해석하는 정식 심리검사입니다.</p></div></div></details>
       <details><summary>구매 후 취소·환불할 수 있나요?</summary><div class="faq-body"><div><p>네. 검사를 시작하기 전이라면 사유 불문 전액 환불해 드립니다. 검사가 시작되면 전문가 분석·맞춤 제작에 들어가므로 그 이후에는 환불이 어렵습니다.</p></div></div></details>
       <details><summary>대상 연령이 어떻게 되나요?</summary><div class="faq-body"><div><p>초등 4학년부터 고등학생까지를 기준으로 합니다. 미취학·초등 저학년도 일부 검사가 가능하니 문의해 주세요.</p></div></div></details>
       <details><summary>검사부터 책 받기까지 얼마나 걸리나요?</summary><div class="faq-body"><div><p>약 2주입니다. 검사·분석 후 맞춤 책을 제작하는 데 약 1주가 포함됩니다.</p></div></div></details>
-      <details><summary>한부모 가정인데 VIP 구성이 부담돼요.</summary><div class="faq-body"><div><p>‘한부모 옵션’으로 부모 검사·해설을 1인 기준으로 조정해 드립니다. 가격도 그에 맞춰 안내드리니 편히 문의해 주세요.</p></div></div></details>
+      <details><summary>프리미엄·VIP는 언제 살 수 있나요?</summary><div class="faq-body"><div><p>지금은 베이직만 판매합니다. 프리미엄(보호자 2인 심층)과 VIP(지능검사·줌 해설)는 준비 중이며, 열리는 대로 이 페이지에서 안내드리겠습니다. 한부모 가정이시라면 부모 검사를 1인 기준으로 조정해 드리니 편히 문의해 주세요.</p></div></div></details>
       <details><summary>결제는 어떻게 하나요?</summary><div class="faq-body"><div><p>구매 버튼을 누르면 네이버 스마트스토어 상품 페이지로 연결되어 안전하게 결제하실 수 있습니다. 카드사 안전결제·네이버페이로 보호되며, 저희는 결제 정보를 따로 보관하지 않습니다.</p></div></div></details>
     </div>
   </div>
@@ -895,9 +954,30 @@ footer{background:#171310; color:#8a857c; padding-block:3.5rem 2.5rem; position:
     <div class="folio" style="justify-content:center; border:0; padding-top:0"><span class="f">구매</span><span class="t">/ 우리아이 마음설명서</span></div>
     <h2><span class="thin">아이의 진로 고민은,</span><br>미룬다고 줄지 않습니다.</h2>
     <div class="apply-card">
-      <p>「우리아이 마음설명서」는 <b>네이버 스마트스토어에서 안전하게</b> 구매하실 수 있습니다. <b>2026년 첫 100가정</b>에게는 후기 작성을 조건으로 ‘부모 기질 미니 리포트’를 무료로 더해 드립니다(선착순).</p>
-      <!-- ★런칭 TODO: href를 네이버 스마트스토어/카페24 상품 URL로 교체 (구매 링크는 여기 한 곳) -->
-      <a href="#" class="btn btn-primary" data-store="main">스토어에서 구매하기 <span class="arr">→</span></a>
+      <p>「우리아이 마음설명서」는 <b>네이버 스마트스토어에서 안전하게</b> 구매하실 수 있습니다. 지금은 <b>베이직</b>을 판매합니다. <b>2026년 첫 100가정</b>에게는 저자가 집필한 「임상심리전문가의 마음설명서: 진로편」을 함께 드립니다(선착순).</p>
+      <!-- ★★런칭 TODO(URL 1개): 아래 베이직 버튼의 href="#"를 네이버 스마트스토어 '마케팅링크'로 교체.
+           반드시 판매자센터>마케팅>마케팅링크에서 발급한 링크(원시 상품URL 아님 → 수수료 2.73%가 아니라 0.91%).
+           프리미엄·VIP 는 출시예정이라 버튼을 두지 않는다. 상품이 열리면 여기에 같은 형태로 2줄 추가. -->
+      <div class="felt">
+        <dl>
+          <div class="row"><dt>정상가</dt><dd>250,000원</dd></div>
+          <div class="row sub"><dt>출시 기념 할인</dt><dd>−60,000원</dd></div>
+          <div class="rule"></div>
+          <div class="row sale"><dt>판매가</dt><dd>190,000원</dd></div>
+          <div class="row sub"><dt>「진로편」 증정</dt><dd>−22,000원</dd></div>
+          <div class="row sub"><dt>구매 적립</dt><dd>−3,800원</dd></div>
+          <div class="row sub"><dt>리뷰 적립</dt><dd>−10,150원</dd></div>
+          <div class="cap">「진로편」은 저자가 집필한 단행본으로 정가 22,000원입니다. 구매 적립은 네이버페이 결제 기본 1%에 네이버플러스 멤버십 1%를 더한 금액이고, 리뷰 적립은 포토·동영상 리뷰를 남기셨을 때의 최대치입니다. 적립은 모두 네이버페이 포인트로 지급됩니다.</div>
+        </dl>
+        <div class="felt-total">
+          <div class="lb">최대 체감가<span>할인 + 증정 + 포인트 적립</span></div>
+          <div class="amt">154,050<span class="won">원</span></div>
+        </div>
+      </div>
+      <div class="buy-tiers">
+        <a href="https://mkt.shopping.naver.com/link/6a7920b37ae4aa07b46d29fa" target="_blank" rel="noopener" class="btn btn-primary" data-store="basic">베이직 구매 · ₩190,000 <span class="arr">→</span></a>
+      </div>
+      <p class="note">프리미엄·VIP는 준비 중입니다. 열리는 대로 이 페이지에서 바로 안내드리겠습니다.</p>
       <p class="note">결제는 네이버 스마트스토어 안전결제(카드사 안전결제·네이버페이)로 진행됩니다 · 검사 시작 전이라면 100% 환불.</p>
     </div>
   </div>
@@ -919,13 +999,17 @@ footer{background:#171310; color:#8a857c; padding-block:3.5rem 2.5rem; position:
     <div class="foot-top">
       <div class="foot-brand">마음기록소<span class="dot">.</span></div>
       <div class="foot-links">
-        <a href="#diff">차별점</a><a href="#tiers">검사·가격</a><a href="#faq">FAQ</a><a href="#apply">신청</a>
-        <!-- TODO: 인스타 주소 --><a href="#" target="_blank" rel="noopener">인스타그램</a>
+        <a href="#diff">차별점</a><a href="#tiers">검사·가격</a><a href="guide/index.html">가이드</a><a href="#faq">FAQ</a><a href="#apply">신청</a><a href="terms/index.html">이용약관</a><a href="privacy/index.html">개인정보처리방침</a>
+        <!-- TODO(선택): 인스타 개설 시 여기에 <a href="URL" target="_blank" rel="noopener">인스타그램</a> 추가 -->
       </div>
     </div>
     <div class="foot-legal">
       <span class="org">마음기록소 · doencourage.com</span><br>
-      상호 / 대표자 / 사업자등록번호 / 통신판매업신고 / 주소 / 연락처 [사업자 등록 후 채우기]<br>
+      상호 마음기록소 · 대표자 안계훈 · 사업자등록번호 557-13-02917<br>
+      사업장 주소 경기도 이천시 대월면 사동로176, 2층 202호 · 전화 010-9085-3510 · 이메일 do.encourage.go@gmail.com<br>
+      호스팅서비스제공자 Cloudflare, Inc.<br>
+      <!-- 통신판매업 신고: 현재 면제(직전년도 거래 50회 미만 또는 간이과세자). 신고 시 이 줄에 "통신판매업신고 제OOOO호 · [공정위 사업자정보 조회] 링크" 추가 -->
+      <a href="terms/index.html">이용약관</a> · <a href="privacy/index.html">개인정보처리방침</a><br>
       <span class="copy">© 2026 마음기록소. All rights reserved.</span>
     </div>
   </div>
