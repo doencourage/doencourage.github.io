@@ -394,8 +394,14 @@ header.nav{position:sticky; top:0; z-index:50; backdrop-filter:blur(10px); backg
 .tier.soon{background:#f7f4ee; box-shadow:none}
 .tier.soon:hover{transform:none; box-shadow:none}
 .tier.soon .tag{visibility:visible; background:transparent; color:#8a8378; border:1px solid rgba(45,45,45,.22)}
-.tier.soon h3,.tier.soon .price{color:#6f6b64}
+.tier.soon h3{color:#6f6b64}
 .tier.soon li::before{opacity:.3}
+/* 아직 안 파는 가격은 확정처럼 읽히면 안 된다 — 크기·굵기·색을 모두 낮춰 뒤로 물린다.
+   상품이 열리면 이 세 규칙을 걷어내면 베이직과 같은 크기로 돌아온다. */
+.tier.soon .price-label{color:#9a948b}
+.tier.soon .price-label::before{background:#c3bcb1}
+.tier.soon .price{font-size:1.5rem; font-weight:700; color:#9a948b}
+.tier.soon .price-was{color:#a8a29a}
 .btn-soon{justify-content:center; width:100%; background:transparent; color:#8a8378; border:1px solid rgba(45,45,45,.18); cursor:default; pointer-events:none}
 .match .m .soon-mark{color:#8a8378; font-size:.86em}
 .guarantee{background:var(--charcoal); color:#fff; border-radius:6px; padding:clamp(1.6rem,3vw,2.1rem) clamp(1.6rem,3vw,2.2rem); margin-top:clamp(1.8rem,4vw,2.6rem); display:flex; gap:1.3rem; align-items:flex-start}
@@ -849,21 +855,21 @@ footer{background:#171310; color:#8a857c; padding-block:3.5rem 2.5rem; position:
       <div class="tier feat" style="--i:0">
         <span class="tag">처음이라면, 베이직</span><h3>베이직</h3><p class="who">비대면 완결 · 대부분 여기서 시작</p>
         <div class="price-label">런칭가</div><div class="price"><span class="cur">₩</span><span class="num">190,000</span></div><div class="price-was">정상가 <s>250,000원</s> · <span class="off">출시 기념 24% 할인</span></div>
-        <div class="felt-line">증정·포인트 적립까지 더한 <b>최대 체감가 150,250원</b></div>
+        <div class="felt-line">증정·포인트 적립까지 더한 <b>최대 체감가 154,050원</b></div>
         <ul><li>아이 기질·성격 검사 (TCI)</li><li>아이 진로 흥미 검사 (Holland)</li><li>주양육자 기질·성격 검사 (TCI)</li><li>주양육자 양육태도 검사 (PAT-2)</li><li>교차 분석 맞춤 책 1권 + ‘이번 주 한 가지’ 실천 가이드</li></ul>
         <p class="meet">해설이 필요 없게, 책이 부모님 언어로 다 풀어 드립니다 · 비대면 완결</p>
         <a href="#apply" class="btn btn-ghost">베이직으로 시작하기</a>
       </div>
       <div class="tier soon" style="--i:1">
         <span class="tag">출시예정</span><h3>프리미엄</h3><p class="who">양육자 두 분까지 깊이</p>
-        <div class="price-label">출시 예정가</div><div class="price"><span class="cur">₩</span><span class="num">390,000</span></div><div class="price-was">정상가 520,000원 기준</div>
+        <div class="price-label">가격 미정</div><div class="price"><span class="num">39만 원대 예정</span></div><div class="price-was">출시 때 확정해 안내드립니다</div>
         <ul><li>베이직 구성 전체 포함</li><li>보호자 2인 성격검사 (MMPI-2)</li><li>보호자 2인 문장완성검사 (SCT)</li><li>보호자 2인 기질·성격 검사 (TCI)</li></ul>
         <p class="meet">두 양육자가 각각 TCI·MMPI-2·SCT, 주양육자는 PAT-2까지. 아이를 보는 두 시선을 함께 읽습니다.</p>
         <span class="btn btn-soon">출시예정</span>
       </div>
       <div class="tier soon" style="--i:2">
         <span class="tag">출시예정</span><h3>VIP</h3><p class="who">지능검사 + 전문가 해설</p>
-        <div class="price-label">출시 예정가</div><div class="price"><span class="cur">₩</span><span class="num">690,000</span><span class="tail">~</span></div><div class="price-was">정상가 920,000원 기준</div>
+        <div class="price-label">가격 미정</div><div class="price"><span class="num">69만 원대 예정</span></div><div class="price-was">출시 때 확정해 안내드립니다</div>
         <ul><li>프리미엄 구성 전체 포함</li><li>아이 지능검사 (WISC-V, 대면)</li><li>줌 30분 전문가 1:1 해설</li></ul>
         <p class="save">※ WISC-V 지능검사만 사설기관 통상 25~40만 원</p>
         <span class="btn btn-soon">출시예정</span>
@@ -876,7 +882,7 @@ footer{background:#171310; color:#8a857c; padding-block:3.5rem 2.5rem; position:
       <div>
         <h3>구매하셔도, 검사 시작 전이라면 100% 환불</h3>
         <p>구매 후라도 검사를 시작하기 전이라면 사유 불문 전액 환불해 드립니다. 그러니 부담 없이 시작하세요. 검사가 시작되면 전문가 분석·맞춤 제작에 들어가므로 그 이후에는 환불이 어렵습니다.</p>
-        <p class="extra"><b>2026년 첫 100가정 한정</b> — 저자가 집필한 「임상심리전문가의 마음설명서: 진로편」을 함께 드립니다(선착순). 구매와 후기 적립을 더해 네이버페이 포인트가 최대 17,750원 쌓입니다.</p>
+        <p class="extra"><b>2026년 첫 100가정 한정</b> — 저자가 집필한 「임상심리전문가의 마음설명서: 진로편」을 함께 드립니다(선착순). 구매와 후기 적립을 더해 네이버페이 포인트가 최대 13,950원 쌓입니다.</p>
       </div>
     </div>
 
@@ -965,15 +971,15 @@ footer{background:#171310; color:#8a857c; padding-block:3.5rem 2.5rem; position:
           <div class="rule"></div>
           <div class="row sale"><dt>판매가</dt><dd>190,000원</dd></div>
           <div class="row sub"><dt>「진로편」 증정</dt><dd>−22,000원</dd></div>
-          <div class="row sub"><dt>구매 적립</dt><dd>−1,900원</dd></div>
-          <div class="row sub"><dt>멤버십 적립</dt><dd>−1,900원</dd></div>
-          <div class="row sub"><dt>네이버페이 머니 결제 적립</dt><dd>−3,800원</dd></div>
-          <div class="row sub"><dt>리뷰 적립</dt><dd>−10,150원</dd></div>
-          <div class="cap">「진로편」은 저자가 집필한 단행본으로 정가 22,000원입니다. 포인트 적립 네 항목은 스마트스토어 상품 페이지의 「최대 포인트 적립 17,750원」과 같은 값이며, 네이버플러스 멤버십·네이버페이 머니 결제·포토 리뷰를 모두 충족했을 때의 최대치입니다. 적립은 모두 네이버페이 포인트로 지급됩니다.</div>
+          <div class="row sub"><dt>구매 기본 적립</dt><dd>−1,900원</dd></div>
+          <div class="row sub"><dt>네이버플러스 멤버십 적립</dt><dd>−1,900원</dd></div>
+          <div class="row sub"><dt>포토·동영상 리뷰 적립</dt><dd>−5,150원</dd></div>
+          <div class="row sub"><dt>한달사용 리뷰 적립</dt><dd>−5,000원</dd></div>
+          <div class="cap">「진로편」은 저자가 집필한 단행본으로 정가 22,000원입니다. 구매 기본 적립은 네이버페이 결제 1%, 멤버십 적립은 네이버플러스 멤버십 1%입니다. 리뷰는 구매 직후와 한 달 뒤 두 번 남기실 수 있고, 위 금액은 두 번 모두 포토·동영상으로 남기셨을 때입니다(글로만 남기시면 각각 1,050원·1,000원). 적립은 모두 네이버페이 포인트로 지급됩니다.</div>
         </dl>
         <div class="felt-total">
           <div class="lb">최대 체감가<span>할인 + 증정 + 포인트 적립</span></div>
-          <div class="amt">150,250<span class="won">원</span></div>
+          <div class="amt">154,050<span class="won">원</span></div>
         </div>
       </div>
       <div class="buy-tiers">
@@ -1019,7 +1025,7 @@ footer{background:#171310; color:#8a857c; padding-block:3.5rem 2.5rem; position:
 
 <!-- 모바일/소형 하단 고정바 -->
 <div class="mcta">
-  <div class="p">우리아이 마음설명서 · 베이직<br><b>₩190,000<span class="tail">~</span></b></div>
+  <div class="p">우리아이 마음설명서 · 베이직<br><b>₩190,000</b></div>
   <a href="#apply" class="btn btn-primary">구매하기</a>
 </div>
 
