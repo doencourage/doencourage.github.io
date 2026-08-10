@@ -250,6 +250,36 @@ header.nav{position:sticky; top:0; z-index:50; backdrop-filter:blur(10px); backg
 .ctable tbody tr:last-child td.win{border-bottom:1.5px solid rgba(188,108,37,.4)}
 /* 데스크톱에선 표가 폭 안에 다 들어가 부가 단서가 불필요 → 모바일 카드 전용 요소는 숨김 */
 .compare-fade,.compare-hint{display:none}
+
+/* F.03 지각 차이 — PAT-2 이중평정(부모 응답 vs 아이 응답)을 두 막대로 보여준다.
+   색은 페이지 팔레트 안에서만 쓴다(한색 도입 금지). 아이 막대를 러스트로 둬 시선이 그쪽에 가게 한다. */
+.gap-head{max-width:38ch}
+.gap-head .body-p{margin-top:1.1rem}
+.gap-chart{margin-top:clamp(2rem,4vw,3rem); background:var(--light); border:1px solid rgba(188,108,37,.18);
+  border-radius:6px; padding:clamp(1.4rem,3vw,2.2rem)}
+.gap-legend{display:flex; align-items:center; gap:1.3rem; flex-wrap:wrap; font-size:.84rem; color:#6f665b;
+  padding-bottom:1.1rem; border-bottom:1px solid rgba(45,45,45,.09)}
+.gap-legend span{display:inline-flex; align-items:center; gap:.45rem}
+.gap-legend em{margin-left:auto; font-style:normal; font-size:.76rem; color:#9a938a; letter-spacing:.04em}
+.sw{width:.85rem; height:.85rem; border-radius:2px; display:inline-block}
+.sw-p{background:#CFBFA6} .sw-c{background:var(--rust)}
+.gap-row{padding:1.35rem 0; border-bottom:1px solid rgba(45,45,45,.07)}
+.gap-nm{font-weight:800; font-size:1.02rem; letter-spacing:-.02em; margin-bottom:.7rem}
+.gb{display:flex; align-items:center; gap:.6rem; margin-bottom:.42rem}
+.gb .who{flex:none; width:2.1rem; font-size:.78rem; color:#8a827a; font-weight:700}
+.gb .track{flex:1; height:.72rem; border-radius:999px; background:#F0EAE0; overflow:hidden}
+.gb .fill{height:100%; border-radius:999px}
+.gb .fill.p{background:#CFBFA6} .gb .fill.c{background:var(--rust)}
+.gb .v{flex:none; width:1.9rem; text-align:right; font-size:.82rem; font-weight:700; color:#6f665b;
+  font-variant-numeric:tabular-nums}
+.gap-say{margin-top:.75rem; font-size:.92rem; line-height:1.62; color:#5b564e}
+.gap-note{margin-top:1.4rem; font-size:.82rem; line-height:1.7; color:#8a8378}
+.gap-note b{color:#5b564e; font-weight:700}
+@media(max-width:520px){
+  .gap-nm{font-size:.97rem}
+  .gb .who{width:1.9rem; font-size:.74rem}
+  .gap-say{font-size:.88rem}
+}
 /* 모바일: 390px에선 표의 결론(승자) 컬럼 '우리아이 마음설명서'가 우측으로 잘려 안 보이고 스크롤 단서도 없었다.
    가로스크롤 대신 각 비교 항목을 '카드'로 재구성한다 — 항목명(행제목)을 제목으로, 세 선택지를 세로로 쌓되
    결론인 '우리아이 마음설명서'를 러스트로 강조해 맨 아래(귀결점)에 둔다. 가로스크롤이 사라져 어떤 폭에서도 결론이 분명히 보인다. */
@@ -688,7 +718,7 @@ footer{background:#171310; color:#8a857c; padding-block:3.5rem 2.5rem; position:
     </div>
     <div class="diff-grid reveal-group">
       <div class="diff-item" style="--i:0"><div class="idx">01</div><h3>한 번 더 깊게 푼다</h3><p>백분위 숫자가 아니라 “그래서 우리 아이는 어떤 아이이고 어떻게 도와야 하는지”까지. 결과지를 임상 해석으로 다시 풀어 책으로 만듭니다.</p></div>
-      <div class="diff-item" style="--i:1"><div class="idx">02</div><h3>흥미 × 기질 × 양육 교차</h3><p>흥미(Holland)·기질·성격(TCI)·양육태도(<span class="nowrap">PAT-2</span>)를 따로 보지 않고 교차합니다. 양육태도는 부모가 답한 것과 아이가 느낀 것을 함께 받아, 두 답이 갈리는 자리까지 읽습니다.</p></div>
+      <div class="diff-item" style="--i:1"><div class="idx">02</div><h3>흥미 × 기질 × 양육 교차</h3><p>흥미(Holland)·기질·성격(TCI)·양육태도(<span class="nowrap">PAT-2</span>)를 따로 보지 않고 교차합니다. 양육태도는 부모가 답한 것과 아이가 느낀 것을 함께 받아, 두 답이 어긋난 영역까지 읽습니다.</p></div>
       <div class="diff-item" style="--i:2"><div class="idx">03</div><h3>아이만이 아니라, 부모까지</h3><p>아이를 답답해하는 그 마음의 절반은 부모님의 기질에서 옵니다. 부모님 자신도 함께 진단해, 아이와의 ‘거리’를 맞추는 법을 안내합니다.</p></div>
     </div>
     <!-- 표준화 검사 카드 (기존 toolnote를 카드 모듈로 승격) -->
@@ -711,7 +741,7 @@ footer{background:#171310; color:#8a857c; padding-block:3.5rem 2.5rem; position:
         <div class="tile pat" style="--i:2">
           <div class="abbr"><span class="nowrap">PAT-2</span></div>
           <div class="nm">부모 양육태도검사 · 핵심</div>
-          <div class="desc">부모가 답한 양육태도와 아이가 느낀 양육태도를 여덟 영역에서 나란히 놓습니다. 두 답이 갈리는 자리가 곧 손볼 자리입니다.</div>
+          <div class="desc">부모가 답한 양육태도와 아이가 느낀 양육태도를 여덟 영역에서 나란히 놓고, 두 답이 어긋난 영역부터 짚어 드립니다.</div>
         </div>
         <div class="tile add mmpi" style="--i:3">
           <div class="abbr"><span class="nowrap">MMPI-2</span></div>
@@ -736,10 +766,58 @@ footer{background:#171310; color:#8a857c; padding-block:3.5rem 2.5rem; position:
   </div>
 </section>
 
+<!-- 지각 차이(PAT-2 이중평정) — 부모 응답과 아이 응답이 어긋나는 영역 -->
+<section class="sand" id="gap" style="padding-block:var(--sec)">
+  <div class="wrap">
+    <div class="folio reveal"><span class="f">F.03</span><span class="t">/ 부모와 아이, 두 개의 답</span></div>
+    <div class="gap-head reveal">
+      <h2><span class="thin">엄마는 적당하다고 했고,</span><br>아이는 지나치다고 했습니다.</h2>
+      <p class="body-p">양육태도 검사(<span class="nowrap">PAT-2</span>)는 아이도 함께 답합니다. 여덟 영역을 부모와 아이가 각각 답하고, 그 둘을 나란히 놓습니다. 두 답이 같으면 지금 하시는 대로 두시면 됩니다. <b>어긋난 영역을 짚어 드리는 것</b>이 이 검사의 일입니다.</p>
+    </div>
+
+    <div class="gap-chart reveal">
+      <div class="gap-legend">
+        <span><i class="sw sw-p"></i>부모가 답한 것</span>
+        <span><i class="sw sw-c"></i>아이가 느낀 것</span>
+        <em>백분위</em>
+      </div>
+
+      <div class="gap-row">
+        <div class="gap-nm">감독</div>
+        <div class="gap-bars">
+          <div class="gb"><span class="who">부모</span><div class="track"><div class="fill p" style="width:40%"></div></div><span class="v">40</span></div>
+          <div class="gb"><span class="who">아이</span><div class="track"><div class="fill c" style="width:80%"></div></div><span class="v">80</span></div>
+        </div>
+        <div class="gap-say">엄마는 적당히 지켜본다고 답했고, 아이는 지나치게 살핀다고 느꼈습니다.</div>
+      </div>
+
+      <div class="gap-row">
+        <div class="gap-nm">성취압력</div>
+        <div class="gap-bars">
+          <div class="gb"><span class="who">부모</span><div class="track"><div class="fill p" style="width:80%"></div></div><span class="v">80</span></div>
+          <div class="gb"><span class="who">아이</span><div class="track"><div class="fill c" style="width:40%"></div></div><span class="v">40</span></div>
+        </div>
+        <div class="gap-say">엄마는 많이 밀어붙인다고 답했는데, 아이는 그렇게 느끼지 않았습니다.</div>
+      </div>
+
+      <div class="gap-row">
+        <div class="gap-nm">지지표현</div>
+        <div class="gap-bars">
+          <div class="gb"><span class="who">부모</span><div class="track"><div class="fill p" style="width:25%"></div></div><span class="v">25</span></div>
+          <div class="gb"><span class="who">아이</span><div class="track"><div class="fill c" style="width:50%"></div></div><span class="v">50</span></div>
+        </div>
+        <div class="gap-say">엄마는 표현이 부족했다고 답했지만, 아이는 그보다 더 받았다고 답했습니다.</div>
+      </div>
+
+      <p class="gap-note">지지표현·합리적 설명·성취압력·간섭·처벌·감독·과잉기대·비일관성. <b>여덟 영역을 모두 이렇게 대조합니다.</b> 위 수치는 실제 결과지 형식을 따른 예시이며, 아이가 답하는 문항은 초등 4학년부터 제공됩니다.</p>
+    </div>
+  </div>
+</section>
+
 <!-- 비교 -->
 <section class="cream" style="padding-block:var(--sec)">
   <div class="wrap">
-    <div class="folio reveal"><span class="f">F.03</span><span class="t">/ 검사만 받는 것과 무엇이 다른가</span></div>
+    <div class="folio reveal"><span class="f">F.04</span><span class="t">/ 검사만 받는 것과 무엇이 다른가</span></div>
     <div class="reveal" style="max-width:34ch"><h2><span class="thin">검사는 같아도,</span><br>남는 것이 다릅니다.</h2></div>
     <div class="compare-wrap reveal">
       <div class="compare">
@@ -774,7 +852,7 @@ footer{background:#171310; color:#8a857c; padding-block:3.5rem 2.5rem; position:
 <!-- 결과물 미리보기 -->
 <section class="cream" id="preview" style="padding-block:var(--sec-lg)">
   <div class="wrap">
-    <div class="folio reveal"><span class="f">F.04</span><span class="t">/ 받게 되는 것</span></div>
+    <div class="folio reveal"><span class="f">F.05</span><span class="t">/ 받게 되는 것</span></div>
     <div class="preview">
       <div class="bookshot reveal"><img src="images/web-book-3d.jpg" alt="아이 이름이 박힌 「우리아이 마음설명서」 실물 책 입체 사진" /></div>
       <div class="reveal">
@@ -824,7 +902,7 @@ footer{background:#171310; color:#8a857c; padding-block:3.5rem 2.5rem; position:
 <!-- 과정 -->
 <section class="sand" id="process" style="padding-block:var(--sec)">
   <div class="wrap">
-    <div class="folio reveal"><span class="f">F.05</span><span class="t">/ 검사 과정</span></div>
+    <div class="folio reveal"><span class="f">F.06</span><span class="t">/ 검사 과정</span></div>
     <div class="proc-head reveal">
       <div style="max-width:30ch"><h2><span class="thin">집에서 검사하고,</span><br>책으로 받습니다.</h2></div>
       <div class="imgwrap"><img src="images/desk.jpg" alt="" /></div>
@@ -842,7 +920,7 @@ footer{background:#171310; color:#8a857c; padding-block:3.5rem 2.5rem; position:
 <!-- 가격 -->
 <section class="cream" id="tiers" style="padding-block:var(--sec)">
   <div class="wrap">
-    <div class="folio reveal"><span class="f">F.06</span><span class="t">/ 검사 구성 · 가격</span></div>
+    <div class="folio reveal"><span class="f">F.07</span><span class="t">/ 검사 구성 · 가격</span></div>
     <div class="reveal" style="max-width:40ch"><h2><span class="thin">우리 집에 맞는</span><br>한 가지를 고르세요.</h2>
       <p class="anchor-copy">심리검사 한 가지만 사설로 받아도 보통 10만~20만 원. <b>마음기록소는 아이와 양육자를 함께 교차 분석해, ‘세상에 한 권뿐인 책’까지 19만 원부터 드립니다.</b></p>
       <div class="match">
@@ -891,7 +969,7 @@ footer{background:#171310; color:#8a857c; padding-block:3.5rem 2.5rem; position:
 <!-- 저자 -->
 <section class="sand" id="author" style="padding-block:var(--sec)">
   <div class="wrap">
-    <div class="folio reveal"><span class="f">F.07</span><span class="t">/ 저자</span></div>
+    <div class="folio reveal"><span class="f">F.08</span><span class="t">/ 저자</span></div>
     <div class="author-grid">
       <div class="author-meta reveal">
         <div class="author-name">안계훈</div>
@@ -916,7 +994,7 @@ footer{background:#171310; color:#8a857c; padding-block:3.5rem 2.5rem; position:
 <!-- 시리즈 -->
 <section class="cream" style="padding-block:var(--sec)">
   <div class="wrap">
-    <div class="folio reveal"><span class="f">F.08</span><span class="t">/ 검사의 깊이</span></div>
+    <div class="folio reveal"><span class="f">F.09</span><span class="t">/ 검사의 깊이</span></div>
     <div class="series">
       <div class="imgwrap covers3 reveal">
         <img src="images/cover-jinro.png" alt="「AI 시대, 진로 방향 찾기」 진로 편 표지" />
@@ -939,7 +1017,7 @@ footer{background:#171310; color:#8a857c; padding-block:3.5rem 2.5rem; position:
 <!-- FAQ -->
 <section class="sand" id="faq" style="padding-block:var(--sec-sm)">
   <div class="wrap">
-    <div class="folio reveal"><span class="f">F.09</span><span class="t">/ 자주 묻는 질문</span></div>
+    <div class="folio reveal"><span class="f">F.10</span><span class="t">/ 자주 묻는 질문</span></div>
     <div class="faq reveal">
       <details><summary>베이직만 사면 해석을 제가 못 하는 거 아닌가요?</summary><div class="faq-body"><div><p>아닙니다. 베이직 책은 전문가가 감수한 해석을 부모님이 그대로 읽고 행동할 수 있는 언어로 담습니다. 줌 해설(VIP, 출시예정)은 ‘더 깊은 대화’를 원하실 때의 선택이지 필수가 아닙니다.</p></div></div></details>
       <details><summary>이게 인터넷 무료 검사랑 뭐가 다른가요?</summary><div class="faq-body"><div><p>WISC-V·MMPI-2·TCI·Holland·PAT-2·SCT는 병원·학교·상담센터에서 실제로 쓰는 표준화·정식 채점 심리검사입니다. 자동 채점이 아니라 임상심리전문가의 기준으로 채점·해석하는 정식 심리검사입니다.</p></div></div></details>
