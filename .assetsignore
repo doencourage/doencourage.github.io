@@ -1,0 +1,8 @@
+.git/**
+README.md
+wrangler.toml
+editor*
+content/**
+_작업/**
+*.py
+*.md

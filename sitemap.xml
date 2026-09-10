@@ -438,4 +438,34 @@
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
+  <url>
+    <loc>https://doencourage.com/book</loc>
+  </url>
+  <url>
+    <loc>https://doencourage.com/reading</loc>
+  </url>
+  <url>
+    <loc>https://doencourage.com/about</loc>
+  </url>
+  <url>
+    <loc>https://doencourage.com/article</loc>
+  </url>
+  <url>
+    <loc>https://doencourage.com/article-score</loc>
+  </url>
+  <url>
+    <loc>https://doencourage.com/article-verbs</loc>
+  </url>
+  <url>
+    <loc>https://doencourage.com/article-interest</loc>
+  </url>
+  <url>
+    <loc>https://doencourage.com/assessment/</loc>
+  </url>
+  <url>
+    <loc>https://doencourage.com/privacy/</loc>
+  </url>
+  <url>
+    <loc>https://doencourage.com/terms/</loc>
+  </url>
 </urlset>

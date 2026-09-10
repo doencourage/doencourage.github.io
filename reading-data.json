@@ -1,0 +1,41 @@
+{
+  "version": 1,
+  "posts": [
+    {
+      "id": "ai-does-it-cheaper",
+      "title": "좋아하지 않는 일은, AI가 더 싸게 해 버립니다",
+      "description": "직업의 이름과 방식이 빠르게 바뀌는 때, 아이에게 오래 남을 나침반이 무엇인지 묻는 프롤로그입니다.",
+      "category": "excerpt",
+      "url": "article.html",
+      "source": "안계훈 · 『AI 시대, 진로 방향 찾기』 · 프롤로그 15-16쪽",
+      "publishedAt": "2026-09-10T00:00:01Z"
+    },
+    {
+      "id": "score-time-interest-time",
+      "title": "점수의 시간은 짧고, 흥미의 시간은 깁니다",
+      "description": "비교가 불안해질 때, 입시 이후의 시간을 함께 생각합니다.",
+      "category": "excerpt",
+      "url": "article-score.html",
+      "source": "안계훈 · 『AI 시대, 진로 방향 찾기』 · 34-35쪽",
+      "publishedAt": "2026-09-10T00:00:02Z"
+    },
+    {
+      "id": "job-noun-work-verb",
+      "title": "직업 명사는 옷이고, 동사는 몸이다",
+      "description": "무엇이 되고 싶은지보다 무엇을 할 때 즐거운지 물어봅니다.",
+      "category": "excerpt",
+      "url": "article-verbs.html",
+      "source": "안계훈 · 『AI 시대, 진로 방향 찾기』 · 49쪽",
+      "publishedAt": "2026-09-10T00:00:03Z"
+    },
+    {
+      "id": "interest-built-by-exposure",
+      "title": "흥미는 경험에서 자랍니다",
+      "description": "좋아하는 것이 없다는 말 앞에서, 경험의 역할을 살펴봅니다.",
+      "category": "excerpt",
+      "url": "article-interest.html",
+      "source": "안계훈 · 『AI 시대, 진로 방향 찾기』 · 102-103쪽",
+      "publishedAt": "2026-09-10T00:00:04Z"
+    }
+  ]
+}
