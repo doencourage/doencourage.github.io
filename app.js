@@ -64,6 +64,7 @@
     const setBookCoverOpen = (open) => {
       bookCoverToggle.setAttribute("aria-pressed", String(open));
       bookCoverToggle.setAttribute("aria-label", open ? "책등 닫기" : "책등 보기");
+      bookCoverToggle.classList.toggle("is-spine-visible", open);
     };
 
     bookCoverToggle.addEventListener("click", () => {

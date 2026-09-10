@@ -181,8 +181,8 @@ input {
 .book-stage-link {
   --book-height: 430px;
   --book-width: 292px;
-  --book-depth: 24px;
-  --book-half-depth: 12px;
+  --book-depth: 35.5px;
+  --book-half-depth: calc(var(--book-depth) / 2);
   position: relative;
   display: grid;
   width: 100%;
@@ -464,8 +464,8 @@ input {
 .book-cover-toggle {
   --book-height: min(540px, 62vw);
   --book-width: min(366px, 42vw);
-  --book-depth: 24px;
-  --book-half-depth: 12px;
+  --book-depth: min(44.5px, 5.11vw);
+  --book-half-depth: calc(var(--book-depth) / 2);
   position: relative;
   width: min(100%, calc(var(--book-width) + 56px));
   height: calc(var(--book-height) + 30px);
@@ -536,36 +536,16 @@ input {
 .book-spine {
   left: calc(-1 * var(--book-half-depth));
   width: var(--book-depth);
-  overflow: hidden;
-  background: #e8dfc8;
-  border: 1px solid rgba(31, 41, 55, 0.12);
+  opacity: 0;
   transform: rotateY(-90deg);
+  transition: opacity 0.08s ease 0.42s;
 }
 
-.book-spine-title,
-.book-spine-publisher {
-  position: absolute;
-  left: 50%;
-  writing-mode: vertical-rl;
-  text-orientation: mixed;
-  transform: translateX(-50%);
-  white-space: nowrap;
-  color: #1f2d3d;
-  font-size: 9px;
-  font-weight: 650;
-  line-height: 1;
-  letter-spacing: -0.04em;
-}
-
-.book-spine-title {
-  top: 18px;
-}
-
-.book-spine-publisher {
-  bottom: 18px;
-  color: #1f2d3d;
-  font-size: 8px;
-  letter-spacing: 0;
+.book-spine img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: fill;
 }
 
 .book-cover-toggle:focus-visible,
@@ -575,14 +555,28 @@ input {
 }
 
 .book-stage-link:focus-visible .book-object,
+.book-cover-toggle.is-spine-visible .book-object,
 .book-cover-toggle[aria-pressed="true"] .book-object {
   transform: translateY(-8px) rotateY(28deg);
+}
+
+.book-stage-link:focus-visible .book-spine,
+.book-cover-toggle.is-spine-visible .book-spine,
+.book-cover-toggle[aria-pressed="true"] .book-spine {
+  opacity: 1;
+  transition-delay: 0s;
 }
 
 @media (hover: hover) and (pointer: fine) {
   .book-cover-toggle:hover .book-object,
   .book-stage-link:hover .book-object {
     transform: translateY(-8px) rotateY(28deg);
+  }
+
+  .book-cover-toggle:hover .book-spine,
+  .book-stage-link:hover .book-spine {
+    opacity: 1;
+    transition-delay: 0s;
   }
 }
 
@@ -1098,6 +1092,7 @@ input {
   .book-stage-link {
     --book-height: 392px;
     --book-width: 266px;
+    --book-depth: 32.4px;
   }
 
   .quote {
@@ -1159,6 +1154,7 @@ input {
   .book-stage-link {
     --book-height: min(430px, 60vw);
     --book-width: min(292px, 40.7vw);
+    --book-depth: min(35.5px, 4.95vw);
   }
 
   .quote-block {
@@ -1271,6 +1267,7 @@ input {
   .book-stage-link {
     --book-height: 217px;
     --book-width: 147px;
+    --book-depth: 17.9px;
   }
 
   .home-main .book-copy {
@@ -1410,6 +1407,7 @@ input {
   .book-cover-toggle {
     --book-height: min(480px, 118vw);
     --book-width: min(326px, 80vw);
+    --book-depth: min(39.7px, 9.74vw);
   }
 
   .book-detail .book-copy h2 {
@@ -1520,6 +1518,7 @@ input {
   .book-stage-link {
     --book-height: 207px;
     --book-width: 140px;
+    --book-depth: 17px;
   }
 
   .feature-article {
@@ -1544,6 +1543,10 @@ input {
   }
 
   .book-object {
+    transition: none;
+  }
+
+  .book-spine {
     transition: none;
   }
 }
