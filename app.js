@@ -1,5 +1,5 @@
 (function () {
-  const UX_QUERY_VALUE = "6";
+  const UX_QUERY_VALUE = "8";
   const pathName = decodeURIComponent(location.pathname.split("/").pop() || "index.html");
   const current = pathName === "index.html" || pathName === "a.html" || pathName === "b.html"
     ? "home"
@@ -61,11 +61,19 @@
 
   const bookCoverToggle = document.querySelector(".book-cover-toggle");
   if (bookCoverToggle) {
+    const setBookPointerMode = (event) => {
+      bookCoverToggle.classList.toggle("uses-touch-input", event.pointerType !== "mouse");
+    };
     const setBookCoverOpen = (open) => {
       bookCoverToggle.setAttribute("aria-pressed", String(open));
       bookCoverToggle.setAttribute("aria-label", open ? "책등 닫기" : "책등 보기");
       bookCoverToggle.classList.toggle("is-spine-visible", open);
     };
+
+    bookCoverToggle.addEventListener("pointerdown", setBookPointerMode);
+    bookCoverToggle.addEventListener("pointerenter", (event) => {
+      if (event.pointerType === "mouse") setBookPointerMode(event);
+    });
 
     bookCoverToggle.addEventListener("click", () => {
       setBookCoverOpen(bookCoverToggle.getAttribute("aria-pressed") !== "true");

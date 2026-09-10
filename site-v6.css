@@ -568,16 +568,25 @@ input {
 }
 
 @media (hover: hover) and (pointer: fine) {
-  .book-cover-toggle:hover .book-object,
+  .book-cover-toggle:not(.uses-touch-input):hover .book-object,
   .book-stage-link:hover .book-object {
     transform: translateY(-8px) rotateY(28deg);
   }
 
-  .book-cover-toggle:hover .book-spine,
+  .book-cover-toggle:not(.uses-touch-input):hover .book-spine,
   .book-stage-link:hover .book-spine {
     opacity: 1;
     transition-delay: 0s;
   }
+}
+
+.book-cover-toggle.uses-touch-input[aria-pressed="false"] .book-object {
+  transform: translateY(-8px) rotateY(0deg);
+}
+
+.book-cover-toggle.uses-touch-input[aria-pressed="false"] .book-spine {
+  opacity: 0;
+  transition-delay: 0.42s;
 }
 
 .book-detail .book-copy {
