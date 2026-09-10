@@ -59,6 +59,27 @@
 
   preserveUxQuery(document);
 
+  const bookCoverToggle = document.querySelector(".book-cover-toggle");
+  if (bookCoverToggle) {
+    const setBookCoverOpen = (open) => {
+      bookCoverToggle.setAttribute("aria-pressed", String(open));
+      bookCoverToggle.setAttribute("aria-label", open ? "책등 닫기" : "책등 보기");
+    };
+
+    bookCoverToggle.addEventListener("click", () => {
+      setBookCoverOpen(bookCoverToggle.getAttribute("aria-pressed") !== "true");
+    });
+
+    document.addEventListener("click", (event) => {
+      if (
+        bookCoverToggle.getAttribute("aria-pressed") === "true"
+        && !bookCoverToggle.contains(event.target)
+      ) {
+        setBookCoverOpen(false);
+      }
+    });
+  }
+
   const results = document.querySelector("[data-reading-results]");
   if (!results) return;
 

@@ -175,22 +175,24 @@ input {
   height: 500px;
   display: grid;
   place-items: center;
-  overflow: hidden;
-  background: var(--field);
+  background: transparent;
 }
 
 .book-stage-link {
+  --book-height: 430px;
+  --book-width: 292px;
+  --book-depth: 24px;
+  --book-half-depth: 12px;
+  position: relative;
   display: grid;
   width: 100%;
   height: 100%;
   place-items: center;
+  perspective: 1800px;
 }
 
 .book-cover {
   display: block;
-  width: auto;
-  height: 430px;
-  object-fit: contain;
 }
 
 .book-copy {
@@ -456,14 +458,132 @@ input {
   display: grid;
   place-items: center;
   padding: 42px;
-  background: var(--field);
+  background: transparent;
 }
 
-.book-cover-column img {
-  width: auto;
-  height: min(540px, 62vw);
+.book-cover-toggle {
+  --book-height: min(540px, 62vw);
+  --book-width: min(366px, 42vw);
+  --book-depth: 24px;
+  --book-half-depth: 12px;
+  position: relative;
+  width: min(100%, calc(var(--book-width) + 56px));
+  height: calc(var(--book-height) + 30px);
+  display: grid;
+  place-items: center;
+  padding: 0;
+  border: 0;
+  appearance: none;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+  perspective: 1800px;
+  touch-action: manipulation;
+}
+
+.book-cover-toggle::after,
+.book-stage-link::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 1px;
+  width: 72%;
+  height: 16px;
+  border-radius: 50%;
+  background: rgba(19, 29, 44, 0.17);
+  filter: blur(12px);
+  transform: translateX(-50%);
+  pointer-events: none;
+}
+
+.book-object {
+  position: relative;
+  z-index: 1;
+  width: var(--book-width);
+  height: var(--book-height);
   display: block;
-  object-fit: contain;
+  transform: translateY(-8px) rotateY(0deg);
+  transform-style: preserve-3d;
+  transform-origin: center center;
+  transition: transform 0.5s ease;
+  will-change: transform;
+}
+
+.book-front,
+.book-spine {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  display: block;
+  backface-visibility: hidden;
+}
+
+.book-front {
+  inset-inline: 0;
+  width: 100%;
+  background: #f5f1e7;
+  box-shadow: 10px 13px 22px rgba(19, 29, 44, 0.2), 2px 4px 7px rgba(19, 29, 44, 0.13);
+  transform: translateZ(var(--book-half-depth));
+}
+
+.book-front img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+}
+
+.book-spine {
+  left: calc(-1 * var(--book-half-depth));
+  width: var(--book-depth);
+  overflow: hidden;
+  background: #e8dfc8;
+  border: 1px solid rgba(31, 41, 55, 0.12);
+  transform: rotateY(-90deg);
+}
+
+.book-spine-title,
+.book-spine-publisher {
+  position: absolute;
+  left: 50%;
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  color: #1f2d3d;
+  font-size: 9px;
+  font-weight: 650;
+  line-height: 1;
+  letter-spacing: -0.04em;
+}
+
+.book-spine-title {
+  top: 18px;
+}
+
+.book-spine-publisher {
+  bottom: 18px;
+  color: #1f2d3d;
+  font-size: 8px;
+  letter-spacing: 0;
+}
+
+.book-cover-toggle:focus-visible,
+.book-stage-link:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 4px;
+}
+
+.book-stage-link:focus-visible .book-object,
+.book-cover-toggle[aria-pressed="true"] .book-object {
+  transform: translateY(-8px) rotateY(28deg);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .book-cover-toggle:hover .book-object,
+  .book-stage-link:hover .book-object {
+    transform: translateY(-8px) rotateY(28deg);
+  }
 }
 
 .book-detail .book-copy {
@@ -975,8 +1095,9 @@ input {
     height: 460px;
   }
 
-  .book-cover {
-    height: 392px;
+  .book-stage-link {
+    --book-height: 392px;
+    --book-width: 266px;
   }
 
   .quote {
@@ -1035,8 +1156,9 @@ input {
     height: min(500px, 70vw);
   }
 
-  .book-cover {
-    height: min(430px, 60vw);
+  .book-stage-link {
+    --book-height: min(430px, 60vw);
+    --book-width: min(292px, 40.7vw);
   }
 
   .quote-block {
@@ -1146,9 +1268,9 @@ input {
     height: 241px;
   }
 
-  .book-cover {
-    width: auto;
-    height: 217px;
+  .book-stage-link {
+    --book-height: 217px;
+    --book-width: 147px;
   }
 
   .home-main .book-copy {
@@ -1285,8 +1407,9 @@ input {
     padding: 28px;
   }
 
-  .book-cover-column img {
-    height: min(480px, 118vw);
+  .book-cover-toggle {
+    --book-height: min(480px, 118vw);
+    --book-width: min(326px, 80vw);
   }
 
   .book-detail .book-copy h2 {
@@ -1394,8 +1517,9 @@ input {
     height: 229px;
   }
 
-  .book-cover {
-    height: 207px;
+  .book-stage-link {
+    --book-height: 207px;
+    --book-width: 140px;
   }
 
   .feature-article {
@@ -1417,5 +1541,9 @@ input {
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
+  }
+
+  .book-object {
+    transition: none;
   }
 }
