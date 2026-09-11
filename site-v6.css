@@ -461,10 +461,10 @@ input {
   background: transparent;
 }
 
-.book-cover-toggle {
+.book-cover-rotator {
   --book-height: min(540px, 62vw);
-  --book-width: min(366px, 42vw);
-  --book-depth: min(44.5px, 5.11vw);
+  --book-width: calc(var(--book-height) * 854 / 1288);
+  --book-depth: calc(var(--book-width) * 17.6 / 144.6);
   --book-half-depth: calc(var(--book-depth) / 2);
   position: relative;
   width: min(100%, calc(var(--book-width) + 56px));
@@ -473,15 +473,16 @@ input {
   place-items: center;
   padding: 0;
   border: 0;
-  appearance: none;
   background: transparent;
   color: inherit;
-  cursor: pointer;
+  cursor: grab;
   perspective: 1800px;
-  touch-action: manipulation;
+  touch-action: pan-y;
+  user-select: none;
+  -webkit-user-select: none;
 }
 
-.book-cover-toggle::after,
+.book-cover-rotator::after,
 .book-stage-link::after {
   content: "";
   position: absolute;
@@ -510,7 +511,9 @@ input {
 }
 
 .book-front,
-.book-spine {
+.book-spine,
+.book-back,
+.book-fore-edge {
   position: absolute;
   top: 0;
   height: 100%;
@@ -526,11 +529,20 @@ input {
   transform: translateZ(var(--book-half-depth));
 }
 
-.book-front img {
+.book-front img,
+.book-back img {
   width: 100%;
   height: 100%;
   display: block;
+}
+
+.book-front img {
   object-fit: cover;
+}
+
+.book-cover-rotator .book-front img,
+.book-back img {
+  object-fit: fill;
 }
 
 .book-spine {
@@ -548,45 +560,70 @@ input {
   object-fit: fill;
 }
 
-.book-cover-toggle:focus-visible,
+.book-back {
+  inset-inline: 0;
+  width: 100%;
+  background: #f5f1e7;
+  box-shadow: 10px 13px 22px rgba(19, 29, 44, 0.16), 2px 4px 7px rgba(19, 29, 44, 0.11);
+  transform: rotateY(180deg) translateZ(var(--book-half-depth));
+}
+
+.book-fore-edge {
+  left: calc(100% - var(--book-half-depth));
+  width: var(--book-depth);
+  background:
+    linear-gradient(to right, rgba(20, 25, 30, 0.12), transparent 22%, transparent 78%, rgba(20, 25, 30, 0.1)),
+    repeating-linear-gradient(to bottom, #ddd8ca 0, #faf7ed 1px, #e9e3d5 2px, #f7f3e9 3px);
+  box-shadow: inset 0 0 4px rgba(25, 31, 37, 0.14);
+  transform: rotateY(90deg);
+}
+
+.book-cover-rotator .book-object {
+  transform: translateY(-8px) rotateY(var(--book-rotation, 0deg));
+  transition: transform 0.8s ease;
+}
+
+.book-cover-rotator .book-spine {
+  opacity: 1;
+  transition: none;
+}
+
+.book-cover-rotator.is-gesturing {
+  cursor: grabbing;
+}
+
+.book-cover-rotator:focus-visible,
 .book-stage-link:focus-visible {
   outline: 2px solid var(--ink);
   outline-offset: 4px;
 }
 
-.book-stage-link:focus-visible .book-object,
-.book-cover-toggle.is-spine-visible .book-object,
-.book-cover-toggle[aria-pressed="true"] .book-object {
+.book-stage-link:focus-visible .book-object {
   transform: translateY(-8px) rotateY(28deg);
 }
 
-.book-stage-link:focus-visible .book-spine,
-.book-cover-toggle.is-spine-visible .book-spine,
-.book-cover-toggle[aria-pressed="true"] .book-spine {
+.book-stage-link:focus-visible .book-spine {
   opacity: 1;
   transition-delay: 0s;
 }
 
 @media (hover: hover) and (pointer: fine) {
-  .book-cover-toggle:not(.uses-touch-input):hover .book-object,
   .book-stage-link:hover .book-object {
     transform: translateY(-8px) rotateY(28deg);
   }
 
-  .book-cover-toggle:not(.uses-touch-input):hover .book-spine,
   .book-stage-link:hover .book-spine {
     opacity: 1;
     transition-delay: 0s;
   }
 }
 
-.book-cover-toggle.uses-touch-input[aria-pressed="false"] .book-object {
-  transform: translateY(-8px) rotateY(0deg);
-}
-
-.book-cover-toggle.uses-touch-input[aria-pressed="false"] .book-spine {
-  opacity: 0;
-  transition-delay: 0.42s;
+.book-rotation-hint {
+  margin: -5px 0 0;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.5;
+  text-align: center;
 }
 
 .book-detail .book-copy {
@@ -1413,10 +1450,8 @@ input {
     padding: 28px;
   }
 
-  .book-cover-toggle {
+  .book-cover-rotator {
     --book-height: min(480px, 118vw);
-    --book-width: min(326px, 80vw);
-    --book-depth: min(39.7px, 9.74vw);
   }
 
   .book-detail .book-copy h2 {
@@ -1551,7 +1586,8 @@ input {
     scroll-behavior: auto;
   }
 
-  .book-object {
+  .book-object,
+  .book-cover-rotator .book-object {
     transition: none;
   }
 

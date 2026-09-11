@@ -1,5 +1,5 @@
 (function () {
-  const UX_QUERY_VALUE = "8";
+  const UX_QUERY_VALUE = "9";
   const pathName = decodeURIComponent(location.pathname.split("/").pop() || "index.html");
   const current = pathName === "index.html" || pathName === "a.html" || pathName === "b.html"
     ? "home"
@@ -59,34 +59,113 @@
 
   preserveUxQuery(document);
 
-  const bookCoverToggle = document.querySelector(".book-cover-toggle");
-  if (bookCoverToggle) {
-    const setBookPointerMode = (event) => {
-      bookCoverToggle.classList.toggle("uses-touch-input", event.pointerType !== "mouse");
+  const bookRotator = document.querySelector("[data-book-rotator]");
+  if (bookRotator) {
+    const bookObject = bookRotator.querySelector(".book-object");
+    const rotationStatus = document.querySelector("#book-rotation-status");
+    const stateLabels = {
+      front: "앞표지",
+      side: "책등 방향",
+      back: "뒤표지"
     };
-    const setBookCoverOpen = (open) => {
-      bookCoverToggle.setAttribute("aria-pressed", String(open));
-      bookCoverToggle.setAttribute("aria-label", open ? "책등 닫기" : "책등 보기");
-      bookCoverToggle.classList.toggle("is-spine-visible", open);
+    let bookState = "front";
+    let rotation = 0;
+    let pointerId = null;
+    let startX = 0;
+    let startY = 0;
+    let lastX = 0;
+    let lastY = 0;
+    let horizontalLock = false;
+
+    const updateBook = (nextRotation, nextState, announce) => {
+      rotation = nextRotation;
+      bookState = nextState;
+      bookObject.style.setProperty("--book-rotation", `${rotation}deg`);
+      bookRotator.dataset.bookState = bookState;
+      if (announce && rotationStatus) {
+        rotationStatus.textContent = `현재 ${stateLabels[bookState]}입니다.`;
+      }
     };
 
-    bookCoverToggle.addEventListener("pointerdown", setBookPointerMode);
-    bookCoverToggle.addEventListener("pointerenter", (event) => {
-      if (event.pointerType === "mouse") setBookPointerMode(event);
+    const turnBook = (direction) => {
+      if (direction > 0) {
+        if (bookState === "front") updateBook(rotation + 40, "side", true);
+        else if (bookState === "side") updateBook(rotation + 140, "back", true);
+        else updateBook(rotation + 180, "front", true);
+      } else if (bookState === "front") {
+        updateBook(rotation - 180, "back", true);
+      } else if (bookState === "back") {
+        updateBook(rotation - 140, "side", true);
+      } else {
+        updateBook(rotation - 40, "front", true);
+      }
+    };
+
+    const finishPointer = (event, allowTurn) => {
+      if (event.pointerId !== pointerId) return;
+      if (Number.isFinite(event.clientX)) lastX = event.clientX;
+      if (Number.isFinite(event.clientY)) lastY = event.clientY;
+      const finishedPointerId = pointerId;
+      const dx = lastX - startX;
+      const dy = lastY - startY;
+      pointerId = null;
+      horizontalLock = false;
+      bookRotator.classList.remove("is-gesturing");
+      bookObject.getBoundingClientRect();
+      if (bookRotator.hasPointerCapture?.(finishedPointerId)) {
+        bookRotator.releasePointerCapture(finishedPointerId);
+      }
+      if (allowTurn && Math.abs(dx) >= 35 && Math.abs(dx) > Math.abs(dy) * 1.15) {
+        turnBook(dx > 0 ? 1 : -1);
+      }
+    };
+
+    bookRotator.addEventListener("pointerdown", (event) => {
+      if (pointerId !== null || !event.isPrimary || (event.pointerType === "mouse" && event.button !== 0)) return;
+      pointerId = event.pointerId;
+      startX = event.clientX;
+      startY = event.clientY;
+      lastX = event.clientX;
+      lastY = event.clientY;
+      horizontalLock = false;
+      bookRotator.classList.add("is-gesturing");
     });
 
-    bookCoverToggle.addEventListener("click", () => {
-      setBookCoverOpen(bookCoverToggle.getAttribute("aria-pressed") !== "true");
-    });
-
-    document.addEventListener("click", (event) => {
-      if (
-        bookCoverToggle.getAttribute("aria-pressed") === "true"
-        && !bookCoverToggle.contains(event.target)
-      ) {
-        setBookCoverOpen(false);
+    bookRotator.addEventListener("pointermove", (event) => {
+      if (event.pointerId !== pointerId) return;
+      lastX = event.clientX;
+      lastY = event.clientY;
+      const dx = lastX - startX;
+      const dy = lastY - startY;
+      if (!horizontalLock && Math.abs(dx) > 8 && Math.abs(dx) > Math.abs(dy) * 1.15) {
+        horizontalLock = true;
+        bookRotator.setPointerCapture?.(pointerId);
       }
     });
+
+    bookRotator.addEventListener("pointerup", (event) => finishPointer(event, true));
+    bookRotator.addEventListener("pointercancel", (event) => finishPointer(event, false));
+    bookRotator.addEventListener("lostpointercapture", (event) => {
+      const lostPointerId = event.pointerId;
+      window.setTimeout(() => {
+        if (pointerId === lostPointerId) finishPointer(event, false);
+      }, 0);
+    });
+    window.addEventListener("pointerup", (event) => finishPointer(event, true));
+    window.addEventListener("pointercancel", (event) => finishPointer(event, false));
+    bookRotator.addEventListener("dragstart", (event) => event.preventDefault());
+
+    bookRotator.addEventListener("keydown", (event) => {
+      if (!["ArrowLeft", "ArrowRight", "Home", "End"].includes(event.key)) return;
+      event.preventDefault();
+      bookRotator.classList.remove("is-gesturing");
+      if (event.key === "ArrowRight") turnBook(1);
+      else if (event.key === "ArrowLeft") turnBook(-1);
+      else if (event.key === "Home") updateBook(0, "front", true);
+      else updateBook(180, "back", true);
+    });
+
+    updateBook(0, "front", false);
   }
 
   const results = document.querySelector("[data-reading-results]");
