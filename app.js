@@ -1,5 +1,5 @@
 (function () {
-  const UX_QUERY_VALUE = "9";
+  const UX_QUERY_VALUE = "10";
   const pathName = decodeURIComponent(location.pathname.split("/").pop() || "index.html");
   const current = pathName === "index.html" || pathName === "a.html" || pathName === "b.html"
     ? "home"
@@ -17,7 +17,8 @@
           <a href="book.html" ${current === "book" ? 'aria-current="page"' : ""}>책</a>
           <a href="reading.html" ${readingCurrent ? 'aria-current="page"' : ""}>읽을거리</a>
           <a href="about.html" ${current === "about" ? 'aria-current="page"' : ""}>마음기록소</a>
-          <a href="/assessment/" ${current === "assessment" ? 'aria-current="page"' : ""}>맞춤 심리검사책</a>
+          <a href="submission.html" ${current === "submission" ? 'aria-current="page"' : ""}>투고</a>
+          <a class="assessment-menu-link" href="https://doencourage.com/assessment/" ${current === "assessment" ? 'aria-current="page"' : ""}>맞춤 심리검사책 <span aria-hidden="true">↗</span></a>
         </nav>
       </header>`;
   }
@@ -25,15 +26,26 @@
   if (footer) {
     footer.innerHTML = `
       <footer class="site-footer">
-        <a class="footer-mark" href="index.html">마음기록소</a>
-        <p>자기이해와 심리학을 일상의 언어로 펴냅니다.</p>
-        <div class="footer-links">
-          <a href="book.html">책</a>
-          <a href="reading.html">읽을거리</a>
-          <a href="about.html">출판사 소개</a>
-          <a href="/assessment/">맞춤 심리검사책</a>
+        <div class="footer-main">
+          <div>
+            <a class="footer-mark" href="index.html">마음기록소</a>
+            <p>자기이해와 심리학을 일상의 언어로 펴냅니다.</p>
+          </div>
+          <nav class="footer-links" aria-label="하단 메뉴">
+            <a href="book.html">책</a>
+            <a href="reading.html">읽을거리</a>
+            <a href="about.html">출판사 소개</a>
+            <a href="submission.html">투고</a>
+            <a href="https://doencourage.com/assessment/">맞춤 심리검사책</a>
+          </nav>
         </div>
-        <p class="copyright">© 2026 마음기록소</p>
+        <div class="footer-legal">
+          <p>상호 마음기록소 · 대표자 안계훈 · 사업자등록번호 557-13-02917</p>
+          <p>사업장 주소 경기도 이천시 대월면 사동로176, 2층 202호</p>
+          <p>이메일 <a href="mailto:hello@doencourage.com">hello@doencourage.com</a> · 호스팅서비스제공자 Cloudflare, Inc.</p>
+          <p><a href="https://doencourage.com/terms/">검사 서비스 이용약관</a> · <a href="https://doencourage.com/privacy/">개인정보처리방침</a></p>
+          <p class="copyright">© 2026 마음기록소</p>
+        </div>
       </footer>`;
   }
 
@@ -167,6 +179,22 @@
 
     updateBook(0, "front", false);
   }
+
+  document.querySelectorAll("[data-copy-text], [data-copy-source]").forEach((button) => {
+    button.addEventListener("click", async () => {
+      const sourceId = button.dataset.copySource;
+      const source = sourceId ? document.getElementById(sourceId) : null;
+      const value = button.dataset.copyText || source?.textContent?.trim() || "";
+      const status = document.getElementById(button.dataset.copyStatus || "");
+      try {
+        if (!value || !navigator.clipboard?.writeText) throw new Error("clipboard unavailable");
+        await navigator.clipboard.writeText(value);
+        if (status) status.textContent = button.dataset.copySuccess || "복사했습니다.";
+      } catch (_error) {
+        if (status) status.textContent = button.dataset.copyFailure || "복사하지 못했습니다. 직접 선택해 복사해 주세요.";
+      }
+    });
+  });
 
   const results = document.querySelector("[data-reading-results]");
   if (!results) return;
