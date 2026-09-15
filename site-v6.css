@@ -1427,11 +1427,6 @@ input {
     justify-content: center;
   }
 
-  .site-menu .assessment-menu-link {
-    grid-column: 1 / -1;
-    justify-self: end;
-  }
-
   .home-main {
     padding-top: 18px;
   }

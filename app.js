@@ -1,5 +1,5 @@
 (function () {
-  const UX_QUERY_VALUE = "10";
+  const UX_QUERY_VALUE = "11";
   const pathName = decodeURIComponent(location.pathname.split("/").pop() || "index.html");
   const current = pathName === "index.html" || pathName === "a.html" || pathName === "b.html"
     ? "home"
@@ -17,8 +17,7 @@
           <a href="book.html" ${current === "book" ? 'aria-current="page"' : ""}>책</a>
           <a href="reading.html" ${readingCurrent ? 'aria-current="page"' : ""}>읽을거리</a>
           <a href="about.html" ${current === "about" ? 'aria-current="page"' : ""}>마음기록소</a>
-          <a href="submission.html" ${current === "submission" ? 'aria-current="page"' : ""}>투고</a>
-          <a class="assessment-menu-link" href="https://doencourage.com/assessment/" ${current === "assessment" ? 'aria-current="page"' : ""}>맞춤 심리검사책 <span aria-hidden="true">↗</span></a>
+          <a class="assessment-menu-link" href="/assessment/" ${current === "assessment" ? 'aria-current="page"' : ""}>마음한권 <span aria-hidden="true">↗</span></a>
         </nav>
       </header>`;
   }
@@ -35,8 +34,7 @@
             <a href="book.html">책</a>
             <a href="reading.html">읽을거리</a>
             <a href="about.html">출판사 소개</a>
-            <a href="submission.html">투고</a>
-            <a href="https://doencourage.com/assessment/">맞춤 심리검사책</a>
+            <a href="/assessment/">마음한권</a>
           </nav>
         </div>
         <div class="footer-legal">
