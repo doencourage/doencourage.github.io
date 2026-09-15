@@ -1,10 +1,10 @@
 (function () {
-  const UX_QUERY_VALUE = "11";
+  const UX_QUERY_VALUE = "12";
   const pathName = decodeURIComponent(location.pathname.split("/").pop() || "index.html");
   const current = pathName === "index.html" || pathName === "a.html" || pathName === "b.html"
     ? "home"
     : pathName.replace(/\.html$/, "");
-  const readingCurrent = current === "reading" || current === "article" || current.startsWith("article-");
+  const readingCurrent = location.pathname.startsWith("/guide/") || current === "reading" || current === "article" || current.startsWith("article-");
   const header = document.querySelector("[data-site-header]");
   const footer = document.querySelector("[data-site-footer]");
 
@@ -12,11 +12,11 @@
     header.innerHTML = `
       <a class="skip-link" href="#main">본문으로 바로가기</a>
       <header class="site-header">
-        <a class="wordmark" href="index.html" aria-label="마음기록소 홈">마음기록소</a>
+        <a class="wordmark" href="/" aria-label="마음기록소 홈">마음기록소</a>
         <nav class="site-menu" aria-label="주요 메뉴">
-          <a href="book.html" ${current === "book" ? 'aria-current="page"' : ""}>책</a>
-          <a href="reading.html" ${readingCurrent ? 'aria-current="page"' : ""}>읽을거리</a>
-          <a href="about.html" ${current === "about" ? 'aria-current="page"' : ""}>마음기록소</a>
+          <a href="/book.html" ${current === "book" ? 'aria-current="page"' : ""}>책</a>
+          <a href="/reading.html" ${readingCurrent ? 'aria-current="page"' : ""}>읽을거리</a>
+          <a href="/about.html" ${current === "about" ? 'aria-current="page"' : ""}>마음기록소</a>
           <a class="assessment-menu-link" href="/assessment/" ${current === "assessment" ? 'aria-current="page"' : ""}>마음한권 <span aria-hidden="true">↗</span></a>
         </nav>
       </header>`;
@@ -27,13 +27,13 @@
       <footer class="site-footer">
         <div class="footer-main">
           <div>
-            <a class="footer-mark" href="index.html">마음기록소</a>
+            <a class="footer-mark" href="/index.html">마음기록소</a>
             <p>자기이해와 심리학을 일상의 언어로 펴냅니다.</p>
           </div>
           <nav class="footer-links" aria-label="하단 메뉴">
-            <a href="book.html">책</a>
-            <a href="reading.html">읽을거리</a>
-            <a href="about.html">출판사 소개</a>
+            <a href="/book.html">책</a>
+            <a href="/reading.html">읽을거리</a>
+            <a href="/about.html">출판사 소개</a>
             <a href="/assessment/">마음한권</a>
           </nav>
         </div>
@@ -196,162 +196,101 @@
 
   const results = document.querySelector("[data-reading-results]");
   if (!results) return;
-
   const searchInput = document.querySelector("[data-reading-search]");
   const clearButton = document.querySelector("[data-search-clear]");
-  const filterButtons = Array.from(document.querySelectorAll("button[data-category]"));
+  const filterButtons = [...document.querySelectorAll("button[data-topic]")];
+  const formatSelect = document.querySelector("[data-reading-format]");
   const count = document.querySelector("[data-reading-count]");
   const error = document.querySelector("[data-reading-error]");
-
-  const staticPosts = Array.from(results.querySelectorAll("[data-post]")).map((item) => ({
-    id: item.dataset.id,
-    title: item.dataset.title,
-    description: item.dataset.description,
-    category: item.dataset.category,
-    url: item.getAttribute("href"),
-    source: item.dataset.source,
-    publishedAt: item.dataset.publishedAt || ""
+  const more = document.querySelector("[data-reading-more]");
+  const featured = document.querySelector("[data-reading-featured]");
+  const params = new URLSearchParams(location.search);
+  const legacyTopics = {start:"assessment",jinro:"career",gijil:"temperament",yangyuk:"parenting",jineung:"intelligence"};
+  const labels = Object.fromEntries(filterButtons.map(b => [b.dataset.topic, b.textContent.trim()]));
+  const staticPosts = [...results.querySelectorAll("[data-post]")].map(item => ({
+    id:item.dataset.id, title:item.dataset.title, description:item.dataset.description,
+    category:item.dataset.category, topics:(item.dataset.topics || "").split(",").filter(Boolean),
+    url:item.getAttribute("href"), source:item.dataset.source, publishedAt:item.dataset.publishedAt || ""
   }));
-
-  const state = {
-    posts: staticPosts,
-    category: "all",
-    query: ""
-  };
-
-  function categoryLabel(category) {
-    return category === "psychology" ? "심리학 해설" : "책 발췌";
-  }
-
-  function formatPublishedAt(value) {
-    if (!value) return "";
-    const date = new Date(value);
-    if (Number.isNaN(date.getTime())) return "";
-    return new Intl.DateTimeFormat("ko-KR", {
-      year: "numeric",
-      month: "numeric",
-      day: "numeric"
-    }).format(date);
-  }
-
-  function safePostUrl(rawUrl) {
+  const requestedTopic = params.get("topic") || legacyTopics[location.hash.slice(1)] || "all";
+  const state = {posts:staticPosts, topic:labels[requestedTopic] ? requestedTopic : "all",
+    category:["excerpt","psychology"].includes(params.get("kind")) ? params.get("kind") : "all",
+    query:params.get("q") || "", limit:12};
+  searchInput.value = state.query;
+  formatSelect.value = state.category;
+  const kindLabel = kind => kind === "excerpt" ? "책 발췌" : "심리학 해설";
+  function safeUrl(raw) {
     try {
-      const url = new URL(rawUrl, location.href);
-      if (!["http:", "https:", "file:"].includes(url.protocol)) return null;
-      return url;
-    } catch (_) {
-      return null;
-    }
+      const url = new URL(raw, location.href);
+      return url.origin === location.origin && ["http:","https:"].includes(url.protocol) ? url : null;
+    } catch (_) { return null; }
   }
-
   function createPost(post) {
-    const safeUrl = safePostUrl(post.url);
-    if (!safeUrl) return null;
-
+    const url = safeUrl(post.url);
+    if (!url) return null;
     const link = document.createElement("a");
     link.className = "reading-item";
-    link.href = safeUrl.href;
+    link.href = url.href;
     link.dataset.post = "";
     link.dataset.id = post.id;
-
-    const title = document.createElement("h2");
-    title.textContent = post.title;
-
-    const description = document.createElement("p");
-    description.textContent = post.description;
-
     const meta = document.createElement("p");
     meta.className = "reading-meta";
-    const parts = [categoryLabel(post.category)];
-    if (post.category === "excerpt" && post.source) {
-      parts.push(post.source);
-    } else {
-      const publishedAt = formatPublishedAt(post.publishedAt);
-      if (publishedAt) parts.push(publishedAt);
-      if (post.source && post.source.length <= 30) parts.push(post.source);
-    }
-    meta.textContent = parts.join(" · ");
-
-    link.append(title, description, meta);
+    meta.textContent = [kindLabel(post.category), ...(post.topics || []).map(key => labels[key]).filter(Boolean)].join(" · ");
+    const title = document.createElement("h2");
+    title.textContent = post.title;
+    const description = document.createElement("p");
+    description.textContent = post.description;
+    link.append(meta, title, description);
     return link;
   }
-
+  function saveFilters() {
+    const url = new URL(location.href);
+    for (const [key,value] of [["q",state.query.trim()],["topic",state.topic],["kind",state.category]]) {
+      if (!value || value === "all") url.searchParams.delete(key);
+      else url.searchParams.set(key,value);
+    }
+    if (legacyTopics[url.hash.slice(1)]) url.hash = "";
+    history.replaceState(null,"",url);
+  }
   function render() {
-    const needle = state.query.trim().toLocaleLowerCase("ko-KR");
-    const filtered = state.posts.filter((post) => {
-      const categoryMatches = state.category === "all" || post.category === state.category;
-      const searchable = `${post.title} ${post.description}`.toLocaleLowerCase("ko-KR");
-      return categoryMatches && (!needle || searchable.includes(needle));
+    const needle = state.query.trim().normalize("NFC").toLocaleLowerCase("ko-KR");
+    const filtered = state.posts.filter(post => {
+      const subjectMatches = state.topic === "all" || (post.topics || []).includes(state.topic);
+      const kindMatches = state.category === "all" || post.category === state.category;
+      const text = [post.title,post.description,post.source,kindLabel(post.category),...(post.topics || []).map(t=>labels[t] || "")].join(" ").normalize("NFC").toLocaleLowerCase("ko-KR");
+      return subjectMatches && kindMatches && (!needle || text.includes(needle));
     });
-
     results.replaceChildren();
-    filtered.forEach((post) => {
-      const item = createPost(post);
-      if (item) results.append(item);
-    });
-
-    if (!results.children.length) {
-      const empty = document.createElement("p");
-      empty.className = "empty-state";
-      empty.textContent = "조건에 맞는 글이 없습니다. 검색어를 지우거나 다른 분류를 선택해 주세요.";
+    filtered.slice(0,state.limit).forEach(post => { const node=createPost(post); if(node)results.append(node); });
+    if (!filtered.length) {
+      const empty=document.createElement("p");
+      empty.className="empty-state";
+      empty.textContent="조건에 맞는 글이 없습니다. 검색어를 지우거나 다른 주제를 선택해 주세요.";
       results.append(empty);
     }
-
-    count.textContent = `${filtered.length}편`;
-    preserveUxQuery(results);
+    count.textContent = filtered.length + "편 · " + Math.min(state.limit,filtered.length) + "편 표시";
+    more.hidden = state.limit >= filtered.length;
+    more.textContent = "글 더 보기 (" + Math.min(state.limit,filtered.length) + "/" + filtered.length + ")";
+    featured.hidden = Boolean(needle || state.topic !== "all" || state.category !== "all");
+    filterButtons.forEach(button=>button.setAttribute("aria-pressed",String(button.dataset.topic===state.topic)));
+    saveFilters();
   }
-
-  searchInput.addEventListener("input", () => {
-    state.query = searchInput.value;
-    render();
-  });
-
-  clearButton.addEventListener("click", () => {
-    searchInput.value = "";
-    state.query = "";
-    searchInput.focus();
-    render();
-  });
-
-  filterButtons.forEach((button) => {
-    button.addEventListener("click", () => {
-      state.category = button.dataset.category;
-      filterButtons.forEach((candidate) => {
-        candidate.setAttribute("aria-pressed", String(candidate === button));
-      });
-      render();
-    });
-  });
-
-  function isValidPost(post) {
-    return post
-      && typeof post.id === "string"
-      && typeof post.title === "string"
-      && typeof post.description === "string"
-      && (post.category === "excerpt" || post.category === "psychology")
-      && typeof post.url === "string"
-      && typeof post.source === "string"
-      && typeof post.publishedAt === "string"
-      && safePostUrl(post.url);
+  searchInput.addEventListener("input",()=>{state.query=searchInput.value;state.limit=12;render();});
+  clearButton.addEventListener("click",()=>{searchInput.value="";state.query="";state.limit=12;searchInput.focus();render();});
+  formatSelect.addEventListener("change",()=>{state.category=formatSelect.value;state.limit=12;render();});
+  filterButtons.forEach(button=>button.addEventListener("click",()=>{state.topic=button.dataset.topic;state.limit=12;render();}));
+  more.addEventListener("click",()=>{state.limit+=12;render();});
+  function validPost(post) {
+    return post && ["id","title","description","url","source","publishedAt"].every(key=>typeof post[key]==="string")
+      && ["excerpt","psychology"].includes(post.category) && Array.isArray(post.topics)
+      && post.topics.every(topic=>typeof topic==="string") && safeUrl(post.url);
   }
-
-  fetch("/reading-data.json", { headers: { Accept: "application/json" }, cache: "no-store" })
-    .then((response) => {
-      if (!response.ok) throw new Error("reading-data unavailable");
-      return response.json();
+  render();
+  fetch("/reading-data.json",{headers:{Accept:"application/json"},cache:"no-store"})
+    .then(response=>{if(!response.ok)throw Error("catalog unavailable");return response.json();})
+    .then(payload=>{
+      if(!payload || payload.version!==1 || !Array.isArray(payload.posts) || !payload.posts.every(validPost))throw Error("catalog invalid");
+      state.posts=payload.posts;error.hidden=true;render();
     })
-    .then((payload) => {
-      if (!payload || payload.version !== 1 || !Array.isArray(payload.posts) || !payload.posts.every(isValidPost)) {
-        throw new Error("reading-data invalid");
-      }
-      state.posts = payload.posts;
-      error.hidden = true;
-      render();
-    })
-    .catch(() => {
-      error.hidden = false;
-      error.textContent = "새 글을 불러오지 못해 현재 저장된 4편을 보여드립니다.";
-      state.posts = staticPosts;
-      render();
-    });
+    .catch(()=>{error.hidden=false;error.textContent="최신 목록을 불러오지 못해 저장된 글 목록을 보여드립니다.";state.posts=staticPosts;render();});
 })();

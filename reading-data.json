@@ -1,41 +1,912 @@
 {
   "version": 1,
+  "topics": {
+    "career": "진로·흥미",
+    "temperament": "기질·성격",
+    "parenting": "부모·양육",
+    "intelligence": "지능·학습",
+    "assessment": "검사 이해"
+  },
+  "featured": [
+    "job-noun-work-verb",
+    "guide-양육-자책",
+    "guide-기질-성격-인격",
+    "guide-iq-숫자-하나"
+  ],
+  "serviceReading": [
+    "guide-아이-심리검사-종류",
+    "guide-검사-교차-해석",
+    "guide-부모-검사-tci-pat2",
+    "guide-기질-성격-인격"
+  ],
   "posts": [
     {
-      "id": "ai-does-it-cheaper",
-      "title": "좋아하지 않는 일은, AI가 더 싸게 해 버립니다",
-      "description": "직업의 이름과 방식이 빠르게 바뀌는 때, 아이에게 오래 남을 나침반이 무엇인지 묻는 프롤로그입니다.",
-      "category": "excerpt",
-      "url": "article.html",
-      "source": "안계훈 · 『AI 시대, 진로 방향 찾기』 · 프롤로그 15-16쪽",
-      "publishedAt": "2026-09-10T00:00:01Z"
-    },
-    {
-      "id": "score-time-interest-time",
-      "title": "점수의 시간은 짧고, 흥미의 시간은 깁니다",
-      "description": "비교가 불안해질 때, 입시 이후의 시간을 함께 생각합니다.",
-      "category": "excerpt",
-      "url": "article-score.html",
-      "source": "안계훈 · 『AI 시대, 진로 방향 찾기』 · 34-35쪽",
-      "publishedAt": "2026-09-10T00:00:02Z"
-    },
-    {
-      "id": "job-noun-work-verb",
-      "title": "직업 명사는 옷이고, 동사는 몸이다",
-      "description": "무엇이 되고 싶은지보다 무엇을 할 때 즐거운지 물어봅니다.",
-      "category": "excerpt",
-      "url": "article-verbs.html",
-      "source": "안계훈 · 『AI 시대, 진로 방향 찾기』 · 49쪽",
-      "publishedAt": "2026-09-10T00:00:03Z"
-    },
-    {
       "id": "interest-built-by-exposure",
+      "url": "/article-interest.html",
       "title": "흥미는 경험에서 자랍니다",
       "description": "좋아하는 것이 없다는 말 앞에서, 경험의 역할을 살펴봅니다.",
       "category": "excerpt",
-      "url": "article-interest.html",
       "source": "안계훈 · 『AI 시대, 진로 방향 찾기』 · 102-103쪽",
-      "publishedAt": "2026-09-10T00:00:04Z"
+      "publishedAt": "2026-09-10T00:00:04Z",
+      "topics": [
+        "career"
+      ]
+    },
+    {
+      "id": "job-noun-work-verb",
+      "url": "/article-verbs.html",
+      "title": "직업 명사는 옷이고, 동사는 몸이다",
+      "description": "무엇이 되고 싶은지보다 무엇을 할 때 즐거운지 물어봅니다.",
+      "category": "excerpt",
+      "source": "안계훈 · 『AI 시대, 진로 방향 찾기』 · 49쪽",
+      "publishedAt": "2026-09-10T00:00:03Z",
+      "topics": [
+        "career"
+      ]
+    },
+    {
+      "id": "score-time-interest-time",
+      "url": "/article-score.html",
+      "title": "점수의 시간은 짧고, 흥미의 시간은 깁니다",
+      "description": "비교가 불안해질 때, 입시 이후의 시간을 함께 생각합니다.",
+      "category": "excerpt",
+      "source": "안계훈 · 『AI 시대, 진로 방향 찾기』 · 34-35쪽",
+      "publishedAt": "2026-09-10T00:00:02Z",
+      "topics": [
+        "career"
+      ]
+    },
+    {
+      "id": "ai-does-it-cheaper",
+      "url": "/article.html",
+      "title": "좋아하지 않는 일은, AI가 더 싸게 해 버립니다",
+      "description": "직업의 이름과 방식이 빠르게 바뀌는 때, 아이에게 오래 남을 나침반이 무엇인지 묻는 프롤로그입니다.",
+      "category": "excerpt",
+      "source": "안계훈 · 『AI 시대, 진로 방향 찾기』 · 프롤로그 15-16쪽",
+      "publishedAt": "2026-09-10T00:00:01Z",
+      "topics": [
+        "career"
+      ]
+    },
+    {
+      "id": "guide-부모유형-철의마라토너",
+      "title": "부모 유형 — 철의 마라토너",
+      "description": "한번 정한 것은 끝까지 밀고 가는 부모. 그 끈기가 아이에게도 요구될 때 무슨 일이 생기는지, ‘철의 마라토너’ 유형의 강점과 아이의 ‘그만둘 권리’를 임상심리전문가가 설명합니다.",
+      "category": "psychology",
+      "topics": [
+        "parenting"
+      ],
+      "url": "/guide/부모유형-철의마라토너",
+      "source": "안계훈 · 임상심리전문가",
+      "publishedAt": "2026-08-06"
+    },
+    {
+      "id": "guide-기질-마라토너",
+      "title": "기질 유형 — 마라토너",
+      "description": "한번 목표를 정하면 지치지 않고 끝까지 가는 아이. 강한 인내력이 강점이자 함정이 되는 이유와, 쉬는 법·방향 바꾸는 법을 어떻게 알려 줄지 임상심리전문가가 설명합니다.",
+      "category": "psychology",
+      "topics": [
+        "temperament"
+      ],
+      "url": "/guide/기질-마라토너",
+      "source": "안계훈 · 임상심리전문가",
+      "publishedAt": "2026-08-05"
+    },
+    {
+      "id": "guide-지능-고르게발달",
+      "title": "고르게 발달해 강점이 안 드러나는 아이",
+      "description": "결과지에 “전반적으로 고르게 발달”이라고만 적혀 있습니다. 특별한 강점도 약점도 없는 아이, 정말 특징이 없는 걸까요? 고른 발달이 왜 그 자체로 강점인지, 강점은 어디서 찾아야 하는지 임상심리전문가가 설명합니다.",
+      "category": "psychology",
+      "topics": [
+        "intelligence"
+      ],
+      "url": "/guide/지능-고르게발달",
+      "source": "안계훈 · 임상심리전문가",
+      "publishedAt": "2026-07-31"
+    },
+    {
+      "id": "guide-부모유형-독립형캠프장",
+      "title": "부모 유형 — 독립형 캠프장",
+      "description": "아이의 자율을 존중하고 시시콜콜 간섭하지 않는 부모. 그 자율이 언제 아이에게 무관심으로 읽히는지, ‘독립형 캠프장’ 유형의 강점과 다뤄야 할 것을 임상심리전문가가 설명합니다.",
+      "category": "psychology",
+      "topics": [
+        "parenting"
+      ],
+      "url": "/guide/부모유형-독립형캠프장",
+      "source": "안계훈 · 임상심리전문가",
+      "publishedAt": "2026-07-30"
+    },
+    {
+      "id": "guide-기질-나홀로개척자",
+      "title": "기질 유형 — 나홀로 개척자",
+      "description": "칭찬에도 꾸중에도 무덤덤하고, 한번 꽂힌 주제엔 며칠이고 파고드는 아이. 또래 압력에 흔들리지 않는 독창성이 강점인 나홀로 개척자 유형을, 어떻게 다뤄야 말이 닿는지 임상심리전문가가 설명합니다.",
+      "category": "psychology",
+      "topics": [
+        "temperament"
+      ],
+      "url": "/guide/기질-나홀로개척자",
+      "source": "안계훈 · 임상심리전문가",
+      "publishedAt": "2026-07-29"
+    },
+    {
+      "id": "guide-지능-손빠른데-깊이부족",
+      "title": "손은 빠른데 깊이가 부족한 아이",
+      "description": "누구보다 빨리 끝내는데 실수가 많은 아이. 빠른 손이 강점이면서 동시에 함정이 되는 이유와, 속도를 깊이로 바꿔 주는 법을 임상심리전문가가 설명합니다.",
+      "category": "psychology",
+      "topics": [
+        "intelligence"
+      ],
+      "url": "/guide/지능-손빠른데-깊이부족",
+      "source": "안계훈 · 임상심리전문가",
+      "publishedAt": "2026-07-28"
+    },
+    {
+      "id": "guide-부모유형-안전제일보안관",
+      "title": "부모 유형 — 안전 제일 보안관",
+      "description": "위험은 미리 막고 규칙은 반드시 지키는 부모. 아이를 지켜 온 그 눈이 언제 아이의 기회를 막는지, ‘안전 제일 보안관’ 유형의 강점과 다뤄야 할 것을 임상심리전문가가 설명합니다.",
+      "category": "psychology",
+      "topics": [
+        "parenting"
+      ],
+      "url": "/guide/부모유형-안전제일보안관",
+      "source": "안계훈 · 임상심리전문가",
+      "publishedAt": "2026-07-27"
+    },
+    {
+      "id": "guide-기질-순응하는따라가기대원",
+      "title": "기질 유형 — 순응하는 따라가기 대원",
+      "description": "시키지 않아도 정리하고 위험한 행동을 하지 않아 키우기 수월한 아이. 그런데 뭘 원하냐 물으면 대답을 못 합니다. 순응 뒤로 자기 욕구를 눌러 두는 아이를 어떻게 도울지 임상심리전문가가 설명합니다.",
+      "category": "psychology",
+      "topics": [
+        "temperament"
+      ],
+      "url": "/guide/기질-순응하는따라가기대원",
+      "source": "안계훈 · 임상심리전문가",
+      "publishedAt": "2026-07-25"
+    },
+    {
+      "id": "guide-지능-처리속도-낮은",
+      "title": "처리속도만 낮은 아이",
+      "description": "아는데 느립니다. 시험 시간이 늘 모자라고 숙제는 두 배로 걸려요. 처리속도만 낮은 아이가 왜 게으른 것이 아닌지, 어떻게 도울지 임상심리전문가가 설명합니다.",
+      "category": "psychology",
+      "topics": [
+        "intelligence"
+      ],
+      "url": "/guide/지능-처리속도-낮은",
+      "source": "안계훈 · 임상심리전문가",
+      "publishedAt": "2026-07-21"
+    },
+    {
+      "id": "guide-부모유형-폭풍속의사공",
+      "title": "부모 유형 — 폭풍 속의 사공",
+      "description": "아이 마음을 누구보다 깊이 읽으면서도, 그날 기분에 따라 반응이 달라져 스스로를 자책하는 부모. 세 성향이 모두 높은 ‘폭풍 속의 사공’ 유형의 강점과, 일관성을 지키는 구체적인 방법을 임상심리전문가가 설명합니다.",
+      "category": "psychology",
+      "topics": [
+        "parenting"
+      ],
+      "url": "/guide/부모유형-폭풍속의사공",
+      "source": "안계훈 · 임상심리전문가",
+      "publishedAt": "2026-07-20"
+    },
+    {
+      "id": "guide-기질-마음복잡한탐험가",
+      "title": "기질 유형 — 마음이 복잡한 탐험가",
+      "description": "사소한 일에 크게 기뻐하다가 작은 말 한마디에 세상이 무너진 듯 절망하는 아이. 세 성향이 모두 높은 ‘마음이 복잡한 탐험가’ 유형의 강점과, 감정을 가라앉히는 법을 임상심리전문가가 설명합니다.",
+      "category": "psychology",
+      "topics": [
+        "temperament"
+      ],
+      "url": "/guide/기질-마음복잡한탐험가",
+      "source": "안계훈 · 임상심리전문가",
+      "publishedAt": "2026-07-18"
+    },
+    {
+      "id": "guide-지능-작업기억-약한",
+      "title": "작업기억만 약한 아이",
+      "description": "다른 건 괜찮은데 방금 들은 걸 자꾸 잊는 아이. 여러 단계 지시를 못 따르고 암산에서 무너집니다. 작업기억만 약한 아이를 어떻게 도울지 임상심리전문가가 설명합니다.",
+      "category": "psychology",
+      "topics": [
+        "intelligence"
+      ],
+      "url": "/guide/지능-작업기억-약한",
+      "source": "안계훈 · 임상심리전문가",
+      "publishedAt": "2026-07-16"
+    },
+    {
+      "id": "guide-부모유형-묵묵한관리인",
+      "title": "부모 유형 — 묵묵한 관리인",
+      "description": "말없이 할 일을 해내고 흔들리지 않는 부모. 다만 애정 표현이 적어 아이가 사랑을 못 느낄 수 있습니다. ‘묵묵한 관리인’ 유형의 강점과, 표현은 배울 수 있다는 이야기를 임상심리전문가가 전합니다.",
+      "category": "psychology",
+      "topics": [
+        "parenting"
+      ],
+      "url": "/guide/부모유형-묵묵한관리인",
+      "source": "안계훈 · 임상심리전문가",
+      "publishedAt": "2026-07-14"
+    },
+    {
+      "id": "guide-기질-고독한전문가",
+      "title": "기질 유형 — 고독한 전문가",
+      "description": "새 장난감보다 몇 시간이고 레고나 그림에 혼자 빠져드는 아이. 감정 표현이 적어 속을 알기 어려운 고독한 전문가 유형의 강점과, 끌어내지 말고 초대받아 들어가는 법을 임상심리전문가가 설명합니다.",
+      "category": "psychology",
+      "topics": [
+        "temperament"
+      ],
+      "url": "/guide/기질-고독한전문가",
+      "source": "안계훈 · 임상심리전문가",
+      "publishedAt": "2026-07-03"
+    },
+    {
+      "id": "guide-홀랜드-관습형",
+      "title": "관습형(C) 아이의 진로·양육",
+      "description": "장난감을 줄 세우고 자기 시간표를 짜고 규칙을 좋아하는 아이. 홀랜드 관습형(C) 아이의 강점과 자라는 힘, AI 시대에도 이 유형이 좁아지지 않는 이유를 임상심리전문가가 설명합니다.",
+      "category": "psychology",
+      "topics": [
+        "career"
+      ],
+      "url": "/guide/홀랜드-관습형",
+      "source": "안계훈 · 임상심리전문가",
+      "publishedAt": "2026-07-02"
+    },
+    {
+      "id": "guide-지능-말은잘하는데-행동주저",
+      "title": "말은 잘하는데 몸으로 하는 건 주저하는 아이",
+      "description": "어휘는 어른스러운데 그림·조립·운동은 유독 힘들어하는 아이. 말로 하는 힘은 강한데 눈과 손으로 다루는 힘이 약한 조합입니다. 어떻게 도울지, 언제 전문가를 만나야 할지 임상심리전문가가 설명합니다.",
+      "category": "psychology",
+      "topics": [
+        "intelligence"
+      ],
+      "url": "/guide/지능-말은잘하는데-행동주저",
+      "source": "안계훈 · 임상심리전문가",
+      "publishedAt": "2026-06-29"
+    },
+    {
+      "id": "guide-부모유형-열정적응원단장",
+      "title": "부모 유형 — 열정적인 응원단장",
+      "description": "아이 일에 누구보다 크게 기뻐하고 앞장서 응원하는 부모. 그 응원이 언제 힘이 되고 언제 압박이 되는지, ‘열정적인 응원단장’ 유형의 강점과 다뤄야 할 것을 임상심리전문가가 설명합니다.",
+      "category": "psychology",
+      "topics": [
+        "parenting"
+      ],
+      "url": "/guide/부모유형-열정적응원단장",
+      "source": "안계훈 · 임상심리전문가",
+      "publishedAt": "2026-06-28"
+    },
+    {
+      "id": "guide-기질-인기리더",
+      "title": "기질 유형 — 인기 리더",
+      "description": "“이것 좀 보세요!”라며 배운 것을 끊임없이 보여 주고 늘 친구들과 있으려는 아이. 자극추구와 사회적 민감성이 함께 높은 인기 리더 유형의 강점과, 인정 욕구를 어떻게 다뤄 줄지 임상심리전문가가 설명합니다.",
+      "category": "psychology",
+      "topics": [
+        "temperament"
+      ],
+      "url": "/guide/기질-인기리더",
+      "source": "안계훈 · 임상심리전문가",
+      "publishedAt": "2026-06-25"
+    },
+    {
+      "id": "guide-홀랜드-진취형",
+      "title": "진취형(E) 아이의 진로·양육",
+      "description": "앞장서서 길을 열고, 사람을 모으고, 지는 걸 못 견디는 아이. 홀랜드 진취형(E) 아이의 강점과 자라는 힘, 승부욕을 어떻게 다뤄 줄지 임상심리전문가가 설명합니다.",
+      "category": "psychology",
+      "topics": [
+        "career"
+      ],
+      "url": "/guide/홀랜드-진취형",
+      "source": "안계훈 · 임상심리전문가",
+      "publishedAt": "2026-06-23"
+    },
+    {
+      "id": "guide-지능-아이디어-표현서툰",
+      "title": "아이디어는 좋은데 표현이 서툰 아이",
+      "description": "머릿속 생각은 반짝이는데 말과 글로 꺼내면 초라해지는 아이. 생각하는 힘은 강한데 밖으로 옮기는 통로가 좁은 조합입니다. 아이의 진짜 실력이 보이게 돕는 법을 임상심리전문가가 설명합니다.",
+      "category": "psychology",
+      "topics": [
+        "intelligence"
+      ],
+      "url": "/guide/지능-아이디어-표현서툰",
+      "source": "안계훈 · 임상심리전문가",
+      "publishedAt": "2026-06-22"
+    },
+    {
+      "id": "guide-부모유형-따뜻한둥지지킴이",
+      "title": "부모 유형 — 따뜻한 둥지 지킴이",
+      "description": "집을 세상에서 가장 편안한 곳으로 만드는 부모. 아이의 정서적 안전기지가 되어 주지만, 세상을 넓혀 주는 데는 소극적일 수 있습니다. ‘따뜻한 둥지 지킴이’ 유형의 강점과 다뤄야 할 것을 임상심리전문가가 설명합니다.",
+      "category": "psychology",
+      "topics": [
+        "parenting"
+      ],
+      "url": "/guide/부모유형-따뜻한둥지지킴이",
+      "source": "안계훈 · 임상심리전문가",
+      "publishedAt": "2026-06-18"
+    },
+    {
+      "id": "guide-기질-조용한캠프지기",
+      "title": "기질 유형 — 조용한 캠프 지기",
+      "description": "북적이는 곳보다 부모와 책을 읽거나 단짝 한둘과 노는 걸 편안해하는 아이. 조용한 캠프 지기 유형의 강점과 자라는 힘, 넓은 관계보다 깊은 관계가 힘이 되는 이유를 임상심리전문가가 설명합니다.",
+      "category": "psychology",
+      "topics": [
+        "temperament"
+      ],
+      "url": "/guide/기질-조용한캠프지기",
+      "source": "안계훈 · 임상심리전문가",
+      "publishedAt": "2026-06-17"
+    },
+    {
+      "id": "guide-홀랜드-사회형",
+      "title": "사회형(S) 아이의 진로·양육",
+      "description": "누가 슬픈지 먼저 알아채고 친구의 고민을 들어 주는 아이. 홀랜드 사회형(S) 아이의 강점과 자라는 힘, 착하기만 한 아이로 자라지 않게 돕는 법을 임상심리전문가가 설명합니다.",
+      "category": "psychology",
+      "topics": [
+        "career"
+      ],
+      "url": "/guide/홀랜드-사회형",
+      "source": "안계훈 · 임상심리전문가",
+      "publishedAt": "2026-06-15"
+    },
+    {
+      "id": "guide-지능-말보다-행동",
+      "title": "말보다 행동이 앞서는 아이",
+      "description": "몸으로 하는 건 잘하는데 말로 설명하라면 막히는 아이. 억울해도 말이 안 나와 손이 먼저 나가기도 합니다. 눈과 손은 빠른데 언어로 옮기는 힘이 약한 조합을 어떻게 도울지 임상심리전문가가 설명합니다.",
+      "category": "psychology",
+      "topics": [
+        "intelligence"
+      ],
+      "url": "/guide/지능-말보다-행동",
+      "source": "안계훈 · 임상심리전문가",
+      "publishedAt": "2026-06-14"
+    },
+    {
+      "id": "guide-부모유형-앞서나가는행동파",
+      "title": "부모 유형 — 앞서나가는 행동파",
+      "description": "고민보다 실행이 빠르고 아이에게 다양한 경험을 안겨 주는 부모. 다만 아이의 속도를 기다리기가 힘듭니다. 모험심이 높고 경계심이 낮은 ‘앞서나가는 행동파’ 유형의 강점과 다뤄야 할 것을 임상심리전문가가 설명합니다.",
+      "category": "psychology",
+      "topics": [
+        "parenting"
+      ],
+      "url": "/guide/부모유형-앞서나가는행동파",
+      "source": "안계훈 · 임상심리전문가",
+      "publishedAt": "2026-06-11"
+    },
+    {
+      "id": "guide-기질-두려움없는돌격대",
+      "title": "기질 유형 — 두려움 없는 돌격대",
+      "description": "높은 곳만 보면 올라가고 낯선 사람에게도 스스럼없이 다가가는 아이. 부모가 “안 돼”를 입에 달고 살게 되는 두려움 없는 돌격대 유형의 강점과 자라는 힘을 임상심리전문가가 설명합니다.",
+      "category": "psychology",
+      "topics": [
+        "temperament"
+      ],
+      "url": "/guide/기질-두려움없는돌격대",
+      "source": "안계훈 · 임상심리전문가",
+      "publishedAt": "2026-06-03"
+    },
+    {
+      "id": "guide-홀랜드-예술형",
+      "title": "예술형(A) 아이의 진로·양육",
+      "description": "종이만 있으면 그리고, 이야기를 짓고, 매번 자기 색을 내고 싶어 하는 아이. 홀랜드 예술형(A) 아이의 강점과 자라는 힘, 부모가 무엇을 해 주면 좋은지 임상심리전문가가 설명합니다.",
+      "category": "psychology",
+      "topics": [
+        "career"
+      ],
+      "url": "/guide/홀랜드-예술형",
+      "source": "안계훈 · 임상심리전문가",
+      "publishedAt": "2026-06-01"
+    },
+    {
+      "id": "guide-지능-성실하지만-융통성부족",
+      "title": "성실하지만 융통성이 부족한 아이",
+      "description": "배운 대로는 잘하는데 조금만 바뀐 문제가 나오면 얼어붙는 아이. 배운 것을 담아 두는 힘은 좋은데 처음 보는 문제를 푸는 힘이 약한 조합입니다. 도와주는 법을 임상심리전문가가 설명합니다.",
+      "category": "psychology",
+      "topics": [
+        "intelligence"
+      ],
+      "url": "/guide/지능-성실하지만-융통성부족",
+      "source": "안계훈 · 임상심리전문가",
+      "publishedAt": "2026-05-30"
+    },
+    {
+      "id": "guide-부모유형-긴장하는검열관",
+      "title": "부모 유형 — 긴장하는 검열관",
+      "description": "아이 행동이 남에게 어떻게 보일지 늘 신경 쓰이고, 사소한 실수도 그냥 넘기기 어려운 부모. 경계심과 사회적 민감성이 높은 ‘긴장하는 검열관’ 유형의 강점과 다뤄야 할 것을 임상심리전문가가 설명합니다.",
+      "category": "psychology",
+      "topics": [
+        "parenting"
+      ],
+      "url": "/guide/부모유형-긴장하는검열관",
+      "source": "안계훈 · 임상심리전문가",
+      "publishedAt": "2026-05-28"
+    },
+    {
+      "id": "guide-기질-충실한대원",
+      "title": "기질 유형 — 충실한 대원",
+      "description": "“이거 해도 돼?”를 자주 묻고 부모 표정이 조금만 굳어도 불안해하는 아이. 위험회피와 사회적 민감성이 높은 충실한 대원 유형의 강점과 자라는 힘을 임상심리전문가가 설명합니다.",
+      "category": "psychology",
+      "topics": [
+        "temperament"
+      ],
+      "url": "/guide/기질-충실한대원",
+      "source": "안계훈 · 임상심리전문가",
+      "publishedAt": "2026-05-26"
+    },
+    {
+      "id": "guide-홀랜드-탐구형",
+      "title": "탐구형(I) 아이의 진로·양육",
+      "description": "끝없이 “왜?”를 묻고 한번 궁금하면 끝을 보는 아이. 홀랜드 탐구형(I) 아이의 강점과 자라는 힘, 부모가 그 질문을 어떻게 받아 주면 좋은지 임상심리전문가가 설명합니다.",
+      "category": "psychology",
+      "topics": [
+        "career"
+      ],
+      "url": "/guide/홀랜드-탐구형",
+      "source": "안계훈 · 임상심리전문가",
+      "publishedAt": "2026-05-25"
+    },
+    {
+      "id": "guide-지능-똑똑한데-산만한",
+      "title": "똑똑한데 산만한 아이",
+      "description": "이해력은 또래보다 앞서는데 알림장은 늘 비어 있는 아이. 이해하고 추론하는 힘은 강한데 붙들어 두는 힘과 옮겨 적는 속도가 약한 조합입니다. 게으른 것이 아닌 이유와 도와주는 법을 임상심리전문가가 설명합니다.",
+      "category": "psychology",
+      "topics": [
+        "intelligence"
+      ],
+      "url": "/guide/지능-똑똑한데-산만한",
+      "source": "안계훈 · 임상심리전문가",
+      "publishedAt": "2026-05-22"
+    },
+    {
+      "id": "guide-부모유형-불안한기획자",
+      "title": "부모 유형 — 불안한 기획자",
+      "description": "좋다는 건 다 찾아보고 계획은 완벽한데, 막상 결정 앞에서 최악만 그려지는 부모. 모험심과 경계심이 함께 높은 ‘불안한 기획자’ 유형의 강점과 자라는 힘을 임상심리전문가가 설명합니다. 결함이 아니라 성향입니다.",
+      "category": "psychology",
+      "topics": [
+        "parenting"
+      ],
+      "url": "/guide/부모유형-불안한기획자",
+      "source": "안계훈 · 임상심리전문가",
+      "publishedAt": "2026-05-21"
+    },
+    {
+      "id": "guide-기질-망설이는모험가",
+      "title": "기질 유형 — 망설이는 모험가",
+      "description": "“가고 싶어”와 “무서워” 사이를 오가는 아이. 자극추구와 위험회피가 모두 높은 망설이는 모험가 유형의 강점과 자라는 힘, 부모가 무엇을 해 주면 좋은지 임상심리전문가가 설명합니다.",
+      "category": "psychology",
+      "topics": [
+        "temperament"
+      ],
+      "url": "/guide/기질-망설이는모험가",
+      "source": "안계훈 · 임상심리전문가",
+      "publishedAt": "2026-05-19"
+    },
+    {
+      "id": "guide-홀랜드-현실형",
+      "title": "현실형(R) 아이의 진로·양육",
+      "description": "레고를 쌓고 고장 난 물건을 뜯어보고 운동장에서 시간을 잊는 아이. 홀랜드 현실형(R) 아이의 강점과 자라는 힘, 어떤 일에 끌리는지, 부모가 무엇을 해 주면 좋은지 임상심리전문가가 설명합니다.",
+      "category": "psychology",
+      "topics": [
+        "career"
+      ],
+      "url": "/guide/홀랜드-현실형",
+      "source": "안계훈 · 임상심리전문가",
+      "publishedAt": "2026-05-17"
+    },
+    {
+      "id": "guide-직업-동사",
+      "title": "직업은 ‘명사’가 아니라 ‘동사’로 읽습니다",
+      "description": "필경사는 사라졌지만 그 손은 카피라이터로 옮겨 탔습니다. 직업 이름은 시대와 함께 사라져도 그 안의 동사는 남습니다. 아이의 흥미를 직업 이름이 아니라 동사로 읽는 법을 임상심리전문가가 설명합니다.",
+      "category": "psychology",
+      "topics": [
+        "career"
+      ],
+      "url": "/guide/직업-동사",
+      "source": "안계훈 · 임상심리전문가",
+      "publishedAt": "2026-05-16"
+    },
+    {
+      "id": "guide-부모자녀-기질-미스매치",
+      "title": "아이 기질이 나와 너무 안 맞을 때",
+      "description": "같은 집에 사는데 외국인 같은 아이. 조용한 부모와 시끄러운 아이, 계획적인 부모와 즉흥적인 아이. 안 맞는다는 느낌은 누구의 잘못도 아니라 두 기질의 조합에서 옵니다. 맞춰 가는 법을 임상심리전문가가 설명합니다.",
+      "category": "psychology",
+      "topics": [
+        "temperament"
+      ],
+      "url": "/guide/부모자녀-기질-미스매치",
+      "source": "안계훈 · 임상심리전문가",
+      "publishedAt": "2026-05-15"
+    },
+    {
+      "id": "guide-공부-흥미-균형",
+      "title": "학교공부는 흥미 없고 취미만 빠져 있을 때",
+      "description": "공부는 뒷전이고 그림·게임·음악에만 빠져 있는 아이. 취미를 인질로 잡으면 아이는 공부를 더 미워합니다. 공부와 흥미를 적으로 만들지 않고 균형을 잡는 법을 임상심리전문가가 알려 드립니다.",
+      "category": "psychology",
+      "topics": [
+        "career"
+      ],
+      "url": "/guide/공부-흥미-균형",
+      "source": "안계훈 · 임상심리전문가",
+      "publishedAt": "2026-05-10"
+    },
+    {
+      "id": "guide-양육-자책",
+      "title": "자책은 양육의 연료가 되지 못합니다",
+      "description": "“내가 잘못 키운 걸까.” 아이가 힘들어할 때 부모는 먼저 자신을 탓합니다. 그런데 자책은 아이를 위해 아무것도 바꾸지 못하고, 오히려 아이를 보는 눈을 흐립니다. 자책을 책임으로 바꾸는 법을 임상심리전문가가 설명합니다.",
+      "category": "psychology",
+      "topics": [
+        "parenting"
+      ],
+      "url": "/guide/양육-자책",
+      "source": "안계훈 · 임상심리전문가",
+      "publishedAt": "2026-05-09"
+    },
+    {
+      "id": "guide-사춘기-진로-대화",
+      "title": "사춘기 아이와 진로 이야기 시작하기",
+      "description": "진로 얘기만 꺼내면 방문을 닫는 사춘기 아이. 마주 앉아 “얘기 좀 하자”가 왜 최악인지, 어떤 질문이 아이 입을 열게 하는지 임상심리전문가가 구체적으로 알려 드립니다.",
+      "category": "psychology",
+      "topics": [
+        "career"
+      ],
+      "url": "/guide/사춘기-진로-대화",
+      "source": "안계훈 · 임상심리전문가",
+      "publishedAt": "2026-05-08"
+    },
+    {
+      "id": "guide-형제-흥미-다름",
+      "title": "첫째·둘째 흥미가 너무 다를 때",
+      "description": "같은 부모인데 첫째는 책, 둘째는 운동장. 흥미가 이렇게 다르면 양육 방식을 완전히 다르게 해야 할까요? 형제의 흥미가 갈리는 것은 자연스럽고, 공평함은 똑같이 주는 것으로 지켜지지 않습니다. 임상심리전문가가 설명합니다.",
+      "category": "psychology",
+      "topics": [
+        "career"
+      ],
+      "url": "/guide/형제-흥미-다름",
+      "source": "안계훈 · 임상심리전문가",
+      "publishedAt": "2026-05-07"
+    },
+    {
+      "id": "guide-기질-4축",
+      "title": "기질 4축, 쉽게 읽는 법",
+      "description": "기질검사(TCI) 결과지의 네 가지 성향, 자극추구·위험회피·사회적 민감성·인내력을 부모 눈높이로 풀었습니다. 높고 낮음에 좋고 나쁨은 없고, 네 축은 조합으로 읽습니다. 임상심리전문가가 설명합니다.",
+      "category": "psychology",
+      "topics": [
+        "temperament"
+      ],
+      "url": "/guide/기질-4축",
+      "source": "안계훈 · 임상심리전문가",
+      "publishedAt": "2026-05-05"
+    },
+    {
+      "id": "guide-부부-진로-의견차",
+      "title": "부부가 아이 진로 의견이 다를 때",
+      "description": "한 사람은 안정된 직업을, 한 사람은 하고 싶은 일을 밀어줍니다. 부부의 진로 의견이 갈릴 때 정작 위험한 것은 의견 차이가 아니라 아이 앞에서의 충돌입니다. 결론이 아니라 규칙에 먼저 합의하는 법을 임상심리전문가가 설명합니다.",
+      "category": "psychology",
+      "topics": [
+        "career"
+      ],
+      "url": "/guide/부부-진로-의견차",
+      "source": "안계훈 · 임상심리전문가",
+      "publishedAt": "2026-05-02"
+    },
+    {
+      "id": "guide-흥미-능력-부족",
+      "title": "흥미는 있는데 능력이 부족하면",
+      "description": "그림을 좋아하는데 잘 그리지는 못하는 아이. 흥미와 능력이 어긋날 때 부모는 고민합니다. 지금의 능력은 확정된 것이 아니고, 흥미는 지루한 연습을 견디게 하는 힘입니다. 어느 쪽을 따라야 하는지 임상심리전문가가 짚어 드립니다.",
+      "category": "psychology",
+      "topics": [
+        "career"
+      ],
+      "url": "/guide/흥미-능력-부족",
+      "source": "안계훈 · 임상심리전문가",
+      "publishedAt": "2026-04-30"
+    },
+    {
+      "id": "guide-기질검사-몇-살부터",
+      "title": "기질검사(TCI), 몇 살부터 받을까요",
+      "description": "아이 기질검사(TCI)는 몇 살부터 받을 수 있을까요? 너무 일찍 받으면 결과가 부정확할까요? 기질검사는 나이대별로 유아용·아동용·청소년용이 따로 있고, 어릴수록 부모가 관찰해 답합니다. 언제 받으면 결과가 특히 쓸모 있는지 임상심리전문가가 설명합니다.",
+      "category": "psychology",
+      "topics": [
+        "temperament"
+      ],
+      "url": "/guide/기질검사-몇-살부터",
+      "source": "안계훈 · 임상심리전문가",
+      "publishedAt": "2026-04-28"
+    },
+    {
+      "id": "guide-학교-진로검사-결과지",
+      "title": "학교에서 받아온 진로검사 결과지, 어떻게 활용할까요",
+      "description": "아이가 학교에서 진로검사 결과지를 받아 왔습니다. 추천 직업 목록을 정답처럼 읽어야 할까요? 그 목록은 정답 명단이 아니라 대화의 실마리입니다. 결과지에서 진짜 봐야 할 것과 자기보고 검사의 한계를 임상심리전문가가 짚어 드립니다.",
+      "category": "psychology",
+      "topics": [
+        "career"
+      ],
+      "url": "/guide/학교-진로검사-결과지",
+      "source": "안계훈 · 임상심리전문가",
+      "publishedAt": "2026-04-26"
+    },
+    {
+      "id": "guide-지능검사-언제-왜",
+      "title": "지능검사, 언제·왜 받아야 할까요",
+      "description": "아이 지능검사(WISC-V), 특별한 문제가 없어도 받아야 할까요? 지능검사는 등수를 매기는 도구가 아니라, 아이를 어떻게 도울지 알기 위한 검사입니다. 언제·왜 받으면 좋은지, 몇 살에 받는지 임상심리전문가가 설명합니다.",
+      "category": "psychology",
+      "topics": [
+        "intelligence"
+      ],
+      "url": "/guide/지능검사-언제-왜",
+      "source": "안계훈 · 임상심리전문가",
+      "publishedAt": "2026-04-22"
+    },
+    {
+      "id": "guide-pat2-이상적-점수",
+      "title": "PAT-2 ‘이상적 점수’가 정답일까요",
+      "description": "부모 양육태도검사(PAT-2)에서 지지표현은 백분위 75가 이상적이라는데, 그 숫자를 꼭 맞춰야 할까요? 이상적 점수는 만점이 아니라 요인마다 다른 적정 구간의 안내선입니다. 무엇보다 우리 아이 기질과의 궁합이 먼저인 이유를 임상심리전문가가 설명합니다.",
+      "category": "psychology",
+      "topics": [
+        "parenting"
+      ],
+      "url": "/guide/pat2-이상적-점수",
+      "source": "안계훈 · 임상심리전문가",
+      "publishedAt": "2026-04-18"
+    },
+    {
+      "id": "guide-기질-사춘기-변화",
+      "title": "기질은 정말 안 변하나요? 사춘기엔 어떨까요",
+      "description": "얌전하던 아이가 사춘기에 고집이 세졌다면, 기질이 바뀐 걸까요? 타고난 기질의 뼈대는 잘 변하지 않습니다. 달라지는 건 기질을 다루는 성격의 힘이에요. 같은 경계심이 신중함으로도, 만성 불안으로도 자라는 이유를 임상심리전문가가 설명합니다.",
+      "category": "psychology",
+      "topics": [
+        "temperament"
+      ],
+      "url": "/guide/기질-사춘기-변화",
+      "source": "안계훈 · 임상심리전문가",
+      "publishedAt": "2026-04-17"
+    },
+    {
+      "id": "guide-홀랜드-strong-차이",
+      "title": "홀랜드 검사와 스트롱, 뭐가 다른가요",
+      "description": "상담센터는 홀랜드를, 어떤 곳은 스트롱을 권합니다. 둘은 경쟁하는 검사가 아니에요. 스트롱은 홀랜드의 흥미 6유형 위에 지어진 검사입니다. 아이 나이에 따라 무엇을 고르면 좋은지 임상심리전문가가 설명합니다.",
+      "category": "psychology",
+      "topics": [
+        "career"
+      ],
+      "url": "/guide/홀랜드-strong-차이",
+      "source": "안계훈 · 임상심리전문가",
+      "publishedAt": "2026-04-16"
+    },
+    {
+      "id": "guide-심리평가-결과지-읽는법",
+      "title": "심리평가 보고서(결과지) 읽는 법",
+      "description": "FSIQ, 95% 신뢰구간, 73%ile… 암호 같은 심리평가 결과지, 부모가 직접 읽는 법. 분류표·백분위·신뢰구간·다섯 지표 네 가지 도구로 결과지 첫 페이지를 해독하는 법을 임상심리전문가가 안내합니다.",
+      "category": "psychology",
+      "topics": [
+        "intelligence"
+      ],
+      "url": "/guide/심리평가-결과지-읽는법",
+      "source": "안계훈 · 임상심리전문가",
+      "publishedAt": "2026-04-15"
+    },
+    {
+      "id": "guide-한부모-가정",
+      "title": "한부모 가정, 부족한 부분 어떻게 채우나",
+      "description": "한부모 가정에서 혼자 아이를 키우며 '내가 부족한 부모일까' 걱정하시나요? 중요한 건 부모의 수가 아니라 어떤 연결이 있느냐입니다. 연결망 만들기와 부모 자신을 지키는 법을 임상심리전문가가 정리했습니다.",
+      "category": "psychology",
+      "topics": [
+        "parenting"
+      ],
+      "url": "/guide/한부모-가정",
+      "source": "안계훈 · 임상심리전문가",
+      "publishedAt": "2026-04-13"
+    },
+    {
+      "id": "guide-형제-기질-다름",
+      "title": "같은 부모인데 형제가 왜 이렇게 다를까",
+      "description": "같은 부모, 같은 집에서 자란 형제가 왜 이렇게 다를까요? 쌍둥이도 성격이 다른 이유를 유전의 우연, 비공유 환경, 형제간 차별화 세 가지로 임상심리전문가가 풀어 드립니다.",
+      "category": "psychology",
+      "topics": [
+        "temperament"
+      ],
+      "url": "/guide/형제-기질-다름",
+      "source": "안계훈 · 임상심리전문가",
+      "publishedAt": "2026-04-12"
+    },
+    {
+      "id": "guide-흥미-3대-오해",
+      "title": "좋아하는 게 직업이 되나 — 흥미 3대 오해",
+      "description": "좋아하는 것을 진로로 삼으라는 말 앞에서, 부모가 거의 다 빠지는 세 가지 오해가 있습니다. 흥미는 타고나는가, 좋아하면 잘하는가, 좋아하는 게 곧 직업인가. 임상심리전문가가 하나씩 풀어 드립니다.",
+      "category": "psychology",
+      "topics": [
+        "career"
+      ],
+      "url": "/guide/흥미-3대-오해",
+      "source": "안계훈 · 임상심리전문가",
+      "publishedAt": "2026-04-10"
+    },
+    {
+      "id": "guide-iq-숫자-하나",
+      "title": "IQ 숫자 하나가 아이를 다 말해주지 않는다",
+      "description": "전체 IQ 점수 하나로 아이를 판단해도 될까요? 지능 점수는 한 점이 아니라 범위이고, 평균은 다섯 힘의 균형까지 말해주지 않습니다. 왜 숫자 하나가 아이의 전부가 아닌지 임상심리전문가가 설명합니다.",
+      "category": "psychology",
+      "topics": [
+        "intelligence"
+      ],
+      "url": "/guide/iq-숫자-하나",
+      "source": "안계훈 · 임상심리전문가",
+      "publishedAt": "2026-04-09"
+    },
+    {
+      "id": "guide-부부-기질-양육관",
+      "title": "부부의 기질·양육관이 다를 때",
+      "description": "한 사람은 엄격하고 한 사람은 허용적이면 아이가 혼란스러울까요? 부부의 기질과 양육관이 다를 때 아이가 겪는 일과, 두 사람이 한 팀이 되는 세 가지 약속을 임상심리전문가가 정리했습니다.",
+      "category": "psychology",
+      "topics": [
+        "parenting"
+      ],
+      "url": "/guide/부부-기질-양육관",
+      "source": "안계훈 · 임상심리전문가",
+      "publishedAt": "2026-04-07"
+    },
+    {
+      "id": "guide-기질-성격-인격",
+      "title": "기질 vs 성격 vs 인격, 뭐가 다른가",
+      "description": "기질·성격·인격은 어떻게 다를까요? 기질검사(TCI) 기준으로, 타고나는 기질과 길러지는 성격, 남에게 비치는 인격을 임상심리전문가가 쉽게 구분해 드립니다. 바꿀 수 있는 것과 없는 것이 분명해집니다.",
+      "category": "psychology",
+      "topics": [
+        "temperament"
+      ],
+      "url": "/guide/기질-성격-인격",
+      "source": "안계훈 · 임상심리전문가",
+      "publishedAt": "2026-04-05"
+    },
+    {
+      "id": "guide-아이-심리검사-종류",
+      "title": "우리 아이 심리검사, 종류와 고르는 법",
+      "description": "아이 심리검사 종류가 너무 많아 헷갈리시나요? 진로(Holland)·기질(TCI)·지능(WISC-V)·부모 검사(PAT-2)까지, 임상심리전문가가 각 검사가 재는 것과 우리 아이에게 맞는 검사 고르는 법을 정리했습니다.",
+      "category": "psychology",
+      "topics": [
+        "assessment"
+      ],
+      "url": "/guide/아이-심리검사-종류",
+      "source": "안계훈 · 임상심리전문가",
+      "publishedAt": "2026-04-03"
+    },
+    {
+      "id": "guide-홀랜드-진로검사-6유형",
+      "title": "홀랜드 진로검사(RIASEC) 6유형, 부모가 쉽게 읽는 법",
+      "description": "홀랜드 진로검사(RIASEC) 6유형(현실형·탐구형·예술형·사회형·진취형·관습형)을 임상심리전문가가 부모 눈높이로 풀었습니다. 어릴 때 신호와 흥미를 동사로 읽는 법까지 정리했어요.",
+      "category": "psychology",
+      "topics": [
+        "career"
+      ],
+      "url": "/guide/홀랜드-진로검사-6유형",
+      "source": "안계훈 · 임상심리전문가",
+      "publishedAt": "2026-03-26"
+    },
+    {
+      "id": "guide-장래희망-없는-아이",
+      "title": "“장래희망 없어요” 하는 아이, 어떻게 도와줄까요 — 임상심리전문가의 진로 가이드",
+      "description": "“좋아하는 게 없다”는 아이는 두 모습으로 나뉩니다. 아직 안 해 본 아이와 실패가 쌓인 아이. 임상심리전문가가 둘을 가려내는 법과 집에서 할 경험 차림표를 정리했습니다.",
+      "category": "psychology",
+      "topics": [
+        "career"
+      ],
+      "url": "/guide/장래희망-없는-아이",
+      "source": "안계훈 · 임상심리전문가",
+      "publishedAt": "2026-03-25"
+    },
+    {
+      "id": "guide-아이-진로-뭐부터",
+      "title": "우리 아이 진로, 뭐부터 봐야 할까? — 흥미·기질·성격 세 개의 렌즈",
+      "description": "AI 시대, 아이 진로가 막막한 부모를 위한 임상심리전문가의 정리. 진로는 우리 아이가 어떤 아이인지 먼저 읽는 데서 시작합니다. 흥미·기질·성격 세 렌즈로 보는 법.",
+      "category": "psychology",
+      "topics": [
+        "assessment"
+      ],
+      "url": "/guide/아이-진로-뭐부터",
+      "source": "안계훈 · 임상심리전문가",
+      "publishedAt": "2026-03-19"
+    },
+    {
+      "id": "guide-부모-검사-tci-pat2",
+      "title": "부모도 검사받나요? 부모 기질(TCI)·양육태도(PAT-2)로 보는 우리 집 궁합",
+      "description": "아이를 답답해하는 마음의 절반은 부모 기질에서 옵니다. 임상심리전문가가 부모 기질(TCI)과 양육태도(PAT-2)로 아이와의 궁합, 즉 거리를 맞추는 법을 정리했습니다.",
+      "category": "psychology",
+      "topics": [
+        "parenting"
+      ],
+      "url": "/guide/부모-검사-tci-pat2",
+      "source": "안계훈 · 임상심리전문가",
+      "publishedAt": "2026-03-18"
+    },
+    {
+      "id": "guide-무료검사-표준화검사-차이",
+      "title": "무료 온라인 심리테스트 vs 정식 표준화검사, 뭐가 다를까요?",
+      "description": "무료 심리테스트와 정식 표준화검사는 뭐가 다를까요? 임상심리전문가가 규준·백분위, 신뢰도·타당도, 전문가 채점·해석의 차이와 TCI·Holland·WISC 같은 정식 검사를 정리했습니다.",
+      "category": "psychology",
+      "topics": [
+        "assessment"
+      ],
+      "url": "/guide/무료검사-표준화검사-차이",
+      "source": "안계훈 · 임상심리전문가",
+      "publishedAt": "2026-03-16"
+    },
+    {
+      "id": "guide-기질검사-꼭-받아야-할까",
+      "title": "아이 기질검사(TCI), 꼭 받아야 할까? — 임상심리전문가가 정리한 판단 기준",
+      "description": "산만한 게 기질 문제일까요? 임상심리전문가가 기질검사(TCI)가 필요한 신호와, 무료 테스트와의 차이, 결과를 양육에 쓰는 법을 정리했습니다.",
+      "category": "psychology",
+      "topics": [
+        "temperament"
+      ],
+      "url": "/guide/기질검사-꼭-받아야-할까",
+      "source": "안계훈 · 임상심리전문가",
+      "publishedAt": "2026-03-15"
+    },
+    {
+      "id": "guide-기질-adhd-구분",
+      "title": "기질검사가 ADHD랑 겹쳐 보여요, 어떻게 구분할까",
+      "description": "자극추구가 높은 기질과 ADHD 증상은 겉으로 겹쳐 보일 수 있습니다. 임상심리전문가가 기질과 ADHD를 구분하는 기준(기능 손상·일관성)과, 언제 소아정신과 평가를 받아야 하는지 정리했습니다.",
+      "category": "psychology",
+      "topics": [
+        "temperament"
+      ],
+      "url": "/guide/기질-adhd-구분",
+      "source": "안계훈 · 임상심리전문가",
+      "publishedAt": "2026-03-14"
+    },
+    {
+      "id": "guide-기질-10유형",
+      "title": "우리 아이 기질 10유형, 어디에 가까울까요",
+      "description": "아이 기질 유형 종류가 궁금한 부모님을 위해, 기질검사(TCI) 네 축이 만드는 열 가지 대표 유형을 임상심리전문가가 하나씩 정리했습니다.",
+      "category": "psychology",
+      "topics": [
+        "temperament"
+      ],
+      "url": "/guide/기질-10유형",
+      "source": "안계훈 · 임상심리전문가",
+      "publishedAt": "2026-03-13"
+    },
+    {
+      "id": "guide-게임-유튜브-진로",
+      "title": "게임·유튜브만 좋아하는 아이, 진로로 봐도 될까요?",
+      "description": "아이가 게임·유튜브만 좋아할 때, 이걸 흥미로 봐도 될까요? 임상심리전문가가 화면 안의 흥미를 읽는 법과, 게임 시간을 아이와 함께 정하는 법을 정리했습니다.",
+      "category": "psychology",
+      "topics": [
+        "career"
+      ],
+      "url": "/guide/게임-유튜브-진로",
+      "source": "안계훈 · 임상심리전문가",
+      "publishedAt": "2026-03-12"
+    },
+    {
+      "id": "guide-검사-교차-해석",
+      "title": "검사를 따로 보면 안 되는 이유 — 흥미·기질·성격이 만나는 지점",
+      "description": "흥미·기질·성격 검사를 왜 같이 교차 해석해야 하는지, 임상심리전문가의 정리. 검사 하나는 우리 아이의 한 조각입니다. 같은 흥미도 기질에 따라 길이 갈리고, 부모 기질까지 겹쳐 볼 때 우리 집만의 답이 나옵니다.",
+      "category": "psychology",
+      "topics": [
+        "assessment"
+      ],
+      "url": "/guide/검사-교차-해석",
+      "source": "안계훈 · 임상심리전문가",
+      "publishedAt": "2026-03-11"
+    },
+    {
+      "id": "guide-wisc-다섯-지표",
+      "title": "WISC-V 지능검사, 다섯 가지 힘 쉽게 읽기",
+      "description": "IQ 숫자 하나로 끝나지 않는 우리 아이 지능. WISC-V가 재는 언어·시공간·추론·기억·속도 다섯 가지 힘을 임상심리전문가가 쉽게 풀어, 결과지에서 아이의 강점을 읽는 법을 정리했습니다.",
+      "category": "psychology",
+      "topics": [
+        "intelligence"
+      ],
+      "url": "/guide/wisc-다섯-지표",
+      "source": "안계훈 · 임상심리전문가",
+      "publishedAt": "2026-03-09"
+    },
+    {
+      "id": "guide-ai시대-의대-공무원",
+      "title": "AI 시대, 의대·공무원 정말 안전할까요?",
+      "description": "AI 시대에 의대·공무원 같은 안정적 직업은 안전할까요? 임상심리전문가가 무난하게 잘하는 능력이 먼저 대체되는 이유와, 좋아하는 힘이 왜 안전판이 되는지 정리했습니다.",
+      "category": "psychology",
+      "topics": [
+        "career"
+      ],
+      "url": "/guide/ai시대-의대-공무원",
+      "source": "안계훈 · 임상심리전문가",
+      "publishedAt": "2026-03-03"
     }
   ]
 }
