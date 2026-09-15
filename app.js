@@ -86,6 +86,7 @@
     let lastX = 0;
     let lastY = 0;
     let horizontalLock = false;
+    let suppressClick = false;
 
     const updateBook = (nextRotation, nextState, announce) => {
       rotation = nextRotation;
@@ -118,6 +119,7 @@
       const finishedPointerId = pointerId;
       const dx = lastX - startX;
       const dy = lastY - startY;
+      suppressClick = !allowTurn || Math.hypot(dx, dy) > 8;
       pointerId = null;
       horizontalLock = false;
       bookRotator.classList.remove("is-gesturing");
@@ -133,6 +135,7 @@
     bookRotator.addEventListener("pointerdown", (event) => {
       if (pointerId !== null || !event.isPrimary || (event.pointerType === "mouse" && event.button !== 0)) return;
       pointerId = event.pointerId;
+      suppressClick = false;
       startX = event.clientX;
       startY = event.clientY;
       lastX = event.clientX;
@@ -156,14 +159,26 @@
     bookRotator.addEventListener("pointerup", (event) => finishPointer(event, true));
     bookRotator.addEventListener("pointercancel", (event) => finishPointer(event, false));
     bookRotator.addEventListener("lostpointercapture", (event) => {
+      // A touch starts with implicit capture on the cover image. Its release
+      // bubbles here when capture transfers to the rotator; the swipe continues.
+      if (event.target !== bookRotator) return;
       const lostPointerId = event.pointerId;
       window.setTimeout(() => {
-        if (pointerId === lostPointerId) finishPointer(event, false);
+        if (pointerId === lostPointerId && !bookRotator.hasPointerCapture?.(lostPointerId)) finishPointer(event, false);
       }, 0);
     });
     window.addEventListener("pointerup", (event) => finishPointer(event, true));
     window.addEventListener("pointercancel", (event) => finishPointer(event, false));
     bookRotator.addEventListener("dragstart", (event) => event.preventDefault());
+    bookRotator.addEventListener("click", (event) => {
+      // A completed swipe can also produce a click. Turn only once per gesture;
+      // keyboard activation (detail 0) remains available after any cancellation.
+      if (event.detail !== 0 && suppressClick) {
+        suppressClick = false;
+        return;
+      }
+      turnBook(1);
+    });
 
     bookRotator.addEventListener("keydown", (event) => {
       if (!["ArrowLeft", "ArrowRight", "Home", "End"].includes(event.key)) return;

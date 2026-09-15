@@ -498,6 +498,9 @@ input {
   background: transparent;
   color: inherit;
   cursor: grab;
+  appearance: none;
+  -webkit-appearance: none;
+  overflow: visible;
   perspective: 1800px;
   touch-action: pan-y;
   user-select: none;
@@ -638,14 +641,6 @@ input {
     opacity: 1;
     transition-delay: 0s;
   }
-}
-
-.book-rotation-hint {
-  margin: -5px 0 0;
-  color: var(--muted);
-  font-size: 14px;
-  line-height: 1.5;
-  text-align: center;
 }
 
 .book-detail .book-copy {
