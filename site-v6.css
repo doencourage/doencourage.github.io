@@ -180,8 +180,8 @@ input {
 
 .book-stage-link {
   --book-height: 430px;
-  --book-width: 292px;
-  --book-depth: 35.5px;
+  --book-width: calc(var(--book-height) * 148 / 210);
+  --book-depth: calc(var(--book-width) * 18 / 148);
   --book-half-depth: calc(var(--book-depth) / 2);
   position: relative;
   display: grid;
@@ -485,8 +485,8 @@ input {
 
 .book-cover-rotator {
   --book-height: min(540px, 62vw);
-  --book-width: calc(var(--book-height) * 854 / 1288);
-  --book-depth: calc(var(--book-width) * 17.6 / 144.6);
+  --book-width: calc(var(--book-height) * 148 / 210);
+  --book-depth: calc(var(--book-width) * 18 / 148);
   --book-half-depth: calc(var(--book-depth) / 2);
   position: relative;
   width: min(100%, calc(var(--book-width) + 56px));
@@ -1295,8 +1295,8 @@ input {
 
   .book-stage-link {
     --book-height: 392px;
-    --book-width: 266px;
-    --book-depth: 32.4px;
+    --book-width: calc(var(--book-height) * 148 / 210);
+    --book-depth: calc(var(--book-width) * 18 / 148);
   }
 
   .quote {
@@ -1357,8 +1357,8 @@ input {
 
   .book-stage-link {
     --book-height: min(430px, 60vw);
-    --book-width: min(292px, 40.7vw);
-    --book-depth: min(35.5px, 4.95vw);
+    --book-width: calc(var(--book-height) * 148 / 210);
+    --book-depth: calc(var(--book-width) * 18 / 148);
   }
 
   .quote-block {
@@ -1475,8 +1475,8 @@ input {
 
   .book-stage-link {
     --book-height: 217px;
-    --book-width: 147px;
-    --book-depth: 17.9px;
+    --book-width: calc(var(--book-height) * 148 / 210);
+    --book-depth: calc(var(--book-width) * 18 / 148);
   }
 
   .home-main .book-copy {
@@ -1655,7 +1655,8 @@ input {
   }
 
   .book-cover-rotator {
-    --book-height: min(480px, 118vw);
+    /* Keep the A5 cover inside the page gutter and 28px column padding. */
+    --book-height: min(480px, calc((100vw - 100px) * 210 / 148));
   }
 
   .book-detail .book-copy h2 {
@@ -1765,8 +1766,8 @@ input {
 
   .book-stage-link {
     --book-height: 207px;
-    --book-width: 140px;
-    --book-depth: 17px;
+    --book-width: calc(var(--book-height) * 148 / 210);
+    --book-depth: calc(var(--book-width) * 18 / 148);
   }
 
   .feature-article {
