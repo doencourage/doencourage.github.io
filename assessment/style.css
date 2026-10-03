@@ -199,3 +199,73 @@ main .product-label{font-size:20px}
   .origin-closing h3{font-size:25px;line-height:1.75}
 }
 @media(prefers-reduced-motion:reduce){.floating-sheet{animation:none}}
+
+/* Package contents and the stated conditions behind the effective price. */
+.participant-overview{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px;margin-bottom:21px}
+.participant-overview article{padding:26px 30px;background:#f4f5ef;border:1px solid #e1e4d9}
+.participant-overview h3{font-size:19px;font-weight:650;margin-bottom:12px}
+.participant-overview p{font-size:15px;line-height:2;color:#555e4e}
+.participant-overview strong{color:var(--ink)}
+.composition-note{font-size:13px;line-height:1.8;color:var(--muted);margin-bottom:28px}
+.pricing-section{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(36px,6vw,90px)}
+.pricing-section .price-intro h2{font-size:36px;line-height:1.6;letter-spacing:-.055em;text-wrap:balance}
+.pricing-section .price-intro p.price-explanation{font-size:15px;line-height:1.9;margin-top:22px;max-width:440px}
+.package-tests{margin-top:30px;border-top:1px solid var(--rule)}
+.package-tests section{display:grid;grid-template-columns:100px minmax(0,1fr);gap:14px;padding:23px 0;border-bottom:1px solid var(--rule)}
+.package-tests h3{font-size:15px;line-height:1.8;font-weight:650;color:#4a5940}
+.package-tests ul{list-style:none;margin:0;padding:0;font-size:14px;line-height:1.8;color:#5a6055}
+.package-tests li+li{margin-top:6px}
+.package-tests strong{color:var(--ink);font-weight:600}
+.pricing-section .price-intro .package-result{font-size:14px;line-height:1.8;margin-top:20px;color:var(--ink)}
+.pricing-section .price-panel-top>p{font-size:13px;line-height:1.8}
+.pricing-section .regular-price{margin-top:25px;font-size:13px;line-height:1.8;color:var(--muted)}
+.checkout-price{display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin-top:9px;font-size:14px}
+.checkout-price>strong{font-size:29px;font-weight:600;white-space:nowrap;letter-spacing:-.035em}
+.checkout-price small{font-size:15px;font-weight:450;margin-left:5px}
+.price-benefits{margin:21px 0 0;padding:20px 0;border-top:1px solid var(--rule)}
+.price-benefits>div{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:10px;align-items:baseline}
+.price-benefits>div+div{margin-top:16px}
+.price-benefits dt{font-size:14px;line-height:1.7}
+.price-benefits dt small{display:block;font-size:12px;line-height:1.65;color:var(--muted);margin-top:3px}
+.price-benefits dd{margin:0;font-size:15px;font-weight:600;white-space:nowrap;color:var(--red);font-variant-numeric:tabular-nums}
+.effective-price{padding:23px 26px;background:#eff2e8;border:1px solid #dbe2ce;color:#34432c}
+.effective-price>p:first-child{font-size:14px;line-height:1.7}
+.effective-price .price{font-size:48px;font-weight:600;line-height:1.25;margin:7px 0 10px;font-variant-numeric:tabular-nums}
+.effective-price .price span{font-size:19px}
+.effective-price .effective-condition{font-size:12px;line-height:1.75;color:#5e6b53}
+.price-disclaimer{font-size:12px;line-height:1.85;color:var(--muted);margin:15px 0 22px}
+.price-disclaimer strong{font-weight:600;color:var(--ink)}
+.pricing-section .benefits summary{font-size:13px}
+.pricing-section .benefits>div{font-size:13px}
+.pricing-section .refund-note{font-size:12px}
+.faq-list details>p{font-size:14px;line-height:1.9}
+@media(max-width:900px){
+  .pricing-section .price-intro h2{font-size:30px}
+  .package-tests section{grid-template-columns:1fr;gap:9px}
+  .participant-overview article{padding:22px}
+}
+@media(max-width:700px){
+  .pricing-section{grid-template-columns:1fr;gap:38px}
+  .pricing-section .price-intro p.price-explanation{max-width:none}
+  .package-tests section{grid-template-columns:100px minmax(0,1fr);gap:14px}
+}
+@media(max-width:600px){
+  .participant-overview{grid-template-columns:1fr;gap:12px}
+  .participant-overview article{padding:22px 24px}
+  .participant-overview p{font-size:14px}
+  .pricing-section .price-intro h2{font-size:29px}
+  .pricing-section .price-intro p.price-explanation{font-size:14px}
+  .package-tests section{grid-template-columns:1fr;gap:8px;padding:21px 0}
+  .package-tests h3{font-size:16px}
+  .pricing-section .regular-price{font-size:12px}
+  .checkout-price{font-size:13px}
+  .checkout-price>strong{font-size:27px}
+  .price-benefits dt{font-size:13px}
+  .price-benefits dt small{font-size:11px}
+  .price-benefits dd{font-size:14px}
+  .effective-price{padding:21px}
+  .effective-price .price{font-size:43px}
+  .effective-price .effective-condition{font-size:11px}
+  .faq-list summary{font-size:14px}
+  .faq-list details>p{font-size:13px}
+}
