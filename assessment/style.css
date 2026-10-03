@@ -275,6 +275,22 @@ main .product-label{font-size:20px}
 }
 
 /* Keep space for actual interior pages, with no invented sample text. */
+.hero-reading-note{font-size:13px;line-height:1.8;color:#555e4e;margin-top:12px}
+.understanding-heading{margin-bottom:38px}
+.understanding-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:32px}
+.understanding-grid article{display:flex;flex-direction:column;border-top:1px solid var(--rule);padding-top:24px}
+.understanding-number{font-size:12px;color:var(--red)}
+.understanding-grid h3{font-family:var(--serif);font-size:25px;font-weight:400;line-height:1.65;margin:17px 0}
+.understanding-grid article>p:not(.understanding-tests){font-size:14px;line-height:1.9;color:var(--muted);margin-bottom:25px}
+.understanding-tests{margin-top:auto;padding-top:17px;border-top:1px solid #eceee7;font-size:12px;line-height:1.8}
+.understanding-tests strong,.understanding-tests span{display:block}
+.understanding-tests strong{color:#4a5940;font-weight:600}
+.understanding-tests span{font-size:11px;color:var(--muted);margin-top:4px}
+.understanding-section>.text-link{margin-top:30px}
+@media(max-width:900px){.understanding-grid{gap:22px}.understanding-grid h3{font-size:22px}}
+@media(max-width:700px){.understanding-grid{grid-template-columns:1fr;gap:27px}.understanding-heading{margin-bottom:28px}.understanding-grid article{padding-top:22px}.understanding-grid h3{font-size:25px}.understanding-grid article>p:not(.understanding-tests){margin-bottom:18px}.understanding-tests span{font-size:12px}.hero-reading-note{font-size:12px}}
+
+/* Interior preview remains empty until actual pages are available. */
 .preview-pending{grid-template-columns:minmax(240px,300px) minmax(0,1fr);align-items:center}
 .preview-outline article{position:relative;padding:23px 0 23px 30px;border-top:1px solid #cfd1c4}
 .preview-outline article:last-child{border-bottom:1px solid #cfd1c4}
