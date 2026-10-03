@@ -30,6 +30,7 @@
     updateQueued = false;
   }
   addEventListener('scroll', () => { if (!updateQueued) { updateQueued = true; requestAnimationFrame(updateCta); } }, {passive:true});
+  document.addEventListener('toggle', updateCta, true);
   addEventListener('resize', updateCta); updateCta();
 })();
 
@@ -38,7 +39,15 @@
   const sections = {diff: 'story', gap: 'report-to-book', author: 'why-book', apply: 'tiers'};
   function resolveSection() {
     const destination = sections[location.hash.slice(1)];
-    if (destination) location.replace('#' + destination);
+    if (destination) { location.replace('#' + destination); return; }
+    const target = document.getElementById(location.hash.slice(1));
+    let disclosure = target?.closest('details');
+    let expanded = false;
+    while (disclosure) {
+      if (!disclosure.open) { disclosure.open = true; expanded = true; }
+      disclosure = disclosure.parentElement?.closest('details');
+    }
+    if (expanded) requestAnimationFrame(() => target.scrollIntoView({block:'start'}));
   }
   addEventListener('hashchange', resolveSection);
   resolveSection();
