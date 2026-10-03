@@ -419,14 +419,24 @@ input {
 .footer-legal {
   margin-top: 15px;
   padding-top: 13px;
-  border-top: 1px solid var(--rule);
-  font-size: 12px;
+  border-top: 1px solid #eeeeec;
+  color: #b8b8b3;
+  font-size: 11px;
+  font-weight: 400;
+  line-height: 1.8;
 }
 
 .footer-legal a {
-  color: var(--body);
+  color: inherit;
   text-decoration: underline;
+  text-decoration-color: #d8d8d3;
   text-underline-offset: 2px;
+}
+
+.footer-legal a:hover,
+.footer-legal a:focus-visible {
+  color: var(--muted);
+  text-decoration-color: currentColor;
 }
 
 .copyright {
