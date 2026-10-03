@@ -16,7 +16,8 @@
     if (event.key === 'Escape' && menuButton.getAttribute('aria-expanded') === 'true') setMenu(false, true);
   });
   const smallLayout = matchMedia('(max-width:820px)');
-  smallLayout.addEventListener('change', () => { if (!smallLayout.matches) setMenu(false); });
+  const menuLayout = matchMedia('(max-width:900px)');
+  menuLayout.addEventListener('change', () => { if (!menuLayout.matches) setMenu(false); });
   const mobileCta = document.querySelector('.mobile-cta');
   const hero = document.querySelector('.hero');
   const pricePanel = document.querySelector('.price-panel');
