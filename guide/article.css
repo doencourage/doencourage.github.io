@@ -1,16 +1,16 @@
 /* Shared publisher typography; all legacy article rules stay inside this page. */
 .guide-page .article { padding: 32px 0 90px; }
-.guide-page .article .wrap { width: calc(100% - 48px); max-width: 760px; margin-inline: auto; }
-.guide-page .crumb { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 48px; font-size: 13px; color: var(--muted); }
+.guide-page .article .wrap { width: calc(100% - 40px); max-width: 720px; margin-inline: auto; }
+.guide-page .crumb { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 28px; font-size: 14px; color: var(--muted); }
 .guide-page .crumb a { text-decoration: underline; text-underline-offset: 4px; }
-.guide-page .kicker { display: block; color: var(--accent); font-size: 13px; margin-bottom: 16px; }
-.guide-page .title { font-family: MaruBuri, serif; font-size: clamp(30px, 4vw, 46px); font-weight: 400; line-height: 1.5; letter-spacing: -.04em; margin: 0 0 28px; overflow-wrap: anywhere; }
-.guide-page .byline { display: flex; align-items: center; gap: 13px; flex-wrap: wrap; font-size: 13px; color: var(--muted); margin-bottom: 36px; }
+.guide-page .kicker { display: block; color: var(--label); font-size: 13px; margin: 0; }
+.guide-page .title { font-family: SUIT, sans-serif; font-size: 40px; font-weight: 650; line-height: 1.35; letter-spacing: -.04em; margin: 12px 0 0; overflow-wrap: anywhere; }
+.guide-page .byline { display: flex; align-items: center; gap: 8px 16px; flex-wrap: wrap; font-size: 14px; color: var(--muted); margin: 20px 0 32px; }
 .guide-page .ph { flex: 0 0 48px; width: 48px; height: 48px; border-radius: 50%; overflow: hidden; }
 .guide-page .ph img { width: 100%; height: 100%; object-fit: cover; }
 .guide-page .who b, .guide-page .who .role { display: block; }
 .guide-page .who br { display: none; }
-.guide-page .byline .meta { margin-left: auto; font-size: 12px; }
+.guide-page .byline .meta { margin-left: 0; font-size: 13px; }
 .guide-page .tldr { background: var(--field); padding: 26px 30px; margin: 0 0 40px; }
 .guide-page .lab { color: var(--accent); font-size: 12px; font-weight: 650; margin-bottom: 12px; }
 .guide-page .tldr p { margin: 0; line-height: 1.85; }
@@ -18,8 +18,8 @@
 .guide-page .article img { max-width: 100%; }
 .guide-page .hero-fig img { display: block; width: 100%; height: auto; }
 .guide-page figcaption { color: var(--muted); font-size: 12px; line-height: 1.8; margin-top: 10px; }
-.guide-page .prose { font-size: 18px; line-height: 1.9; color: var(--body); overflow-wrap: anywhere; }
-.guide-page .prose p { margin: 0 0 1.5em; }
+.guide-page .prose { font-size: 18px; line-height: 1.85; color: var(--body); overflow-wrap: anywhere; }
+.guide-page .prose p { margin: 0 0 1.35em; }
 .guide-page .prose h2 { color: var(--ink); font-size: 26px; font-weight: 650; line-height: 1.6; letter-spacing: -.035em; margin: 2.4em 0 .8em; }
 .guide-page .prose ul, .guide-page .prose ol { padding-left: 1.4em; margin: 0 0 1.6em; }
 .guide-page .prose li { margin-block: .6em; }
@@ -38,7 +38,7 @@
 .guide-page .authorcard .nm { font-size: 16px; font-weight: 650; color: var(--ink); }
 .guide-page .authorcard .creds { margin-top: 8px; }
 .guide-page .authorcard .creds span { display: block; }
-.guide-page .softcta { padding: 30px; background: var(--field); margin: 36px 0 60px; }
+.guide-page .softcta { padding: 28px; border-top: 1px solid var(--rule); background: var(--field); margin: 48px 0; }
 .guide-page .softcta h3 { margin: 0 0 12px; font-size: 22px; line-height: 1.5; }
 .guide-page .softcta p { margin: 0 0 14px; font-size: 16px; line-height: 1.85; }
 .guide-page .softcta .service-scope { font-size: 13px; color: var(--muted); }
@@ -49,14 +49,18 @@
 .guide-page .rcard h4 { font-size: 19px; line-height: 1.6; margin: 8px 0; }
 .guide-page .rcard p { color: var(--muted); font-size: 14px; line-height: 1.8; margin: 0; }
 @media (max-width: 620px) {
-  .guide-page .article { padding-top: 25px; padding-bottom: 60px; }
+  .guide-page .article { padding-top: 24px; padding-bottom: 60px; }
   .guide-page .article .wrap { width: calc(100% - 40px); }
   .guide-page .crumb { margin-bottom: 32px; }
   .guide-page .title br { display: none; }
   .guide-page .byline .meta { flex-basis: 100%; margin: 0; }
   .guide-page .tldr, .guide-page .softcta { padding: 22px 20px; }
-  .guide-page .prose { font-size: 17px; }
+  .guide-page .prose { font-size: 18px; }
+  .guide-page .title { font-size: 30px; }
   .guide-page .prose h2 { font-size: 23px; }
   .guide-page .pull { font-size: 21px; padding-left: 18px; }
   .guide-page .related .grid { grid-template-columns: 1fr; }
 }
+.guide-page .sources { overflow-wrap: anywhere; }
+.guide-page .sources ol { padding-left: 1.4em; }
+.guide-page .sources li { margin-block: .6em; }

@@ -283,10 +283,14 @@
       empty.textContent="조건에 맞는 글이 없습니다. 검색어를 지우거나 다른 주제를 선택해 주세요.";
       results.append(empty);
     }
-    count.textContent = filtered.length + "편 · " + Math.min(state.limit,filtered.length) + "편 표시";
+    const hasFilters = Boolean(needle || state.topic !== "all" || state.category !== "all");
+    const shown = Math.min(state.limit, filtered.length);
+    count.textContent = hasFilters
+      ? "검색 결과 " + filtered.length + "편" + (shown < filtered.length ? " 중 " + shown + "편 표시" : "")
+      : "전체 " + filtered.length + "편 중 " + shown + "편";
     more.hidden = state.limit >= filtered.length;
     more.textContent = "글 더 보기 (" + Math.min(state.limit,filtered.length) + "/" + filtered.length + ")";
-    featured.hidden = Boolean(needle || state.topic !== "all" || state.category !== "all");
+    featured.hidden = hasFilters;
     filterButtons.forEach(button=>button.setAttribute("aria-pressed",String(button.dataset.topic===state.topic)));
     saveFilters();
   }
