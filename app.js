@@ -16,7 +16,7 @@
         <nav class="site-menu" aria-label="주요 메뉴">
           <a href="/book.html" ${current === "book" ? 'aria-current="page"' : ""}>책</a>
           <a href="/reading.html" ${readingCurrent ? 'aria-current="page"' : ""}>읽을거리</a>
-          <a href="/about.html" ${current === "about" ? 'aria-current="page"' : ""}>마음기록소</a>
+          <a href="/about.html" ${current === "about" ? 'aria-current="page"' : ""}>출판사 소개</a>
           <a class="assessment-menu-link" href="/assessment/" ${current === "assessment" ? 'aria-current="page"' : ""}>마음한권 <span aria-hidden="true">↗</span></a>
         </nav>
       </header>`;
@@ -28,7 +28,7 @@
         <div class="footer-main">
           <div>
             <a class="footer-mark" href="/index.html">마음기록소</a>
-            <p>자기이해와 심리학을 일상의 언어로 펴냅니다.</p>
+            <p>마음과 삶을 이해하는 책을 펴냅니다.</p>
           </div>
           <nav class="footer-links" aria-label="하단 메뉴">
             <a href="/book.html">책</a>
@@ -225,7 +225,9 @@
   const staticPosts = [...results.querySelectorAll("[data-post]")].map(item => ({
     id:item.dataset.id, title:item.dataset.title, description:item.dataset.description,
     category:item.dataset.category, topics:(item.dataset.topics || "").split(",").filter(Boolean),
-    url:item.getAttribute("href"), source:item.dataset.source, publishedAt:item.dataset.publishedAt || ""
+    url:item.getAttribute("href"), source:item.dataset.source, publishedAt:item.dataset.publishedAt || "",
+    book:item.dataset.bookTitle && item.dataset.bookImprint
+      ? {title:item.dataset.bookTitle, imprint:item.dataset.bookImprint} : undefined
   }));
   const requestedTopic = params.get("topic") || legacyTopics[location.hash.slice(1)] || "all";
   const state = {posts:staticPosts, topic:labels[requestedTopic] ? requestedTopic : "all",
@@ -250,7 +252,13 @@
     link.dataset.id = post.id;
     const meta = document.createElement("p");
     meta.className = "reading-meta";
-    meta.textContent = [kindLabel(post.category), ...(post.topics || []).map(key => labels[key]).filter(Boolean)].join(" · ");
+    meta.textContent = [post.book?.imprint, kindLabel(post.category), ...(post.topics || []).map(key => labels[key])].filter(Boolean).join(" · ");
+    if (post.book) {
+      const book = document.createElement("span");
+      book.className = "reading-book";
+      book.textContent = "《" + post.book.title + "》";
+      meta.append(book);
+    }
     const title = document.createElement("h2");
     title.textContent = post.title;
     const description = document.createElement("p");
@@ -272,7 +280,7 @@
     const filtered = state.posts.filter(post => {
       const subjectMatches = state.topic === "all" || (post.topics || []).includes(state.topic);
       const kindMatches = state.category === "all" || post.category === state.category;
-      const text = [post.title,post.description,post.source,kindLabel(post.category),...(post.topics || []).map(t=>labels[t] || "")].join(" ").normalize("NFC").toLocaleLowerCase("ko-KR");
+      const text = [post.title,post.description,post.source,post.book?.title,post.book?.imprint,kindLabel(post.category),...(post.topics || []).map(t=>labels[t] || "")].join(" ").normalize("NFC").toLocaleLowerCase("ko-KR");
       return subjectMatches && kindMatches && (!needle || text.includes(needle));
     });
     results.replaceChildren();
@@ -302,7 +310,8 @@
   function validPost(post) {
     return post && ["id","title","description","url","source","publishedAt"].every(key=>typeof post[key]==="string")
       && ["excerpt","psychology"].includes(post.category) && Array.isArray(post.topics)
-      && post.topics.every(topic=>typeof topic==="string") && safeUrl(post.url);
+      && post.topics.every(topic=>typeof topic==="string") && safeUrl(post.url)
+      && (!post.book || (post.category === "excerpt" && typeof post.book.title === "string" && typeof post.book.imprint === "string"));
   }
   render();
   fetch("/reading-data.json",{headers:{Accept:"application/json"},cache:"no-store"})
