@@ -1,4 +1,5 @@
-@import url("/interaction.css?v=20261108-hover-intent-b");
+@import url("/site-header.css?v=20261108-header-unified");
+@import url("/interaction.css?v=20261108-header-unified");
 
 @font-face {
   font-family: "SUIT";
@@ -100,54 +101,11 @@ input {
 .skip-link:focus {
   transform: translateY(0);
 }
-
-[data-site-header],
 [data-site-footer],
 .home-main,
 .page-shell {
   width: min(var(--page-width), calc(100% - 112px));
   margin-inline: auto;
-}
-
-.site-header {
-  min-height: 104px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  border-bottom: 1px solid var(--ink);
-}
-
-.wordmark {
-  flex: 0 0 auto;
-  font-size: 34px;
-  font-weight: 720;
-  line-height: 1;
-  letter-spacing: -0.055em;
-}
-
-.site-menu {
-  display: flex;
-  align-items: center;
-  gap: 32px;
-  color: var(--body);
-  font-size: 15px;
-  font-weight: 560;
-  line-height: 1;
-  letter-spacing: -0.018em;
-  white-space: nowrap;
-}
-
-.site-menu a {
-  min-height: 40px;
-  display: inline-flex;
-  align-items: center;
-  color: var(--body);
-}
-
-.site-menu a[aria-current="page"] {
-  font-weight: 760;
-  text-decoration: underline;
-  text-decoration-thickness: 1px;
 }
 
 .home-main {
@@ -1303,7 +1261,6 @@ input {
 }
 
 @media (max-width: 1399px) {
-  [data-site-header],
   [data-site-footer],
   .home-main,
   .page-shell {
@@ -1330,16 +1287,10 @@ input {
 }
 
 @media (max-width: 1030px) {
-  [data-site-header],
   [data-site-footer],
   .home-main,
   .page-shell {
     width: calc(100% - 56px);
-  }
-
-  .site-menu {
-    gap: 20px;
-    font-size: 14px;
   }
 
   .book-stage {
@@ -1374,28 +1325,10 @@ input {
 }
 
 @media (max-width: 870px) {
-  [data-site-header],
   [data-site-footer],
   .home-main,
   .page-shell {
     width: calc(100% - 40px);
-  }
-
-  .site-header {
-    min-height: 94px;
-    padding: 24px 0 20px;
-    align-items: flex-start;
-  }
-
-  .wordmark {
-    font-size: 30px;
-  }
-
-  .site-menu {
-    max-width: 480px;
-    justify-content: flex-end;
-    gap: 12px 20px;
-    line-height: 1.3;
   }
 
   .home-main {
@@ -1445,39 +1378,10 @@ input {
 }
 
 @media (max-width: 620px) {
-  [data-site-header],
   [data-site-footer],
   .home-main,
   .page-shell {
     width: calc(100% - 40px);
-  }
-
-  .site-header {
-    display: block;
-    min-height: 0;
-    padding: 15px 0 12px;
-  }
-
-  .wordmark {
-    font-size: 26px;
-  }
-
-  .site-menu {
-    max-width: none;
-    display: grid;
-    grid-template-columns: repeat(4, auto);
-    justify-content: space-between;
-    gap: 0;
-    margin-top: 10px;
-    font-size: 13px;
-    line-height: 1.35;
-    white-space: nowrap;
-  }
-
-  .site-menu a {
-    min-width: 44px;
-    min-height: 44px;
-    justify-content: center;
   }
 
   .home-main {
@@ -1791,15 +1695,10 @@ input {
 }
 
 @media (max-width: 370px) {
-  [data-site-header],
   [data-site-footer],
   .home-main,
   .page-shell {
     width: calc(100% - 32px);
-  }
-
-  .site-menu {
-    font-size: 12px;
   }
 
   .home-main .book-feature {

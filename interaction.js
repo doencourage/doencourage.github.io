@@ -127,6 +127,16 @@
   document.addEventListener('scroll', resetAll, {capture: true, passive: true});
   document.addEventListener('visibilitychange', resetAll);
   document.addEventListener('keydown', resetHover, {capture: true});
+  // Keep a keyboard-focused header link fully visible in the horizontal menu.
+  document.addEventListener('focusin', event => {
+    const link = event.target.closest?.('.site-header .site-menu a');
+    const nav = link?.closest('.site-menu');
+    if (!nav || nav.scrollWidth <= nav.clientWidth) return;
+    const item = link.getBoundingClientRect(), viewport = nav.getBoundingClientRect();
+    const offset = item.left < viewport.left ? item.left - viewport.left :
+      item.right > viewport.right ? item.right - viewport.right : 0;
+    if (offset) nav.scrollLeft += offset;
+  });
   window.addEventListener('blur', resetAll);
   window.addEventListener('pagehide', resetAll);
   window.addEventListener('resize', resetAll);
