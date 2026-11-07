@@ -1,4 +1,4 @@
-/* The publisher story and original imprint marks share the existing page grid. */
+/* Horizontal imprint lockups share the existing typography, rules and page grid. */
 .about-page .principles-motto {
   margin: 0 0 32px;
   font-family: "MaruBuri", serif;
@@ -8,15 +8,16 @@
 }
 
 .about-page .imprint-heading {
-  width: 180px;
-  text-align: center;
+  width: 300px;
+  max-width: 100%;
+  text-align: left;
 }
 
 .about-page .imprint-heading h3 {
-  width: 180px;
-  height: 200px;
+  width: 100%;
+  height: 104px;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   line-height: 0;
 }
@@ -27,8 +28,9 @@
   height: auto;
 }
 
-.about-page .imprint-logo-maum { width: 160px; }
-.about-page .imprint-logo-haeadam { width: 144px; }
+.about-page .imprint-logo-maum { width: 280px; }
+.about-page .imprint-logo-haeadam { width: 264px; }
+.about-page .imprint-logo-simriseoga { width: 280px; }
 .about-page .imprint-heading p { margin-top: 16px; }
 
 .about-page .imprint-copy .imprint-statement {
@@ -40,26 +42,53 @@
   letter-spacing: -.04em;
 }
 
+.home-page .home-imprints {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px 48px;
+  align-items: stretch;
+  padding: 28px 0 30px;
+}
+.home-page .home-imprints h2 { grid-column: 1 / -1; }
+.home-page .home-imprints a {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  grid-template-rows: 86px auto;
+  align-items: center;
+  gap: 12px 10px;
+  min-width: 0;
+}
+.home-page .home-imprints .home-imprint-logo {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: center;
+  height: 86px;
+}
+.home-imprint-logo img { display: block; width: 232px; max-width: 100%; height: auto; }
+.home-imprint-logo img[alt="헤아담"] { width: 218px; }
+.home-page .home-imprints .home-imprint-topic { line-height: 1.6; word-break: keep-all; }
+.home-page .home-imprints .brand-arrow { align-self: center; }
+
+@media (max-width: 1100px) {
+  .home-page .home-imprints { column-gap: 30px; }
+  .home-imprint-logo img { width: 210px; }
+  .home-imprint-logo img[alt="헤아담"] { width: 198px; }
+}
 @media (max-width: 870px) {
-  .about-page .imprint-heading {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    gap: 24px;
-    text-align: left;
-  }
-  .about-page .imprint-heading h3 {
-    flex: 0 0 120px;
-    width: 120px;
-    height: 152px;
-  }
-  .about-page .imprint-logo-maum { width: 120px; }
-  .about-page .imprint-logo-haeadam { width: 112px; }
-  .about-page .imprint-heading p { margin: 0; }
+  .about-page .imprint-heading { width: 100%; }
+  .about-page .imprint-heading h3 { height: 92px; }
+  .about-page .imprint-logo-maum, .about-page .imprint-logo-simriseoga { width: 240px; }
+  .about-page .imprint-logo-haeadam { width: 226px; }
+  .about-page .imprint-heading p { margin-top: 12px; }
+  .home-page .home-imprints { column-gap: 24px; }
 }
 
 @media (max-width: 620px) {
   .about-page .principles-motto { font-size: 21px; margin-bottom: 28px; }
-  .about-page .imprint-heading { gap: 18px; }
   .about-page .imprint-copy .imprint-statement { font-size: 22px; margin-bottom: 16px; }
+  .home-page .home-imprints { grid-template-columns: 1fr; gap: 0; padding: 22px 0; }
+  .home-page .home-imprints h2 { margin-bottom: 6px; }
+  .home-page .home-imprints a { padding: 18px 0; gap: 6px 12px; }
+  .home-page .home-imprints a + a { border-top: 1px solid var(--rule); }
+  .home-imprint-logo img { width: 232px; }
+  .home-imprint-logo img[alt="헤아담"] { width: 218px; }
 }
