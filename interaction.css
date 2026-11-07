@@ -1,5 +1,16 @@
-/* Shared pointer, keyboard and touch feedback. No layout or artwork changes. */
+/* Shared pointer, keyboard and touch feedback, with comfortable menu targets. */
 :root { --interaction-bg: #edf3f6; --interaction-ink: #24576b; }
+/* Padding belongs to the link itself, so the entire highlight is clickable. */
+:root body :is(.site-menu, .footer-links, .footer-main nav) { gap: 8px; }
+:root body :is(.site-menu, .footer-links, .footer-main nav) a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 44px;
+  min-height: 44px;
+  padding: 8px 12px;
+  box-sizing: border-box;
+}
 :root body :is(a[href], button, summary, [role="button"], select):not(:disabled):not([aria-disabled="true"]) {
   transition: background-color .15s ease, color .15s ease, border-color .15s ease;
 }
@@ -23,6 +34,7 @@
   :root body :is(a[href], button, summary, [role="button"], select):not(:disabled):not([aria-disabled="true"]):hover {
     background-color: var(--interaction-bg);
     color: var(--interaction-ink);
+    transition-delay: .08s;
   }
   :root body :is(.button.dark, .button.primary, button[aria-pressed="true"], [role="tab"][aria-selected="true"]):not(:disabled):not([aria-disabled="true"]):hover {
     background-color: var(--interaction-ink);
@@ -31,8 +43,20 @@
   }
   :root body :is(a[href], summary):hover :is(h2,h3,h4,.quote,.article-title,.home-imprint-topic,.brand-arrow) {
     color: var(--interaction-ink);
+    transition-delay: .08s;
   }
+}
+/* Explicit actions do not wait for mouse intent. */
+:root body :is(a[href], button, summary, [role="button"], select):not(:disabled):not([aria-disabled="true"]):is(:focus-visible, :active, [data-interaction-pressed]) {
+  transition-delay: 0s;
+}
+:root body :is(a[href], summary) :is(h2,h3,h4,.quote,.article-title,.home-imprint-topic,.brand-arrow) {
+  transition: color .15s ease;
+}
+:root body :is(a[href], summary):is(:focus-visible, :active, [data-interaction-pressed]) :is(h2,h3,h4,.quote,.article-title,.home-imprint-topic,.brand-arrow) {
+  transition-delay: 0s;
 }
 @media (prefers-reduced-motion: reduce) {
   :root body :is(a[href], button, summary, [role="button"], select):not(:disabled):not([aria-disabled="true"]) { transition: none; }
+  :root body :is(a[href], summary) :is(h2,h3,h4,.quote,.article-title,.home-imprint-topic,.brand-arrow) { transition-duration: 0s; }
 }
