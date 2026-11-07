@@ -1,0 +1,38 @@
+/* Shared pointer, keyboard and touch feedback. No layout or artwork changes. */
+:root { --interaction-bg: #edf3f6; --interaction-ink: #24576b; }
+:root body :is(a[href], button, summary, [role="button"], select):not(:disabled):not([aria-disabled="true"]) {
+  transition: background-color .15s ease, color .15s ease, border-color .15s ease;
+}
+:root body :is(a[href], button, summary, [role="button"], select):not(:disabled):not([aria-disabled="true"]):is(:focus-visible, :active, [data-interaction-pressed]) {
+  background-color: var(--interaction-bg);
+  color: var(--interaction-ink);
+}
+:root body :is(a[href], button, summary, [role="button"], select):focus-visible {
+  outline: 2px solid var(--interaction-ink);
+  outline-offset: 4px;
+}
+:root body :is(.button.dark, .button.primary, button[aria-pressed="true"], [role="tab"][aria-selected="true"]):not(:disabled):not([aria-disabled="true"]):is(:focus-visible, :active, [data-interaction-pressed]) {
+  background-color: var(--interaction-ink);
+  border-color: var(--interaction-ink);
+  color: #fff;
+}
+:root body :is(a[href], summary):is(:focus-visible, :active, [data-interaction-pressed]) :is(h2,h3,h4,.quote,.article-title,.home-imprint-topic,.brand-arrow) {
+  color: var(--interaction-ink);
+}
+@media (hover: hover) and (pointer: fine) {
+  :root body :is(a[href], button, summary, [role="button"], select):not(:disabled):not([aria-disabled="true"]):hover {
+    background-color: var(--interaction-bg);
+    color: var(--interaction-ink);
+  }
+  :root body :is(.button.dark, .button.primary, button[aria-pressed="true"], [role="tab"][aria-selected="true"]):not(:disabled):not([aria-disabled="true"]):hover {
+    background-color: var(--interaction-ink);
+    border-color: var(--interaction-ink);
+    color: #fff;
+  }
+  :root body :is(a[href], summary):hover :is(h2,h3,h4,.quote,.article-title,.home-imprint-topic,.brand-arrow) {
+    color: var(--interaction-ink);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  :root body :is(a[href], button, summary, [role="button"], select):not(:disabled):not([aria-disabled="true"]) { transition: none; }
+}

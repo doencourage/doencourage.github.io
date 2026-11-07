@@ -1,3 +1,5 @@
+@import url("/interaction.css?v=20261107-unified");
+
 @font-face {
   font-family: "SUIT";
   src: url("assets/SUIT-Variable.woff2") format("woff2");
@@ -60,10 +62,7 @@ a {
 }
 
 /* Keep text-link feedback weak enough for card and button rules to override. */
-:where(a:hover) {
-  text-decoration: underline;
-  text-decoration-thickness: 1px;
-}
+
 
 :focus-visible {
   outline: 2px solid var(--accent);
@@ -393,14 +392,14 @@ input {
   margin-top: 0;
 }
 
-.home-content-link:is(:hover, :focus-visible, :active) {
+.home-content-link:is(:focus-visible, :active) {
   background-color: var(--interaction-bg);
   text-decoration: none;
 }
 
-.home-content-link:is(:hover, :focus-visible, :active) :is(.quote, .article-title),
-.home-page .book-title a:is(:hover, :focus-visible, :active),
-.all-reading-link:is(:hover, :focus-visible, :active) {
+.home-content-link:is(:focus-visible, :active) :is(.quote, .article-title),
+.home-page .book-title a:is(:focus-visible, :active),
+.all-reading-link:is(:focus-visible, :active) {
   color: var(--accent);
   text-decoration: none;
 }
@@ -459,7 +458,6 @@ input {
   text-underline-offset: 2px;
 }
 
-.footer-legal a:hover,
 .footer-legal a:focus-visible {
   color: var(--muted);
   text-decoration-color: currentColor;
@@ -889,7 +887,7 @@ input {
 .reading-feature .reading-meta { font-size: 12px; color: var(--label); margin: 0 0 12px; }
 .reading-feature h3 { font-size: 23px; font-weight: 650; line-height: 1.5; letter-spacing: -.035em; margin: 0 0 10px; }
 .reading-feature > p:last-child { font-size: 15px; line-height: 1.8; color: var(--muted); margin: 0; }
-.reading-feature:hover h3, .reading-item:hover h2 { color: var(--accent); }
+
 .reading-more { display: block; width: 100%; max-width: 920px; padding: 18px 20px; min-height: 52px; margin-top: 24px; border: 1px solid var(--rule); background: white; cursor: pointer; }
 @media (max-width: 620px) {
   .reading-feature-grid { grid-template-columns: 1fr; gap: 12px; }
@@ -1859,9 +1857,9 @@ input {
 .reading-page .reading-tools { margin-bottom: 28px; }
 .reading-page .reading-toolbar { margin-top: 12px; }
 .reading-feature, .reading-item, .guide-page .rcard { transition: background-color .15s ease; }
-.reading-feature:is(:hover, :focus-visible, :active), .reading-item:is(:hover, :focus-visible, :active), .guide-page .rcard:is(:hover, :focus-visible, :active) { background-color: var(--interaction-bg); text-decoration: none; }
-.reading-feature:is(:hover, :focus-visible, :active) *, .reading-item:is(:hover, :focus-visible, :active) *, .guide-page .rcard:is(:hover, :focus-visible, :active) * { text-decoration: none; }
-.reading-feature:is(:hover, :focus-visible, :active) h3, .reading-item:is(:hover, :focus-visible, :active) h2, .guide-page .rcard:is(:hover, :focus-visible, :active) h4 { color: var(--accent); }
+.reading-feature:is(:focus-visible, :active), .reading-item:is(:focus-visible, :active), .guide-page .rcard:is(:focus-visible, :active) { background-color: var(--interaction-bg); text-decoration: none; }
+.reading-feature:is(:focus-visible, :active) *, .reading-item:is(:focus-visible, :active) *, .guide-page .rcard:is(:focus-visible, :active) * { text-decoration: none; }
+.reading-feature:is(:focus-visible, :active) h3, .reading-item:is(:focus-visible, :active) h2, .guide-page .rcard:is(:focus-visible, :active) h4 { color: var(--accent); }
 .reading-feature > p:last-child { display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; overflow: hidden; }
 .reading-item { padding-inline: 16px; }
 .reading-item h2 { font-size: 23px; line-height: 1.5; }
@@ -1869,8 +1867,8 @@ input {
 .reading-feature .reading-meta, .reading-item .reading-meta { font-size: 13px; color: var(--label); }
 .store-links { gap: 10px; }
 .store-links a { min-height: 44px; min-width: 84px; padding: 10px 16px; font-size: 15px; line-height: 1.4; }
-.store-links a:is(:hover, :focus-visible, :active), .button:is(:hover, :focus-visible, :active) { text-decoration: none; color: var(--accent); background-color: var(--interaction-bg); border-color: var(--accent); }
-.button.dark:is(:hover, :focus-visible, :active) { background-color: var(--accent); color: white; }
+.store-links a:is(:focus-visible, :active), .button:is(:focus-visible, :active) { text-decoration: none; color: var(--accent); background-color: var(--interaction-bg); border-color: var(--accent); }
+.button.dark:is(:focus-visible, :active) { background-color: var(--accent); color: white; }
 .book-page .description + .description { margin-top: 14px; }
 .book-excerpt-link { margin-top: 18px; }
 .home-book-invitation p { margin: 0; }
@@ -1878,7 +1876,7 @@ input {
 .article-page .page-shell { width: calc(100% - 40px); max-width: 720px; padding-top: 32px; padding-bottom: 60px; }
 .article-page .crumb a { text-decoration: underline; text-underline-offset: 4px; }
 .article-recommend a { padding: 12px; font-size: 19px; line-height: 1.6; }
-.article-recommend a:is(:hover, :focus-visible, :active) { color: var(--accent); background: var(--interaction-bg); text-decoration: none; }
+.article-recommend a:is(:focus-visible, :active) { color: var(--accent); background: var(--interaction-bg); text-decoration: none; }
 .article-page .crumb, .guide-page .crumb { margin: 0 0 28px; font-size: 14px; line-height: 1.65; }
 .article-header { margin-bottom: 32px; padding-bottom: 0; border-bottom: 0; }
 .article-header h1, .guide-page .title {
