@@ -53,13 +53,13 @@ header.nav{position:sticky; top:0; z-index:50; backdrop-filter:blur(10px); backg
 .brand{font-weight:800; font-size:1.2rem; letter-spacing:-.03em; color:var(--ink)}.brand .dot{color:var(--rust)}
 .nav-links{display:flex; gap:1.7rem; align-items:center}
 .nav-links a{color:var(--ink); font-size:.92rem; font-weight:500; opacity:.82}
-.nav-links a:hover{opacity:1; color:var(--rust)} .nav-links a.active{opacity:1; color:var(--rust); font-weight:700}
+.nav-links a:is([data-interaction-hover], :where(:root:not([data-interaction-managed])) :hover){opacity:1; color:var(--rust)} .nav-links a.active{opacity:1; color:var(--rust); font-weight:700}
 .nav-links a.buy{background:var(--rust); color:#fff; font-weight:700; padding:.52em 1.15em; border-radius:999px; opacity:1}
-.nav-links a.buy:hover{background:var(--rust-deep); color:#fff}
+.nav-links a.buy:is([data-interaction-hover], :where(:root:not([data-interaction-managed])) :hover){background:var(--rust-deep); color:#fff}
 @media(max-width:620px){ .nav-links{gap:1rem} .nav-links a:not(.buy):not(.active){display:none} }
 
 .crumb{max-width:var(--maxw); margin:clamp(1.6rem,3vw,2.2rem) auto 0; padding-inline:var(--pad-x); font-size:.8rem; color:var(--muted)}
-.crumb a{color:var(--muted)} .crumb a:hover{color:var(--rust)} .crumb .sep{margin:0 .4rem; opacity:.5}
+.crumb a{color:var(--muted)} .crumb a:is([data-interaction-hover], :where(:root:not([data-interaction-managed])) :hover){color:var(--rust)} .crumb .sep{margin:0 .4rem; opacity:.5}
 
 .hero{display:grid; grid-template-columns:220px 1fr; gap:clamp(1.6rem,4vw,3rem); align-items:center; padding-block:clamp(2rem,4vw,3rem)}
 .hero .photo{aspect-ratio:9/10; border-radius:14px; overflow:hidden; background:var(--sand); border:1px solid var(--rust-soft); box-shadow:var(--shadow)}
@@ -90,15 +90,15 @@ header.nav{position:sticky; top:0; z-index:50; backdrop-filter:blur(10px); backg
 .cta h3{font-weight:800; font-size:1.25rem; color:#fff; margin-bottom:1.1rem; letter-spacing:-.03em}
 .btns{display:flex; gap:.7rem; justify-content:center; flex-wrap:wrap}
 .btn{display:inline-flex; align-items:center; gap:.4em; font-weight:700; font-size:.98rem; padding:.8em 1.6em; border-radius:999px; transition:transform .2s var(--snap)}
-.btn.primary{background:var(--rust); color:#fff} .btn.primary:hover{background:var(--rust-deep); transform:translateY(-2px)}
-.btn.ghost{border:1px solid rgba(255,255,255,.4); color:#fff} .btn.ghost:hover{border-color:#fff; transform:translateY(-2px)}
+.btn.primary{background:var(--rust); color:#fff} .btn.primary:is([data-interaction-hover], :where(:root:not([data-interaction-managed])) :hover){background:var(--rust-deep); }
+.btn.ghost{border:1px solid rgba(255,255,255,.4); color:#fff} .btn.ghost:is([data-interaction-hover], :where(:root:not([data-interaction-managed])) :hover){border-color:#fff; }
 
 footer{background:#0f1113; color:#8a857c; padding-block:2.4rem 1.8rem}
 .foot-brand{font-weight:800; font-size:1.15rem; color:#fff}.foot-brand .dot{color:var(--rust)}
 .foot-legal{font-size:.78rem; color:#857f76; line-height:1.8; margin-top:.9rem; border-top:1px solid rgba(224,176,122,.14); padding-top:1.1rem}
 </style>
-<link rel="stylesheet" href="/interaction.css?v=20261107-menu-instant">
-<script src="/interaction.js?v=20261107-unified" defer></script>
+<link rel="stylesheet" href="/interaction.css?v=20261108-hover-intent-b">
+<script src="/interaction.js?v=20261108-hover-intent-b" defer></script>
 </head>
 <body>
 
