@@ -1,5 +1,5 @@
 @import url("/site-header.css?v=20261108-publisher-emblem");
-@import url("/interaction.css?v=20261108-publisher-emblem");
+@import url("/interaction.css?v=20261112-motion");
 
 @font-face{font-family:SUIT;src:url('/assets/SUIT-Variable.woff2') format('woff2');font-weight:100 900;font-display:swap}
 .service-reading { --reading-accent: #24576b; --reading-bg: #edf3f6; --reading-label: #626b73; border-top: 1px solid var(--rule); }
