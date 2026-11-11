@@ -1,0 +1,266 @@
+/* Shared editorial details: restrained labels, clear bylines and source links. */
+.article-classification,
+.guide-page .article-classification {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+  color: var(--label, #626b73);
+  font-size: 13px;
+  line-height: 1.5;
+}
+.article-classification .kind-label,
+.article-classification .topic-label {
+  display: inline-flex;
+  align-items: center;
+  min-height: 28px;
+  padding: 4px 9px;
+  border-radius: 2px;
+  font-size: inherit;
+  font-weight: 500;
+  line-height: 1.5;
+  text-decoration: none;
+}
+.article-classification .kind-label {
+  color: var(--accent, #24576b);
+  background: #edf3f6;
+}
+.article-classification .topic-label {
+  color: var(--label, #626b73);
+  background: #f5f6f5;
+}
+.article-classification a:is(:focus-visible, :hover) {
+  color: var(--accent, #24576b);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.author-signature {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
+  font-size: 14px;
+  line-height: 1.5;
+}
+.author-signature .author-name {
+  display: block;
+  color: var(--ink, #161616);
+  font-weight: 650;
+}
+.author-signature .author-role {
+  display: block;
+  color: var(--muted, #666666);
+  font-size: 13px;
+  font-weight: 400;
+}
+.article-header .byline:not(.author-signature),
+.guide-page .byline:not(.author-signature) {
+  align-items: flex-end;
+  gap: 14px 24px;
+}
+.article-date {
+  color: var(--muted, #666666);
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1.5;
+  white-space: nowrap;
+}
+
+.book-reference {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 8px;
+  max-width: 100%;
+  color: var(--accent, #24576b);
+  font-size: inherit;
+  line-height: 1.65;
+  vertical-align: baseline;
+}
+.book-reference .ui-icon {
+  position: relative;
+  top: 3px;
+  display: inline-block;
+  flex: 0 0 18px;
+  width: 18px;
+  height: 18px;
+  color: var(--accent, #24576b);
+  vertical-align: baseline;
+}
+.book-reference .ui-icon svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.book-reference > span:last-child {
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 4px;
+}
+.source.book-reference { font-size: 13px; }
+a.book-reference,
+.book-reference a {
+  color: var(--ink, #161616);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 4px;
+}
+a.book-reference:is(:hover, :focus-visible),
+.book-reference a:is(:hover, :focus-visible) {
+  color: var(--accent, #24576b);
+}
+.article-source {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 6px 12px;
+  margin: 24px 0 0;
+  padding-top: 16px;
+  border-top: 1px solid var(--rule, #ddddda);
+  color: var(--muted, #666666);
+  font-size: 14px;
+  line-height: 1.65;
+}
+.article-source .source-label {
+  margin: 0;
+  flex: 0 0 auto;
+  color: var(--muted, #666666);
+  font-size: 13px;
+}
+.article-source .source-pages {
+  color: var(--muted, #666666);
+  font-size: 13px;
+  white-space: nowrap;
+}
+.article-source .source-author,
+.article-source .source-detail {
+  flex-basis: 100%;
+  margin: 0;
+  color: var(--muted, #666666);
+  font-size: 13px;
+  line-height: 1.6;
+}
+.article-source .article-date { margin: 0; }
+.article-source .article-date span { margin-right: 6px; }
+.article-header .byline.author-signature,
+.guide-page .byline.author-signature {
+  align-items: flex-start;
+  gap: 2px;
+}
+
+.brand-lockup {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 32px;
+  line-height: 1.5;
+  vertical-align: middle;
+}
+.brand-lockup img {
+  display: block;
+  flex: 0 0 auto;
+  width: auto;
+  height: 32px;
+  object-fit: contain;
+}
+.toc-part {
+  display: inline-block;
+  margin-inline-end: 12px;
+  color: var(--accent, #24576b);
+  font-weight: 650;
+  white-space: nowrap;
+}
+.toc summary { justify-content: flex-start; gap: 12px; }
+.toc summary .toc-part { flex: 0 0 auto; margin-inline-end: 0; }
+.toc summary::after { margin-inline-start: auto; }
+.reading-meta .article-classification { margin-bottom: 8px; }
+.reading-meta .book-reference { font-size: 13px; }
+.footer-legal p {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 16px;
+}
+.footer-legal p > span,
+.footer-legal p > a { min-width: 0; }
+
+.store-links {
+  display: flex;
+  align-items: stretch;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.store-links a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 10px 16px;
+  line-height: 1.4;
+  white-space: nowrap;
+  text-decoration: none;
+}
+.store-links a img {
+  display: block;
+  flex: 0 0 24px;
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+}
+.store-links a:is(:hover, :focus-visible, :active) {
+  text-decoration: none;
+}
+
+.guide-page .tldr,
+.article-page .tldr {
+  max-width: 720px;
+  margin: 0 0 40px;
+  padding: 28px;
+  border-left: 3px solid var(--accent, #24576b);
+  background: #f5f7f7;
+}
+.guide-page .tldr .lab,
+.article-page .tldr .lab {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0 0 14px;
+  color: var(--accent, #24576b);
+  font-size: 14px;
+  font-weight: 650;
+  line-height: 1.5;
+}
+.tldr .lab::before {
+  content: "";
+  display: block;
+  flex: 0 0 12px;
+  width: 12px;
+  height: 16px;
+  background: currentColor;
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 74%, 0 100%);
+}
+.guide-page .tldr p,
+.article-page .tldr p {
+  margin: 0;
+  line-height: 1.85;
+}
+.guide-page .tldr p + p,
+.article-page .tldr p + p {
+  margin-top: 1em;
+}
+
+@media (max-width: 620px) {
+  .article-classification { gap: 8px; font-size: 12px; }
+  .article-classification .kind-label,
+  .article-classification .topic-label { padding: 4px 8px; }
+  .article-header .byline:not(.author-signature),
+  .guide-page .byline:not(.author-signature) { gap: 12px 20px; }
+  .article-source { gap: 6px 10px; margin-top: 20px; }
+  .store-links { gap: 8px; }
+  .store-links a { padding-inline: 12px; }
+  .guide-page .tldr,
+  .article-page .tldr { padding: 20px; }
+}
+/* Existing survey status and support labels remain separate without dot joins. */
+.save-time, .form-text-gap { margin-inline-start: 12px; }

@@ -1,7 +1,9 @@
 .git/**
 README.md
 wrangler.toml
-editor*
+editor.html
+editor.js
+editor.css
 content/**
 _작업/**
 *.py

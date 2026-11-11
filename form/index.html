@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>사전 면담지 · 마음기록소</title>
+<title>사전 면담지, 마음기록소</title>
 <link rel="canonical" href="https://doencourage.com/form/" />
 <meta name="robots" content="noindex, follow" />
 <meta name="description" content="검사 점수만으로는 알 수 없는 이야기를 여쭙습니다. ★ 표시만 채우면 20분이면 됩니다." />
@@ -12,12 +12,12 @@
 <meta property="og:site_name" content="마음기록소" />
 <meta property="og:locale" content="ko_KR" />
 <meta property="og:url" content="https://doencourage.com/form/" />
-<meta property="og:title" content="사전 면담지 · 마음기록소" />
+<meta property="og:title" content="사전 면담지, 마음기록소" />
 <meta property="og:description" content="검사 점수만으로는 알 수 없는 이야기를 여쭙습니다. ★ 표시만 채우면 20분이면 됩니다." />
 <meta property="og:image" content="https://doencourage.com/images/og-form.png" />
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="630" />
-<meta property="og:image:alt" content="사전 면담지 · 마음기록소" />
+<meta property="og:image:alt" content="사전 면담지, 마음기록소" />
 <meta name="twitter:card" content="summary_large_image" />
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css">
 <style>
@@ -460,8 +460,9 @@ fieldset{border:none}
 .crisis-footer p{font-size:.9rem; line-height:1.65}
 .crisis-footer b{color:var(--rust-soft); font-weight:700; font-variant-numeric:tabular-nums}
 </style>
-<link rel="stylesheet" href="/interaction.css?v=20261108-publisher-emblem">
-<script src="/interaction.js?v=20261108-publisher-emblem" defer></script>
+<link rel="stylesheet" href="/interaction.css?v=20261112-editorial">
+<script src="/interaction.js?v=20261112-editorial" defer></script>
+<link rel="stylesheet" href="/editorial.css?v=20261112-editorial">
 </head>
 <body>
 
@@ -514,7 +515,7 @@ fieldset{border:none}
   <div class="topbar-inner">
     <div class="target-line" id="targetLine" style="display:none"></div>
     <div class="progress-meta">
-      <span class="cur" id="curPart">PART A &middot; 기본 정보</span>
+      <span class="cur" id="curPart">PART A, 기본 정보</span>
       <span class="pct"><span id="pctNum">0</span>% 작성</span>
     </div>
     <div class="progress"><span id="progressFill"></span></div>
@@ -532,7 +533,7 @@ fieldset{border:none}
         <span class="ec-num" aria-hidden="true">01</span>
         <span>
           <span class="ec-t">양육자가 작성 (자녀에 대해)</span>
-          <span class="ec-d">부모·주양육자가 자녀를 떠올리며 작성합니다.</span>
+          <span class="ec-d">부모 또는 주양육자가 자녀를 떠올리며 작성합니다.</span>
         </span>
         <span class="ec-arr" aria-hidden="true">&rarr;</span>
       </button>
@@ -572,7 +573,7 @@ fieldset{border:none}
       <div class="wrap">
         <div class="cf-t">잠깐, 지금 많이 힘드시다면</div>
         <p>마음이 무겁고 위급하게 느껴지신다면, 이 폼을 잠시 멈추고 먼저 이야기 나눠 보세요.<br>
-        자살예방상담 <b>109</b> &middot; 정신건강위기상담 <b>1577-0199</b> (24시간, 비밀 보장)</p>
+        자살예방상담 <b>109</b>정신건강위기상담 <b>1577-0199</b> (24시간, 비밀 보장)</p>
       </div>
     </section>
 
@@ -711,26 +712,30 @@ const esc = (s) => String(s==null?'':s)
   .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
   .replace(/"/g,'&quot;').replace(/'/g,'&#39;');
 
+const EDITORIAL_FORM_LABELS = {"(\uc608: 1989\ub144 5\uc6d4 5\uc77c) \uac80\uc0ac \ud574\uc11d\u00b7\uc0dd\uc560\uc8fc\uae30 \uc774\ud574\uc5d0 \uc4f0\uc785\ub2c8\ub2e4.": "(\uc608: 1989\ub144 5\uc6d4 5\uc77c) \uac80\uc0ac \ud574\uc11d, \uc0dd\uc560\uc8fc\uae30 \uc774\ud574\uc5d0 \uc4f0\uc785\ub2c8\ub2e4.", "(\uc608: \uc544\ube60\u00b7\uc5c4\ub9c8\u00b7\uc790\ub140 / \uc5c4\ub9c8\u00b7\uc790\ub140 / \uc5c4\ub9c8\u00b7\uc790\ub140\u00b7\uc678\ud560\uba38\ub2c8)": "(\uc608: \uc544\ube60, \uc5c4\ub9c8, \uc790\ub140 / \uc5c4\ub9c8, \uc790\ub140 / \uc5c4\ub9c8, \uc790\ub140, \uc678\ud560\uba38\ub2c8)", "(\uc608: \ud63c\uc790 / \ubc30\uc6b0\uc790\u00b7\uc790\ub140\uc640 \ud568\uaed8, \uae30\ud63c / \ubd80\ubaa8\ub2d8\uacfc \ud568\uaed8, \ubbf8\ud63c)": "(\uc608: \ud63c\uc790 / \ubc30\uc6b0\uc790, \uc790\ub140\uc640 \ud568\uaed8, \uae30\ud63c / \ubd80\ubaa8\ub2d8\uacfc \ud568\uaed8, \ubbf8\ud63c)", "(\uc77c\u00b7\uad00\uacc4\u00b7\ub3c8\u00b7\uc9c4\ub85c \ub4f1 \uc5b4\ub5a4 \uc601\uc5ed\uc774\ub4e0. \uc11c\uc220\ud615, 2~3\ubb38\uc7a5)": "(\uc77c, \uad00\uacc4, \ub3c8, \uc9c4\ub85c \ub4f1 \uc5b4\ub5a4 \uc601\uc5ed\uc774\ub4e0. \uc11c\uc220\ud615, 2~3\ubb38\uc7a5)", "(\uc790\uc5f0\u00b7\uc608\uc220\u00b7\uc2e0\uc559\u00b7\ubab0\uc785\u00b7\ud5cc\uc2e0 \uc18d\uc5d0\uc11c \ub098\ub97c \uc78a\uc740 \uacbd\ud5d8 \ub4f1. \uc11c\uc220\ud615, 3~5\ubb38\uc7a5)": "(\uc790\uc5f0, \uc608\uc220, \uc2e0\uc559, \ubab0\uc785, \ud5cc\uc2e0 \uc18d\uc5d0\uc11c \ub098\ub97c \uc78a\uc740 \uacbd\ud5d8 \ub4f1. \uc11c\uc220\ud615, 3~5\ubb38\uc7a5)", "(\uc791\uc740 \uc2b5\uad00\u00b7\uc0ac\ub78c\u00b7\uc7a5\uc18c \ubb34\uc5c7\uc774\ub4e0. \ubb34\uac70\uc6b4 \uc601\uc5ed\uc744 \uc9c0\ub098\uc624\uc2e0 \uc9c0\uae08, \ud55c\uc228 \ub3cc\ub9ac\uba70. \uc11c\uc220\ud615, 2~3\ubb38\uc7a5)": "(\uc791\uc740 \uc2b5\uad00, \uc0ac\ub78c, \uc7a5\uc18c \ubb34\uc5c7\uc774\ub4e0. \ubb34\uac70\uc6b4 \uc601\uc5ed\uc744 \uc9c0\ub098\uc624\uc2e0 \uc9c0\uae08, \ud55c\uc228 \ub3cc\ub9ac\uba70. \uc11c\uc220\ud615, 2~3\ubb38\uc7a5)", "(\uc9c0\uae08 \uadf8\ub7f0 \uad00\uacc4\uac00 \uc5c6\ub2e4\uba74, \uc5f0\uc560\u00b7\uce5c\ubc00\ud568\uc5d0 \ub300\ud55c \ub098\uc758 \ud0dc\ub3c4\ub85c \ub2f5\ud558\uc154\ub3c4 \uc88b\uc544\uc694. \uac74\ub108\ub6f0\uc154\ub3c4 \ub429\ub2c8\ub2e4.)": "(\uc9c0\uae08 \uadf8\ub7f0 \uad00\uacc4\uac00 \uc5c6\ub2e4\uba74, \uc5f0\uc560, \uce5c\ubc00\ud568\uc5d0 \ub300\ud55c \ub098\uc758 \ud0dc\ub3c4\ub85c \ub2f5\ud558\uc154\ub3c4 \uc88b\uc544\uc694. \uac74\ub108\ub6f0\uc154\ub3c4 \ub429\ub2c8\ub2e4.)", "\uac00\uae09\uc801 \uc775\uc219\ud55c \uc0ac\ub78c\u00b7\uc790\ub9ac \uacc1\uc5d0 \uba38\ubb34\ub294 \ud3b8": "\uac00\uae09\uc801 \uc775\uc219\ud55c \uc0ac\ub78c, \uc790\ub9ac \uacc1\uc5d0 \uba38\ubb34\ub294 \ud3b8", "\uac00\ub2a5\ud558\uba74 \uc0bc\uc131\uc778\ud130\ub137\u00b7\ud06c\ub86c\u00b7\uc0ac\ud30c\ub9ac \uac19\uc740 \ube0c\ub77c\uc6b0\uc800\uc5d0\uc11c, \ud55c \uae30\uae30\u00b7\ud55c \uacf3\uc5d0\uc11c \ub05d\uae4c\uc9c0 \uc791\uc131\ud574 \uc8fc\uc138\uc694. \uc911\uac04\uc5d0 \ub2eb\uc544\ub3c4 \uac19\uc740 \ube0c\ub77c\uc6b0\uc800\ub85c \ub2e4\uc2dc \uc5f4\uba74 \uc774\uc5b4\uc11c \uc4f8 \uc218 \uc788\uc5b4\uc694.": "\uac00\ub2a5\ud558\uba74 \uc0bc\uc131\uc778\ud130\ub137, \ud06c\ub86c, \uc0ac\ud30c\ub9ac \uac19\uc740 \ube0c\ub77c\uc6b0\uc800\uc5d0\uc11c, \ud55c \uae30\uae30, \ud55c \uacf3\uc5d0\uc11c \ub05d\uae4c\uc9c0 \uc791\uc131\ud574 \uc8fc\uc138\uc694. \uc911\uac04\uc5d0 \ub2eb\uc544\ub3c4 \uac19\uc740 \ube0c\ub77c\uc6b0\uc800\ub85c \ub2e4\uc2dc \uc5f4\uba74 \uc774\uc5b4\uc11c \uc4f8 \uc218 \uc788\uc5b4\uc694.", "\uac00\uc7a5 \uac00\uae4c\uc6b4 \ud30c\ud2b8\ub108(\uc5f0\uc778\u00b7\ubc30\uc6b0\uc790)\uc640 \ud568\uaed8 \uc788\uc744 \ub54c\uc758 \ub098\ub294 \ud3b8\uc548\ud55c \ud3b8\uc778\uac00\uc694, \uc870\uc2ec\uc2a4\ub7ec\uc6b4 \ud3b8\uc778\uac00\uc694? \ucd5c\uadfc \uadf8 \uad00\uacc4\uc5d0\uc11c \ub9c8\uc74c\uc774 \ub193\uc600\ub358, \ud639\uc740 \uac78\ub838\ub358 \uc7a5\uba74 \ud558\ub098\ub97c \ub4e4\ub824\uc8fc\uc138\uc694.": "\uac00\uc7a5 \uac00\uae4c\uc6b4 \ud30c\ud2b8\ub108(\uc5f0\uc778, \ubc30\uc6b0\uc790)\uc640 \ud568\uaed8 \uc788\uc744 \ub54c\uc758 \ub098\ub294 \ud3b8\uc548\ud55c \ud3b8\uc778\uac00\uc694, \uc870\uc2ec\uc2a4\ub7ec\uc6b4 \ud3b8\uc778\uac00\uc694? \ucd5c\uadfc \uadf8 \uad00\uacc4\uc5d0\uc11c \ub9c8\uc74c\uc774 \ub193\uc600\ub358, \ud639\uc740 \uac78\ub838\ub358 \uc7a5\uba74 \ud558\ub098\ub97c \ub4e4\ub824\uc8fc\uc138\uc694.", "\uac1c\uc778\uc815\ubcf4 \uc218\uc9d1\u00b7\uc774\uc6a9 \ub3d9\uc758 \u2014 \uc801\uc5b4 \uc8fc\uc2e0 \ub0b4\uc6a9\uacfc \uc790\ub140 \uc815\ubcf4\ub294 \ub9de\ucda4 \ucc45 \uc81c\uc791\uacfc \ud574\uc11d \uc0c1\ub2f4 \ubaa9\uc801\uc5d0\ub9cc \uc0ac\uc6a9\ud558\uace0, \uc678\ubd80\uc5d0 \uacf5\uac1c\u00b7\uacf5\uc720\ud558\uc9c0 \uc54a\uc73c\uba70, \uc81c\uc791 \uc644\ub8cc \ud6c4 \uc694\uccad\ud558\uc2dc\uba74 \ud30c\uae30\ud569\ub2c8\ub2e4.": "\uac1c\uc778\uc815\ubcf4 \uc218\uc9d1 \ubc0f \uc774\uc6a9 \ub3d9\uc758 \u2014 \uc801\uc5b4 \uc8fc\uc2e0 \ub0b4\uc6a9\uacfc \uc790\ub140 \uc815\ubcf4\ub294 \ub9de\ucda4 \ucc45 \uc81c\uc791\uacfc \ud574\uc11d \uc0c1\ub2f4 \ubaa9\uc801\uc5d0\ub9cc \uc0ac\uc6a9\ud558\uace0, \uc678\ubd80\uc5d0 \uacf5\uac1c \ubc0f \uacf5\uc720\ud558\uc9c0 \uc54a\uc73c\uba70, \uc81c\uc791 \uc644\ub8cc \ud6c4 \uc694\uccad\ud558\uc2dc\uba74 \ud30c\uae30\ud569\ub2c8\ub2e4.", "\ub0b4\uac00 \ub204\uad70\uac00\ub97c \ub3cc\ubcf4\uac70\ub098 \ucc45\uc784\uc9c0\ub294 \uad00\uacc4(\uc790\ub140\u00b7\ubd80\ubaa8\u00b7\ubc30\uc6b0\uc790\u00b7\ud6c4\ubc30 \ub4f1)\uac00 \uc788\ub2e4\uba74, \uadf8 \uad00\uacc4 \uc18d \ub098\ub294 \uc5b4\ub5a4 \ubaa8\uc2b5\uc778\uac00\uc694? \uac00\uc7a5 \uc798 \ub9de\ub294 \ubd80\ubd84\uacfc \uac00\uc7a5 \uc790\uc8fc \ubd80\ub52a\ud788\ub294 \ubd80\ubd84\uc744 \ud568\uaed8 \ub4e4\ub824\uc8fc\uc138\uc694.": "\ub0b4\uac00 \ub204\uad70\uac00\ub97c \ub3cc\ubcf4\uac70\ub098 \ucc45\uc784\uc9c0\ub294 \uad00\uacc4(\uc790\ub140, \ubd80\ubaa8, \ubc30\uc6b0\uc790, \ud6c4\ubc30 \ub4f1)\uac00 \uc788\ub2e4\uba74, \uadf8 \uad00\uacc4 \uc18d \ub098\ub294 \uc5b4\ub5a4 \ubaa8\uc2b5\uc778\uac00\uc694? \uac00\uc7a5 \uc798 \ub9de\ub294 \ubd80\ubd84\uacfc \uac00\uc7a5 \uc790\uc8fc \ubd80\ub52a\ud788\ub294 \ubd80\ubd84\uc744 \ud568\uaed8 \ub4e4\ub824\uc8fc\uc138\uc694.", "\ub0b4\uac00 \uc815\ud55c \ub2e4\uc9d0\u00b7\uacc4\ud68d\u00b7\uc2b5\uad00\uc774 \uadf8\ub0a0\uc758 \ucee8\ub514\uc158\uc774\ub098 \uc0c1\ud669\uc5d0 \ub530\ub77c \ud754\ub4e4\ub9ac\ub294 \ud3b8\uc778\uac00\uc694?": "\ub0b4\uac00 \uc815\ud55c \ub2e4\uc9d0, \uacc4\ud68d, \uc2b5\uad00\uc774 \uadf8\ub0a0\uc758 \ucee8\ub514\uc158\uc774\ub098 \uc0c1\ud669\uc5d0 \ub530\ub77c \ud754\ub4e4\ub9ac\ub294 \ud3b8\uc778\uac00\uc694?", "\ub2e4\ub978 \uc0ac\ub78c(\uac00\uc871\u00b7\ub2e4\ub978 \ubd80\ubaa8\u00b7\uc120\uc0dd\ub2d8 \ub4f1)\uc758 \ubc18\uc751\uc774\ub098 \uce6d\ucc2c\u00b7\uc2e4\ub9dd\uc5d0 \ubd80\ubaa8\ub2d8 \uc790\uc2e0\uc774 \uc5bc\ub9c8\ub098 \uc2e0\uacbd \uc4f0\uc774\ub294 \ud3b8\uc778\uac00\uc694? \ub204\uad70\uac00\uc758 \uae30\ubd84\uc774\ub098 \uc2dc\uc120 \ub54c\ubb38\uc5d0 \uc591\uc721 \ubc29\uc2dd\uc774\ub098 \ub9d0\uc744 \ubc14\uafbc \ucd5c\uadfc \uc7a5\uba74\uc774 \uc788\ub2e4\uba74 \ub4e4\ub824\uc8fc\uc138\uc694.": "\ub2e4\ub978 \uc0ac\ub78c(\uac00\uc871, \ub2e4\ub978 \ubd80\ubaa8, \uc120\uc0dd\ub2d8 \ub4f1)\uc758 \ubc18\uc751\uc774\ub098 \uce6d\ucc2c, \uc2e4\ub9dd\uc5d0 \ubd80\ubaa8\ub2d8 \uc790\uc2e0\uc774 \uc5bc\ub9c8\ub098 \uc2e0\uacbd \uc4f0\uc774\ub294 \ud3b8\uc778\uac00\uc694? \ub204\uad70\uac00\uc758 \uae30\ubd84\uc774\ub098 \uc2dc\uc120 \ub54c\ubb38\uc5d0 \uc591\uc721 \ubc29\uc2dd\uc774\ub098 \ub9d0\uc744 \ubc14\uafbc \ucd5c\uadfc \uc7a5\uba74\uc774 \uc788\ub2e4\uba74 \ub4e4\ub824\uc8fc\uc138\uc694.", "\ub9c8\uc74c\uc774 \ud798\ub4e4\uac70\ub098 \uc2ac\ud514\u00b7\uad34\ub85c\uc6c0\uc774 \uc62c\ub77c\uc62c \ub54c, \ub098\ub294 \ubcf4\ud1b5 \uc5b4\ub5bb\uac8c \uadf8 \uc2dc\uac04\uc744 \uc9c0\ub098\uac00\ub098\uc694?": "\ub9c8\uc74c\uc774 \ud798\ub4e4\uac70\ub098 \uc2ac\ud514, \uad34\ub85c\uc6c0\uc774 \uc62c\ub77c\uc62c \ub54c, \ub098\ub294 \ubcf4\ud1b5 \uc5b4\ub5bb\uac8c \uadf8 \uc2dc\uac04\uc744 \uc9c0\ub098\uac00\ub098\uc694?", "\ubab8\uc73c\ub85c \uba3c\uc800 \uc628\ub2e4(\ub450\ud1b5\u00b7\uc18c\ud654\u00b7\uacb0\ub9bc\u00b7\uae34\uc7a5 \ub4f1)": "\ubab8\uc73c\ub85c \uba3c\uc800 \uc628\ub2e4(\ub450\ud1b5, \uc18c\ud654, \uacb0\ub9bc, \uae34\uc7a5 \ub4f1)", "\ubb3c\uac74\uc744 \uc0c9\u00b7\ud06c\uae30\u00b7\uc21c\uc11c\ub300\ub85c \uc904 \uc138\uc6b0\uac70\ub098 \ub098\ub204\uace0 \uc815\ub9ac\ud558\ub294 \uac83 \uc790\uccb4\ub97c \uc990\uae30\ub294 \ud3b8\uc778\uac00\uc694? \ubaa8\uc73c\ub294 \uac83(\uc2a4\ud2f0\ucee4\u00b7\uce74\ub4dc\u00b7\ub3cc \ub4f1)\uc774 \uc788\uace0, \uc790\uae30\ub9cc\uc758 \ubcf4\uad00 \uaddc\uce59\uc774 \uc788\ub098\uc694?": "\ubb3c\uac74\uc744 \uc0c9, \ud06c\uae30, \uc21c\uc11c\ub300\ub85c \uc904 \uc138\uc6b0\uac70\ub098 \ub098\ub204\uace0 \uc815\ub9ac\ud558\ub294 \uac83 \uc790\uccb4\ub97c \uc990\uae30\ub294 \ud3b8\uc778\uac00\uc694? \ubaa8\uc73c\ub294 \uac83(\uc2a4\ud2f0\ucee4, \uce74\ub4dc, \ub3cc \ub4f1)\uc774 \uc788\uace0, \uc790\uae30\ub9cc\uc758 \ubcf4\uad00 \uaddc\uce59\uc774 \uc788\ub098\uc694?", "\ubc1c\ub2ec\uc0ac\u00b7\uae30\uc9c8 \ub2e8\uc11c": "\ubc1c\ub2ec\uc0ac, \uae30\uc9c8 \ub2e8\uc11c", "\uc0c8\ub85c\uc6b4 \uc0ac\ub78c\u00b7\uc0c8\ub85c\uc6b4 \ud658\uacbd\uc5d0 \ucc98\uc74c \ub178\ucd9c\ub418\uc5c8\uc744 \ub54c \uc5b4\ub5bb\uac8c \ubc18\uc751\ud588\ub098\uc694?": "\uc0c8\ub85c\uc6b4 \uc0ac\ub78c, \uc0c8\ub85c\uc6b4 \ud658\uacbd\uc5d0 \ucc98\uc74c \ub178\ucd9c\ub418\uc5c8\uc744 \ub54c \uc5b4\ub5bb\uac8c \ubc18\uc751\ud588\ub098\uc694?", "\uc5ec\uae30\uc11c\ubd80\ud130\ub294 \uc7a0\uae50 \uc544\uc774\uac00 \uc544\ub2c8\ub77c \ubd80\ubaa8\ub2d8 \uc774\uc57c\uae30\uc785\ub2c8\ub2e4. \ubd80\ubaa8\ub2d8\uc758 \uae30\uc9c8\uacfc \uc591\uc721 \ubc29\uc2dd\uc740 \uc544\uc774\uac00 \uc790\ub77c\uc628 \ubc30\uacbd\uc774\uc790, \uc544\uc774 \ucc45\uc758 \ud55c \ucd95\uc774 \ub429\ub2c8\ub2e4. \uc774\ubc88 \uac80\uc0ac\uc5d0\uc11c \ubd80\ubaa8\ub2d8\uaed8\uc11c\ub3c4 \uae30\uc9c8 \uac80\uc0ac(TCI)\u00b7\uc591\uc721\ud0dc\ub3c4 \uac80\uc0ac(PAT-2)\ub97c \ubc1b\uc73c\uc168\uace0, \uc544\ub798 \uc9c8\ubb38\uc740 \uadf8 \uacb0\uacfc\ub97c \ud568\uaed8 \uc77d\uae30 \uc704\ud55c \uac83\uc785\ub2c8\ub2e4. \uc88b\uc740 \ub2f5\u00b7\ub098\uc05c \ub2f5\uc740 \uc5c6\uc73c\ub2c8 \uc194\uc9c1\ud558\uac8c \uc801\uc5b4 \uc8fc\uc2e4\uc218\ub85d \ud574\uc11d\uc774 \uc815\ud655\ud574\uc9d1\ub2c8\ub2e4.": "\uc5ec\uae30\uc11c\ubd80\ud130\ub294 \uc7a0\uae50 \uc544\uc774\uac00 \uc544\ub2c8\ub77c \ubd80\ubaa8\ub2d8 \uc774\uc57c\uae30\uc785\ub2c8\ub2e4. \ubd80\ubaa8\ub2d8\uc758 \uae30\uc9c8\uacfc \uc591\uc721 \ubc29\uc2dd\uc740 \uc544\uc774\uac00 \uc790\ub77c\uc628 \ubc30\uacbd\uc774\uc790, \uc544\uc774 \ucc45\uc758 \ud55c \ucd95\uc774 \ub429\ub2c8\ub2e4. \uc774\ubc88 \uac80\uc0ac\uc5d0\uc11c \ubd80\ubaa8\ub2d8\uaed8\uc11c\ub3c4 \uae30\uc9c8 \uac80\uc0ac(TCI), \uc591\uc721\ud0dc\ub3c4 \uac80\uc0ac(PAT-2)\ub97c \ubc1b\uc73c\uc168\uace0, \uc544\ub798 \uc9c8\ubb38\uc740 \uadf8 \uacb0\uacfc\ub97c \ud568\uaed8 \uc77d\uae30 \uc704\ud55c \uac83\uc785\ub2c8\ub2e4. \uc88b\uc740 \ub2f5, \ub098\uc05c \ub2f5\uc740 \uc5c6\uc73c\ub2c8 \uc194\uc9c1\ud558\uac8c \uc801\uc5b4 \uc8fc\uc2e4\uc218\ub85d \ud574\uc11d\uc774 \uc815\ud655\ud574\uc9d1\ub2c8\ub2e4.", "\uc694\uc998 \uc77c(\ub610\ub294 \ud559\uc5c5\u00b7\uc9d1\uc548\uc77c\u00b7\uad6c\uc9c1 \ub4f1 \ub098\uc758 \uc8fc\ub41c \uc5ed\ud560) \uc18d\uc5d0\uc11c, \uac00\uc7a5 \uc798 \ud480\ub9ac\uace0 \ubcf4\ub78c\uc744 \ub290\ub080 \uc21c\uac04\uacfc, \uac00\uc7a5 \ubc84\uac81\uac70\ub098 \ud68c\uc758\uac00 \ub4e4\uc5c8\ub358 \uc21c\uac04\uc744 \uac01\uac01 \ud55c \uc7a5\uba74\uc529 \ub4e4\ub824\uc8fc\uc138\uc694.": "\uc694\uc998 \uc77c(\ub610\ub294 \ud559\uc5c5, \uc9d1\uc548\uc77c, \uad6c\uc9c1 \ub4f1 \ub098\uc758 \uc8fc\ub41c \uc5ed\ud560) \uc18d\uc5d0\uc11c, \uac00\uc7a5 \uc798 \ud480\ub9ac\uace0 \ubcf4\ub78c\uc744 \ub290\ub080 \uc21c\uac04\uacfc, \uac00\uc7a5 \ubc84\uac81\uac70\ub098 \ud68c\uc758\uac00 \ub4e4\uc5c8\ub358 \uc21c\uac04\uc744 \uac01\uac01 \ud55c \uc7a5\uba74\uc529 \ub4e4\ub824\uc8fc\uc138\uc694.", "\uc694\uc998 \uc7a0\u00b7\uc2dd\uc695\u00b7\uae30\ub825\u00b7\uc9d1\uc911\uc5d0\uc11c, \uc608\uc804\uc758 '\ud3c9\uc18c \ub098'\uc640 \ube44\uad50\ud574 \ub2ec\ub77c\uc9c4 \uc810\uc774 \uc788\ub2e4\uba74 \uc801\uc5b4 \uc8fc\uc138\uc694. \uc5b8\uc81c\ubd80\ud130, \uc5b4\ub5a4 \ub54c \uadf8\ub7f0\uc9c0 \ud568\uaed8 \uc54c\ub824 \uc8fc\uc2dc\uba74 \uc88b\uc544\uc694.": "\uc694\uc998 \uc7a0, \uc2dd\uc695, \uae30\ub825, \uc9d1\uc911\uc5d0\uc11c, \uc608\uc804\uc758 '\ud3c9\uc18c \ub098'\uc640 \ube44\uad50\ud574 \ub2ec\ub77c\uc9c4 \uc810\uc774 \uc788\ub2e4\uba74 \uc801\uc5b4 \uc8fc\uc138\uc694. \uc5b8\uc81c\ubd80\ud130, \uc5b4\ub5a4 \ub54c \uadf8\ub7f0\uc9c0 \ud568\uaed8 \uc54c\ub824 \uc8fc\uc2dc\uba74 \uc88b\uc544\uc694.", "\uc774\ubc88\uc5d0 SCT\u00b7MMPI\u00b7TCI\ub97c \ubc1b\uc73c\uc168\uc2b5\ub2c8\ub2e4. (\uc544\uc9c1 \uc548 \ubc1b\uc73c\uc168\uac70\ub098 \uc77c\ubd80\ub9cc \ubc1b\uc73c\uc168\uc5b4\ub3c4 \uc791\uc131\ud558\uc2e4 \uc218 \uc788\uc5b4\uc694.)": "\uc774\ubc88\uc5d0 SCT, MMPI, TCI\ub97c \ubc1b\uc73c\uc168\uc2b5\ub2c8\ub2e4. (\uc544\uc9c1 \uc548 \ubc1b\uc73c\uc168\uac70\ub098 \uc77c\ubd80\ub9cc \ubc1b\uc73c\uc168\uc5b4\ub3c4 \uc791\uc131\ud558\uc2e4 \uc218 \uc788\uc5b4\uc694.)", "\uc77c\uc0c1\uc758 \uac08\ub4f1\u00b7\ud1b5\ud558\ub294 \uc21c\uac04": "\uc77c\uc0c1\uc758 \uac08\ub4f1, \ud1b5\ud558\ub294 \uc21c\uac04", "\uc790\ub140\uac00 \uc2a4\uc2a4\ub85c \ubb34\uc5b8\uac00\ub97c \ub9cc\ub4e4\uc5b4 \ub0b4\ub294 \uac78 \uc88b\uc544\ud558\ub098\uc694? \uadf8\ub9bc\u00b7\uae00\u00b7\ub178\ub798\u00b7\ub9cc\ub4e4\uae30\u00b7\ubc1c\ud45c \uc911 \uc5b4\ub514\uc5d0\uc11c \uac00\uc7a5 \uc2e0\uc774 \ub098\ub294\uc9c0, \ucd5c\uadfc \ud55c \uc7a5\uba74\uc744 \ub4e4\ub824\uc8fc\uc138\uc694.": "\uc790\ub140\uac00 \uc2a4\uc2a4\ub85c \ubb34\uc5b8\uac00\ub97c \ub9cc\ub4e4\uc5b4 \ub0b4\ub294 \uac78 \uc88b\uc544\ud558\ub098\uc694? \uadf8\ub9bc, \uae00, \ub178\ub798, \ub9cc\ub4e4\uae30, \ubc1c\ud45c \uc911 \uc5b4\ub514\uc5d0\uc11c \uac00\uc7a5 \uc2e0\uc774 \ub098\ub294\uc9c0, \ucd5c\uadfc \ud55c \uc7a5\uba74\uc744 \ub4e4\ub824\uc8fc\uc138\uc694.", "\uc790\ub140\uac00 \uc790\uc5f0\u00b7\ud558\ub298\u00b7\uc0dd\uba85\u00b7\uc8fd\uc74c\u00b7\uc0c1\uc0c1 \uc18d \uc138\uacc4 \uac19\uc740 '\ub208\uc5d0 \ubcf4\uc774\uc9c0 \uc54a\ub294 \ud070 \uac83'\uc5d0 \ube60\uc838\ub4e4\uac70\ub098, \uae4a\uc740 \uc9c8\ubb38(\uc608: \uc0ac\ub78c\uc740 \uc8fd\uc73c\uba74 \uc5b4\ub514 \uac00?)\uc744 \ud558\uac70\ub098, \ubb34\uc5b8\uac00\uc5d0 \ud479 \ube60\uc838 \uc790\uae30\ub97c \uc78a\uc740 \ub4ef \ubcf4\uc778 \uc21c\uac04\uc774 \uc788\ub098\uc694?": "\uc790\ub140\uac00 \uc790\uc5f0, \ud558\ub298, \uc0dd\uba85, \uc8fd\uc74c, \uc0c1\uc0c1 \uc18d \uc138\uacc4 \uac19\uc740 '\ub208\uc5d0 \ubcf4\uc774\uc9c0 \uc54a\ub294 \ud070 \uac83'\uc5d0 \ube60\uc838\ub4e4\uac70\ub098, \uae4a\uc740 \uc9c8\ubb38(\uc608: \uc0ac\ub78c\uc740 \uc8fd\uc73c\uba74 \uc5b4\ub514 \uac00?)\uc744 \ud558\uac70\ub098, \ubb34\uc5b8\uac00\uc5d0 \ud479 \ube60\uc838 \uc790\uae30\ub97c \uc78a\uc740 \ub4ef \ubcf4\uc778 \uc21c\uac04\uc774 \uc788\ub098\uc694?", "\uc790\ub140\uac00 \ud559\uad50(\uc5b4\ub9b0\uc774\uc9d1\u00b7\uc720\uce58\uc6d0)\uc5d0\uc11c \ub3cc\uc544\uc628 \uc9c1\ud6c4 \uc5b4\ub5a4 \ubaa8\uc2b5\uc778\uac00\uc694? \uadf8\ub0a0 \uc788\uc5c8\ub358 \uc77c\uc744 \uc798 \uc774\uc57c\uae30\ud558\ub098\uc694?": "\uc790\ub140\uac00 \ud559\uad50(\uc5b4\ub9b0\uc774\uc9d1, \uc720\uce58\uc6d0)\uc5d0\uc11c \ub3cc\uc544\uc628 \uc9c1\ud6c4 \uc5b4\ub5a4 \ubaa8\uc2b5\uc778\uac00\uc694? \uadf8\ub0a0 \uc788\uc5c8\ub358 \uc77c\uc744 \uc798 \uc774\uc57c\uae30\ud558\ub098\uc694?", "\uc88b\uc740 \ub2f5\u00b7\ub098\uc05c \ub2f5\uc774 \uc5c6\ub294 \uc601\uc5ed\uc785\ub2c8\ub2e4. \uc810\uc218\ub97c \ub9e4\uae30\ub294 \uacf3\uc774 \uc544\ub2c8\ub2c8, \uac00\uc7a5 \ucd5c\uadfc\uc758 \uc7a5\uba74\uc774\ub098 \ud3c9\uc18c \ubc18\ubcf5\ub418\ub294 \ubaa8\uc2b5\uc744 \ub5a0\uc62c\ub9ac\uba70 \ud3b8\ud558\uac8c \uc801\uc5b4 \uc8fc\uc138\uc694.": "\uc88b\uc740 \ub2f5, \ub098\uc05c \ub2f5\uc774 \uc5c6\ub294 \uc601\uc5ed\uc785\ub2c8\ub2e4. \uc810\uc218\ub97c \ub9e4\uae30\ub294 \uacf3\uc774 \uc544\ub2c8\ub2c8, \uac00\uc7a5 \ucd5c\uadfc\uc758 \uc7a5\uba74\uc774\ub098 \ud3c9\uc18c \ubc18\ubcf5\ub418\ub294 \ubaa8\uc2b5\uc744 \ub5a0\uc62c\ub9ac\uba70 \ud3b8\ud558\uac8c \uc801\uc5b4 \uc8fc\uc138\uc694.", "\uc9c1\uc811 \uc785\ub825\u00b7\uc751\ub2f5 \uc548 \ud568": "\uc9c1\uc811 \uc785\ub825, \uc751\ub2f5 \uc548 \ud568", "\ucc98\uc74c \uc5b4\ub9b0\uc774\uc9d1\u00b7\ub180\uc774\ubc29 \uac19\uc740 \uacf3\uc5d0 \uac14\uc744 \ub54c, \uc5b4\ub5a4 \uc801\uc751 \ud328\ud134\uc744 \ubcf4\uc600\ub098\uc694?": "\ucc98\uc74c \uc5b4\ub9b0\uc774\uc9d1, \ub180\uc774\ubc29 \uac19\uc740 \uacf3\uc5d0 \uac14\uc744 \ub54c, \uc5b4\ub5a4 \uc801\uc751 \ud328\ud134\uc744 \ubcf4\uc600\ub098\uc694?", "\ud45c\uc815\u00b7\ubd84\uc704\uae30\ub85c \uc804\ud55c\ub2e4": "\ud45c\uc815, \ubd84\uc704\uae30\ub85c \uc804\ud55c\ub2e4", "\ud604\uc7ac \ud568\uaed8 \uc0b4\uace0 \uacc4\uc2e0 \ubd84\ub4e4\uacfc, \ud63c\uc778\u00b7\uad50\uc81c \uc0c1\ud0dc\ub97c \ud55c \uc904\ub85c \uc54c\ub824 \uc8fc\uc138\uc694.": "\ud604\uc7ac \ud568\uaed8 \uc0b4\uace0 \uacc4\uc2e0 \ubd84\ub4e4\uacfc, \ud63c\uc778, \uad50\uc81c \uc0c1\ud0dc\ub97c \ud55c \uc904\ub85c \uc54c\ub824 \uc8fc\uc138\uc694.", "\ud765\ubbf8\u00b7\uc7ac\ub2a5\uc758 \ub2e8\uc11c": "\ud765\ubbf8, \uc7ac\ub2a5\uc758 \ub2e8\uc11c"};
+const displayText = (value) => EDITORIAL_FORM_LABELS[value] ?? String(value ?? "");
+const escDisplay = (value) => esc(displayText(value));
+
 const PART_NUM = {A:'01',B:'02',C:'03',D:'04',E:'05',F:'06',G:'07'};
 
 /* (fieldId 룩업 테이블 FIELD_META 제거 — 미사용 죽은코드였고, payload는 buildPayload에서 직접 구성) */
 
 /* ---- 렌더 ---- */
 function renderIntro(){
-  if(SCHEMA.intro.coverTitle){ const t=$('#coverTitle'); if(t) t.textContent = SCHEMA.intro.coverTitle; }
-  if(SCHEMA.intro.coverLine){ const l=$('#coverLine'); if(l) l.textContent = SCHEMA.intro.coverLine; }
-  $('#introSub').textContent = SCHEMA.intro.subtitle;
+  if(SCHEMA.intro.coverTitle){ const t=$('#coverTitle'); if(t) t.textContent = displayText(SCHEMA.intro.coverTitle); }
+  if(SCHEMA.intro.coverLine){ const l=$('#coverLine'); if(l) l.textContent = displayText(SCHEMA.intro.coverLine); }
+  $('#introSub').textContent = displayText(SCHEMA.intro.subtitle);
   const ul = $('#guidanceList');
-  ul.innerHTML = SCHEMA.intro.guidance.map(g => `<li><span>${esc(g)}</span></li>`).join('');
-  if(SCHEMA.intro.doneTitle){ const dt=$('#doneTitle'); if(dt) dt.textContent = SCHEMA.intro.doneTitle; }
-  if(SCHEMA.intro.doneText){ const dx=$('#doneText'); if(dx) dx.textContent = SCHEMA.intro.doneText; }
-  if(SCHEMA.intro.submitNote){ const sn=$('#submitNote'); if(sn) sn.textContent = SCHEMA.intro.submitNote; }
+  ul.innerHTML = SCHEMA.intro.guidance.map(g => `<li><span>${escDisplay(g)}</span></li>`).join('');
+  if(SCHEMA.intro.doneTitle){ const dt=$('#doneTitle'); if(dt) dt.textContent = displayText(SCHEMA.intro.doneTitle); }
+  if(SCHEMA.intro.doneText){ const dx=$('#doneText'); if(dx) dx.textContent = displayText(SCHEMA.intro.doneText); }
+  if(SCHEMA.intro.submitNote){ const sn=$('#submitNote'); if(sn) sn.textContent = displayText(SCHEMA.intro.submitNote); }
 }
 
 function fieldInner(f){
   const code = `<span class="qcode">${esc(f.id)}</span>`;
   const reqMark = f.required ? '<span class="req" aria-hidden="true">*</span>' : '';
-  const hint = f.helper ? `<p class="hint" id="hint-${f.id}">${esc(f.helper)}</p>` : '';
+  const hint = f.helper ? `<p class="hint" id="hint-${f.id}">${escDisplay(f.helper)}</p>` : '';
   const describedBy = f.helper ? ` aria-describedby="hint-${f.id}"` : '';
   const reqAttr = f.required ? ' aria-required="true"' : '';
 
@@ -741,7 +746,7 @@ function fieldInner(f){
       return `<label class="choice" for="${oid}">
         <input type="radio" id="${oid}" name="${f.id}" value="${esc(opt)}" data-fid="${f.id}">
         <span class="dot" aria-hidden="true"></span>
-        <span class="label">${esc(opt)}</span>
+        <span class="label">${escDisplay(opt)}</span>
       </label>`;
     }).join('');
 
@@ -754,7 +759,7 @@ function fieldInner(f){
       </div>`;
     }
     if(f.followupTextarea){
-      const ph = f.followupHelper ? esc(f.followupHelper) : '';
+      const ph = f.followupHelper ? escDisplay(f.followupHelper) : '';
       extra = `<div class="followup">
         <label for="${f.id}__fu" style="font-size:.85rem;color:var(--muted);margin-bottom:.4rem;display:block">${ph}</label>
         <textarea class="textarea" id="${f.id}__fu" data-fid="${f.id}-followup" placeholder="${ph}" rows="3"></textarea>
@@ -763,9 +768,9 @@ function fieldInner(f){
 
     return `<fieldset>
       ${code}
-      <legend>${esc(f.label)}${reqMark}</legend>
+      <legend>${escDisplay(f.label)}${reqMark}</legend>
       ${hint}
-      <div class="choices" role="radiogroup" aria-label="${esc(f.label)}">${opts}</div>
+      <div class="choices" role="radiogroup" aria-label="${escDisplay(f.label)}">${opts}</div>
       ${extra}
       <p class="error" id="err-${f.id}">필수 항목입니다.</p>
     </fieldset>`;
@@ -775,9 +780,9 @@ function fieldInner(f){
   if(f.type === 'words3'){
     const cells = [1,2,3].map(n => `<div class="w">
       <span class="n" aria-hidden="true">${n}</span>
-      <input type="text" class="input" id="${f.id}__w${n}" data-fid="${f.id}-${n}" aria-label="${esc(f.label)} ${n}번째 단어">
+      <input type="text" class="input" id="${f.id}__w${n}" data-fid="${f.id}-${n}" aria-label="${escDisplay(f.label)} ${n}번째 단어">
     </div>`).join('');
-    return `<p class="qlabel" id="lab-${f.id}">${code}${esc(f.label)}${reqMark}</p>
+    return `<p class="qlabel" id="lab-${f.id}">${code}${escDisplay(f.label)}${reqMark}</p>
       ${hint}
       <div class="words3" role="group" aria-labelledby="lab-${f.id}">${cells}</div>
       <p class="error" id="err-${f.id}">필수 항목입니다.</p>`;
@@ -794,8 +799,8 @@ function fieldInner(f){
       else if(/1~2|1~3/.test(h)) rows = 3;
     }
     const skip = f.skippable ? `<p class="skip-note">이 질문은 건너뛰셔도 괜찮습니다.</p>` : '';
-    const safety = f.safety ? `<div class="safety-box">지금 많이 힘드시다면, 폼 작성보다 먼저 도움받으셔도 됩니다 — 자살예방상담 <b>109</b> &middot; 정신건강위기상담 <b>1577-0199</b></div>` : '';
-    return `<label for="${f.id}">${code}${esc(f.label)}${reqMark}</label>
+    const safety = f.safety ? `<div class="safety-box">지금 많이 힘드시다면, 폼 작성보다 먼저 도움받으셔도 됩니다 — 자살예방상담 <b>109</b> <span class="form-text-gap" aria-hidden="true"></span> 정신건강위기상담 <b>1577-0199</b></div>` : '';
+    return `<label for="${f.id}">${code}${escDisplay(f.label)}${reqMark}</label>
       ${hint}
       <textarea class="textarea" id="${f.id}" data-fid="${f.id}" rows="${rows}"${describedBy}${reqAttr}></textarea>
       <p class="error" id="err-${f.id}">필수 항목입니다.</p>
@@ -804,14 +809,14 @@ function fieldInner(f){
 
   // date
   if(f.type === 'date'){
-    return `<label for="${f.id}">${code}${esc(f.label)}${reqMark}</label>
+    return `<label for="${f.id}">${code}${escDisplay(f.label)}${reqMark}</label>
       ${hint}
       <input type="date" class="input" id="${f.id}" data-fid="${f.id}"${describedBy}${reqAttr}>
       <p class="error" id="err-${f.id}">필수 항목입니다.</p>`;
   }
 
   // text (default)
-  return `<label for="${f.id}">${code}${esc(f.label)}${reqMark}</label>
+  return `<label for="${f.id}">${code}${escDisplay(f.label)}${reqMark}</label>
     ${hint}
     <input type="text" class="input" id="${f.id}" data-fid="${f.id}"${describedBy}${reqAttr}>
     <p class="error" id="err-${f.id}">필수 항목입니다.</p>`;
@@ -832,21 +837,21 @@ function renderParts(){
         </div>
         <div class="part-tag">${partLabel}</div>
         <span class="idx" aria-hidden="true">${num}</span>
-        <h2>${esc(p.title)}</h2>
+        <h2>${escDisplay(p.title)}</h2>
       </div>
     </section>`;
 
     // 크림 본문
     html += `<section class="part-body" data-part="${p.id}"><div class="wrap">`;
     if(p.intro){
-      html += `<p class="part-intro reveal">${esc(p.intro)}</p>`;
+      html += `<p class="part-intro reveal">${escDisplay(p.intro)}</p>`;
     }
     html += `<div class="form-card reveal">`;
 
     let lastSub = null;
     p.fields.forEach(f => {
       if(f.subgroup && f.subgroup !== lastSub){
-        html += `<div class="subgroup-head">${esc(f.subgroup)}</div>`;
+        html += `<div class="subgroup-head">${escDisplay(f.subgroup)}</div>`;
         lastSub = f.subgroup;
       }
       const cls = (f.type==='radio'||f.type==='relation') ? 'field field-radio' : 'field';
@@ -931,7 +936,7 @@ function showSaved(){
   const d = new Date();
   const hh = String(d.getHours()).padStart(2,'0');
   const mm = String(d.getMinutes()).padStart(2,'0');
-  el.innerHTML = `<span class="dot-s"></span>자동 저장됨 &middot; ${hh}:${mm}`;
+  el.innerHTML = `<span class="dot-s"></span>자동 저장됨 <time class="save-time">${hh}:${mm}</time>`;
   el.style.opacity = '1';
 }
 
@@ -982,7 +987,7 @@ function updateCurrentPart(){
     }
   });
   const cnum = (respondentType === 'self_adult') ? String(SCHEMA.parts.indexOf(cur)+1).padStart(2,'0') : cur.id;
-  $('#curPart').textContent = `PART ${cnum} · ${cur.title}`;
+  $('#curPart').textContent = `PART ${cnum}  ${displayText(cur.title)}`;
 }
 
 /* ---- 제출 ---- */

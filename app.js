@@ -38,10 +38,10 @@
           </nav>
         </div>
         <div class="footer-legal">
-          <p>상호 마음기록소 · 대표자 안계훈 · 사업자등록번호 557-13-02917</p>
+          <p><span>상호 마음기록소</span> <span>대표자 안계훈</span> <span>사업자등록번호 557-13-02917</span></p>
           <p>사업장 주소 경기도 이천시 대월면 사동로176, 2층 202호</p>
-          <p>이메일 <a href="mailto:hello@doencourage.com">hello@doencourage.com</a> · 호스팅서비스제공자 Cloudflare, Inc.</p>
-          <p><a href="https://doencourage.com/terms/">검사 서비스 이용약관</a> · <a href="https://doencourage.com/privacy/">개인정보처리방침</a></p>
+          <p><span>이메일 <a href="mailto:hello@doencourage.com">hello@doencourage.com</a></span> <span>호스팅서비스제공자 Cloudflare, Inc.</span></p>
+          <p><a href="https://doencourage.com/terms/">검사 서비스 이용약관</a> <a href="https://doencourage.com/privacy/">개인정보처리방침</a></p>
           <p class="copyright">© 2026 마음기록소</p>
         </div>
       </footer>`;
@@ -250,13 +250,34 @@
     link.href = url.href;
     link.dataset.post = "";
     link.dataset.id = post.id;
-    const meta = document.createElement("p");
+    const meta = document.createElement("div");
     meta.className = "reading-meta";
-    meta.textContent = [post.book?.imprint, kindLabel(post.category), ...(post.topics || []).map(key => labels[key])].filter(Boolean).join(" · ");
+    const classification = document.createElement("div");
+    classification.className = "article-classification";
+    const kind = document.createElement("span");
+    kind.className = "kind-label";
+    kind.textContent = kindLabel(post.category);
+    classification.append(kind);
+    (post.topics || []).map(key => labels[key]).filter(Boolean).forEach(label => {
+      const topic = document.createElement("span");
+      topic.className = "topic-label";
+      topic.textContent = label;
+      classification.append(topic);
+    });
+    meta.append(classification);
     if (post.book) {
       const book = document.createElement("span");
-      book.className = "reading-book";
-      book.textContent = "《" + post.book.title + "》";
+      book.className = "book-reference reading-book";
+      const icon = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+      for (const [name,value] of Object.entries({class:"ui-icon",width:"20",height:"20",viewBox:"0 0 24 24",fill:"none",stroke:"currentColor","stroke-width":"1.6","stroke-linecap":"round","stroke-linejoin":"round","aria-hidden":"true",focusable:"false"})) icon.setAttribute(name,value);
+      for (const d of ["M12 5.5C9.4 3.8 6.4 3.8 3 4.5v15c3.4-.7 6.4-.7 9 1 2.6-1.7 5.6-1.7 9-1v-15c-3.4-.7-6.4-.7-9 1Z","M12 5.5v15"]) {
+        const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
+        path.setAttribute("d", d);
+        icon.append(path);
+      }
+      const title = document.createElement("span");
+      title.textContent = post.book.title;
+      book.append(icon,title);
       meta.append(book);
     }
     const title = document.createElement("h2");
