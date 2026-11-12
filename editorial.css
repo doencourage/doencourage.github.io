@@ -264,3 +264,9 @@ a.book-reference:is(:hover, :focus-visible),
 }
 /* Existing survey status and support labels remain separate without dot joins. */
 .save-time, .form-text-gap { margin-inline-start: 12px; }
+/* The repeated brand/menu row was removed; keep one compact legal footer. */
+.site-footer > .footer-legal:first-child {
+  margin-top: 0 !important;
+  padding-top: 0;
+  border-top: 0;
+}

@@ -5,9 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="마음에 관심을 둔 사람들의 글을 책으로 펴내는 출판사 마음기록소와 출판 브랜드 마음기록소, 헤아담, 심리서가를 소개합니다.">
   <title>출판사 소개, 마음기록소</title>
-  <link rel="stylesheet" href="site-v6.css?v=20261112-motion">
+  <link rel="stylesheet" href="site-v6.css?v=20261112-identity">
   <link rel="stylesheet" href="about-brands.css?v=20261107-horizontal">
-  <script src="app.js?v=20261112-motion" defer></script>
+  <script src="app.js?v=20261112-identity" defer></script>
 <script src="/interaction.js?v=20261112-motion" defer></script>
 <link rel="canonical" href="https://doencourage.com/about">
   <meta property="og:url" content="https://doencourage.com/about">
@@ -15,10 +15,23 @@
   <meta property="og:description" content="마음에 관심을 둔 사람들의 글을 책으로 펴내는 출판사 마음기록소와 출판 브랜드 마음기록소, 헤아담, 심리서가를 소개합니다.">
   <meta property="og:image" content="https://doencourage.com/assets/career-front.png">
   <meta name="twitter:image" content="https://doencourage.com/assets/career-front.png">
-<link rel="stylesheet" href="/editorial.css?v=20261112-motion">
+<link rel="stylesheet" href="/editorial.css?v=20261112-identity">
+<link rel="icon" href="/favicon.ico?v=20261112-identity" sizes="16x16 32x32 48x48">
+<link rel="icon" href="/favicon.svg?v=20261112-identity" type="image/svg+xml" sizes="any">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png?v=20261112-identity" sizes="180x180">
 </head>
 <body class="site-page about-page">
-  <div data-site-header></div>
+  <div data-site-header>
+      <a class="skip-link" href="#main">본문으로 바로가기</a>
+      <header class="site-header">
+        <a class="wordmark" href="/" aria-label="마음기록소 홈">마음기록소</a>
+        <nav class="site-menu" aria-label="주요 메뉴">
+          <a href="/book" >책</a>
+          <a href="/reading" >읽을거리</a>
+          <a href="/about" aria-current="page">출판사 소개</a>
+          <a class="assessment-menu-link" href="/assessment/" >마음한권 <span aria-hidden="true">↗</span></a>
+        </nav>
+      </header></div>
   <main id="main">
     <div class="page-shell">
       <header class="page-lead">
@@ -49,13 +62,13 @@
       <p class="imprints-intro">출판사 마음기록소는 세 브랜드로 책을 펴냅니다. 출판사와 이름이 같은 마음기록소, 그리고 헤아담과 심리서가입니다.</p>
       <article class="imprint-detail" id="imprint-maum" aria-labelledby="imprint-maum-title">
         <div class="imprint-heading">
-          <h3 id="imprint-maum-title"><img class="imprint-logo imprint-logo-maum" src="assets/brands/maum-horizontal-black.png?v=20261107-balance" alt="마음기록소" width="2400" height="784" decoding="async"></h3>
+          <h3 id="imprint-maum-title"><img class="imprint-logo imprint-logo-maum" src="assets/brands/maum-horizontal-web.webp?v=20261112-identity" alt="마음기록소" width="2400" height="784" decoding="async"></h3>
           <p>자기이해와 심리학</p>
         </div>
         <div class="imprint-copy">
           <p class="imprint-statement">마음을 기록하며, 나와 당신을 이해합니다.</p>
           <p>마음기록소는 ‘마음을 기록하는 곳’이라는 뜻을 담고 있습니다. 우리가 무엇을 느끼고, 어떤 생각을 하며, 왜 그런 선택을 하는지 글로 옮기고 심리학을 통해 살펴봅니다. 흥미와 기질, 지능부터 진로와 관계, 양육과 자기이해까지 다룹니다. 나와 곁의 사람을 이해할 단서를 전하는 책들입니다.</p>
-          <p class="imprint-book"><span>임상심리전문가의 마음설명서</span><a class="book-reference" href="book.html"><svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M12 5c-3-2-6-2-9-1v15c3-1 6-1 9 1 3-2 6-2 9-1V4c-3-1-6-1-9 1Z"/><path d="M12 5v15"/></svg><span>AI 시대, 진로 방향 찾기</span></a></p>
+          <p class="imprint-book"><span>임상심리전문가의 마음설명서</span><a class="book-reference" href="book"><svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M12 5c-3-2-6-2-9-1v15c3-1 6-1 9 1 3-2 6-2 9-1V4c-3-1-6-1-9 1Z"/><path d="M12 5v15"/></svg><span>AI 시대, 진로 방향 찾기</span></a></p>
         </div>
       </article>
       <article class="imprint-detail" id="imprint-haeadam" aria-labelledby="imprint-haeadam-title">
@@ -88,9 +101,18 @@
       <h2 id="about-contact-title">마음기록소에 물어보기</h2>
       <p>도서와 출판, 서점과 기관 거래, 협업에 관한 문의는 이메일로 보내 주세요.</p>
       <a class="submission-email" href="mailto:hello@doencourage.com">hello@doencourage.com</a>
-      <p><a href="submission.html">원고 투고 안내 <span aria-hidden="true">↗</span></a></p>
+      <p><a href="submission">원고 투고 안내 <span aria-hidden="true">↗</span></a></p>
     </section>
   </main>
-  <div data-site-footer></div>
+  <div data-site-footer>
+      <footer class="site-footer">
+        <div class="footer-legal">
+          <p><span>상호 마음기록소</span> <span>대표자 안계훈</span> <span>사업자등록번호 557-13-02917</span></p>
+          <p>사업장 주소 경기도 이천시 대월면 사동로176, 2층 202호</p>
+          <p><span>이메일 <a href="mailto:hello@doencourage.com">hello@doencourage.com</a></span> <span>호스팅서비스제공자 Cloudflare, Inc.</span></p>
+          <p><a href="https://doencourage.com/terms/">검사 서비스 이용약관</a> <a href="https://doencourage.com/privacy/">개인정보처리방침</a></p>
+          <p class="copyright">© 2026 마음기록소</p>
+        </div>
+      </footer></div>
 </body>
 </html>

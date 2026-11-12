@@ -1,5 +1,4 @@
 (function () {
-  const UX_QUERY_VALUE = "12";
   const pathName = decodeURIComponent(location.pathname.split("/").pop() || "index.html");
   const current = pathName === "index.html" || pathName === "a.html" || pathName === "b.html"
     ? "home"
@@ -8,35 +7,23 @@
   const header = document.querySelector("[data-site-header]");
   const footer = document.querySelector("[data-site-footer]");
 
-  if (header) {
+  if (header && !header.querySelector(".site-header")) {
     header.innerHTML = `
       <a class="skip-link" href="#main">본문으로 바로가기</a>
       <header class="site-header">
         <a class="wordmark" href="/" aria-label="마음기록소 홈">마음기록소</a>
         <nav class="site-menu" aria-label="주요 메뉴">
-          <a href="/book.html" ${current === "book" ? 'aria-current="page"' : ""}>책</a>
-          <a href="/reading.html" ${readingCurrent ? 'aria-current="page"' : ""}>읽을거리</a>
-          <a href="/about.html" ${current === "about" ? 'aria-current="page"' : ""}>출판사 소개</a>
+          <a href="/book" ${current === "book" ? 'aria-current="page"' : ""}>책</a>
+          <a href="/reading" ${readingCurrent ? 'aria-current="page"' : ""}>읽을거리</a>
+          <a href="/about" ${current === "about" ? 'aria-current="page"' : ""}>출판사 소개</a>
           <a class="assessment-menu-link" href="/assessment/" ${current === "assessment" ? 'aria-current="page"' : ""}>마음한권 <span aria-hidden="true">↗</span></a>
         </nav>
       </header>`;
   }
 
-  if (footer) {
+  if (footer && !footer.querySelector(".footer-legal")) {
     footer.innerHTML = `
       <footer class="site-footer">
-        <div class="footer-main">
-          <div>
-            <a class="footer-mark" href="/index.html">마음기록소</a>
-            <p>마음과 삶을 이해하는 책을 펴냅니다.</p>
-          </div>
-          <nav class="footer-links" aria-label="하단 메뉴">
-            <a href="/book.html">책</a>
-            <a href="/reading.html">읽을거리</a>
-            <a href="/about.html">출판사 소개</a>
-            <a href="/assessment/">마음한권</a>
-          </nav>
-        </div>
         <div class="footer-legal">
           <p><span>상호 마음기록소</span> <span>대표자 안계훈</span> <span>사업자등록번호 557-13-02917</span></p>
           <p>사업장 주소 경기도 이천시 대월면 사동로176, 2층 202호</p>
@@ -46,28 +33,6 @@
         </div>
       </footer>`;
   }
-
-  function preserveUxQuery(scope) {
-    scope.querySelectorAll("a[href]").forEach((link) => {
-      if (link.hasAttribute("download")) return;
-      const rawHref = link.getAttribute("href");
-      if (!rawHref || rawHref.startsWith("#") || rawHref.startsWith("mailto:") || rawHref.startsWith("tel:")) return;
-
-      const url = new URL(rawHref, location.href);
-      const isLocalFile = location.protocol === "file:" && url.protocol === "file:";
-      const isSameOrigin = url.origin === location.origin;
-      if ((!isLocalFile && !isSameOrigin) || !url.pathname.toLowerCase().endsWith(".html")) return;
-
-      url.searchParams.set("ux", UX_QUERY_VALUE);
-      if (isLocalFile) {
-        link.href = url.href;
-      } else {
-        link.href = `${url.pathname}${url.search}${url.hash}`;
-      }
-    });
-  }
-
-  preserveUxQuery(document);
 
   const bookRotator = document.querySelector("[data-book-rotator]");
   if (bookRotator) {
