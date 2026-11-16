@@ -1,4 +1,4 @@
-/* Analytics loads only after an explicit choice on the public production site. */
+/* Cookie-free Cloudflare statistics; Google Analytics requires an explicit choice. */
 (() => {
   'use strict';
   const ownScript = document.currentScript;
@@ -7,6 +7,14 @@
   if (!['doencourage.com', 'www.doencourage.com'].includes(location.hostname)) return;
   if (/^\/(?:form|submission|editor|content|_작업)(?:\/|\.|$)/i.test(decodeURI(location.pathname))) return;
   window.__doencourageAnalytics = true;
+  const cloudflareToken = ownScript.dataset.cloudflareToken;
+  if (/^[a-f0-9]{32}$/.test(cloudflareToken || '')) {
+    const beacon = document.createElement('script');
+    beacon.type = 'module';
+    beacon.src = 'https://static.cloudflareinsights.com/beacon.min.js';
+    beacon.setAttribute('data-cf-beacon', JSON.stringify({token: cloudflareToken}));
+    document.head.append(beacon);
+  }
   const key = 'doencourage-analytics-consent-v1';
   const maxAge = 180 * 24 * 60 * 60 * 1000;
   let started = false;
@@ -96,10 +104,20 @@
     document.body.append(preferences);
     panel = document.createElement('section');
     panel.className = 'analytics-consent';
-    panel.setAttribute('aria-label', '방문 통계 선택');
-    panel.innerHTML = '<div><strong>방문 통계를 허용할까요?</strong><p>더 나은 글과 서비스를 위해 Google Analytics로 페이지 이용 통계를 살펴봅니다. 쿠키 사용을 거부해도 사이트를 이용할 수 있습니다. <a href="/privacy/#analytics">자세히</a></p></div><div class="analytics-actions"><button type="button" data-choice="no">거부</button><button type="button" data-choice="yes">허용</button></div>';
+    panel.setAttribute('aria-label', 'Google 방문 통계 선택');
+    panel.innerHTML = '<div><strong>Google 방문 통계 선택</strong><p>허용하면 Google Analytics 쿠키로 페이지 이용 통계를 수집합니다. 허용하지 않아도 사이트를 이용할 수 있습니다. <a href="/privacy/#analytics">자세히</a></p></div><div class="analytics-actions"><button type="button" data-choice="no">거부</button><button type="button" data-choice="yes">허용</button></div>';
     panel.querySelectorAll('[data-choice]').forEach(button => button.addEventListener('click', () => choose(button.dataset.choice)));
-    panel.hidden = choice !== null;
+    const closeButton = document.createElement('button');
+    closeButton.type = 'button';
+    closeButton.className = 'analytics-close';
+    closeButton.textContent = '닫기';
+    closeButton.addEventListener('click', () => {
+      panel.hidden = true;
+      settingsButton.focus({preventScroll: true});
+    });
+    panel.append(closeButton);
+    // Only the footer settings button opens this optional GA4 panel.
+    panel.hidden = true;
     document.body.append(panel);
     if (choice === 'yes') start();
   }
@@ -123,7 +141,7 @@
       removeAnalyticsCookies();
       location.reload();
     } else if (choice === 'yes') { panel.hidden = true; start(); }
-    else panel.hidden = choice !== null;
+    else panel.hidden = true;
   });
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', render, {once: true});
   else render();

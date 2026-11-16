@@ -4,6 +4,8 @@
 .analytics-consent[hidden] { display: none !important; }
 .analytics-consent strong { font-size: 15px; }
 .analytics-consent p { margin: 5px 0 12px; }
+.analytics-consent strong { display: block; padding-right: 45px; }
+.analytics-close { position: absolute; top: 14px; right: 16px; border: 0; padding: 5px; background: transparent; color: #5b6570; font: inherit; cursor: pointer; }
 .analytics-consent a { color: #244c60; text-decoration: underline; }
 .analytics-actions { display: flex; gap: 10px; justify-content: flex-end; }
 .analytics-actions button { min-width: 78px; min-height: 42px; padding: 8px 16px; border: 1px solid #657681; border-radius: 7px; background: #fff; color: #26343e; font: inherit; cursor: pointer; }
