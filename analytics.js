@@ -73,7 +73,7 @@
     choice = value;
     try { localStorage.setItem(key, JSON.stringify({value, expires: Date.now() + maxAge})); } catch (_) { /* Current page choice still applies. */ }
     panel.hidden = true;
-    settingsButton.focus();
+    settingsButton.focus({preventScroll: true});
     if (value === 'yes') start();
     else {
       window['ga-disable-' + id] = true;
