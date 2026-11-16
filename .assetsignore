@@ -8,3 +8,4 @@ content/**
 _작업/**
 *.py
 *.md
+analytics-worker.mjs
