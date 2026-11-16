@@ -1,0 +1,12 @@
+.analytics-preferences { padding: 0 20px 24px; text-align: center; }
+.analytics-preferences button { border: 0; background: transparent; color: #5b6570; font: inherit; font-size: 12px; text-decoration: underline; text-underline-offset: 3px; cursor: pointer; }
+.analytics-consent { position: fixed; z-index: 1000; inset: auto 16px 16px; margin: 0 auto; max-width: 680px; padding: 18px 20px; box-sizing: border-box; background: #fffdf8; color: #26343e; border: 1px solid #d8dce0; border-radius: 12px; box-shadow: 0 6px 28px #18242e24; font: 14px/1.6 system-ui, sans-serif; }
+.analytics-consent[hidden] { display: none !important; }
+.analytics-consent strong { font-size: 15px; }
+.analytics-consent p { margin: 5px 0 12px; }
+.analytics-consent a { color: #244c60; text-decoration: underline; }
+.analytics-actions { display: flex; gap: 10px; justify-content: flex-end; }
+.analytics-actions button { min-width: 78px; min-height: 42px; padding: 8px 16px; border: 1px solid #657681; border-radius: 7px; background: #fff; color: #26343e; font: inherit; cursor: pointer; }
+.analytics-actions button:hover { background: #edf2f4; }
+.analytics-consent button:focus-visible, .analytics-preferences button:focus-visible { outline: 3px solid #477b9d; outline-offset: 3px; }
+@media (max-width: 420px) { .analytics-consent { inset: auto 10px 10px; padding: 14px 16px; font-size: 13px; } }
