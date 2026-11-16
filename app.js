@@ -16,7 +16,6 @@
           <a href="/book" ${current === "book" ? 'aria-current="page"' : ""}>책</a>
           <a href="/reading" ${readingCurrent ? 'aria-current="page"' : ""}>읽을거리</a>
           <a href="/about" ${current === "about" ? 'aria-current="page"' : ""}>출판사 소개</a>
-          <a class="assessment-menu-link" href="/assessment/" ${current === "assessment" ? 'aria-current="page"' : ""}>마음한권 <span aria-hidden="true">↗</span></a>
         </nav>
       </header>`;
   }
